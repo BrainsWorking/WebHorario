@@ -12,9 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('');
 });
 
 Route::get("/turno", function (){
 	return view('turnos.index');
 });
+
+Route::get('turno/cadastrar', function(){
+	return view('turnos.cadastro_turno');
+})->name('cadastrar_turno');

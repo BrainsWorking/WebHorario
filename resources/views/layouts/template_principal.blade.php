@@ -36,10 +36,10 @@
 
 				<!-- MENU SERÁ ALTERADO DE ACORDO COM O NIVEL DE ACESSO DE CADA USUARIO -->
 
-				<li><a href=""><span class="glyphicon glyphicon-home"></span> Home</a></li>
-				<li><a href=""><span class="glyphicon glyphicon-time"></span> Turno</a></li>
-				<li><a href=""><span class="glyphicon glyphicon-education"></span> Curso</a></li>
-				<li><a href=""><span class="glyphicon glyphicon-book"></span> Disciplina</a></li>
+				<li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+				<li><a href="/turno"><span class="glyphicon glyphicon-time"></span> Turnos</a></li>
+				<li><a href=""><span class="glyphicon glyphicon-book"></span> Disciplinas</a></li>
+				<li><a href=""><span class="glyphicon glyphicon-education"></span> Cursos</a></li>
 				<li><a href=""><span class="glyphicon glyphicon-user"></span> Editar Perfil</a></li>
 
 			</ul>

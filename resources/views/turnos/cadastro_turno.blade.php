@@ -1,14 +1,9 @@
-<!-- ESSAS LINHAS PODEM SER REMOVIDAS QUANDO INTEGRADAS AO TEMPLATE PRINCIPAL -->
-<link rel="stylesheet" type="text/css" href="../app.public/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../app.public/css/style.css">
-<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-
-	@extends('views.main_template')
+	@extends('layouts.template_principal')
 
 	@section('title', 'Cursos')
 
 	@section('content')
-		@parent
+	@parent
 
 	<form role="form" method="POST" action="#" validate>
 		
@@ -29,5 +24,3 @@
 	</form>
 
 	@endsection
-
-</div>
