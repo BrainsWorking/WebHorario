@@ -52,3 +52,15 @@ footer{
 .barra-pesquisa{
 	margin: 10px;
 }
+
+.table-line:hover{
+	cursor: pointer;
+}
+
+.table-line span{
+	color: #9FA3A6;
+}
+
+.table-line span:hover{
+	color: #636b6f;
+}

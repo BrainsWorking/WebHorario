@@ -1,13 +1,13 @@
 	@extends('layouts.template_principal')
 
-	@section('title', 'Cursos')
+	@section('title', 'Turnos')
 
 	@section('content')
 	@parent
 
 	<form role="form" method="POST" action="#" validate>
 		
-		<h3 class="text-center">Cadastrar Novo Turno</h3>
+		<h1 class="text-center page-header">Cadastro de Turno</h1>
 
 		<div class="control-group">
 			<label for="name" class="control-label">Nome do Turno</label>

@@ -1,6 +1,6 @@
 	@extends('layouts.template_principal')
 
-	@section('title', 'Cursos')
+	@section('title', 'Turnos')
 
 	@section('content')
 	@parent
@@ -19,6 +19,7 @@
 					</form>
 				</div>
 
+				<th class="text-center"></th>
 				<th class="text-center">Turno</th>
 				<th class="text-center">Quantidade de Aulas</th>
 				<th class="text-center">Editar</th>
@@ -28,13 +29,14 @@
 			
 			<tbody>
 
-				<tr>
+				<tr class="table-line">
+					<td class="text-center"><span class="glyphicon glyphicon-chevron-down"></span></td>
 					<td class="text-center">Matutino</td>
 					<td class="text-center">06</td>
 					<td class="text-center"><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
 					<td class="text-center"><a href=""><span class="glyphicon glyphicon-remove"></span></a></td>
 				</tr>
-				
+
 			</tbody>
 		</table>
 
