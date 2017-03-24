@@ -1,7 +1,7 @@
 <?php
 
-    use App\Model\Horario;
-    use App\Model\Turno;
+    use App\Models\Horario;
+    use App\Models\Turno;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +20,7 @@ Route::get('/', function () {
     $horario->save();
 
     $turno = new Turno(['nome' => 'Matutino']);
-    $turno->associate($horario);
+    $turno->horarios()->attach($horario);
     $turno->save();
+
 });

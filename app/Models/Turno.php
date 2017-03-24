@@ -14,4 +14,8 @@ class Turno extends Model
     public function horarios(){
         return $this->belongsToMany(Horario::class, 'turnos_horarios');
     }
+
+    public function cursos(){
+        return $this->hasMany('App\Models\Curso');        
+    }
 }
