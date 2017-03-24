@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Disciplina extends Model
 {
-    protected $fillable = ['name', 'iniciais', 'cargaHoraria'];
+    protected $fillable = ['nome', 'iniciais', 'cargaHoraria'];
 
     public function cursos(){
         return $this->belongsToMany(Disciplina::class);
