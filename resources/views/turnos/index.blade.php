@@ -8,7 +8,7 @@
 		<table class="table table-condensed table-striped">
 			<thead>
 				<h1 class="text-center page-header"><span class="glyphicon glyphicon-time"></span> TURNOS</h1>
-				<a class="btn btn-success btn-lg right" href="/turno/cadastrar"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
+				<a class="btn btn-success btn-lg right" href="/turnos/cadastrar"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
 
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 barra-pesquisa">
 					<form role="form">

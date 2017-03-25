@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('');
 });
 
-Route::get("/turno", function (){
+Route::get("/turnos", function (){
 	return view('turnos.index');
 });
 
-Route::get('turno/cadastrar', function(){
+Route::get('turnos/cadastrar', function(){
 	return view('turnos.cadastro_turno');
 })->name('cadastrar_turno');
