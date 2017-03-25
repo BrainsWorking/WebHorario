@@ -41,3 +41,7 @@
 	{!! Form::close() !!}
 
 	@endsection
+
+	@section('scripts')
+	<script type="text/javascript" src="{{ asset('/js/cadastro_turno.js') }}"></script>
+	@endsection

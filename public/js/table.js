@@ -13,7 +13,7 @@ $(document).ready(function(){
 		$(this).parent().next().toggle('fast');
 	});
 
-	$(".input-filter").bind("paste keyup", function(){
+	$(".input-filter").bind("change paste keyup", function(){
 		var filter = $(this).val().toUpperCase();
 		
 		$('.table-line').each(function(){
