@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +14,7 @@ Route::get('/', function () {
     return view('');
 });
 
+<<<<<<< HEAD
 Route::get("/turnos", function (){
 	$turnos[] = (object)['nome' => 'Matutino', 'quantidade_aulas' => '5'];
 	$turnos[] = (object)['nome' => 'Vespertino', 'quantidade_aulas' => '5'];
@@ -27,3 +27,14 @@ Route::get("/turnos", function (){
 Route::get('turnos/cadastrar', function(){
 	return view('turnos.cadastro_turno');
 })->name('cadastrar_turno');
+=======
+Route::get('turno', 'TurnoController@cadastro');
+
+Route::get('turno/salvar', 'TurnoController@salvar')->name('turno.salvar');
+Route::get('turno/atualizar', 'TurnoController@atualizar')->name('turno.atualizar');
+
+Route::get('turno/editar/{id}', function($id){
+    $turno = (object)['nome' => 'tarde'];//Turno::findOrFail($id);
+    return view('turno.editar', compact('turno', 'id'));
+})->name('turno.editar');
+>>>>>>> upstream/master
