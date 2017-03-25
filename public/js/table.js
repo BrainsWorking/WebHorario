@@ -20,15 +20,17 @@ $(document).ready(function(){
 			var search = $(this).children(".search");
 			search.each(function(){
 
-				if(! $(this).html().toUpperCase().includes(filter)){
-					// if ($(this).parent().hasClass('show')) {
-						$(this).parent().hide();
-					// };
-				// }else{
-				// 	$(this).parent().addClass('show');
-				// 	$(this).parent().show();
-				}
+				if($(this).html().toUpperCase().includes(filter)){
+					$(this).parent().addClass("show");
+				};
 			});
+
+			if ($(this).hasClass('show')) {
+				$(this).show();
+				$(this).removeClass('show');
+			}else{
+				$(this).hide();
+			}
 		});
 
 	});

@@ -5,9 +5,9 @@
 	@section('content')
 	@parent
 	<div class="col-lg-12 table-responsive">
+		<h1 class="text-center page-header"></h1>
 		<table class="table table-condensed table-hover">
 			<thead>
-				<h1 class="text-center page-header"></h1>
 				<a class="btn btn-success btn-lg right" href="/turnos/cadastrar"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
 
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 barra-pesquisa">
