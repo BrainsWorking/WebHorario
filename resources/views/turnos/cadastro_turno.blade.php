@@ -5,9 +5,9 @@
 	@section('content')
 	@parent
 
-	{{-- {{ Form::open({'route' => 'turno.salvar', 'method' => 'post'}) }} --}}
+	{!! Form::open(['route' => 'turno.salvar', 'method' => 'post']) !!}
 
-	<form role="form" method="POST" action="#" validate>
+	{{-- <form role="form" method="POST" action="#" validate>
 		
 		<h1 class="text-center page-header">Cadastro de Turno</h1>
 
@@ -23,6 +23,6 @@
 
 		<button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
 
-	</form>
+	</form> --}}
 
 	@endsection

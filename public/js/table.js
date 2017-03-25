@@ -21,12 +21,12 @@ $(document).ready(function(){
 			search.each(function(){
 
 				if(! $(this).html().toUpperCase().includes(filter)){
-					if ($(this).parent().hasClass('show')) {
+					// if ($(this).parent().hasClass('show')) {
 						$(this).parent().hide();
-					};
-				}else{
-					$(this).parent().addClass('show');
-					$(this).parent().show();
+					// };
+				// }else{
+				// 	$(this).parent().addClass('show');
+				// 	$(this).parent().show();
 				}
 			});
 		});
