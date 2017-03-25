@@ -16,7 +16,12 @@ Route::get('/', function () {
 });
 
 Route::get("/turnos", function (){
-	return view('turnos.index');
+	$turnos[] = (object)['nome' => 'Matutino', 'quantidade_aulas' => '5'];
+	$turnos[] = (object)['nome' => 'Vespertino', 'quantidade_aulas' => '5'];
+	$turnos[] = (object)['nome' => 'Noturno', 'quantidade_aulas' => '5'];
+
+	return view('turnos.index', compact('turnos'));
+
 });
 
 Route::get('turnos/cadastrar', function(){

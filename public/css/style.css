@@ -28,8 +28,18 @@ footer{
 	color: #424242;
 }
 
+.sidebar li:hover{
+	cursor: default;
+}
+
 .sidebar a{
 	color: #424242;
+}
+
+.sidebar-active{
+	background-color: #b2daa6;
+	color: #424242;
+	border-radius: 4px;
 }
 
 .nav-pills li a:hover{
@@ -51,9 +61,11 @@ footer{
 
 .barra-pesquisa{
 	margin: 10px;
+	margin-left: 0px;
+	padding: 0px;
 }
 
-.table-line:hover{
+.table-more-info:hover{
 	cursor: pointer;
 }
 
@@ -63,4 +75,16 @@ footer{
 
 .table-line span:hover{
 	color: #636b6f;
+}
+
+.hidden-info{
+	display: none;
+}
+
+.hidden-info:hover{
+	cursor: default;
+}
+
+.table-responsive{
+	padding: 0px;
 }
