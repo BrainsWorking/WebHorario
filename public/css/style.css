@@ -1,0 +1,90 @@
+header{
+	background-color: #1f6709;
+	color: #f5f5f5;
+	padding: 10px;
+	font-size: 15px;
+}
+
+header a{
+	color: white;
+}
+
+header a:hover{
+	color: red;
+	text-decoration: none;
+}
+
+footer{
+	background-color: #DDDDDD;
+}
+
+.sidebar{
+	min-height: 450px;
+	font-size: 20px;
+	padding-top: 10px;
+}
+
+.sidebar li{
+	color: #424242;
+}
+
+.sidebar li:hover{
+	cursor: default;
+}
+
+.sidebar a{
+	color: #424242;
+}
+
+.sidebar-active{
+	background-color: #b2daa6;
+	color: #424242;
+	border-radius: 4px;
+}
+
+.nav-pills li a:hover{
+	background-color: #b2daa6;
+	color: #424242;
+}
+
+.content{
+	min-height: 450px;
+}
+
+.right{
+	float: right;
+}
+
+.btn{
+	margin: 10px;
+}
+
+.barra-pesquisa{
+	margin: 10px;
+	margin-left: 0px;
+	padding: 0px;
+}
+
+.table-more-info:hover{
+	cursor: pointer;
+}
+
+.table-line span{
+	color: #9FA3A6;
+}
+
+.table-line span:hover{
+	color: #636b6f;
+}
+
+.hidden-info{
+	display: none;
+}
+
+.hidden-info:hover{
+	cursor: default;
+}
+
+.table-responsive{
+	padding: 0px;
+}
