@@ -35,8 +35,8 @@
 
 				<li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 				<li class=" sidebar-active"><a href="/turnos"><span class="glyphicon glyphicon-time"></span> Turnos</a></li>
-				<li><a href=""><span class="glyphicon glyphicon-book"></span> Disciplinas</a></li>
-				<li><a href=""><span class="glyphicon glyphicon-education"></span> Cursos</a></li>
+				<li><a href="/disciplinas"><span class="glyphicon glyphicon-book"></span> Disciplinas</a></li>
+				<li><a href="/cursos"><span class="glyphicon glyphicon-education"></span> Cursos</a></li>
 				<li><a href=""><span class="glyphicon glyphicon-user"></span> Editar Perfil</a></li>
 
 			</ul>

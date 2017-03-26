@@ -11,23 +11,24 @@
 */
 
 Route::get('/', function () {
-    return view('');
+    return view('welcome');
 });
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 Route::get("/turnos", function (){
 	$turnos[] = (object)['nome' => 'Matutino', 'quantidade_aulas' => '5'];
-	$turnos[] = (object)['nome' => 'Vespertino', 'quantidade_aulas' => '5'];
+	$turnos[] = (object)['nome' => 'Vespertino', 'quantidade_aulas' => '4'];
 	$turnos[] = (object)['nome' => 'Noturno', 'quantidade_aulas' => '5'];
 
 	return view('turnos.index', compact('turnos'));
-
 });
 
 Route::get('turnos/cadastrar', function(){
 	return view('turnos.cadastro_turno');
-})->name('cadastrar_turno');
-=======
+});
+
+//=======
+
 Route::get('turno', 'TurnoController@cadastro');
 
 Route::get('turno/salvar', 'TurnoController@salvar')->name('turno.salvar');
@@ -37,4 +38,20 @@ Route::get('turno/editar/{id}', function($id){
     $turno = (object)['nome' => 'tarde'];//Turno::findOrFail($id);
     return view('turno.editar', compact('turno', 'id'));
 })->name('turno.editar');
->>>>>>> upstream/master
+//>>>>>>> upstream/master
+
+Route::get("/disciplinas", function (){
+	$disciplinas[] = (object)['nome' => 'Lógica de Programação', 'iniciais' => 'LOP', 'cargaHoraria' => '200'];
+	$disciplinas[] = (object)['nome' => 'Matemática Discreta I', 'iniciais' => 'MD1', 'cargaHoraria' => '200'];
+	$disciplinas[] = (object)['nome' => 'Linguagem de Programação', 'iniciais' => 'LOP', 'cargaHoraria' => '200'];
+	
+	return view('disciplinas.index', compact('disciplinas'));
+});
+
+Route::get("/cursos", function (){
+	$cursos[] = (object)['nome' => 'Análise e Desenvolvimento de Sistemas', 'iniciais' => 'ADS', 'turno' => 'Noturno', 'disciplinas' => [['nome'=>'Disciplina 1', 'iniciais' => "DIC1"], ['nome'=>'Disciplina 2', 'iniciais' => "DIC2"]]];
+	$cursos[] = (object)['nome' => 'Edificações', 'iniciais' => 'EDF', 'turno' => 'Vespertino', 'disciplinas' => [['nome'=>'Disciplina 1', 'iniciais' => "DIC1"], ['nome'=>'Disciplina 2', 'iniciais' => "DIC2"]]];
+	$cursos[] = (object)['nome' => 'Matemática', 'iniciais' => 'MAT', 'turno' => 'Matutino', 'disciplinas' => [['nome'=>'Disciplina 1', 'iniciais' => "DIC1"], ['nome'=>'Disciplina 2', 'iniciais' => "DIC2"]]];
+	
+	return view('cursos.index', compact('cursos'));
+});
