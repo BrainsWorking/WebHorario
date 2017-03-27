@@ -1,4 +1,4 @@
-	@extends('layouts.template_principal')
+	@extends('layouts.principal')
 
 	@section('title', 'Cursos')
 
