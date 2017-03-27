@@ -20,6 +20,6 @@ class TurnoController extends Controller
     }
     
     public function cadastro(){
-        return view('turnos.cadastrar');
+        return view('turno.cadastrar');
     }
 }
