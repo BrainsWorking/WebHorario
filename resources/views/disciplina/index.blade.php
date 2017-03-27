@@ -1,4 +1,4 @@
-	@extends('layouts.principal')
+	@extends('layout.principal')
 
 	@section('title', 'Disciplinas')
 
