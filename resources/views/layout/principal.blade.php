@@ -19,7 +19,7 @@
 
 		<header class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-				<a href=""><img class="img-responsive" src="{{ asset('/img/ifsp_logo_2.png') }}"></a>
+				<a href="{{ route('home') }}"><img class="img-responsive" src="{{ asset('/img/ifsp_logo_2.png') }}"></a>
 			</div>
 			<div class="right col-xs-6 col-sm-4 col-md-3 col-lg-3">
 				<p class="right"><a href="">Sair <span class="glyphicon glyphicon-off"></span></a></p>
@@ -33,11 +33,11 @@
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 sidebar">
 			<ul class="nav nav-pills nav-stacked">
 
-				<li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-				<li class=" sidebar-active"><a href="/turnos"><span class="glyphicon glyphicon-time"></span> Turnos</a></li>
-				<li><a href="/disciplinas"><span class="glyphicon glyphicon-book"></span> Disciplinas</a></li>
-				<li><a href="/cursos"><span class="glyphicon glyphicon-education"></span> Cursos</a></li>
-				<li><a href=""><span class="glyphicon glyphicon-user"></span> Editar Perfil</a></li>
+				<li class="{{ setActive('home') }}"><a href="{{ route('home') }}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+				<li class="{{ setActive('turnos') }}"><a href="{{ route('turnos') }}"><span class="glyphicon glyphicon-time"></span> Turnos</a></li>
+				<li class="{{ setActive('disciplinas') }}"><a href="{{ route('disciplinas') }}"><span class="glyphicon glyphicon-book"></span> Disciplinas</a></li>
+				<li class="{{ setActive('cursos') }}"><a href="{{ route('cursos') }}"><span class="glyphicon glyphicon-education"></span> Cursos</a></li>
+				<li class="{{ setActive('perfil.editar') }}"><a href=""><span class="glyphicon glyphicon-user"></span> Editar Perfil</a></li>
 
 			</ul>
 		</div>

@@ -36,11 +36,7 @@ footer{
 	color: #424242;
 }
 
-.sidebar-active{
-	background-color: #b2daa6;
-	color: #424242;
-	border-radius: 4px;
-}
+
 
 .nav-pills li a:hover{
 	background-color: #b2daa6;
@@ -91,4 +87,9 @@ footer{
 
 .horarios-turno{
 	margin-top: 10px;
+}
+
+/* Bootstrap Override */
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{ /* Opção do Menu */
+	background-color: #43a047;
 }
