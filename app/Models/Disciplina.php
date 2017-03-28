@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Disciplina as Disciplina;
+use App\Models\Disciplina as Curso;
 
 
 class Disciplina extends Model
@@ -12,6 +12,6 @@ class Disciplina extends Model
     public $timestamps = false;
 
     public function cursos(){
-        return $this->belongsToMany(Disciplina::class, 'cursos_disciplinas');
+        return $this->belongsToMany(Curso::class, 'cursos_disciplinas');
     }
 }

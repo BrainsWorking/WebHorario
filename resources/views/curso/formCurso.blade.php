@@ -13,9 +13,13 @@
 
 	<h1 class="text-center page-header"></h1>
 
-	<div class="form-group">
+	<div class="col-lg-8 form-group padding-left-0">
 		{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
 		{!! Form::text('nome', '', ['class' => 'form-control']) !!}
+	</div>
+	<div class="col-lg-4 form-group padding-right-0">
+		{!! Form::label('iniciais', 'Sigla', ['class' => 'control-label']) !!}
+		{!! Form::text('iniciais', '', ['class' => 'form-control']) !!}
 	</div>
 
 	<div class="form-group">
