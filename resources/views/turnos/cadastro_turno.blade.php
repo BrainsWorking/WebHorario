@@ -29,7 +29,7 @@
 		<div class="form-group col-lg-6">
 			{!! Form::label('turnos_horarios', 'Fim', ['class'=>'control-label col-lg-2']) !!}
 			<div class="col-lg-10">
-				{!! Form::text('turnos_horarios[]', '', ['class'=>'form-control']) !!}
+				{!! Form::text('turnos_horarios[]', '', ['class'=>'form-control', 'maxlength' => '5']) !!}
 			</div>
 		</div>
 	</div>
