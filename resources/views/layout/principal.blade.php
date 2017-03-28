@@ -34,9 +34,9 @@
 			<ul class="nav nav-pills nav-stacked">
 
 				<li class="{{ setActive('home') }}"><a href="{{ route('home') }}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-				<li class="{{ setActive('turnos') }}"><a href="{{ route('turnos') }}"><span class="glyphicon glyphicon-time"></span> Turnos</a></li>
-				<li class="{{ setActive('disciplinas') }}"><a href="{{ route('disciplinas') }}"><span class="glyphicon glyphicon-book"></span> Disciplinas</a></li>
-				<li class="{{ setActive('cursos') }}"><a href="{{ route('cursos') }}"><span class="glyphicon glyphicon-education"></span> Cursos</a></li>
+				<li class="{{ setActive('turno') }}"><a href="{{ route('turnos') }}"><span class="glyphicon glyphicon-time"></span> Turnos</a></li>
+				<li class="{{ setActive('disciplina') }}"><a href="{{ route('disciplinas') }}"><span class="glyphicon glyphicon-book"></span> Disciplinas</a></li>
+				<li class="{{ setActive('curso') }}"><a href="{{ route('cursos') }}"><span class="glyphicon glyphicon-education"></span> Cursos</a></li>
 				<li class="{{ setActive('perfil.editar') }}"><a href=""><span class="glyphicon glyphicon-user"></span> Editar Perfil</a></li>
 
 			</ul>
