@@ -1,35 +1,23 @@
 $(document).ready(function(){
 
 
-	var flag = false;
+	var wrapper = $(".horarios-turno");
 
-	var inputs = $(".horarios-turno input").last();
+	var button = $(".add-field");
 
-	$(".horarios-turno input").attr('maxlength', '5');
+	var x = 1;
 
-	var input = $(".horarios-turno input").get(0)
-
-	var html = $(".horarios-turno").html();
-
-	$(".horarios-turno input").last().on("paste change", function(){
-		flag = false;
-
-		inputs.each(function(){
-			
-			if ($(this).val() != "" && $(this).closest(".horarios-turno input").val() != "") {
-				flag = true;
-			}else{
-				flag = false;
-			}
-		});
-		console.log(flag);
-		if (flag) {
-			$(".btn-success").before(html);
-		};
-
+	$(button).click(function(e){
+		e.preventDefault();
+		$(wrapper).append("<div><div class='form-group col-lg-6'><label class='control-label col-lg-2' for='turnos_horarios'>Início</label><div class='col-lg-10'><input type='text' class='form-control' name='turnos_horarios[]'></div></div><div class='form-group col-lg-6'><label class='control-label col-lg-2' for='turnos_horarios'>Fim</label><div class='col-lg-10'><input type='text' class='form-control' name='turnos_horarios[]'></div></div><button class='remove-field btn btn-danger'><span class='glyphicon glyphicon-remove'></span></button></div>");
 	});
 
-	$(".horarios-turno input").on("change paste keyup", function(){
+	$(wrapper).on("click", ".remove-field", function(e){
+		e.preventDefault();
+		$(this).parent('div').remove();
+	});
+
+	$(wrapper).on("change paste keyup", ".form-control", function(){
 		v = $(this).val();
 		v = v.replace(/\D/g,"");
 		v = v.replace(/(\d{2})(\d)/,"$1:$2");

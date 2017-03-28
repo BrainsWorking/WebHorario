@@ -36,8 +36,6 @@ footer{
 	color: #424242;
 }
 
-
-
 .nav-pills li a:hover{
 	background-color: #b2daa6;
 	color: #424242;
@@ -49,10 +47,6 @@ footer{
 
 .right{
 	float: right;
-}
-
-.btn{
-	margin: 10px;
 }
 
 .barra-pesquisa{
@@ -92,4 +86,15 @@ footer{
 /* Bootstrap Override */
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{ /* Opção do Menu */
 	background-color: #43a047;
+}
+
+
+/*Cadastro de Turnos*/
+.add-field{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.horarios-turno .row label{
+	padding-top: 4px;
 }

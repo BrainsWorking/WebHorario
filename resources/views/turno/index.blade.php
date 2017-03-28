@@ -8,7 +8,7 @@
 		<h1 class="text-center page-header"></h1>
 		<table class="table table-condensed table-hover">
 			<thead>
-				<a class="btn btn-success btn-lg right" href="/turnos/cadastrar"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
+				<a class="btn btn-success btn-lg right" href="{{ route('turno.cadastrar') }}"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
 
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 barra-pesquisa">
 						<div class="input-group">
