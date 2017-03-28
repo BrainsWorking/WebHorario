@@ -40,13 +40,21 @@ Route::get('turno/editar/{id}', function($id){
 })->name('turno.editar');
 //>>>>>>> upstream/master
 
-Route::get("/disciplinas", function (){
-	$disciplinas[] = (object)['nome' => 'Lógica de Programação', 'iniciais' => 'LOP', 'cargaHoraria' => '200'];
-	$disciplinas[] = (object)['nome' => 'Matemática Discreta I', 'iniciais' => 'MD1', 'cargaHoraria' => '200'];
-	$disciplinas[] = (object)['nome' => 'Linguagem de Programação', 'iniciais' => 'LOP', 'cargaHoraria' => '200'];
+Route::group(['prefix' => 'disciplinas'], function() {
 	
-	return view('disciplinas.index', compact('disciplinas'));
+	Route::get("/cadastrar", function(){
+		return view("disciplinas.formDisciplina");
+	});
+
+	Route::get("/", function (){
+		$disciplinas[] = (object)['nome' => 'Lógica de Programação', 'iniciais' => 'LOP', 'cargaHoraria' => '200'];
+		$disciplinas[] = (object)['nome' => 'Matemática Discreta I', 'iniciais' => 'MD1', 'cargaHoraria' => '200'];
+		$disciplinas[] = (object)['nome' => 'Linguagem de Programação', 'iniciais' => 'LOP', 'cargaHoraria' => '200'];
+		
+		return view('disciplinas.index', compact('disciplinas'));
+	});
 });
+
 
 Route::get("/cursos", function (){
 	$cursos[] = (object)['nome' => 'Análise e Desenvolvimento de Sistemas', 'iniciais' => 'ADS', 'turno' => 'Noturno', 'disciplinas' => [['nome'=>'Disciplina 1', 'iniciais' => "DIC1"], ['nome'=>'Disciplina 2', 'iniciais' => "DIC2"]]];
