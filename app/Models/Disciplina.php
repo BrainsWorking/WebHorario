@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Disciplina as Disciplina;
+use App\Models\Disciplina as Curso;
 
 
 class Disciplina extends Model
 {
-    protected $fillable = ['nome', 'iniciais', 'cargaHoraria'];
+    protected $fillable = ['nomeDisplinas', 'iniciaisDisplinas', 'cargaHoraria'];
     public $timestamps = false;
 
     public function cursos(){
-        return $this->belongsToMany(Disciplina::class, 'cursos_disciplinas');
+        return $this->belongsToMany(Curso::class, 'cursos_disciplinas');
     }
 }

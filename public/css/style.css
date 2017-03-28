@@ -89,6 +89,7 @@ footer{
 }
 
 
+<<<<<<< HEAD
 /*Cadastro de Turnos*/
 .add-field{
 	margin-top: 10px;
@@ -97,4 +98,13 @@ footer{
 
 .horarios-turno .row label{
 	padding-top: 4px;
+=======
+/* Reparos em componente Bootstrap */
+.padding-left-0{
+	padding-left: 0;
+}
+
+.padding-right-0{
+	padding-right: 0;
+>>>>>>> refs/remotes/BrainsWorking/master
 }
