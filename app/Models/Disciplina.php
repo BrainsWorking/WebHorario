@@ -8,7 +8,7 @@ use App\Models\Disciplina as Disciplina;
 
 class Disciplina extends Model
 {
-    protected $fillable = ['nome', 'iniciais', 'cargaHoraria'];
+    protected $fillable = ['nomeDisplinas', 'iniciaisDisplinas', 'cargaHoraria'];
     public $timestamps = false;
 
     public function cursos(){

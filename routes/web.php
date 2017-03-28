@@ -14,3 +14,6 @@ Route::name('disciplinas')->get("disciplinas", 'DisciplinaController@index');
 
 # CURSOS
 Route::name('cursos')->get('cursos', 'CursoController@index');
+Route::name('curso.cadastrar')->get('curso/cadastrar', 'CursoController@cadastrar');
+Route::name('curso.editar')->get('curso/editar', 'CursoController@editar');
+Route::name('curso.salvar')->get('curso/salvar', 'CursoController@salvar');
