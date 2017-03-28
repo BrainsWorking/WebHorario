@@ -1,4 +1,5 @@
 <?php
 function setActive($name, $activeClass = 'active') {
-    return (Route::currentRouteNamed($name)) ? $activeClass : '' ;
+    $active = preg_match('/' . $name . '(\.*\w)*/', Route::currentRouteName());
+    return $active? $activeClass : '' ;
 }
