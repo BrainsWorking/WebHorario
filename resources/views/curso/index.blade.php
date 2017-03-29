@@ -32,7 +32,7 @@
 					<td class="text-center table-more-info"><span class="glyphicon glyphicon-chevron-down"></span></td>
 					<td class="text-center search"> {{$curso->nome}} </td>
 					<td class="text-center search"> {{$curso->iniciais}} </td>
-					<td class="text-center"><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
+					<td class="text-center"><a href="{{ route('curso.editar', $curso->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
 					<td class="text-center"><a href=""><span class="glyphicon glyphicon-remove"></span></a></td>
 				</tr>
 				<tr class="hidden-info">
