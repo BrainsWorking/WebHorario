@@ -1,4 +1,4 @@
-	@extends('layout.principal')
+@extends('layout.principal')
 
 	@section('title', 'Cursos')
 

@@ -7,8 +7,8 @@
     <div class="table-responsive">
         <table class="table table-condensed table-hover">
             <thead>
-            <div class="padding-right-0 padding-left-0 top-bar">
 
+            <div class="padding-right-0 padding-left-0 top-bar">
                 <div class="col-sm-8 padding-left-0">
                     <div class="input-group col-lg-12">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
@@ -20,7 +20,6 @@
                     <a class="btn btn-success right col-sm-12" href="{{ route('turno.cadastrar') }}"><span
                                 class="glyphicon glyphicon-plus"></span> Cadastrar</a>
                 </div>
-
             </div>
 
             <th class="text-center"></th>
