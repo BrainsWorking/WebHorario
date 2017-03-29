@@ -29,7 +29,7 @@
 
 	<div class="form-group">
 		{!! Form::label('disciplinas', 'Disciplinas', ['class' => 'control-label']) !!}
-	{!! Form::select('disciplina_id[]', $disciplinas, $disciplinaCurso or null, 
+		{!! Form::select('disciplina_id[]', $disciplinas, $disciplina_id, 
 		['required', 'id' => 'disciplina_id', 'class' => 'form-control', 'multiple']) !!}
 	</div>
 

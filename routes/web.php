@@ -17,4 +17,4 @@ Route::name('cursos')->get('cursos', 'CursoController@index');
 Route::name('curso.cadastrar')->get('curso/cadastrar', 'CursoController@cadastrar');
 Route::name('curso.editar')->get('curso/editar/{id}', 'CursoController@editar');
 Route::name('curso.salvar')->post('curso/salvar', 'CursoController@salvar');
-Route::name('curso.atualizar')->patch('curso/atualizar', 'CursoController@atualizar');
+Route::name('curso.atualizar')->put('curso/atualizar/{id}', 'CursoController@atualizar');

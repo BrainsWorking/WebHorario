@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Turno;
 use App\Models\Disciplina;
+use Illuminate\Support\Facades\DB;
 
 class CursoController extends Controller
 {
@@ -38,7 +39,7 @@ class CursoController extends Controller
 
 	    	return redirect()->route('cursos.index');
     	}catch(\Exception $e){
-    		return redirect()->route('curso.formCurso');
+    		return redirect()->route('curso.cadastrar');
     	}
     }
 
@@ -49,14 +50,31 @@ class CursoController extends Controller
 
         $curso = Curso::find($id);
 
-        //tentei separar em outra variavel para ver se funcionava, mas tbm não deu em nada
-        //$disciplinaCurso = $curso->disciplinas()->where('curso_id', $id);
-        $disciplinaCurso = $curso->disciplinas();
+        $disciplina_id = array();
 
-        return view('curso.formCurso', compact('turnos', 'disciplinas', 'curso', 'disciplinaCurso'));
+        //$disciplina_id = DB::table('cursos_disciplinas')->where('curso_id', $id)->pluck('disciplina_id');
+        $disciplina_id = Curso::find($id)->disciplinas()->pluck('id')->toArray();
+
+        return view('curso.formCurso', compact('turnos', 'disciplinas', 'curso', 'disciplina_id'));
     }
 
-    public function atualizar(Request $request){
+    public function atualizar(Request $request, $id){
+        try{
+            $dataForm = $request->all();
 
+            $curso = Curso::find($id);
+
+            $curso->update($dataForm);
+
+            //$curso->disciplinas()->sync($dataForm['disciplina_id']);
+            foreach ($dataForm['disciplina_id'] as $disciplina) {
+                $curso->disciplinas()->firstOrNew($disciplina);
+            }
+
+            return redirect()->route('cursos');
+        }catch(\Exception $e){
+            dd($e);
+            return redirect()->route('curso.editar', $id);
+        }
     }
 }
