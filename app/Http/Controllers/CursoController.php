@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Turno;
 use App\Models\Disciplina;
+use Illuminate\Support\Facades\DB;
 
 class CursoController extends Controller
 {
 	private $totalPorPag = 10;
 
     public function index() {
-        $curso = new Curso();
 
-        $cursos = $curso->orderBy('nome', 'asc')->paginate($this->totalPorPag);
+        $cursos = Curso::orderBy('nome', 'asc')->paginate($this->totalPorPag);
         
         return view('curso.index', compact('cursos'));
     }
@@ -28,22 +28,53 @@ class CursoController extends Controller
     }
 
     public function salvar(Request $request){
-    	$curso = new Curso();
+    	try{
+    		$dataForm = $request->all();
 
-    	$dataForm = $request->all();
+	    	$curso = Curso::create($dataForm);
 
-    	$insert = $curso->create($dataForm);
+	    	foreach ($dataForm['disciplina_id'] as $disciplina) {
+	    		$curso->disciplinas()->attach($disciplina);
+	    	}
 
-        if ($insert) {
-            //return redirect()->route('disciplinas.index');
-            return 'deu certo';
-        } else {
-            //return redirect()->route('disciplina.formCurso');
-            return 'erro';
-        }
+	    	return redirect()->route('cursos.index');
+    	}catch(\Exception $e){
+    		return redirect()->route('curso.cadastrar');
+    	}
     }
 
     public function editar($id){
-    	return 'editar';
+    	$turnos = Turno::pluck('nome', 'id');
+
+        $disciplinas = Disciplina::pluck('nome', 'id');
+
+        $curso = Curso::find($id);
+
+        $disciplina_id = array();
+
+        //$disciplina_id = DB::table('cursos_disciplinas')->where('curso_id', $id)->pluck('disciplina_id');
+        $disciplina_id = Curso::find($id)->disciplinas()->pluck('id')->toArray();
+
+        return view('curso.formCurso', compact('turnos', 'disciplinas', 'curso', 'disciplina_id'));
+    }
+
+    public function atualizar(Request $request, $id){
+        try{
+            $dataForm = $request->all();
+
+            $curso = Curso::find($id);
+
+            $curso->update($dataForm);
+
+            //$curso->disciplinas()->sync($dataForm['disciplina_id']);
+            foreach ($dataForm['disciplina_id'] as $disciplina) {
+                $curso->disciplinas()->firstOrNew($disciplina);
+            }
+
+            return redirect()->route('cursos');
+        }catch(\Exception $e){
+            dd($e);
+            return redirect()->route('curso.editar', $id);
+        }
     }
 }

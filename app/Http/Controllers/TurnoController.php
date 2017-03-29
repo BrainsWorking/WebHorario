@@ -22,4 +22,10 @@ class TurnoController extends Controller
     public function cadastrar(){
         return view('turno.cadastrar');
     }
+
+    public function salvar(Request $request){
+        $dataForm = $request->all();
+
+        dd($dataForm);
+    }
 }
