@@ -11,6 +11,10 @@ Route::name('turno.atualizar')->patch('turno/atualizar', 'TurnoController@atuali
 
 # DISCIPLINAS
 Route::name('disciplinas')->get("disciplinas", 'DisciplinaController@index');
+Route::name('disciplina.cadastrar')->get('disciplina/cadastrar', 'DisciplinaController@cadastrar');
+Route::name('disciplina.salvar')->post('disciplina/salvar', 'DisciplinaController@salvar');
+Route::name('disciplina.editar')->get('disciplina/editar/{id}', 'DisciplinaController@editar');
+Route::name('disciplina.atualizar')->patch('disciplina/atualizar', 'DisciplinaController@atualizar');
 
 # CURSOS
 Route::name('cursos')->get('cursos', 'CursoController@index');
