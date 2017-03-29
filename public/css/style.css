@@ -24,7 +24,7 @@ header .img-responsive{
 
 .saudacao{
 	background-color: #b2daa6;
-	padding: 5px;
+	padding: 5px 10px 5px 0;
 }
 
 .saudacao p{
@@ -33,6 +33,7 @@ header .img-responsive{
 
 .glyphicon-off{
 	color: #ff0000;
+	margin-left:5px;
 }
 
 footer{
