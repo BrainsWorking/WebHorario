@@ -12,9 +12,8 @@ class CursoController extends Controller
 	private $totalPorPag = 10;
 
     public function index() {
-        $curso = new Curso();
 
-        $cursos = $curso->orderBy('nome', 'asc')->paginate($this->totalPorPag);
+        $cursos = Curso::orderBy('nome', 'asc')->paginate($this->totalPorPag);
         
         return view('curso.index', compact('cursos'));
     }
@@ -44,6 +43,20 @@ class CursoController extends Controller
     }
 
     public function editar($id){
-    	return 'editar';
+    	$turnos = Turno::pluck('nome', 'id');
+
+        $disciplinas = Disciplina::pluck('nome', 'id');
+
+        $curso = Curso::find($id);
+
+        $disciplinaCurso = $curso->disciplinas()->where('curso_id', $id);
+
+        dd($disciplinaCurso);
+
+        return view('curso.formCurso', compact('turnos', 'disciplinas', 'curso', 'disciplinaCurso'));
+    }
+
+    public function atualizar(Request $request){
+
     }
 }
