@@ -49,9 +49,9 @@ class CursoController extends Controller
 
         $curso = Curso::find($id);
 
-        $disciplinaCurso = $curso->disciplinas()->where('curso_id', $id);
-
-        dd($disciplinaCurso);
+        //tentei separar em outra variavel para ver se funcionava, mas tbm não deu em nada
+        //$disciplinaCurso = $curso->disciplinas()->where('curso_id', $id);
+        $disciplinaCurso = $curso->disciplinas();
 
         return view('curso.formCurso', compact('turnos', 'disciplinas', 'curso', 'disciplinaCurso'));
     }
