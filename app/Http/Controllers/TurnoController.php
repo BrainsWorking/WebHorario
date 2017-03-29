@@ -19,7 +19,7 @@ class TurnoController extends Controller
         return view('turno.editar', compact('turno', 'id'));
     }
     
-    public function cadastro(){
+    public function cadastrar(){
         return view('turno.cadastrar');
     }
 }
