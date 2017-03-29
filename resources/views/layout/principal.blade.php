@@ -59,9 +59,9 @@
     <div class="container">
     <p>IFSP - Instituto Federal de Educação, Ciência e Tecnologia de São Paulo Campus
         Caraguatatuba</p>
-    <p>Avenida Bahia, 1739 - Indaiá - Caraguatatuba SP - CEP: 11665-071 - Telefone: 55 (12)
+    <p>Avenida Bahia, 1739 - Indaiá - Caraguatatuba/SP - CEP: 11665-071 - Telefone: +55 (12)
         3885-2130</p>
-    <p class="text-center">Desenvolvimento: ACME - Brains Working</p>
+    <p class="text-center">Desenvolvimento: ACME & Brains Working</p>
     </div>
 </footer>
 
