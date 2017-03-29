@@ -28,19 +28,19 @@ class CursoController extends Controller
     }
 
     public function salvar(Request $request){
-    	$curso = new Curso();
+    	try{
+    		$dataForm = $request->all();
 
-    	$dataForm = $request->all();
+	    	$curso = Curso::create($dataForm);
 
-    	$insert = $curso->create($dataForm);
+	    	foreach ($dataForm['disciplina_id'] as $disciplina) {
+	    		$curso->disciplinas()->attach($disciplina);
+	    	}
 
-        if ($insert) {
-            //return redirect()->route('disciplinas.index');
-            return 'deu certo';
-        } else {
-            //return redirect()->route('disciplina.formCurso');
-            return 'erro';
-        }
+	    	return redirect()->route('cursos.index');
+    	}catch(\Exception $e){
+    		return redirect()->route('curso.formCurso');
+    	}
     }
 
     public function editar($id){
