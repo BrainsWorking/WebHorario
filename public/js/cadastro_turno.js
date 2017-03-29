@@ -5,16 +5,23 @@ $(document).ready(function(){
 
 	var button = $(".add-field");
 
-	var x = 1;
+	var x = 2;
 
 	$(button).click(function(e){
 		e.preventDefault();
-		$(wrapper).append("<div><div class='form-group col-lg-6'><label class='control-label col-lg-2' for='turnos_horarios'>Início</label><div class='col-lg-10'><input type='text' class='form-control' name='turnos_horarios[]'></div></div><div class='form-group col-lg-6'><label class='control-label col-lg-2' for='turnos_horarios'>Fim</label><div class='col-lg-10'><input type='text' class='form-control' name='turnos_horarios[]'></div></div><button class='remove-field btn btn-danger'><span class='glyphicon glyphicon-remove'></span></button></div>");
+		$(wrapper).append('<div class="row"><div class="col-lg-1 padding-left-0"><label class="index">Aula '+ x +'</label></div><div class="col-lg-10"><div class="form-group col-lg-6"><input type="text" name="turnos_horarios[]" class="form-control" placeholder="Início" maxlength="5" required></div><div class="form-group col-lg-6"><input type="text" name="turnos_horarios[]" class="form-control" placeholder="Fim" maxlength="5" required></div></div><div class="col-lg-1 padding-right-0 remove-field"><button type="button" class="btn btn-danger btn-sm right"><span class="glyphicon glyphicon-remove"></span></button></div></div>');
+		x++;
 	});
 
 	$(wrapper).on("click", ".remove-field", function(e){
 		e.preventDefault();
-		$(this).parent('div').remove();
+		$(this).parent().remove();
+
+		labels = $('.index');
+		for (var i = 0; i <= x; i++) {
+			$(labels[i]).html("Aula " + (i + 1));
+		};
+		x--;
 	});
 
 	$(wrapper).on("change paste keyup", ".form-control", function(){

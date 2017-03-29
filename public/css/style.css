@@ -1,5 +1,5 @@
 header{
-	background-color: #1f6709;
+	background-color: #43a047;
 	color: #f5f5f5;
 	padding: 10px;
 	font-size: 15px;
@@ -15,13 +15,15 @@ header a:hover{
 }
 
 footer{
-	background-color: #DDDDDD;
+	background-color: #EAEAEA;
 }
 
 .sidebar{
 	min-height: 450px;
 	font-size: 20px;
 	padding-top: 10px;
+	background-color: #EAEAEA;
+	margin-top: 5px;
 }
 
 .sidebar li{
@@ -43,6 +45,7 @@ footer{
 
 .content{
 	min-height: 450px;
+	margin-bottom: 10px;
 }
 
 .right{
@@ -79,9 +82,6 @@ footer{
 	padding: 0px;
 }
 
-.horarios-turno{
-	margin-top: 10px;
-}
 
 /* Bootstrap Override */
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{ /* Opção do Menu */
@@ -89,16 +89,22 @@ footer{
 }
 
 
-<<<<<<< HEAD
+
 /*Cadastro de Turnos*/
 .add-field{
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
-.horarios-turno .row label{
+.horarios-turno{
+	margin-top: 10px;
+}
+
+.horarios-turno .row .col-lg-1{
 	padding-top: 4px;
-=======
+}
+
+
 /* Reparos em componente Bootstrap */
 .padding-left-0{
 	padding-left: 0;
@@ -106,5 +112,4 @@ footer{
 
 .padding-right-0{
 	padding-right: 0;
->>>>>>> refs/remotes/BrainsWorking/master
 }
