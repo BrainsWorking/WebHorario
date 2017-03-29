@@ -1,5 +1,5 @@
 header{
-	background-color: #1f6709;
+	background-color: #43a047;
 	color: #f5f5f5;
 	padding: 10px;
 	font-size: 15px;
@@ -15,13 +15,15 @@ header a:hover{
 }
 
 footer{
-	background-color: #DDDDDD;
+	background-color: #EAEAEA;
 }
 
 .sidebar{
 	min-height: 450px;
 	font-size: 20px;
 	padding-top: 10px;
+	background-color: #EAEAEA;
+	margin-top: 5px;
 }
 
 .sidebar li{
@@ -36,8 +38,6 @@ footer{
 	color: #424242;
 }
 
-
-
 .nav-pills li a:hover{
 	background-color: #b2daa6;
 	color: #424242;
@@ -45,32 +45,32 @@ footer{
 
 .content{
 	min-height: 450px;
+	margin-bottom: 10px;
 }
 
 .right{
 	float: right;
 }
 
-.btn{
-	margin: 10px;
+.top-bar{
+	margin-top: 20px;
 }
 
-.barra-pesquisa{
-	margin: 10px;
-	margin-left: 0px;
-	padding: 0px;
+.table-more-info{
+	color: #9FA3A6;
 }
 
 .table-more-info:hover{
 	cursor: pointer;
-}
-
-.table-line span{
-	color: #9FA3A6;
-}
-
-.table-line span:hover{
 	color: #636b6f;
+}
+
+.table-line .table-delete{
+	color: #F47878;
+}
+
+.table-delete:hover{
+	color:#FF1313;
 }
 
 .hidden-info{
@@ -81,17 +81,40 @@ footer{
 	cursor: default;
 }
 
+.hidden-info-content{
+	border-left: solid 3px #D3D3D3;
+	margin-left: 10px;
+	padding-left: 10px;
+}
+
 .table-responsive{
 	padding: 0px;
+}
+
+
+/* Bootstrap Override */
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{ /* Opção do Menu */
+	background-color: #43a047;
+}
+
+.btn-success{
+	background-color: #43a047;
+}
+
+
+
+/*Cadastro de Turnos*/
+.add-field{
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .horarios-turno{
 	margin-top: 10px;
 }
 
-/* Bootstrap Override */
-.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{ /* Opção do Menu */
-	background-color: #43a047;
+.horarios-turno .row .col-lg-1{
+	padding-top: 4px;
 }
 
 
