@@ -2,6 +2,10 @@
 
 	@section('title', 'Turnos')
 
+	@section('css')
+		 <link rel="stylesheet" type="text/css" href="{{ asset('/css/multi-select.css') }}">
+	@endsection
+
 	@section('content')
 	@parent
 
@@ -42,5 +46,8 @@
 	@endsection
 
 	@section('scripts')
-	<script type="text/javascript" src="{{ asset('/js/cadastro_turno.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/jquery.multi-select.js') }}"></script>
+	<script>
+		$('#disciplina_id').multiSelect();
+	</script>
 	@endsection
