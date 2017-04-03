@@ -34,7 +34,7 @@ Eentre então no seu navegador em `localhost:8000`
     - **salvar**: Método que põe o valor do form no banco; `(POST)`
     - **editar**: Form de edição; `(GET)`
     - **atualizar**: Atualiza os dados no banco; `(PATCH)`
-    - **deletar**: Remove do banco de dados; `(DELETE)`
+    - **deletar**: Remove do banco de dados; `(GET)`
     - **formModelo**: Para nome do arquivo de terá o form de criação e edição. Ex.: formCurso, formDisciplina.
     - **Obs:** Os demais métodos devem seguir este padrão, sendo sempre verbos;
 
