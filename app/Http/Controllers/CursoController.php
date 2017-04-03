@@ -31,14 +31,15 @@ class CursoController extends Controller
 
     public function salvar(Request $request){
     	try{
-    		$dataForm = $request->all();
+            $dataForm = $request->all();
 
-	    	$curso = Curso::create($dataForm);
+            DB::transaction(function () use ($dataForm) {
+    	    	$curso = Curso::create($dataForm);
 
-	    	foreach ($dataForm['disciplina_id'] as $disciplina) {
-	    		$curso->disciplinas()->attach($disciplina);
-	    	}
-
+    	    	foreach ($dataForm['disciplina_id'] as $disciplina) {
+    	    		$curso->disciplinas()->attach($disciplina);
+    	    	}
+            }, 3);
 	    	return redirect()->route('cursos');
     	}catch(\Exception $e){
     		return redirect()->route('curso.cadastrar');
@@ -63,24 +64,27 @@ class CursoController extends Controller
         try{
             $dataForm = $request->all();
 
-            $curso = Curso::find($id);
+            DB::transaction(function () use ($dataForm, $id) {
+                $curso = Curso::find($id);
 
-            $curso->update($dataForm);
+                $curso->update($dataForm);
 
-            $curso->disciplinas()->sync($dataForm['disciplina_id']);
+                $curso->disciplinas()->sync($dataForm['disciplina_id']);
+            }, 3);
 
             return redirect()->route('cursos');
         }catch(\Exception $e){
-            dd($e);
             return redirect()->route('curso.editar', $id);
         }
     }
 
     public function deletar($id){
         try {
-            $curso = Curso::find($id);
+            DB::transaction(function () use ($id) {
+                $curso = Curso::find($id);
 
-            $curso->delete();
+                $curso->delete();
+            }, 3);
 
             return redirect()->route('cursos');
         } catch (\Exception $e) {
