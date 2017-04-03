@@ -35,6 +35,7 @@ Eentre então no seu navegador em `localhost:8000`
     - **editar**: Form de edição; `(GET)`
     - **atualizar**: Atualiza os dados no banco; `(PATCH)`
     - **deletar**: Remove do banco de dados; `(DELETE)`
+    - **formModelo**: Para nome do arquivo de terá o form de criação e edição. Ex.: formCurso, formDisciplina.
     - **Obs:** Os demais métodos devem seguir este padrão, sendo sempre verbos;
 
 ## Pastas fora do padrão
