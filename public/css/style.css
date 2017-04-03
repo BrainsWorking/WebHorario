@@ -25,6 +25,8 @@ header .img-responsive{
 .saudacao{
 	background-color: #b2daa6;
 	padding: 5px 10px 5px 0;
+	color: white;
+	font-weight: bold;
 }
 
 .saudacao p{
@@ -42,12 +44,13 @@ footer{
 }
 
 .sidebar{
-	min-height:400px;
-	font-size: 20px;
+	min-height: 500px;
 	padding-top: 10px;
-	padding-bottom: 30px;
 	background-color: #EAEAEA;
 	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 
 .sidebar li{
@@ -68,8 +71,8 @@ footer{
 }
 
 .content{
-	min-height: 450px;
 	margin-bottom: 10px;
+	min-height: 450px;
 }
 
 .top-bar{

@@ -11,9 +11,7 @@
 	@else
 	{!! Form::open(['route' => 'turno.salvar', 'method' => 'post']) !!}
 	@endif
-
-	<h1 class="text-center page-header">Cadastrar turno</h1>
-
+	
 	<div class="control-group">
 		{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
 		{!! Form::text('nome', '', ['class' => 'form-control', 'required']) !!}

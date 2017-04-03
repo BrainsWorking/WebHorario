@@ -9,9 +9,6 @@
     @else
         {!! Form::open(['route' => 'disciplina.salvar', 'method' => 'post']) !!}
     @endif
-
-    <h1 class="text-center page-header">Cadastrar disciplina</h1>
-
     <div class="row">
         <div class="disciplinas">
             <div class="control-group form-group col-sm-8">

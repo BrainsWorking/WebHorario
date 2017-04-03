@@ -42,14 +42,18 @@
 					</tr>
 					<tr class="hidden-info">
 						<td colspan="5">
-							<p><b>Nome da Disciplina:</b> {{$disciplina->nome}}</p>
-							<p><b>Sigla:</b> {{$disciplina->iniciais}}</p>
-							<p><b>Carga Horária:</b> {{$disciplina->cargaHoraria}}</p>
+							<div class="hidden-info-content">
+								<p><b>Nome da Disciplina:</b> {{$disciplina->nome}}</p>
+								<p><b>Sigla:</b> {{$disciplina->iniciais}}</p>
+								<p><b>Carga Horária:</b> {{$disciplina->cargaHoraria}}</p>
+							</div>
 						</td>
 					</tr>
 
 					@empty
-					<h3 class="text-center">Não há cadastros</h3>
+					<tr class="text-center">
+					<td colspan="5"><h4>Não há disciplinas cadastradas</h4></td>
+				</tr>
 					@endforelse
 
 				</tbody>

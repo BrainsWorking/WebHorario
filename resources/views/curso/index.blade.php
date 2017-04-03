@@ -5,7 +5,6 @@
 @section('content')
 @parent
 <div class="col-lg-12 table-responsive">
-	<h1 class="text-center page-header"></h1>
 	<table class="table table-condensed table-hover">
 		<thead>
 			<div class="padding-right-0 padding-left-0 top-bar">
@@ -42,19 +41,23 @@
 				</tr>
 				<tr class="hidden-info">
 					<td colspan="5">
-						<p><b>Nome do Curso:</b> {{$curso->nome}}</p>
-						<p><b>Sigla:</b> {{$curso->iniciais}}</p>
-						<p><b>Turno:</b> {{$curso->turno->nome}}</p>
-						<p><b>Disciplinas:</b></p>
+						<div class="hidden-info-content">
+							<p><b>Nome do Curso:</b> {{$curso->nome}}</p>
+							<p><b>Sigla:</b> {{$curso->iniciais}}</p>
+							<p><b>Turno:</b> {{$curso->turno->nome}}</p>
+							<p><b>Disciplinas:</b></p>
 
-						@foreach($curso->disciplinas as $disciplina)
-						<span class="col-lg-3 text-center">{{ $disciplina['iniciais'] .' - '. $disciplina['nome'] }}</span>
-						@endforeach
+							@foreach($curso->disciplinas as $disciplina)
+							<span class="col-lg-3 text-center">{{ $disciplina['iniciais'] .' - '. $disciplina['nome'] }}</span>
+							@endforeach
+						</div>
 					</td>
 				</tr>
 
 				@empty
-				<h3 class="text-center">Não há cadastros</h3>
+				<tr class="text-center">
+					<td colspan="5"><h4>Não há cursos cadastrados</h4></td>
+				</tr>
 				@endforelse
 
 			</tbody>

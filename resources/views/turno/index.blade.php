@@ -51,7 +51,9 @@
                 </tr>
 
             @empty
-                <h3 class="text-center">Não há cadastros</h3>
+                <tr class="text-center">
+                    <td colspan="5"><h4>Não há turnos cadastrados</h4></td>
+                </tr>
             @endforelse
 
             </tbody>
