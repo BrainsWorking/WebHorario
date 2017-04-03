@@ -41,8 +41,7 @@ class CursoController extends Controller
 
 	    	return redirect()->route('cursos');
     	}catch(\Exception $e){
-    		//return redirect()->route('curso.cadastrar');
-            dd($e);
+    		return redirect()->route('curso.cadastrar');
     	}
     }
 

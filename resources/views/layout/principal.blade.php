@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
     <title> @yield('title') - WebHorário</title>
     <link rel="icon" href="" type="image/x-icon">
+    @yield('css')
 </head>
 
 <body>
