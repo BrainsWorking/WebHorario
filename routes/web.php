@@ -21,4 +21,5 @@ Route::name('curso.cadastrar')->get('curso/cadastrar', 'CursoController@cadastra
 Route::name('curso.editar')->get('curso/editar/{id}', 'CursoController@editar');
 Route::name('curso.salvar')->post('curso/salvar', 'CursoController@salvar');
 Route::name('curso.atualizar')->put('curso/atualizar/{id}', 'CursoController@atualizar');
+Route::name('curso.deletar')->get('curso/deletar/{id}', 'CursoController@deletar');
 

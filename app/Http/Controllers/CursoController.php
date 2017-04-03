@@ -24,7 +24,9 @@ class CursoController extends Controller
 
     	$disciplinas = Disciplina::pluck('nome', 'id');
 
-    	return view('curso.formCurso', compact('turnos', 'disciplinas'));
+        $disciplina_id = array();
+
+    	return view('curso.formCurso', compact('turnos', 'disciplinas', 'disciplina_id'));
     }
 
     public function salvar(Request $request){
@@ -37,9 +39,10 @@ class CursoController extends Controller
 	    		$curso->disciplinas()->attach($disciplina);
 	    	}
 
-	    	return redirect()->route('cursos.index');
+	    	return redirect()->route('cursos');
     	}catch(\Exception $e){
-    		return redirect()->route('curso.cadastrar');
+    		//return redirect()->route('curso.cadastrar');
+            dd($e);
     	}
     }
 
@@ -52,7 +55,6 @@ class CursoController extends Controller
 
         $disciplina_id = array();
 
-        //$disciplina_id = DB::table('cursos_disciplinas')->where('curso_id', $id)->pluck('disciplina_id');
         $disciplina_id = Curso::find($id)->disciplinas()->pluck('id')->toArray();
 
         return view('curso.formCurso', compact('turnos', 'disciplinas', 'curso', 'disciplina_id'));
@@ -66,15 +68,24 @@ class CursoController extends Controller
 
             $curso->update($dataForm);
 
-            //$curso->disciplinas()->sync($dataForm['disciplina_id']);
-            foreach ($dataForm['disciplina_id'] as $disciplina) {
-                $curso->disciplinas()->firstOrNew($disciplina);
-            }
+            $curso->disciplinas()->sync($dataForm['disciplina_id']);
 
             return redirect()->route('cursos');
         }catch(\Exception $e){
             dd($e);
             return redirect()->route('curso.editar', $id);
+        }
+    }
+
+    public function deletar($id){
+        try {
+            $curso = Curso::find($id);
+
+            $curso->delete();
+
+            return redirect()->route('cursos');
+        } catch (\Exception $e) {
+            return redirect()->route('cursos')->with('error', 'Erro na exclusão!');
         }
     }
 }
