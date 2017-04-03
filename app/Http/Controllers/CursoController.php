@@ -24,20 +24,23 @@ class CursoController extends Controller
 
     	$disciplinas = Disciplina::pluck('nome', 'id');
 
-    	return view('curso.formCurso', compact('turnos', 'disciplinas'));
+        $disciplina_id = array();
+
+    	return view('curso.formCurso', compact('turnos', 'disciplinas', 'disciplina_id'));
     }
 
     public function salvar(Request $request){
     	try{
-    		$dataForm = $request->all();
+            $dataForm = $request->all();
 
-	    	$curso = Curso::create($dataForm);
+            DB::transaction(function () use ($dataForm) {
+    	    	$curso = Curso::create($dataForm);
 
-	    	foreach ($dataForm['disciplina_id'] as $disciplina) {
-	    		$curso->disciplinas()->attach($disciplina);
-	    	}
-
-	    	return redirect()->route('cursos.index');
+    	    	foreach ($dataForm['disciplina_id'] as $disciplina) {
+    	    		$curso->disciplinas()->attach($disciplina);
+    	    	}
+            }, 3);
+	    	return redirect()->route('cursos');
     	}catch(\Exception $e){
     		return redirect()->route('curso.cadastrar');
     	}
@@ -52,7 +55,6 @@ class CursoController extends Controller
 
         $disciplina_id = array();
 
-        //$disciplina_id = DB::table('cursos_disciplinas')->where('curso_id', $id)->pluck('disciplina_id');
         $disciplina_id = Curso::find($id)->disciplinas()->pluck('id')->toArray();
 
         return view('curso.formCurso', compact('turnos', 'disciplinas', 'curso', 'disciplina_id'));
@@ -62,19 +64,31 @@ class CursoController extends Controller
         try{
             $dataForm = $request->all();
 
-            $curso = Curso::find($id);
+            DB::transaction(function () use ($dataForm, $id) {
+                $curso = Curso::find($id);
 
-            $curso->update($dataForm);
+                $curso->update($dataForm);
 
-            //$curso->disciplinas()->sync($dataForm['disciplina_id']);
-            foreach ($dataForm['disciplina_id'] as $disciplina) {
-                $curso->disciplinas()->firstOrNew($disciplina);
-            }
+                $curso->disciplinas()->sync($dataForm['disciplina_id']);
+            }, 3);
 
             return redirect()->route('cursos');
         }catch(\Exception $e){
-            dd($e);
             return redirect()->route('curso.editar', $id);
+        }
+    }
+
+    public function deletar($id){
+        try {
+            DB::transaction(function () use ($id) {
+                $curso = Curso::find($id);
+
+                $curso->delete();
+            }, 3);
+
+            return redirect()->route('cursos');
+        } catch (\Exception $e) {
+            return redirect()->route('cursos')->with('error', 'Erro na exclusão!');
         }
     }
 }
