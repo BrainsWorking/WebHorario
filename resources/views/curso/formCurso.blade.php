@@ -9,8 +9,6 @@
 	@section('content')
 	@parent
 
-	@include('layout.alerts')
-
 	@if(isset($curso))
 	{!! Form::model($curso, ['route' => ['curso.atualizar', $curso->id], 'method' => 'PUT']) !!}
 	@else

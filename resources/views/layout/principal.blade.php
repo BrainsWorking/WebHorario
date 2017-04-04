@@ -66,6 +66,9 @@
 
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
             <div class="col-sm-8 col-md-9 col-lg-10 content">
+
+                @include('layout.alerts')
+
                 @yield('content')
             </div>
         </div>

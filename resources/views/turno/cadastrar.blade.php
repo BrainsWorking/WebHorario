@@ -5,8 +5,6 @@
 	@section('content')
 	@parent
 
-	@include('layout.alerts')
-
 	@if(isset($turno))
 	{!! Form::model($turno, ['route'=>['turno.atualizar', $turno->id], 'method'=>'PUT']) !!}
 	@else

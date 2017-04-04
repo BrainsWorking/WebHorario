@@ -5,8 +5,6 @@
 @section('content')
 @parent
 
-@include('layout.alerts')
-
 <div class="col-lg-12 table-responsive">
 	<table class="table table-condensed table-hover">
 		<thead>

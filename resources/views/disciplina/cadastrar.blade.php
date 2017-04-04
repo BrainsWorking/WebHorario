@@ -5,8 +5,6 @@
 @section('content')
 @parent
 
-@include('layout.alerts')
-
 @if(isset($disciplina))
 {!! Form::model($disciplina, ['route'=>['disciplina.atualizar', $disciplina->id], 'method'=>'PUT']) !!}
 @else
