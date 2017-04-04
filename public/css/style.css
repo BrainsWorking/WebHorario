@@ -13,6 +13,25 @@ header .img-responsive{
 	width: 250px;
 }
 
+a {
+	color: white;
+	font-size: 14px;
+}
+
+header a:hover{
+	color: white;
+	text-decoration: none;
+}
+
+.ifsp-logo{
+	max-width: 270px;
+}
+
+.webhorario-logo{
+	max-width: 70px;
+	margin-right:7px;
+}
+
 .saudacao{
 	background-color: #b2daa6;
 	padding: 5px 10px 5px 0;

@@ -21,6 +21,26 @@
                 </div>
                 
             </header>
+<div class="container-fluid">
+    <div class="row">
+        <header class="col-xs-12 col-sm-12">
+            <div class="col-xs-6 col-sm-6">
+                <a href="{{ route('home') }}">
+                    <img class="img-responsive webhorario-logo pull-left" src="{{ asset('/img/webhorario.png') }}">
+                    <h1 class="hidden-xs">Webhorário</h1>
+                </a>
+            </div>
+            <div class="col-xs-6 col-sm-6">
+                <a href="http://www.ifspcaraguatatuba.edu.br" target="_blank"><img class="img-responsive ifsp-logo pull-right" src="{{ asset('/img/ifsp.png') }}"></a>
+            </div>
+        </header>
+    </div>
+    <div class="row">
+        <div class="text-right saudacao">
+            <p>
+                Ola, Fulano
+                <a href="#"><span class="glyphicon glyphicon-off"></span></a>
+            </p>
         </div>
         <div class="row">
             <nav class="saudacao text-right">
