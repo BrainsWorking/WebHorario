@@ -5,6 +5,17 @@
 	@section('content')
 	@parent
 
+	@if(isset($sucesso))
+	<div class="alert alert-success fade in">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong><span class="glyphicon glyphicon-thumbs-up"></span> Sucesso!</strong> Cadastro realizado.
+	</div>
+	@elseif(isset($erro))
+	<div class="alert alert-danger fade in">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong><span class="glyphicon glyphicon-thumbs-down"></span> Erro!</strong> Ops, o seguinte erro ocorreu: {{$mensagem_erro}}.
+	</div>
+	@endif
 
 	@if(isset($turno))
 	{!! Form::model($turno, ['route'=>['turno.atualizar', $turno->id], 'method'=>'PUT']) !!}
@@ -61,8 +72,6 @@
 	</div>
 
 	<button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
-
-	{{-- {!! Form::submit("Salvar", ["class" => 'btn btn-lg btn-success right ']) !!} --}}
 
 	{!! Form::close() !!}
 

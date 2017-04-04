@@ -4,6 +4,19 @@
 
 	@section('content')
 	@parent
+
+	@if(isset($sucesso))
+	<div class="alert alert-success fade in">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong><span class="glyphicon glyphicon-thumbs-up"></span> Sucesso!</strong> Cadastro realizado.
+	</div>
+	@elseif(isset($erro))
+	<div class="alert alert-danger fade in">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong><span class="glyphicon glyphicon-thumbs-down"></span> Erro!</strong> Ops, o seguinte erro ocorreu: {{$mensagem_erro}}.
+	</div>
+	@endif
+	
 	<div class="col-lg-12 table-responsive">
 		<table class="table table-condensed table-hover">
 			<thead>
@@ -52,8 +65,8 @@
 
 					@empty
 					<tr class="text-center">
-					<td colspan="5"><h4>Não há disciplinas cadastradas</h4></td>
-				</tr>
+						<td colspan="5"><h4>Não há disciplinas cadastradas</h4></td>
+					</tr>
 					@endforelse
 
 				</tbody>
