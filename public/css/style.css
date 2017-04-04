@@ -11,15 +11,21 @@ header{
 
 header a{
 	color: white;
+	font-size: 14px;
 }
 
 header a:hover{
-	color: red;
+	color: white;
 	text-decoration: none;
 }
 
-header .img-responsive{
-	width: 300px;
+.ifsp-logo{
+	max-width: 270px;
+}
+
+.webhorario-logo{
+	max-width: 70px;
+	margin-right:7px;
 }
 
 .saudacao{
