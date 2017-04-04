@@ -16,12 +16,12 @@
         <div class="disciplinas">
             <div class="control-group form-group col-sm-8">
                 {!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
-                {!! Form::text('nome', '', ['class' => 'form-control', 'required']) !!}
+                {!! Form::text('nome[]', '', ['class' => 'form-control', 'required']) !!}
             </div>
 
             <div class="control-group form-group col-sm-3">
-                {!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}
-                {!! Form::text('sigla', '', ['class' => 'form-control', 'required', 'maxlength' => '5', 'required']) !!}
+                {!! Form::label('iniciais', 'Sigla', ['class' => 'control-label']) !!}
+                {!! Form::text('iniciais[]', '', ['class' => 'form-control', 'required', 'maxlength' => '5', 'required']) !!}
             </div>
 
             <div class="control-group col-sm-1">
