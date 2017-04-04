@@ -15,9 +15,15 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <header class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                <a href="{{ route('home') }}"><img class="img-responsive" src="{{ asset('/img/ifsp_logo_2.png') }}"></a>
+        <header class="col-xs-12 col-sm-12">
+            <div class="col-xs-6 col-sm-6">
+                <a href="{{ route('home') }}">
+                    <img class="img-responsive webhorario-logo pull-left" src="{{ asset('/img/webhorario.png') }}">
+                    <h1 class="hidden-xs">Webhorário</h1>
+                </a>
+            </div>
+            <div class="col-xs-6 col-sm-6">
+                <a href="http://www.ifspcaraguatatuba.edu.br" target="_blank"><img class="img-responsive ifsp-logo pull-right" src="{{ asset('/img/ifsp.png') }}"></a>
             </div>
         </header>
     </div>
