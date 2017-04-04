@@ -5,17 +5,7 @@
 	@section('content')
 	@parent
 
-	@if(isset($sucesso))
-	<div class="alert alert-success fade in">
-		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		<strong><span class="glyphicon glyphicon-thumbs-up"></span> Sucesso!</strong> Cadastro realizado.
-	</div>
-	@elseif(isset($erro))
-	<div class="alert alert-danger fade in">
-		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		<strong><span class="glyphicon glyphicon-thumbs-down"></span> Erro!</strong> Ops, o seguinte erro ocorreu: {{$mensagem_erro}}.
-	</div>
-	@endif
+	@include('layout.alerts')
 
 	@if(isset($turno))
 	{!! Form::model($turno, ['route'=>['turno.atualizar', $turno->id], 'method'=>'PUT']) !!}

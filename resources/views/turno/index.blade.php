@@ -5,17 +5,7 @@
 @section('content')
     @parent
 
-    @if(isset($sucesso))
-    <div class="alert alert-success fade in">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong><span class="glyphicon glyphicon-thumbs-up"></span> Sucesso!</strong> Cadastro realizado.
-    </div>
-    @elseif(isset($erro))
-    <div class="alert alert-danger fade in">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong><span class="glyphicon glyphicon-thumbs-down"></span> Erro!</strong> Ops, o seguinte erro ocorreu: {{$mensagem_erro}}.
-    </div>
-    @endif
+    @include('layout.alerts')
 
     <div class="table-responsive">
         <table class="table table-condensed table-hover">
