@@ -30,11 +30,11 @@
 			<div class="col-lg-1 padding-left-0"><label class="index">Aula 1</label></div>
 			<div class="col-lg-10">
 				<div class="form-group col-lg-6">
-					{!! Form::text('inicio[]', $horarios->inicio, ['class'=>'form-control', 'placeholder'=>'Início', 'maxlength' => '5', 'required']) !!}
+					{!! Form::text('inicio[]', $horarios->inicio, ['class'=>'form-control hora', 'placeholder'=>'Início', 'minlength' => '5', 'required']) !!}
 				</div>
 
 				<div class="form-group col-lg-6">
-					{!! Form::text('fim[]', $horarios->fim, ['class'=>'form-control', 'placeholder'=>'Fim', 'maxlength' => '5', 'required']) !!}
+					{!! Form::text('fim[]', $horarios->fim, ['class'=>'form-control hora', 'placeholder'=>'Fim', 'minlength' => '5', 'required']) !!}
 				</div>
 			</div>
 			<div class="col-lg-1 padding-right-0">
@@ -42,20 +42,22 @@
 		</div>
 		@endforeach
 		@else
+
 		<div class="row">
 			<div class="col-lg-1 padding-left-0"><label class="index">Aula 1</label></div>
 			<div class="col-lg-5">
 				<div class="form-group col-lg-6">
-					{!! Form::text('inicio[]', '', ['class'=>'form-control', 'placeholder'=>'Início', 'maxlength' => '5', 'required']) !!}
+					{!! Form::text('inicio[]', '', ['class'=>'form-control hora', 'placeholder'=>'Início', 'minlength' => '5', 'required']) !!}
 				</div>
 
 				<div class="form-group col-lg-6">
-					{!! Form::text('fim[]', '', ['class'=>'form-control', 'placeholder'=>'Fim', 'maxlength' => '5', 'required']) !!}
+					{!! Form::text('fim[]', '', ['class'=>'form-control hora', 'placeholder'=>'Fim', 'minlength' => '5', 'required']) !!}
 				</div>
 			</div>
 			<div class="col-lg-1 padding-right-0">
 			</div>
 		</div>
+
 		@endif
 	</div>
 
@@ -67,4 +69,10 @@
 
 	@section('scripts')
 	<script type="text/javascript" src="{{ asset('/js/cadastro_turno.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/jquery.mask.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.hora').mask('00:00');
+        });
+    </script>
 	@endsection
