@@ -12,6 +12,16 @@
 </div>
 @endif
 
+@if(Session::has('errors'))
+<div class="alert alert-danger fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong><span class="glyphicon glyphicon-remove-sign"></span> Erros!</strong> 
+    @foreach(Session::pull('errors') as $erros)
+        {{ $erros }}
+    @endforeach
+</div>
+@endif
+
 @if(Session::has('info'))
 <div class="alert alert-info fade in">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
