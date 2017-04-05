@@ -1,0 +1,3 @@
+#off-canvas.collapsed-canvas{ width: 50px; }
+#off-canvas.collapsed-canvas .sidebar-label { display: none }
+#content.collapsed-canvas { width: calc(100% - 50px) }
