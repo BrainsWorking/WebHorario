@@ -1,16 +1,16 @@
 'use strict'
 
-let offcanvas = $('#off-canvas')
+let sidebar = $('#sidebar')
 let contents = $('#content')
 
-offcanvas.hover(
-  () => { // Entrar
-    offcanvas.removeClass('collapsed-canvas');
+sidebar.hover(
+  () => { // Ao entrar
+    sidebar.removeClass('collapsed-canvas');
     contents.removeClass('collapsed-canvas');
   },
 
-  () => { // Sair
-    offcanvas.addClass('collapsed-canvas');
+  () => { // Ao sair
+    sidebar.addClass('collapsed-canvas');
     contents.addClass('collapsed-canvas');
   }
 )

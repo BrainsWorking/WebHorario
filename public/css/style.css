@@ -36,7 +36,7 @@ header a:hover{
 .saudacao{
 	background-color: #b2daa6;
 	padding: 1px 0;
-	color: white;
+	color: #33691e;
 	font-weight: bold;
 }
 
@@ -72,6 +72,7 @@ footer{
 
 .sidebar a{
 	color: #424242;
+	white-space: nowrap;
 }
 
 .nav-pills li a:hover{

@@ -39,7 +39,7 @@
             </div>
         </div>
             <div class="row">
-                <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='off-canvas'>
+                <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
                     <ul class="nav nav-pills nav-stacked">
                         <li class="{{ setActive('home') }}">
                             <a href="{{ route('home') }}">

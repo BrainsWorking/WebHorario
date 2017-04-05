@@ -1,3 +1,10 @@
-#off-canvas.collapsed-canvas{ width: 50px; }
-#off-canvas.collapsed-canvas .sidebar-label { display: none }
+#sidebar { overflow-x: hidden }
+#content, #sidebar { transition: .3s ease width }
+
+#sidebar { width: 200px }
+#sidebar.collapsed-canvas{ width: 50px; }
+#sidebar .sidebar-label { opacity: 1; transition: .3s ease opacity }
+#sidebar.collapsed-canvas .sidebar-label { opacity: 0; transition: .3s ease opacity }
+
 #content.collapsed-canvas { width: calc(100% - 50px) }
+#content { width: calc(100% - 200px) }
