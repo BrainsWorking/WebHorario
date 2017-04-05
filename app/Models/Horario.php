@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Horario as Horario;
+use App\Models\Turno as Turno;
 
 class Horario extends Model
 {

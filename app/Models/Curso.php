@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Curso as Curso;
+use App\Models\Disciplina as Disciplina;
+use App\Models\Turno as Turno;
 
 class Curso extends Model
 {
