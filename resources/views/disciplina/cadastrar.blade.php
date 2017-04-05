@@ -3,16 +3,28 @@
 @section('title', 'Disciplina')
 
 @section('content')
+@parent
 
+@if(isset($disciplina))
+{!! Form::model($disciplina, ['route'=>['disciplina.atualizar', $disciplina->id], 'method'=>'PUT']) !!}
+@else
+{!! Form::open(['route' => 'disciplina.salvar', 'method' => 'post']) !!}
+@endif
+
+<div class="control-group">
+    <button type="button" class="btn btn-success add-field">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outras disciplinas
+    </button>
+</div>
+
+<div class="row">
     @if(isset($disciplina))
         {!! Form::model($disciplina, ['route'=>['disciplina.atualizar', $disciplina->id], 'method'=>'PUT']) !!}
     @else
         {!! Form::open(['route' => 'disciplina.salvar', 'method' => 'post']) !!}
     @endif
 
-    <h1 class="text-center page-header">Cadastrar disciplina</h1>
-
-    <div class="row">
+    <div>
         <div class="disciplinas">
             <div class="control-group form-group col-sm-8">
                 {!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
@@ -23,22 +35,15 @@
                 {!! Form::label('iniciais', 'Sigla', ['class' => 'control-label']) !!}
                 {!! Form::text('iniciais[]', '', ['class' => 'form-control', 'required', 'maxlength' => '5', 'required']) !!}
             </div>
-
-            <div class="control-group col-sm-1">
-                <button type="button" class="btn btn-success add-field">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                </button>
-            </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
+</div>
+<button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
 
-    {{-- {!! Form::submit("Salvar", ["class" => 'btn btn-lg btn-success right ']) !!} --}}
-
-    {!! Form::close() !!}
+{!! Form::close() !!}
 
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('/js/cadastro_disciplina.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/cadastro_disciplina.js') }}"></script>
 @endsection

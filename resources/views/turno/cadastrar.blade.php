@@ -5,15 +5,12 @@
 	@section('content')
 	@parent
 
-
 	@if(isset($turno))
 	{!! Form::model($turno, ['route'=>['turno.atualizar', $turno->id], 'method'=>'PUT']) !!}
 	@else
 	{!! Form::open(['route' => 'turno.salvar', 'method' => 'post']) !!}
 	@endif
-
-	<h1 class="text-center page-header">Cadastrar turno</h1>
-
+	
 	<div class="control-group">
 		{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
 		{!! Form::text('nome', '', ['class' => 'form-control', 'required']) !!}
@@ -47,7 +44,7 @@
 		@else
 		<div class="row">
 			<div class="col-lg-1 padding-left-0"><label class="index">Aula 1</label></div>
-			<div class="col-lg-10">
+			<div class="col-lg-5">
 				<div class="form-group col-lg-6">
 					{!! Form::text('inicio[]', '', ['class'=>'form-control', 'placeholder'=>'Início', 'maxlength' => '5', 'required']) !!}
 				</div>
@@ -62,9 +59,7 @@
 		@endif
 	</div>
 
-	<button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
-
-	{{-- {!! Form::submit("Salvar", ["class" => 'btn btn-lg btn-success right ']) !!} --}}
+	<button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
 
 	{!! Form::close() !!}
 

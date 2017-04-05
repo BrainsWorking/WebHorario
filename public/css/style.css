@@ -9,7 +9,11 @@ header{
 	font-size: 15px;
 }
 
-header a{
+header .img-responsive{
+	width: 250px;
+}
+
+a {
 	color: white;
 	font-size: 14px;
 }
@@ -31,6 +35,8 @@ header a:hover{
 .saudacao{
 	background-color: #b2daa6;
 	padding: 5px 10px 5px 0;
+	color: white;
+	font-weight: bold;
 }
 
 .saudacao p{
@@ -48,12 +54,13 @@ footer{
 }
 
 .sidebar{
-	min-height:400px;
-	font-size: 20px;
+	min-height: 500px;
 	padding-top: 10px;
-	padding-bottom: 30px;
 	background-color: #EAEAEA;
 	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 
 .sidebar li{
@@ -74,14 +81,15 @@ footer{
 }
 
 .content{
-	min-height: 450px;
 	margin-bottom: 10px;
+	min-height: 450px;
 }
 
 .top-bar{
 	margin-top: 20px;
 }
 
+/*INDEX*/
 .table-more-info{
 	color: #9FA3A6;
 }
@@ -118,6 +126,10 @@ footer{
 	border:0;
 }
 
+.alert{
+	margin: 5px 0px 0px 0px;
+}
+
 /* Bootstrap Override */
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{ /* Opção do Menu */
 	background-color: #43a047;
@@ -127,7 +139,7 @@ footer{
 	background-color: #43a047;
 }
 
-/*Cadastro de Turnos*/
+/*Forms*/
 .add-field{
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -141,6 +153,14 @@ footer{
 	padding-top: 4px;
 }
 
+.right{
+	float: right;
+}
+
+form{
+	margin-top: 10px;
+}
+
 /* Reparos em componente Bootstrap */
 .padding-left-0{
 	padding-left: 0;
@@ -149,3 +169,4 @@ footer{
 .padding-right-0{
 	padding-right: 0;
 }
+
