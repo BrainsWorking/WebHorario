@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Turno;
 
 class TurnoController extends Controller
 {
     public function index() {
-        $turnos[] = (object)['nome' => 'Matutino', 'quantidade_aulas' => '5'];
-        $turnos[] = (object)['nome' => 'Vespertino', 'quantidade_aulas' => '4'];
-        $turnos[] = (object)['nome' => 'Noturno', 'quantidade_aulas' => '5'];
+        $turnos = Turno::join('Horarios', 'Turnos.id', '=', 'Horarios.id')->get();
 
         return view('turno.index', compact('turnos'));
     }
@@ -24,8 +23,19 @@ class TurnoController extends Controller
     }
 
     public function salvar(Request $request){
-        $dataForm = $request->all();
+        $turno = Turno::firstOrCreate($request->only(['nome']));
 
-        dd($dataForm);
+        $horarios = $request->except(['nome', '_token']);
+        $horarios = $horarios['turnos_horarios'];
+
+        for($i = 0; $i < count($horarios); $i = $i + 2){
+            $temp = array("inicio" => $horarios[$i], "fim" => $horarios[$i+1]);
+            $horario = Horarios::firstOrCreate($temp);
+            $turno->horario()->attach($horario);
+        }
+    }
+
+    public function deletar(){
+
     }
 }
