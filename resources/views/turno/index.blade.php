@@ -47,6 +47,10 @@
                         <div class="hidden-info-content">
                             <p><b>Nome do Turno:</b> {{$turno->nome}}</p>
                             <p><b>Quantidade de Aulas:</b> {{$turno->quantidadeAulas}}</p>
+                            <p><b>Horarios: </b></p>
+                            @foreach($turno->horarios as $horario)
+						        <span class="col-lg-3 text-center">{{ $horario->inicio .' - '. $horario->fim }}</span>
+						    @endforeach                            
                         </div>
                     </td>
                 </tr>
