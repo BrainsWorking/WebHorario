@@ -40,9 +40,9 @@ class CursoController extends Controller
     	    		$curso->disciplinas()->attach($disciplina);
     	    	}
             }, 3);
-	    	return redirect()->route('cursos');
+	    	return redirect()->route('cursos')->with('success', 'Inclusão realizada com sucesso');
     	}catch(\Exception $e){
-    		return redirect()->route('curso.cadastrar');
+    		return redirect()->route('curso.cadastrar')->with('error', 'Erro na inclusão!');
     	}
     }
 
@@ -72,9 +72,9 @@ class CursoController extends Controller
                 $curso->disciplinas()->sync($dataForm['disciplina_id']);
             }, 3);
 
-            return redirect()->route('cursos');
+            return redirect()->route('cursos')->with('success', 'Edição realizada com sucesso');
         }catch(\Exception $e){
-            return redirect()->route('curso.editar', $id);
+            return redirect()->route('curso.editar', $id)->with('error', 'Erro na edição!');
         }
     }
 
@@ -86,7 +86,7 @@ class CursoController extends Controller
                 $curso->delete();
             }, 3);
 
-            return redirect()->route('cursos');
+            return redirect()->route('cursos')->with('success', 'Exclusão realizada com sucesso');
         } catch (\Exception $e) {
             return redirect()->route('cursos')->with('error', 'Erro na exclusão!');
         }
