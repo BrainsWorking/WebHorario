@@ -25,7 +25,7 @@
 
 	<div class="horarios-turno col-lg-12">
 		@if(isset($turno))
-		@foreach($turno->$turno_horarios as $horarios)
+		@foreach($turno->horarios as $horario)
 		<div class="row">
 			<div class="col-lg-1 padding-left-0"><label class="index">Aula 1</label></div>
 			<div class="col-lg-10">

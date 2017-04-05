@@ -46,7 +46,7 @@
                     <td colspan="5">
                         <div class="hidden-info-content">
                             <p><b>Nome do Turno:</b> {{$turno->nome}}</p>
-                            <p><b>Quantidade de Aulas:</b> {{$turno->quantidade_aulas}}</p>
+                            <p><b>Quantidade de Aulas:</b> {{$turno->quantidadeAulas}}</p>
                         </div>
                     </td>
                 </tr>
