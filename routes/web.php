@@ -27,3 +27,7 @@ Route::name('curso.deletar')->get('curso/deletar/{id}', 'CursoController@deletar
 #SEMESTRES
 Route::name('semestres')->get('semestres', function (){ return view('semestre.index'); });
 Route::name('semestre.cadastrar')->get('semestre/cadastrar', function (){ return view('semestre.formSemestre'); });
+
+#CARGOS
+Route::name('cargos')->get('cargos', function (){ return view('cargo.index'); });
+Route::name('cargo.cadastrar')->get('cargo/cadastrar', function (){ return view('cargo.formCargo'); });
