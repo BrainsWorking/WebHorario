@@ -1,3 +1,7 @@
+body{
+    font-family: 'Roboto Mono', monospace;
+}
+
 .container-fluid {
 	min-width: 500px;
 }
@@ -29,7 +33,7 @@ header a:hover{
 
 .webhorario-logo{
 	max-width: 70px;
-	margin-right:7px;
+	margin-right: 10px;
 }
 
 .saudacao{
