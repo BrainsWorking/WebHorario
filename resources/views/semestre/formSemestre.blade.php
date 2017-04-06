@@ -19,12 +19,12 @@
 
     <div class="control-group form-group col-sm-6 padding-left-0">
         {!! Form::label('data_inicio', 'Data Início', ['class' => 'control-label']) !!}
-        {!! Form::text('data_inicio', '', ['class' => 'form-control data', 'required', 'minlength' => '10']) !!}
+        {!! Form::date('data_inicio', '', ['class' => 'form-control data', 'required']) !!}
     </div>
 
     <div class="control-group form-group col-sm-6 padding-right-0">
         {!! Form::label('data_fim', 'Data Fim', ['class' => 'control-label']) !!}
-        {!! Form::text('data_fim', '', ['class' => 'form-control data', 'required', 'minlength' => '10']) !!}
+        {!! Form::date('data_fim', '', ['class' => 'form-control data', 'required']) !!}
     </div>
 
     <button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
@@ -32,13 +32,4 @@
 
     {!! Form::close() !!}
 </div>
-@endsection
-
-@section('scripts')
-    <script type="text/javascript" src="{{ asset('/js/jquery.mask.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.data').mask('00/00/0000');
-        });
-    </script>
 @endsection
