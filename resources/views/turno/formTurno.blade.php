@@ -30,11 +30,11 @@
 			<div class="col-lg-1 padding-left-0"><label class="index">Aula 1</label></div>
 			<div class="col-lg-10">
 				<div class="form-group col-lg-6">
-					{!! Form::text('horario[1][inicio]', $horarios->inicio, ['class'=>'form-control', 'placeholder'=>'Início', 'maxlength' => '5', 'required']) !!}
+					{!! Form::text('horario[1][inicio]', $horarios->inicio, ['class'=>'form-control hora', 'placeholder'=>'Início' ,'minlength' => '5', 'required']) !!}
 				</div>
 
 				<div class="form-group col-lg-6">
-					{!! Form::text('horario[1][fim]', $horarios->fim, ['class'=>'form-control', 'placeholder'=>'Fim', 'maxlength' => '5', 'required']) !!}
+					{!! Form::text('horario[1][fim]', $horarios->fim, ['class'=>'form-control hora', 'placeholder'=>'Fim' ,'minlength' => '5', 'required']) !!}
 				</div>
 			</div>
 			<div class="col-lg-1 padding-right-0">
@@ -47,11 +47,11 @@
 			<div class="col-lg-1 padding-left-0"><label class="index">Aula 1</label></div>
 			<div class="col-lg-5">
 				<div class="form-group col-lg-6">
-					{!! Form::text('horario[1][inicio]', '', ['class'=>'form-control', 'placeholder'=>'Início', 'maxlength' => '5', 'required']) !!}
+					{!! Form::text('horario[1][inicio]', '', ['class'=>'form-control hora', 'placeholder'=>'Início' ,'minlength' => '5', 'required']) !!}
 				</div>
 
 				<div class="form-group col-lg-6">
-					{!! Form::text('horario[1][fim]', '', ['class'=>'form-control', 'placeholder'=>'Fim', 'maxlength' => '5', 'required']) !!}
+					{!! Form::text('horario[1][fim]', '', ['class'=>'form-control hora', 'placeholder'=>'Fim' ,'minlength' => '5', 'required']) !!}
 				</div>
 			</div>
 			<div class="col-lg-1 padding-right-0">

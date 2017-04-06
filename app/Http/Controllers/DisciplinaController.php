@@ -8,21 +8,26 @@ use Illuminate\Support\Facades\DB;
 
 class DisciplinaController extends Controller
 {
+    private $totalPorPag = 20;
+    
     public function index(){
-        $disciplinas[] = (object)['nome' => 'Lógica de Programação', 'iniciais' => 'LOP', 'cargaHoraria' => '200'];
-        $disciplinas[] = (object)['nome' => 'Matemática Discreta I', 'iniciais' => 'MD1', 'cargaHoraria' => '200'];
-        $disciplinas[] = (object)['nome' => 'Linguagem de Programação', 'iniciais' => 'LOP', 'cargaHoraria' => '200'];
+        
+        $disciplinas = Disciplina::orderBy('nome', 'asc')->paginate($this->totalPorPag);
         
         return view('disciplina.index', compact('disciplinas'));
     }
 
     public function editar($id) {
         $disciplina = Disciplina::findOrFail($id);
-        return view('disciplina.editar', compact('disciplina', 'id'));
+        return view('disciplina.cadastrar', compact('disciplina', 'id'));
     }
 
     public function cadastrar(){
         return view('disciplina.cadastrar');
+    }
+    
+    public function deletar(){
+        return view('disciplina.index');
     }
 
     public function salvar(Request $request){
@@ -31,14 +36,31 @@ class DisciplinaController extends Controller
 
             DB::transaction(function () use ($dataForm) {
                 foreach ($dataForm['nome'] as $key => $nome){
-                    Disciplina::create(array("nome" => $nome, "iniciais" => $dataForm['iniciais'][$key]));
+                    Disciplina::create(array("nome" => $nome, "iniciais" => $dataForm['iniciais'][$key], "cargaHoraria" => $dataForm['cargaHoraria'][$key]));
                 }
-
             }, 3);
-            return redirect()->route('disciplinas');
+
+            return redirect()->route('disciplinas')->with('success', 'Disciplina cadastrada');
+
         }catch(\Exception $e){
-            echo $e;die;
-            return redirect()->route('disciplina.cadastrar');
+            return redirect()->route('disciplina.cadastrar')->with('error', 'Falha ao cadastrar');
+        }
+    }
+
+    public function atualizar(Request $request, $id){
+        try{
+            $dataForm = $request->all();
+
+            DB::transaction(function () use ($dataForm, $id) {
+                $disciplina = Disciplina::find($id);
+                $disciplina->update(array("nome" => $dataForm['nome'][0], "iniciais" => $dataForm['iniciais'][0],  "cargaHoraria" => $dataForm['cargaHoraria'][0]));
+            }, 3);
+
+            return redirect()->route('disciplinas')->with('success', 'Edição realizada');
+
+        }catch(\Exception $e){
+            return redirect()->route('disciplina.editar', $id)->with('error', 'Falha ao editar');
+            echo $e;
         }
     }
 }

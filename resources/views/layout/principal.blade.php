@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <title> @yield('title') - WebHorário</title>
     <link rel="icon" href="" type="image/x-icon">
     @yield('css')

@@ -4,7 +4,7 @@ Route::name('home')->get('/', function () { return view('welcome'); });
 
 # TURNOS
 Route::name('turnos')->get('turnos', 'TurnoController@index');
-Route::name('turno.cadastrar')->get('turno/cadastrar', 'TurnoController@cadastrar');
+Route::name('turno.formTurno')->get('turno/cadastrar', 'TurnoController@cadastrar');
 Route::name('turno.salvar')->post('turno/salvar', 'TurnoController@salvar');
 Route::name('turno.editar')->get('turno/editar/{id}', 'TurnoController@editar');
 Route::name('turno.atualizar')->patch('turno/atualizar', 'TurnoController@atualizar');
@@ -15,7 +15,8 @@ Route::name('disciplinas')->get("disciplinas", 'DisciplinaController@index');
 Route::name('disciplina.cadastrar')->get('disciplina/cadastrar', 'DisciplinaController@cadastrar');
 Route::name('disciplina.salvar')->post('disciplina/salvar', 'DisciplinaController@salvar');
 Route::name('disciplina.editar')->get('disciplina/editar/{id}', 'DisciplinaController@editar');
-Route::name('disciplina.atualizar')->patch('disciplina/atualizar', 'DisciplinaController@atualizar');
+Route::name('disciplina.atualizar')->put('disciplina/atualizar/{id}', 'DisciplinaController@atualizar');
+Route::name('disciplina.deletar')->get('disciplina/deletar/{id}', 'DisciplinaController@atualizar');
 
 # CURSOS
 Route::name('cursos')->get('cursos', 'CursoController@index');
