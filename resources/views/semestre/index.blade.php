@@ -32,28 +32,28 @@
 
 				<tbody>
 
-					@forelse ($semestres as $semestre)
+					{{-- @forelse ($semestres as $semestre) --}}
 					<tr class="table-line">
 						<td class="text-center table-more-info"><span class="glyphicon glyphicon-chevron-down"></span></td>
-						<td class="text-center search"> {{$semestre->nome}} </td>
-						<td class="text-center"><a href="{{ route('semestre.editar', $semestre->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
-						<td class="text-center"><a href="{{ route('semestre.deletar', $semestre->id) }}" class="table-delete"><span class="glyphicon glyphicon-remove"></span></a></td>
+						<td class="text-center search"> 2017-1 </td>
+						<td class="text-center"><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
+						<td class="text-center"><a href="" class="table-delete"><span class="glyphicon glyphicon-remove"></span></a></td>
 					</tr>
 					<tr class="hidden-info">
 						<td colspan="5">
 							<div class="hidden-info-content">
-								<p><b>Identificação do Semestre:</b> {{$semestre->nome}}</p>
-								<p><b>Data de Início:</b> {{$semestre->data_inicio}}</p>
-								<p><b>Data Fim:</b> {{$semestre->data_fim}}</p>
+								<p><b>Identificação do Semestre:</b> 2017-1 </p>
+								<p><b>Data de Início:</b> 01/01/2017 </p>
+								<p><b>Data Fim:</b> 30/06/2017 </p>
 							</div>
 						</td>
 					</tr>
 
-					@empty
-					<tr class="text-center">
+					{{-- @empty --}}
+					{{-- <tr class="text-center">
 						<td colspan="5"><h4>Não há semestres cadastradas</h4></td>
 					</tr>
-					@endforelse
+					@endforelse --}}
 
 				</tbody>
 			</table>
