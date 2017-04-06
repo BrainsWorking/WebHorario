@@ -14,10 +14,10 @@ $(document).ready(function(){
                 </div>
                 <div class="col-lg-5">
                     <div class="form-group col-lg-6">
-                        <input type="text" name="inicio[` + x + `]" class="form-control" placeholder="Início" maxlength="5" required>
+                        <input type="text" name="horario[` + x + `][inicio]" class="form-control hora" minlength="5" placeholder="Início" maxlength="5" required>
                     </div>
                     <div class="form-group col-lg-6">
-                        <input type="text" name="fim[` + x + `]" class="form-control" placeholder="Fim" maxlength="5" required>
+                        <input type="text" name="horario[` + x + `][fim]" class="form-control hora" minlength="5" placeholder="Fim" maxlength="5" required>
                     </div>
                 </div>
                 <div class="col-lg-1 padding-right-0 remove-field">
@@ -42,11 +42,7 @@ $(document).ready(function(){
 	});
 
 	$(wrapper).on("change paste keyup keypress keydown", ".form-control", function(){
-		var v = $(this).val();
-		v = v.replace(/\D/g,"");
-		v = v.replace(/(\d{2})(\d)/,"$1:$2");
-		$(this).val(v);
-
+		$('.hora').mask('00:00');
 	});
 
 });
