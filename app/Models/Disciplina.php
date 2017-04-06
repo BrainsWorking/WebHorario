@@ -11,4 +11,8 @@ class Disciplina extends Model{
 
     public $timestamps = false;
     
+    public function cursos(){
+        return $this->belongsToMany(Curso::class, 'cursos_disciplinas');
+    }
+    
 }
