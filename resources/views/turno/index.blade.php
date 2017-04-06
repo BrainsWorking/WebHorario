@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="col-sm-4 padding-right-0">
-                    <a class="btn btn-success right col-sm-12" href="{{ route('turno.cadastrar') }}"><span
+                    <a class="btn btn-success right col-sm-12" href="{{ route('turno.formTurno') }}"><span
                                 class="glyphicon glyphicon-plus"></span> Cadastrar</a>
                 </div>
             </div>
@@ -46,7 +46,11 @@
                     <td colspan="5">
                         <div class="hidden-info-content">
                             <p><b>Nome do Turno:</b> {{$turno->nome}}</p>
-                            <p><b>Quantidade de Aulas:</b> {{$turno->quantidade_aulas}}</p>
+                            <p><b>Quantidade de Aulas:</b> {{$turno->quantidadeAulas}}</p>
+                            <p><b>Horarios: </b></p>
+                            @foreach($turno->horarios as $horario)
+						        <span class="col-lg-3 text-center">{{ $horario->inicio .' - '. $horario->fim }}</span>
+						    @endforeach                            
                         </div>
                     </td>
                 </tr>

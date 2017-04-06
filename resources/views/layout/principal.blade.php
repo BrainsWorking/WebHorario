@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/off-canvas.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <title> @yield('title') - WebHorário</title>
     <link rel="icon" href="" type="image/x-icon">
     @yield('css')
@@ -59,6 +60,11 @@
                         <li class="{{ setActive('curso') }}">
                             <a href="{{ route('cursos') }}">
                                 <span class="glyphicon glyphicon-education"></span> <span class='sidebar-label'>Cursos</span>
+                            </a>
+                        </li>
+                        <li class="{{ setActive('semestre') }}">
+                            <a href="{{ route('semestres') }}">
+                                <span class="glyphicon glyphicon-calendar"></span> Semestres
                             </a>
                         </li>
                         <li class="{{ setActive('perfil.editar') }}">
