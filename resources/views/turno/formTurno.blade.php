@@ -13,7 +13,7 @@
 	
 	<div class="control-group">
 		{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
-		{!! Form::text('nome', '', ['class' => 'form-control hora', 'required']) !!}
+		{!! Form::text('nome', '', ['class' => 'form-control', 'required']) !!}
 	</div>
 
 	<div class="control-group">
