@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class TurnoController extends Controller
 {
     public function index() {
-        $turnos = Turno::join('Horarios', 'Turnos.id', '=', 'Horarios.id')->get();
+        $turnos = Turno::join('horarios', 'turnos.id', '=', 'horarios.id')->get();
 
         return view('turno.index', compact('turnos'));
     }
