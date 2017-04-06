@@ -12,13 +12,16 @@
 </div>
 @endif
 
-@if(Session::has('errors'))
+@if(count($errors) > 0)
 <div class="alert alert-danger fade in">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong><span class="glyphicon glyphicon-remove-sign"></span> Erros!</strong> 
-    @foreach(Session::pull('errors') as $erros)
-        {{ $erros }}
-    @endforeach
+    <strong><span class="glyphicon glyphicon-remove-sign"></span> Erro!</strong> 
+    Os seguintes erros de validação foram encontrados:
+    <ul>
+        @foreach($errors->all() as $erros)
+            <li>{{ $erros }}</li>
+        @endforeach
+    </ul>
 </div>
 @endif
 
