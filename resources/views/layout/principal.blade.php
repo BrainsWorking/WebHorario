@@ -64,12 +64,7 @@
                         </li>
                         <li class="{{ setActive('semestre') }}">
                             <a href="{{ route('semestres') }}">
-                                <span class="glyphicon glyphicon-calendar"></span> Semestres
-                            </a>
-                        </li>
-                        <li class="{{ setActive('semestre') }}">
-                            <a href="{{ route('semestres') }}">
-                                <span class="glyphicon glyphicon-calendar"></span> Semestres
+                                <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
                             </a>
                         </li>
                         <li class="{{ setActive('perfil.editar') }}">
