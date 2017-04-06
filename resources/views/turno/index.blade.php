@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="col-sm-4 padding-right-0">
-                    <a class="btn btn-success right col-sm-12" href="{{ route('turno.cadastrar') }}"><span
+                    <a class="btn btn-success right col-sm-12" href="{{ route('turno.formTurno') }}"><span
                                 class="glyphicon glyphicon-plus"></span> Cadastrar</a>
                 </div>
             </div>

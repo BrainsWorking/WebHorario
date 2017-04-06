@@ -21,7 +21,7 @@ class TurnoController extends Controller
     }
     
     public function cadastrar(){
-        return view('turno.cadastrar');
+        return view('turno.formTurno');
     }
 
     public function salvar(Request $request){
