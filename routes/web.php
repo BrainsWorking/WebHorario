@@ -15,8 +15,8 @@ Route::name('disciplinas')->get("disciplinas", 'DisciplinaController@index');
 Route::name('disciplina.cadastrar')->get('disciplina/cadastrar', 'DisciplinaController@cadastrar');
 Route::name('disciplina.salvar')->post('disciplina/salvar', 'DisciplinaController@salvar');
 Route::name('disciplina.editar')->get('disciplina/editar/{id}', 'DisciplinaController@editar');
-Route::name('disciplina.atualizar')->patch('disciplina/atualizar/{id}', 'DisciplinaController@atualizar');
-Route::name('disciplina.deletar')->patch('disciplina/deletar/{id}', 'DisciplinaController@atualizar');
+Route::name('disciplina.atualizar')->put('disciplina/atualizar/{id}', 'DisciplinaController@atualizar');
+Route::name('disciplina.deletar')->get('disciplina/deletar/{id}', 'DisciplinaController@atualizar');
 
 # CURSOS
 Route::name('cursos')->get('cursos', 'CursoController@index');
