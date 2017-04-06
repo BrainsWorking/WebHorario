@@ -19,4 +19,8 @@ class Turno extends Model
     public function cursos(){
         return $this->hasMany(Curso::class);        
     }
+
+    public function getQuantidadeAulasAttribute(){
+        return $this->horarios->count();
+    }
 }

@@ -14,4 +14,13 @@ class Horario extends Model
     public function turnos(){
         return $this->belongsToMany(Turno::class, 'turnos_horarios');
     }
+
+    public function getInicioAttribute(){
+        return substr($this->attributes['inicio'], 0, 5);
+    }
+
+    public function getFimAttribute(){
+        return substr($this->attributes['fim'], 0, 5);
+    }
+
 }

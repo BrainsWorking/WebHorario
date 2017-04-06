@@ -18,12 +18,6 @@
 </div>
 
 <div class="row">
-    @if(isset($disciplina))
-        {!! Form::model($disciplina, ['route'=>['disciplina.atualizar', $disciplina->id], 'method'=>'PUT']) !!}
-    @else
-        {!! Form::open(['route' => 'disciplina.salvar', 'method' => 'post']) !!}
-    @endif
-
     <div>
         <div class="disciplinas">
             <div class="control-group form-group col-sm-8">

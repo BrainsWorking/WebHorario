@@ -8,21 +8,26 @@ use Illuminate\Support\Facades\DB;
 
 class DisciplinaController extends Controller
 {
+    private $totalPorPag = 20;
+    
     public function index(){
-        $disciplinas[] = (object)['nome' => 'Lógica de Programação', 'iniciais' => 'LOP', 'cargaHoraria' => '200'];
-        $disciplinas[] = (object)['nome' => 'Matemática Discreta I', 'iniciais' => 'MD1', 'cargaHoraria' => '200'];
-        $disciplinas[] = (object)['nome' => 'Linguagem de Programação', 'iniciais' => 'LOP', 'cargaHoraria' => '200'];
+        
+        $disciplinas = Disciplina::orderBy('nome', 'asc')->paginate($this->totalPorPag);
         
         return view('disciplina.index', compact('disciplinas'));
     }
 
     public function editar($id) {
         $disciplina = Disciplina::findOrFail($id);
-        return view('disciplina.editar', compact('disciplina', 'id'));
+        return view('disciplina.cadastrar', compact('disciplina', 'id'));
     }
 
     public function cadastrar(){
         return view('disciplina.cadastrar');
+    }
+    
+    public function deletar(){
+        return view('disciplina.index');
     }
 
     public function salvar(Request $request){
