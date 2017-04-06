@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Turno;
+use App\Models\Horario;
+use Illuminate\Support\Facades\DB;
 
 class TurnoController extends Controller
 {
     public function index() {
-        $turnos[] = (object)['nome' => 'Matutino', 'quantidade_aulas' => '5'];
-        $turnos[] = (object)['nome' => 'Vespertino', 'quantidade_aulas' => '4'];
-        $turnos[] = (object)['nome' => 'Noturno', 'quantidade_aulas' => '5'];
+        $turnos = Turno::join('horarios', 'turnos.id', '=', 'horarios.id')->get();
 
         return view('turno.index', compact('turnos'));
     }
@@ -24,8 +25,28 @@ class TurnoController extends Controller
     }
 
     public function salvar(Request $request){
-        $dataForm = $request->all();
+        
+        try{
+            DB::transaction(function () use ($request) {
+                
+                $turno = Turno::firstOrCreate($request->only(['nome']));
 
-        dd($dataForm);
+                $horarios = $request->input('horario');
+                
+                foreach ($horarios as $horario) {
+                    $horario = Horario::firstOrCreate($horario);
+                
+                    $turno->horarios()->attach($horario);
+                }
+            }, 3);
+            
+            return redirect()->route('turnos')->withSuccess('Turno cadastrado com sucesso');
+        }catch(\Exception $e){
+            return redirect()->route('turnos')->withError('Erro ao cadastrar turno');
+        }
+    }
+
+    public function deletar(){
+
     }
 }
