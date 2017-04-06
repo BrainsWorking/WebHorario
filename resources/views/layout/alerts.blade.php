@@ -18,8 +18,8 @@
     <strong><span class="glyphicon glyphicon-remove-sign"></span> Erro!</strong> 
     Os seguintes erros de validação foram encontrados:
     <ul>
-        @foreach($errors->all() as $erros)
-            <li>{{ $erros }}</li>
+        @foreach($errors->all() as $erro)
+            <li>{{ $erro }}</li>
         @endforeach
     </ul>
 </div>
