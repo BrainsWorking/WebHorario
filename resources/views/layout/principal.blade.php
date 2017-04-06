@@ -59,6 +59,11 @@
                                 <span class="glyphicon glyphicon-education"></span> Cursos
                             </a>
                         </li>
+                        <li class="{{ setActive('semestre') }}">
+                            <a href="{{ route('semestres') }}">
+                                <span class="glyphicon glyphicon-calendar"></span> Semestres
+                            </a>
+                        </li>
                         <li class="{{ setActive('perfil.editar') }}">
                             <a href="">
                                 <span class="glyphicon glyphicon-user"></span> Editar Perfil

@@ -42,6 +42,7 @@
 		</div>
 		@endforeach
 		@else
+
 		<div class="row">
 			<div class="col-lg-1 padding-left-0"><label class="index">Aula 1</label></div>
 			<div class="col-lg-5">
@@ -56,6 +57,7 @@
 			<div class="col-lg-1 padding-right-0">
 			</div>
 		</div>
+
 		@endif
 	</div>
 
@@ -67,4 +69,10 @@
 
 	@section('scripts')
 	<script type="text/javascript" src="{{ asset('/js/cadastro_turno.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/jquery.mask.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.hora').mask('00:00');
+        });
+    </script>
 	@endsection

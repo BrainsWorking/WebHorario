@@ -42,11 +42,7 @@ $(document).ready(function(){
 	});
 
 	$(wrapper).on("change paste keyup keypress keydown", ".form-control", function(){
-		var v = $(this).val();
-		v = v.replace(/\D/g,"");
-		v = v.replace(/(\d{2})(\d)/,"$1:$2");
-		$(this).val(v);
-
+		$('.hora').mask('00:00');
 	});
 
 });
