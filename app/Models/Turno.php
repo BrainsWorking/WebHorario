@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Turno as Turno;
+use App\Models\Horario as Horario;
+use App\Models\Curso as Curso;
 
 class Turno extends Model
 {
@@ -16,7 +17,7 @@ class Turno extends Model
     }
 
     public function cursos(){
-        return $this->hasMany('App\Models\Curso');        
+        return $this->hasMany(Curso::class);        
     }
 
     public function getQuantidadeAulasAttribute(){

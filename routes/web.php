@@ -26,6 +26,11 @@ Route::name('curso.salvar')->post('curso/salvar', 'CursoController@salvar');
 Route::name('curso.atualizar')->put('curso/atualizar/{id}', 'CursoController@atualizar');
 Route::name('curso.deletar')->get('curso/deletar/{id}', 'CursoController@deletar');
 
+# LOGIN
+Route::name('login')->get('login', 'LoginController@index');
+Route::name('logar')->get('logar', 'LoginController@logar');
+Route::name('deslogar')->get('deslogar', 'LoginController@deslogar');
+
 #SEMESTRES
 Route::name('semestres')->get('semestres', function (){ return view('semestre.index'); });
 Route::name('semestre.cadastrar')->get('semestre/cadastrar', function (){ return view('semestre.formSemestre'); });

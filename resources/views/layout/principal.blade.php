@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/off-canvas.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <title> @yield('title') - WebHorário</title>
     <link rel="icon" href="" type="image/x-icon">
@@ -38,43 +40,43 @@
             </div>
         </div>
             <div class="row">
-                <div class="col-sm-4 col-md-3 col-lg-2 sidebar">
+                <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
                     <ul class="nav nav-pills nav-stacked">
                         <li class="{{ setActive('home') }}">
                             <a href="{{ route('home') }}">
-                                <span class="glyphicon glyphicon-home"></span> Home
+                                <span class="glyphicon glyphicon-home"></span> <span class='sidebar-label'>Home</span>
                             </a>
                         </li>
                         <li class="{{ setActive('turno') }}">
                             <a href="{{ route('turnos') }}">
-                                <span class="glyphicon glyphicon-time"></span> Turnos
+                                <span class="glyphicon glyphicon-time"></span> <span class='sidebar-label'>Turnos</span>
                             </a>
                         </li>
                         <li class="{{ setActive('disciplina') }}">
                             <a href="{{ route('disciplinas') }}">
-                                <span class="glyphicon glyphicon-book"></span> Disciplinas
+                                <span class="glyphicon glyphicon-book"></span> <span class='sidebar-label'>Disciplinas</span>
                             </a>
                         </li>
                         <li class="{{ setActive('curso') }}">
                             <a href="{{ route('cursos') }}">
-                                <span class="glyphicon glyphicon-education"></span> Cursos
+                                <span class="glyphicon glyphicon-education"></span> <span class='sidebar-label'>Cursos</span>
                             </a>
                         </li>
                         <li class="{{ setActive('semestre') }}">
                             <a href="{{ route('semestres') }}">
-                                <span class="glyphicon glyphicon-calendar"></span> Semestres
+                                <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
                             </a>
                         </li>
                         <li class="{{ setActive('perfil.editar') }}">
                             <a href="">
-                                <span class="glyphicon glyphicon-user"></span> Editar Perfil
+                                <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Editar Perfil</span>
                             </a>
                         </li>
                     </ul>
                 </div>
 
                 <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
-                <div class="col-sm-8 col-md-9 col-lg-10 content">
+                <div class="col-sm-8 col-md-9 col-lg-10 collapsed-canvas" id="content">
 
                     @include('layout.alerts')
 
@@ -100,7 +102,8 @@
         </footer>
 
 
-        <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/jquery-3.2.0.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/off-canvas.js') }}"></script>
         @yield('scripts')
 
     </body>
