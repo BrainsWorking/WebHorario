@@ -33,3 +33,7 @@ Route::name('semestre.cadastrar')->get('semestre/cadastrar', function (){ return
 #CARGOS
 Route::name('cargos')->get('cargos', function (){ return view('cargo.index'); });
 Route::name('cargo.cadastrar')->get('cargo/cadastrar', function (){ return view('cargo.formCargo'); });
+
+#PESSOAS
+Route::name('pessoas')->get('pessoas', function (){ return view('pessoa.index'); });
+Route::name('pessoa.cadastrar')->get('pessoa/cadastrar', function (){ return view('pessoa.formPessoa'); });

@@ -70,9 +70,9 @@
                             <span class="glyphicon glyphicon-apple"></span> Cargos
                         </a>
                     </li>
-                    <li class="{{ setActive('perfil.editar') }}">
-                        <a href="">
-                            <span class="glyphicon glyphicon-user"></span> Editar Perfil
+                    <li class="{{ setActive('pessoa') }}">
+                        <a href="{{ route ('pessoas') }}">
+                            <span class="glyphicon glyphicon-user"></span> Pessoas
                         </a>
                     </li>
                 </ul>
