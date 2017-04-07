@@ -7,5 +7,4 @@ use Illuminate\Database\Eloquent\Model;
 class Instituicao extends Model
 {
     protected $fillable = ['nome', 'cnpj'];
-    public $timestamps = false;
 }

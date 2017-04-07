@@ -10,7 +10,6 @@ class Turno extends Model
 {
     
     protected $fillable = ['nome'];
-    public $timestamps = false;
     
     public function horarios(){
         return $this->belongsToMany(Horario::class, 'turnos_horarios');

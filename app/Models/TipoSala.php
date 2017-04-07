@@ -8,10 +8,9 @@ use App\Models\Disciplina;
 class TipoSala extends Model
 {
     protected $fillable = ['nome', 'descricao'];
-    public $timestamps = false;
 
 
-    public function Disciplinas(){
+    public function disciplinas(){
         return $this->belongsToMany(Disciplina::class, 'disciplinas_tiposSalas');
     }
 }

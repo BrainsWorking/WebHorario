@@ -7,10 +7,9 @@ use App\Models\Cargo;
 
 class Funcionario extends Model
 {
-    protected $fillable = ['nome', 'sexo', 'cpf', 'data_nascimento', 'endereco', 'foto', 'email', 'senha'];
-    public $timestamps = false;
+    protected $fillable = ['nome', 'sexo', 'cpf', 'data_nascimento', 'endereco', 'foto', 'email', 'password'];
 
-    public function cargo_funcionarios(){
+    public function cargos(){
         return $this->belongsToMany(Cargo::class, 'cargos_funcionarios');
     }
 }
