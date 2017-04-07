@@ -26,8 +26,18 @@ class DisciplinaController extends Controller
         return view('disciplina.cadastrar');
     }
     
-    public function deletar(){
-        return view('disciplina.index');
+    public function deletar($id){
+        try {
+            DB::transaction(function () use ($id) {
+                $disciplina = Disciplina::find($id);
+
+                $disciplina->delete();
+            }, 3);
+
+            return redirect()->route('disciplinas')->with('success', 'Disciplina excluída');
+        } catch (\Exception $e) {
+            return redirect()->route('disciplinas')->with('error', 'Falha ao excluir');
+        }
     }
 
     public function salvar(Request $request){
@@ -56,7 +66,7 @@ class DisciplinaController extends Controller
                 $disciplina->update(array("nome" => $dataForm['nome'][0], "iniciais" => $dataForm['iniciais'][0],  "cargaHoraria" => $dataForm['cargaHoraria'][0]));
             }, 3);
 
-            return redirect()->route('disciplinas')->with('success', 'Edição realizada');
+            return redirect()->route('disciplinas')->with('success', 'Disciplina editada');
 
         }catch(\Exception $e){
             return redirect()->route('disciplina.editar', $id)->with('error', 'Falha ao editar');
