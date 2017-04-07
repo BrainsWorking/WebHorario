@@ -1,0 +1,128 @@
+DROP DATABASE webHorario;
+
+CREATE DATABASE IF NOT EXISTS webHorario;
+USE webHorario;
+
+CREATE TABLE instituicoes(
+	id INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(255) NOT NULL,
+	cnpj VARCHAR(20) NOT NULL,
+	CONSTRAINT PRIMARY KEY(id)
+);
+
+CREATE TABLE cargos(
+	id INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(255) NOT NULL,
+	CONSTRAINT PRIMARY KEY(id)
+);
+
+CREATE TABLE funcionarios(
+	id INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(255) NOT NULL,
+	sexo ENUM('M', 'F') NOT NULL,
+	cpf VARCHAR(20) NOT NULL,
+	data_nascimento DATE NOT NULL,
+	endereco VARCHAR(255) NOT NULL,
+	foto VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	`password` VARCHAR(255) NOT NULL,	
+	CONSTRAINT PRIMARY KEY(id)
+);
+
+CREATE TABLE telefones(
+	id INT NOT NULL AUTO_INCREMENT,
+	numero VARCHAR(30) NOT NULL,
+	funcionario_id INT NOT NULL,
+	CONSTRAINT PRIMARY KEY(id),
+	CONSTRAINT FOREIGN KEY(funcionario_id)
+	REFERENCES funcionarios(id)
+);
+
+CREATE TABLE cargos_funcionarios(
+	cargo_id INT NOT NULL,
+	funcionario_id INT NOT NULL,
+	CONSTRAINT PRIMARY KEY(cargo_id, funcionario_id),
+	CONSTRAINT FOREIGN KEY(cargo_id)
+	REFERENCES cargos(id),
+	CONSTRAINT FOREIGN KEY(funcionario_id)
+	REFERENCES funcionarios(id)
+);
+
+CREATE TABLE turnos(
+	id INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(255) NOT NULL,
+	CONSTRAINT PRIMARY KEY(id)
+);
+
+CREATE TABLE horarios(
+	id INT NOT NULL AUTO_INCREMENT,
+	inicio TIME NOT NULL,
+	fim TIME NOT NULL,
+	CONSTRAINT PRIMARY KEY(id)
+);
+
+CREATE TABLE turnos_horarios(
+	turno_id INT NOT NULL,
+	horario_id INT NOT NULL,
+	CONSTRAINT PRIMARY KEY(turno_id, horario_id),
+	CONSTRAINT FOREIGN KEY(turno_id)
+	REFERENCES turnos(id),
+	CONSTRAINT FOREIGN KEY(horario_id)
+	REFERENCES horarios(id)
+);
+
+CREATE TABLE cursos(
+	id INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(255) NOT NULL,
+	iniciais CHAR(5) NOT NULL,
+	turno_id INT NOT NULL,
+	CONSTRAINT PRIMARY KEY(id),
+	CONSTRAINT FOREIGN KEY(turno_id)
+	REFERENCES turnos(id)
+);
+
+CREATE TABLE disciplinas(
+	id INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(255) NOT NULL,
+	iniciais CHAR(5) NOT NULL,
+	cargaHoraria INT NOT NULL,
+	CONSTRAINT PRIMARY KEY(id)
+);
+
+CREATE TABLE tiposSala(
+	id INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(255) NOT NULL AUTO_INCREMENT,
+	descricao VARCHAR(255) NOT NULL AUTO_INCREMENT,
+	CONSTRAINT PRIMARY KEY(id)
+);
+
+CREATE TABLE disciplinas_tiposSala(
+	disciplina_id INT NOT NULL,
+	tipoSala_id INT NOT NULL,
+	CONSTRAINT PRIMARY KEY(disciplina_id, tipoSala_id),
+	CONSTRAINT FOREIGN KEY(disciplina_id)
+	REFERENCES disciplinas(id),
+	CONSTRAINT FOREIGN KEY(tipoSala_id)
+	REFERENCES tiposSala(id)
+);
+
+CREATE TABLE semestres(
+	id INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(255) NOT NULL,
+	inicio DATE NOT NULL,
+	fim DATE NOT NULL,
+	CONSTRAINT PRIMARY KEY(id)
+);
+
+CREATE TABLE cursos_disciplinas(
+	curso_id INT NOT NULL,
+	disciplina_id INT NOT NULL,
+	CONSTRAINT PRIMARY KEY(curso_id, disciplina_id),
+	CONSTRAINT FOREIGN KEY(curso_id)
+	REFERENCES cursos(id),
+	CONSTRAINT FOREIGN KEY(disciplina_id)
+	REFERENCES disciplinas(id)
+);
+
+
+
