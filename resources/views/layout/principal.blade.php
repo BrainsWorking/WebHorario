@@ -48,7 +48,7 @@
             </div>
 
         </div>
-<<<<<<< HEAD
+        
         <div class="row">
             <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
                 <ul class="nav nav-pills nav-stacked">
@@ -94,39 +94,6 @@
                     </li>                    
                 </ul>
             </div>
-=======
-            <div class="row">
-                <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="{{ setActive('home') }}">
-                            <a href="{{ route('home') }}">
-                                <span class="glyphicon glyphicon-home"></span> <span class='sidebar-label'>Home</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('turno') }}">
-                            <a href="{{ route('turnos') }}">
-                                <span class="glyphicon glyphicon-time"></span> <span class='sidebar-label'>Turnos</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('disciplina') }}">
-                            <a href="{{ route('disciplinas') }}">
-                                <span class="glyphicon glyphicon-book"></span> <span class='sidebar-label'>Disciplinas</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('curso') }}">
-                            <a href="{{ route('cursos') }}">
-                                <span class="glyphicon glyphicon-education"></span> <span class='sidebar-label'>Cursos</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('semestre') }}">
-                            <a href="{{ route('semestres') }}">
-                                <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
->>>>>>> refs/remotes/BrainsWorking/master
-
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
             <div class="col-sm-8 col-md-9 col-lg-10 collapsed-canvas" id="content">
 
