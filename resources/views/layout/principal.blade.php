@@ -67,9 +67,14 @@
                             <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
                         </a>
                     </li>
-                    <li class="{{ setActive('perfil.editar') }}">
-                        <a href="">
-                            <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Editar Perfil</span>
+                    <li class="{{ setActive('cargo') }}">
+                        <a href="{{ route('cargos') }}">
+                            <span class="glyphicon glyphicon-apple"></span> <span class="sidebar-label">Cargos</span>
+                        </a>
+                    </li>                    
+                    <li class="{{ setActive('pessoa') }}">
+                        <a href="{{ route('pessoas') }}">
+                            <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Pessoas</span>
                         </a>
                     </li>
                 </ul>

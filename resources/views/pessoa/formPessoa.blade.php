@@ -12,30 +12,38 @@
     {!! Form::open(['method' => 'post', 'files' => true]) !!}
     @endif
 
-    <div class="control-group form-group col-sm-8 padding-left-0">
+    <div class="control-group form-group col-lg-8 padding-left-0">
         {!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
         {!! Form::text('nome', '', ['class' => 'form-control', 'required']) !!}
     </div>
 
-    <div class="control-group form-group col-sm-4 padding-right-0">
+    <div class="control-group form-group col-lg-4 padding-right-0">
         {!! Form::label('foto', 'Foto', ['class' => 'control-label']) !!}
         {!! Form::file('foto', ['class' => 'form-control', 'required']) !!}
     </div>
 
-    <div class="control-group form-group col-sm-4 padding-left-0">
+    <div class="control-group form-group col-lg-3 padding-left-0">
         {!! Form::label('rg', 'RG', ['class' => 'control-label']) !!}
         {!! Form::text('rg', '', ['class' => 'form-control rg', 'minlength' => '12','required']) !!}
     </div>
 
-    <div class="control-group form-group col-sm-4 padding-right-0">
+    <div class="control-group form-group col-lg-3 padding-right-0">
         {!! Form::label('cpf', 'CPF', ['class' => 'control-label']) !!}
         {!! Form::text('cpf', '', ['class' => 'form-control cpf', 'minlength' => '14','required']) !!}
     </div>
 
-    <div class="control-group form-group col-sm-4 padding-right-0">
+    <div class="control-group form-group col-lg-3 padding-right-0">
         {!! Form::label('data_nascimento', 'Data de Nascimento', ['class' => 'control-label']) !!}
         {!! Form::date('data_nascimento', '', ['class' => 'form-control', 'required']) !!}
     </div>
+
+    <div class="control-group form-group col-lg-3 padding-right-0">
+        {!! Form::label('sexo', 'Sexo', ['class' => 'control-label']) !!}
+        {{-- {!! Form::select('sexo', $sexo, null, ['placeholder' => 'Escolha um sexo', 'required', 'id' => 'sexo_id', 'class' => 'form-control']) !!} --}}
+        <select class="form-control">
+            <option>Escolha um sexo</option>
+        </select>
+    </div> 
 
     <div class="control-group form-group">
         {!! Form::label('endereco', 'Endereço', ['class' => 'control-label']) !!}
@@ -50,28 +58,35 @@
         </select>
     </div>
 
-    <div class="control-group form-group col-sm-6 padding-left-0">
+    <div class="control-group form-group col-lg-6 padding-left-0">
         {!! Form::label('login', 'Login (Prontuário)', ['class' => 'control-label']) !!}
         {!! Form::text('login', '', ['class' => 'form-control prontuario', 'required']) !!}
     </div>
 
-    <div class="control-group form-group col-sm-6 padding-right-0">
+    <div class="control-group form-group col-lg-6 padding-right-0">
         {!! Form::label('password', 'Senha', ['class' => 'control-label']) !!}
         {!! Form::password('password', ['class' => 'form-control']) !!}
     </div>
 
-    <div class="control-group form-group col-sm-8 padding-left-0">
-        {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
-        {!! Form::text('telefone', '', ['class' => 'form-control telefone', 'required']) !!}
+    <div class="control-group form-group padding-left-0 col-lg-3" style="margin-top: 14px;">
+        <button type="button" class="btn btn-default add-field form-control">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outros telefones
+        </button>
     </div>
 
-    <div class="control-group form-group col-sm-4 padding-right-0">
-        {!! Form::label('sexo', 'Sexo', ['class' => 'control-label']) !!}
-        {{-- {!! Form::select('sexo', $sexo, null, ['placeholder' => 'Escolha um sexo', 'required', 'id' => 'sexo_id', 'class' => 'form-control']) !!} --}}
-        <select class="form-control">
-            <option>Escolha um sexo</option>
-        </select>
-    </div>  
+    @if(isset($pessoa))
+    <div class="control-group form-group padding-right-0 col-lg-9 telefones">
+        {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
+        @foreach($pessoa->telefone as $telefone)
+        {!! Form::text('telefone[]', $telefone, ['class' => 'form-control telefone', 'required']) !!}
+        @endforeach
+    </div>
+    @else
+    <div class="control-group form-group padding-right-0 col-lg-9 telefones">
+        {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
+        {!! Form::text('telefone[]', '', ['class' => 'form-control telefone', 'required']) !!}
+    </div>
+    @endif
 
     <button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
 
@@ -82,6 +97,7 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('/js/jquery.mask.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/cadastro_pessoa.js') }}"></script>
 <script type="text/javascript">
 $(document).ready(function(){
     $('.cpf').mask('000.000.000-00', {reverse : true});
