@@ -42,3 +42,7 @@ Route::name('cargo.cadastrar')->get('cargo/cadastrar', function (){ return view(
 #PESSOAS
 Route::name('pessoas')->get('pessoas', function (){ return view('pessoa.index'); });
 Route::name('pessoa.cadastrar')->get('pessoa/cadastrar', function (){ return view('pessoa.formPessoa'); });
+
+#COORDENADORES
+Route::name('coordenador')->get('coordenadores', function (){ return view('coordenador.index'); });
+Route::name('coordenador.cadastrar')->get('coordenador/cadastrar', function (){ return view('coordenador.formCoordenador'); });

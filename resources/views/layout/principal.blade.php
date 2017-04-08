@@ -33,12 +33,22 @@
         </div>
         <div class="row">
             <div class="text-right saudacao">
-                <p>
-                    Ola, Fulano
-                    <a href="#"><span class="glyphicon glyphicon-off"></span></a>
-                </p>
+                <ul class="nav">
+                    <li class="dropdown pull-right">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle usuario">
+                            Hugo Salles Cuba <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Meu perfil</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
+
         </div>
+<<<<<<< HEAD
         <div class="row">
             <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
                 <ul class="nav nav-pills nav-stacked">
@@ -84,6 +94,38 @@
                     </li>                    
                 </ul>
             </div>
+=======
+            <div class="row">
+                <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="{{ setActive('home') }}">
+                            <a href="{{ route('home') }}">
+                                <span class="glyphicon glyphicon-home"></span> <span class='sidebar-label'>Home</span>
+                            </a>
+                        </li>
+                        <li class="{{ setActive('turno') }}">
+                            <a href="{{ route('turnos') }}">
+                                <span class="glyphicon glyphicon-time"></span> <span class='sidebar-label'>Turnos</span>
+                            </a>
+                        </li>
+                        <li class="{{ setActive('disciplina') }}">
+                            <a href="{{ route('disciplinas') }}">
+                                <span class="glyphicon glyphicon-book"></span> <span class='sidebar-label'>Disciplinas</span>
+                            </a>
+                        </li>
+                        <li class="{{ setActive('curso') }}">
+                            <a href="{{ route('cursos') }}">
+                                <span class="glyphicon glyphicon-education"></span> <span class='sidebar-label'>Cursos</span>
+                            </a>
+                        </li>
+                        <li class="{{ setActive('semestre') }}">
+                            <a href="{{ route('semestres') }}">
+                                <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+>>>>>>> refs/remotes/BrainsWorking/master
 
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
             <div class="col-sm-8 col-md-9 col-lg-10 collapsed-canvas" id="content">
