@@ -4,6 +4,7 @@ body{
 
 .container-fluid {
 	min-width: 500px;
+	padding: 0 15px;
 }
 
 header{
@@ -38,18 +39,18 @@ header a:hover{
 
 .saudacao{
 	background-color: #b2daa6;
-	padding: 5px 10px 5px 0;
-	color: white;
+	padding: 1px 0;
+	color: #33691e;
 	font-weight: bold;
 }
 
 .saudacao p{
-	margin:0;
+	margin: 0;
 }
 
 .glyphicon-off{
 	color: #ff0000;
-	margin-left:5px;
+	margin: 0 5px;
 }
 
 footer{
@@ -59,12 +60,10 @@ footer{
 
 .sidebar{
 	min-height: 500px;
-	padding-top: 10px;
 	background-color: #EAEAEA;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	padding-left: 2px;
-	padding-right: 2px;
+	padding: 4px 4px;
+	border-radius: 0 5px 5px 0;
+	margin: 3px 0;
 }
 
 .sidebar li{
@@ -77,6 +76,7 @@ footer{
 
 .sidebar a{
 	color: #424242;
+	white-space: nowrap;
 }
 
 .nav-pills li a:hover{
@@ -84,7 +84,7 @@ footer{
 	color: #424242;
 }
 
-.content{
+#content{
 	margin-bottom: 10px;
 	min-height: 450px;
 }

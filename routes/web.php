@@ -16,7 +16,7 @@ Route::name('disciplina.cadastrar')->get('disciplina/cadastrar', 'DisciplinaCont
 Route::name('disciplina.salvar')->post('disciplina/salvar', 'DisciplinaController@salvar');
 Route::name('disciplina.editar')->get('disciplina/editar/{id}', 'DisciplinaController@editar');
 Route::name('disciplina.atualizar')->put('disciplina/atualizar/{id}', 'DisciplinaController@atualizar');
-Route::name('disciplina.deletar')->get('disciplina/deletar/{id}', 'DisciplinaController@atualizar');
+Route::name('disciplina.deletar')->get('disciplina/deletar/{id}', 'DisciplinaController@deletar');
 
 # CURSOS
 Route::name('cursos')->get('cursos', 'CursoController@index');
@@ -26,9 +26,15 @@ Route::name('curso.salvar')->post('curso/salvar', 'CursoController@salvar');
 Route::name('curso.atualizar')->put('curso/atualizar/{id}', 'CursoController@atualizar');
 Route::name('curso.deletar')->get('curso/deletar/{id}', 'CursoController@deletar');
 
+# LOGIN
+Route::name('login')->get('login', 'LoginController@index');
+Route::name('logar')->get('logar', 'LoginController@logar');
+Route::name('deslogar')->get('deslogar', 'LoginController@deslogar');
+
 #SEMESTRES
 Route::name('semestres')->get('semestres', function (){ return view('semestre.index'); });
 Route::name('semestre.cadastrar')->get('semestre/cadastrar', function (){ return view('semestre.formSemestre'); });
+<<<<<<< HEAD
 
 #CARGOS
 Route::name('cargos')->get('cargos', function (){ return view('cargo.index'); });
@@ -37,3 +43,5 @@ Route::name('cargo.cadastrar')->get('cargo/cadastrar', function (){ return view(
 #PESSOAS
 Route::name('pessoas')->get('pessoas', function (){ return view('pessoa.index'); });
 Route::name('pessoa.cadastrar')->get('pessoa/cadastrar', function (){ return view('pessoa.formPessoa'); });
+=======
+>>>>>>> refs/remotes/BrainsWorking/master
