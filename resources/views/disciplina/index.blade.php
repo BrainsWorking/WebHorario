@@ -6,22 +6,10 @@
 @parent
 
 <div class="col-lg-12 table-responsive">
-<table class="table table-condensed table-hover">
-    <thead>
+    <table class="table table-condensed table-hover">
+        <thead>
 
-        <div class="padding-right-0 padding-left-0 top-bar">
-            <div class="col-sm-8 padding-left-0">
-                <div class="input-group col-lg-12">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                    <input type="text" class="form-control input-filter" placeholder="Pesquisar">
-                </div>
-            </div>
-
-            <div class="col-sm-4 padding-right-0">
-                <a class="btn btn-success right col-sm-12" href="{{ route('disciplina.cadastrar') }}"><span
-                    class="glyphicon glyphicon-plus"></span> Cadastrar</a>
-                </div>
-            </div>
+            @include('layout.barra_superior_index', ["route" => "disciplina.cadastrar"])
 
             <th class="text-center"></th>
             <th class="text-center">Nome</th>
@@ -63,28 +51,5 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('/js/table.js') }}"></script>
-<script>
-    $('.confirmar').on('click', function (e) {
-      e.preventDefault();
-      href = $(this).attr('href');
-      return bootbox.confirm({
-        title: "Atenção",
-        message: "Deseja realmente excluir a disciplina?",
-        buttons: {
-                confirm: {
-                label: 'Sim',
-                className: 'btn-success'
-            },
-                cancel: {
-                label: 'Não',
-                className: 'btn-danger'
-            }
-        },
-        callback: function (result) {
-            if(result)
-                window.location = href
-        }
-      });
-    });
-</script>
+<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
 @endsection

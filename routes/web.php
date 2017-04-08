@@ -27,10 +27,26 @@ Route::name('curso.atualizar')->put('curso/atualizar/{id}', 'CursoController@atu
 Route::name('curso.deletar')->get('curso/deletar/{id}', 'CursoController@deletar');
 
 # LOGIN
-Route::name('login')->get('login', 'LoginController@index');
+// Route::name('login')->get('login', 'LoginController@index');
+Route::name('login')->get('login', function(){ return view('login'); });
 Route::name('logar')->get('logar', 'LoginController@logar');
 Route::name('deslogar')->get('deslogar', 'LoginController@deslogar');
 
 #SEMESTRES
 Route::name('semestres')->get('semestres', function (){ return view('semestre.index'); });
 Route::name('semestre.cadastrar')->get('semestre/cadastrar', function (){ return view('semestre.formSemestre'); });
+
+#CARGOS
+Route::name('cargos')->get('cargos', function (){ return view('cargo.index'); });
+Route::name('cargo.cadastrar')->get('cargo/cadastrar', function (){ return view('cargo.formCargo'); });
+
+#PESSOAS
+Route::name('pessoas')->get('pessoas', function (){ return view('pessoa.index'); });
+Route::name('pessoa.cadastrar')->get('pessoa/cadastrar', function (){ return view('pessoa.formPessoa'); });
+
+#COORDENADORES
+Route::name('coordenador')->get('coordenadores', function (){ return view('coordenador.index'); });
+Route::name('coordenador.cadastrar')->get('coordenador/cadastrar', function (){ return view('coordenador.formCoordenador'); });
+
+#INSTITUIÇÃO
+Route::name('instituicao')->get('instituicao', function (){ return view('instituicao.formInstituicao'); });
