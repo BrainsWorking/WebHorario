@@ -33,11 +33,20 @@
         </div>
         <div class="row">
             <div class="text-right saudacao">
-                <p>
-                    Ola, Fulano
-                    <a href="#"><span class="glyphicon glyphicon-off"></span></a>
-                </p>
+                <ul class="nav">
+                    <li class="dropdown pull-right">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle usuario">
+                            Hugo Salles Cuba <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Meu perfil</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
+
         </div>
             <div class="row">
                 <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
@@ -65,11 +74,6 @@
                         <li class="{{ setActive('semestre') }}">
                             <a href="{{ route('semestres') }}">
                                 <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('perfil.editar') }}">
-                            <a href="">
-                                <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Editar Perfil</span>
                             </a>
                         </li>
                     </ul>
