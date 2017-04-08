@@ -7,6 +7,8 @@ use App\Models\Funcionario;
 
 class Telefone extends Model
 {
+	public $timestamp = false;
+	
     protected $fillable = ['nome', 'funcionario_id'];
 
   	public function funcionario(){

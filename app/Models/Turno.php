@@ -8,6 +8,7 @@ use App\Models\Curso as Curso;
 
 class Turno extends Model
 {
+    public $timestamp = false;
     
     protected $fillable = ['nome'];
     
