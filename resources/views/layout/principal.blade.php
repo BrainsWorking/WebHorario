@@ -91,7 +91,12 @@
                         <a href="{{ route('coordenador') }}">
                             <span class="glyphicon glyphicon-bullhorn"></span> <span class='sidebar-label'>Coordenadores</span>
                         </a>
-                    </li>                    
+                    </li>
+                    <li class="{{ setActive('instituicao') }}">
+                        <a href="{{ route('instituicao') }}">
+                            <span class="glyphicon glyphicon-briefcase"></span> <span class='sidebar-label'>Instituição</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->

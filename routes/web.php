@@ -27,7 +27,8 @@ Route::name('curso.atualizar')->put('curso/atualizar/{id}', 'CursoController@atu
 Route::name('curso.deletar')->get('curso/deletar/{id}', 'CursoController@deletar');
 
 # LOGIN
-Route::name('login')->get('login', 'LoginController@index');
+// Route::name('login')->get('login', 'LoginController@index');
+Route::name('login')->get('login', function(){ return view('login'); });
 Route::name('logar')->get('logar', 'LoginController@logar');
 Route::name('deslogar')->get('deslogar', 'LoginController@deslogar');
 
@@ -46,3 +47,6 @@ Route::name('pessoa.cadastrar')->get('pessoa/cadastrar', function (){ return vie
 #COORDENADORES
 Route::name('coordenador')->get('coordenadores', function (){ return view('coordenador.index'); });
 Route::name('coordenador.cadastrar')->get('coordenador/cadastrar', function (){ return view('coordenador.formCoordenador'); });
+
+#INSTITUIÇÃO
+Route::name('instituicao')->get('instituicao', function (){ return view('instituicao.formInstituicao'); });
