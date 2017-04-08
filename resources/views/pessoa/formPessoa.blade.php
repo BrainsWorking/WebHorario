@@ -14,7 +14,7 @@
 
     <div class="control-group form-group col-lg-8 padding-left-0">
         {!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
-        {!! Form::text('nome', '', ['class' => 'form-control', 'required']) !!}
+        {!! Form::text('nome', null, ['class' => 'form-control', 'required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-4 padding-right-0">
@@ -24,17 +24,17 @@
 
     <div class="control-group form-group col-lg-3 padding-left-0">
         {!! Form::label('rg', 'RG', ['class' => 'control-label']) !!}
-        {!! Form::text('rg', '', ['class' => 'form-control rg', 'minlength' => '12','required']) !!}
+        {!! Form::text('rg', null, ['class' => 'form-control rg', 'minlength' => '12','required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-3 padding-right-0">
         {!! Form::label('cpf', 'CPF', ['class' => 'control-label']) !!}
-        {!! Form::text('cpf', '', ['class' => 'form-control cpf', 'minlength' => '14','required']) !!}
+        {!! Form::text('cpf', null, ['class' => 'form-control cpf', 'minlength' => '14','required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-3 padding-right-0">
         {!! Form::label('data_nascimento', 'Data de Nascimento', ['class' => 'control-label']) !!}
-        {!! Form::date('data_nascimento', '', ['class' => 'form-control', 'required']) !!}
+        {!! Form::date('data_nascimento', null, ['class' => 'form-control', 'required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-3 padding-right-0">
@@ -47,7 +47,7 @@
 
     <div class="control-group form-group">
         {!! Form::label('endereco', 'Endereço', ['class' => 'control-label']) !!}
-        {!! Form::text('endereco', '', ['class' => 'form-control', 'required']) !!}
+        {!! Form::text('endereco', null, ['class' => 'form-control', 'required']) !!}
     </div>
 
     <div class="form-group">
@@ -60,7 +60,7 @@
 
     <div class="control-group form-group col-lg-6 padding-left-0">
         {!! Form::label('login', 'Login (Prontuário)', ['class' => 'control-label']) !!}
-        {!! Form::text('login', '', ['class' => 'form-control prontuario', 'required']) !!}
+        {!! Form::text('login', null, ['class' => 'form-control prontuario', 'required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-6 padding-right-0">
@@ -84,7 +84,7 @@
     @else
     <div class="control-group form-group padding-right-0 col-lg-9 telefones">
         {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
-        {!! Form::text('telefone[]', '', ['class' => 'form-control telefone', 'required']) !!}
+        {!! Form::text('telefone[]', null, ['class' => 'form-control telefone', 'required']) !!}
     </div>
     @endif
 

@@ -14,7 +14,7 @@
 
     <div class="control-group form-group">
         {!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
-        {!! Form::text('nome', '', ['class' => 'form-control', 'required', 'required']) !!}
+        {!! Form::text('nome', null, ['class' => 'form-control', 'required']) !!}
     </div>
 
     <button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>

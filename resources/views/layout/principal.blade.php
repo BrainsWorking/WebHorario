@@ -77,6 +77,11 @@
                             <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Pessoas</span>
                         </a>
                     </li>
+                    <li class="{{ setActive('coordenador') }}">
+                        <a href="{{ route('coordenador') }}">
+                            <span class="glyphicon glyphicon-bullhorn"></span> <span class='sidebar-label'>Coordenadores</span>
+                        </a>
+                    </li>                    
                 </ul>
             </div>
 
