@@ -8,6 +8,8 @@ use App\Models\TipoSala;
 
 class Disciplina extends Model{
 
+	public $timestamp = false;
+
     protected $fillable = ['nome', 'iniciais', 'cargaHoraria'];
     
     public $timestamps = false;

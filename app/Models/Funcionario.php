@@ -7,6 +7,8 @@ use App\Models\Cargo;
 
 class Funcionario extends Model
 {
+	public $timestamp = false;
+	
     protected $fillable = ['nome', 'sexo', 'cpf', 'data_nascimento', 'endereco', 'foto', 'email', 'password'];
 
     public function cargos(){
