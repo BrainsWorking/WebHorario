@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/off-canvas.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <title> @yield('title') - WebHorário</title>
-    <link rel="icon" href="" type="image/x-icon">
+    <link rel="icon" href="{{ asset('/img/webhorario.ico') }}" type="image/x-icon">
     @yield('css')
 </head>
 
