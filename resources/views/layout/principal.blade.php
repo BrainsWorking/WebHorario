@@ -100,9 +100,10 @@
                 </p>
             </div>
         </footer>
-
-
+    
         <script type="text/javascript" src="{{ asset('/js/jquery-3.2.0.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/bootbox.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/js/off-canvas.js') }}"></script>
         @yield('scripts')
 
