@@ -27,7 +27,7 @@
 					<td class="text-center search"> Mario Tadashi Shimanuki </td>
 					<td class="text-center search"> 000.000.000-00 </td>
 					<td class="text-center"><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
-					<td class="text-center"><a href="" class="table-delete"><span class="glyphicon glyphicon-remove"></span></a></td>
+					<td class="text-center"><a href="" class="table-delete confirmar"><span class="glyphicon glyphicon-remove"></span></a></td>
 				</tr>
 				<tr class="hidden-info">
 					<td colspan="5">
@@ -64,4 +64,5 @@
 
 		@section('scripts')
 		<script type="text/javascript" src="{{ asset('/js/table.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
 		@endsection

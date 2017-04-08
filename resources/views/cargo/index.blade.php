@@ -23,7 +23,7 @@
 				<tr class="table-line">
 					<td class="text-center search"> Professor </td>
 					<td class="text-center"><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
-					<td class="text-center"><a href="" class="table-delete"><span class="glyphicon glyphicon-remove">
+					<td class="text-center"><a href="" class="table-delete confirmar"><span class="glyphicon glyphicon-remove">
 					</span></a></td>
 				</tr>
 
@@ -41,4 +41,5 @@
 
 		@section('scripts')
 		<script type="text/javascript" src="{{ asset('/js/table.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
 		@endsection

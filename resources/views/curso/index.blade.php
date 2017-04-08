@@ -30,7 +30,7 @@
 					<a href="{{ route('curso.editar', $curso->id) }}"><span class="glyphicon glyphicon-edit"></span></a>
 				</td>
 				<td class="text-center">
-					<a href="{{ route('curso.deletar', $curso->id) }}" class="table-delete"><span class="glyphicon glyphicon-remove"></span></a>
+					<a href="{{ route('curso.deletar', $curso->id) }}" class="table-delete confirmar"><span class="glyphicon glyphicon-remove"></span></a>
 				</td>
 			</tr>
 			<tr class="hidden-info">
@@ -61,4 +61,5 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('/js/table.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
 @endsection

@@ -51,28 +51,5 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('/js/table.js') }}"></script>
-<script>
-$('.confirmar').on('click', function (e) {
-  e.preventDefault();
-  href = $(this).attr('href');
-  return bootbox.confirm({
-    title: "Atenção",
-    message: "Deseja realmente excluir a disciplina?",
-    buttons: {
-        confirm: {
-            label: 'Sim',
-            className: 'btn-success'
-        },
-        cancel: {
-            label: 'Não',
-            className: 'btn-danger'
-        }
-    },
-    callback: function (result) {
-        if(result)
-            window.location = href
-    }
-});
-});
-</script>
+<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
 @endsection
