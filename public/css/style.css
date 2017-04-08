@@ -13,7 +13,7 @@ body{
 }
 
 .usuario:hover, .usuario:active, .usuario:visited, .usuario{
-	color: #33691e;
+	color: #33691e !important;
 }
 
 header{
