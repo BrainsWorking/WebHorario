@@ -34,7 +34,6 @@ Route::name('deslogar')->get('deslogar', 'LoginController@deslogar');
 #SEMESTRES
 Route::name('semestres')->get('semestres', function (){ return view('semestre.index'); });
 Route::name('semestre.cadastrar')->get('semestre/cadastrar', function (){ return view('semestre.formSemestre'); });
-<<<<<<< HEAD
 
 #CARGOS
 Route::name('cargos')->get('cargos', function (){ return view('cargo.index'); });
@@ -43,5 +42,3 @@ Route::name('cargo.cadastrar')->get('cargo/cadastrar', function (){ return view(
 #PESSOAS
 Route::name('pessoas')->get('pessoas', function (){ return view('pessoa.index'); });
 Route::name('pessoa.cadastrar')->get('pessoa/cadastrar', function (){ return view('pessoa.formPessoa'); });
-=======
->>>>>>> refs/remotes/BrainsWorking/master

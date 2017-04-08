@@ -39,90 +39,44 @@
                 </p>
             </div>
         </div>
-<<<<<<< HEAD
         <div class="row">
-            <div class="col-sm-4 col-md-3 col-lg-2 sidebar">
+            <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="{{ setActive('home') }}">
                         <a href="{{ route('home') }}">
-                            <span class="glyphicon glyphicon-home"></span> Home
+                            <span class="glyphicon glyphicon-home"></span> <span class='sidebar-label'>Home</span>
                         </a>
                     </li>
                     <li class="{{ setActive('turno') }}">
                         <a href="{{ route('turnos') }}">
-                            <span class="glyphicon glyphicon-time"></span> Turnos
+                            <span class="glyphicon glyphicon-time"></span> <span class='sidebar-label'>Turnos</span>
                         </a>
                     </li>
                     <li class="{{ setActive('disciplina') }}">
                         <a href="{{ route('disciplinas') }}">
-                            <span class="glyphicon glyphicon-book"></span> Disciplinas
+                            <span class="glyphicon glyphicon-book"></span> <span class='sidebar-label'>Disciplinas</span>
                         </a>
                     </li>
                     <li class="{{ setActive('curso') }}">
                         <a href="{{ route('cursos') }}">
-                            <span class="glyphicon glyphicon-education"></span> Cursos
+                            <span class="glyphicon glyphicon-education"></span> <span class='sidebar-label'>Cursos</span>
                         </a>
                     </li>
                     <li class="{{ setActive('semestre') }}">
                         <a href="{{ route('semestres') }}">
-                            <span class="glyphicon glyphicon-calendar"></span> Semestres
+                            <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
                         </a>
                     </li>
-                    <li class="{{ setActive('cargo') }}">
-                        <a href="{{ route('cargos') }}">
-                            <span class="glyphicon glyphicon-apple"></span> Cargos
-                        </a>
-                    </li>
-                    <li class="{{ setActive('pessoa') }}">
-                        <a href="{{ route ('pessoas') }}">
-                            <span class="glyphicon glyphicon-user"></span> Pessoas
+                    <li class="{{ setActive('perfil.editar') }}">
+                        <a href="">
+                            <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Editar Perfil</span>
                         </a>
                     </li>
                 </ul>
             </div>
 
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
-            <div class="col-sm-8 col-md-9 col-lg-10 content">
-=======
-            <div class="row">
-                <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="{{ setActive('home') }}">
-                            <a href="{{ route('home') }}">
-                                <span class="glyphicon glyphicon-home"></span> <span class='sidebar-label'>Home</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('turno') }}">
-                            <a href="{{ route('turnos') }}">
-                                <span class="glyphicon glyphicon-time"></span> <span class='sidebar-label'>Turnos</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('disciplina') }}">
-                            <a href="{{ route('disciplinas') }}">
-                                <span class="glyphicon glyphicon-book"></span> <span class='sidebar-label'>Disciplinas</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('curso') }}">
-                            <a href="{{ route('cursos') }}">
-                                <span class="glyphicon glyphicon-education"></span> <span class='sidebar-label'>Cursos</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('semestre') }}">
-                            <a href="{{ route('semestres') }}">
-                                <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('perfil.editar') }}">
-                            <a href="">
-                                <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Editar Perfil</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
-                <div class="col-sm-8 col-md-9 col-lg-10 collapsed-canvas" id="content">
->>>>>>> refs/remotes/BrainsWorking/master
+            <div class="col-sm-8 col-md-9 col-lg-10 collapsed-canvas" id="content">
 
                 @include('layout.alerts')
 
@@ -131,7 +85,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
     <footer class="text-center">
         <div class="container">
             <p>
@@ -147,33 +100,12 @@
             </p>
         </div>
     </footer>
-
-
-    <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
-    @yield('scripts')
-=======
-        <footer class="text-center">
-            <div class="container">
-                <p>
-                    IFSP - Instituto Federal de Educação, Ciência e Tecnologia de São Paulo Campus
-                    Caraguatatuba
-                </p>
-                <p>
-                    Avenida Bahia, 1739 - Indaiá - Caraguatatuba/SP - CEP: 11665-071 - Telefone: +55 (12)
-                    3885-2130
-                </p>
-                <p class="text-center">
-                    Desenvolvimento: ACME & Brains Working
-                </p>
-            </div>
-        </footer>
     
-        <script type="text/javascript" src="{{ asset('/js/jquery-3.2.0.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/bootbox.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/off-canvas.js') }}"></script>
-        @yield('scripts')
->>>>>>> refs/remotes/BrainsWorking/master
+    <script type="text/javascript" src="{{ asset('/js/jquery-3.2.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/bootbox.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/off-canvas.js') }}"></script>
+    @yield('scripts')
 
 </body>
 
