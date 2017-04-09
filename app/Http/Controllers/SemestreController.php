@@ -27,13 +27,10 @@ class SemestreController extends Controller
     public function salvar(Request $request){
 
     	try {
+            
     		$dataForm = $request->all();
-
-    		DB::transaction(function () use ($dataForm) {
     			
-    			Semestre::create($dataForm);
-
-    		}, 3);
+    		Semestre::create($dataForm);
 
     		return redirect()->route('semestres')->with('success', 'Inclusão realizada com sucesso');
 
@@ -50,14 +47,12 @@ class SemestreController extends Controller
 
     public function atualizar(Request $request, $id){
     	try {
+
     		$dataForm = $request->all();
 
-    		DB::transaction(function () use ($dataForm, $id) {
-    			$semestre = Semestre::find($id);
+    		$semestre = Semestre::find($id);
 
-    			$semestre->update($dataForm);
-
-    		}, 3);
+    		$semestre->update($dataForm);
 
     		return redirect()->route('semestres')->with('success', 'Edição realizada com sucesso');
 
@@ -68,9 +63,8 @@ class SemestreController extends Controller
 
     public function deletar($id){
     	try{
-    		DB::transaction(function() use ($id){
-    			Semestre::find($id)->delete();
-    		}, 3);
+
+    		Semestre::find($id)->delete();
 
     		return redirect()->route('semestres')->with('success', 'Exclusão realizada com sucesso!');
 

@@ -22,9 +22,7 @@ class CargoController extends Controller
     public function salvar(Request $request){
     	try {
     		$dataForm = $request->all();
-    		DB::transaction(function () use ($dataForm) {
-    			Cargo::create($dataForm);
-    		}, 3);
+    		Cargo::create($dataForm);
     		return redirect()->route('cargos')->with('success', 'Inclusão realizada com sucesso');
     	} catch (\Exception $e) {
     		return redirect()->route('cargo.cadastrar')->with('error', 'Erro na inclusão!');
@@ -39,10 +37,8 @@ class CargoController extends Controller
     public function atualizar(Request $request, $id){
     	try {
     		$dataForm = $request->all();
-    		DB::transaction(function () use ($dataForm, $id) {
-    			$cargo = Cargo::find($id);
-    			$cargo->update($dataForm);
-    		}, 3);
+    		$cargo = Cargo::find($id);
+    		$cargo->update($dataForm);
     		return redirect()->route('cargos')->with('success', 'Edição realizada com sucesso');
     	} catch (\Exception $e) {
     		return redirect()->route('cargo.editar', $id)->with('error', 'Erro na edição!');
@@ -51,9 +47,7 @@ class CargoController extends Controller
 
     public function deletar($id){
     	try{
-    		DB::transaction(function() use ($id){
-    			Cargo::find($id)->delete();
-    		}, 3);
+    		Cargo::find($id)->delete();
     		return redirect()->route('cargos')->with('success', 'Exclusão realizada com sucesso!');
     	}catch(\Exception $e){
     		return redirect()->route('cargos')->with('error', 'Erro na exclusão!');
