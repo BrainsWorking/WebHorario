@@ -33,8 +33,12 @@ Route::name('logar')->get('logar', 'LoginController@logar');
 Route::name('deslogar')->get('deslogar', 'LoginController@deslogar');
 
 #SEMESTRES
-Route::name('semestres')->get('semestres', function (){ return view('semestre.index'); });
-Route::name('semestre.cadastrar')->get('semestre/cadastrar', function (){ return view('semestre.formSemestre'); });
+Route::name('semestres')->get('semestres', 'SemestreController@index');
+Route::name('semestre.cadastrar')->get('semestre/cadastrar', 'SemestreController@cadastrar');
+Route::name('semestre.editar')->get('semestre/editar/{id}', 'SemestreController@editar');
+Route::name('semestre.salvar')->post('semestre/salvar', 'SemestreController@salvar');
+Route::name('semestre.atualizar')->put('semestre/atualizar/{id}', 'SemestreController@atualizar');
+Route::name('semestre.deletar')->get('semestre/deletar/{id}', 'SemestreController@deletar');
 
 #CARGOS
 Route::name('cargos')->get('cargos', function (){ return view('cargo.index'); });

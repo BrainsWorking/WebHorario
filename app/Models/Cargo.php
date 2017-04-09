@@ -7,7 +7,7 @@ use App\Models\Funcionario;
 
 class Cargo extends Model
 {
-	public $timestamp = false;
+	public $timestamps = false;
 	
     protected $fillable = ['nome'];
 
