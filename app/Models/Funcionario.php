@@ -19,4 +19,6 @@ class Funcionario extends Authenticatable
     public function cargos(){
         return $this->belongsToMany(Cargo::class, 'cargos_funcionarios');
     }
+
+    public function setRememberToken($value){} // FIXIT: Só para não dar erro de falta de remember_token
 }

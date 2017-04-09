@@ -3,39 +3,32 @@
 namespace  App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
+    public function __construct(){ $this->middleware('guest', ['except' => 'deslogar']); }
 
-    public function __construct(){
-        $this->middleware('guest', ['except' => 'logout']);
-    }
+    public function index() { return view('auth.login'); }
 
-    public function index() {
-        return view('auth.login'); 
-    }
-
-    public function logar(Request $request) {
-        $this->login($request); 
-        return redirect('home');
+    public function logar(LoginRequest $request) { 
+        if(Auth::attempt($request->only('email', 'password'))){
+            return redirect()->intended(route('home')); 
+        } else {
+            return redirect()->route('login')
+                ->withInput('email')
+                ->withError('Usuário ou senha incorretos');
+        }
     }
 
     public function deslogar(Request $request) {
-        $this->logout($request);
-        return redirect('home');
-    }
+        Auth::logout();
+        $request->session()->flush();
+        $request->session()->regenerate();
 
-    protected function sendFailedLoginResponse(Request $request) {
-        $errors = [$this->username() => trans('auth.failed')];
-        if ($request->expectsJson()) {
-            return response()->json($errors, 422);
-        }
-        return redirect()->route('home')
-            ->withInput($request->only($this->username(), 'remember'))
-            ->withErrors($errors);
+        return redirect()->route('login');
     }
 
 }
