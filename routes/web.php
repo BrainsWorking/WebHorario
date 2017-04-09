@@ -33,12 +33,20 @@ Route::name('logar')->get('logar', 'LoginController@logar');
 Route::name('deslogar')->get('deslogar', 'LoginController@deslogar');
 
 #SEMESTRES
-Route::name('semestres')->get('semestres', function (){ return view('semestre.index'); });
-Route::name('semestre.cadastrar')->get('semestre/cadastrar', function (){ return view('semestre.formSemestre'); });
+Route::name('semestres')->get('semestres', 'SemestreController@index');
+Route::name('semestre.cadastrar')->get('semestre/cadastrar', 'SemestreController@cadastrar');
+Route::name('semestre.editar')->get('semestre/editar/{id}', 'SemestreController@editar');
+Route::name('semestre.salvar')->post('semestre/salvar', 'SemestreController@salvar');
+Route::name('semestre.atualizar')->put('semestre/atualizar/{id}', 'SemestreController@atualizar');
+Route::name('semestre.deletar')->get('semestre/deletar/{id}', 'SemestreController@deletar');
 
 #CARGOS
-Route::name('cargos')->get('cargos', function (){ return view('cargo.index'); });
-Route::name('cargo.cadastrar')->get('cargo/cadastrar', function (){ return view('cargo.formCargo'); });
+Route::name('cargos')->get('cargos', 'CargoController@index');
+Route::name('cargo.cadastrar')->get('cargo/cadastrar', 'CargoController@cadastrar');
+Route::name('cargo.editar')->get('cargo/editar/{id}', 'CargoController@editar');
+Route::name('cargo.salvar')->post('cargo/salvar', 'CargoController@salvar');
+Route::name('cargo.atualizar')->put('cargo/atualizar/{id}', 'CargoController@atualizar');
+Route::name('cargo.deletar')->get('cargo/deletar/{id}', 'CargoController@deletar');
 
 #PESSOAS
 Route::name('pessoas')->get('pessoas', function (){ return view('pessoa.index'); });

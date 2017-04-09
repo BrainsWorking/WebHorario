@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Semestre extends Model
 {
-	public $timestamp = false;
+	public $timestamps = false;
 	
     protected $fillable = ['nome', 'inicio', 'fim'];
 }

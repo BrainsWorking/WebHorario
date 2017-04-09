@@ -19,19 +19,19 @@
 
 			<tbody>
 
-				{{-- @forelse ($cargos as $cargo) --}}
+				@forelse ($cargos as $cargo)
 				<tr class="table-line">
-					<td class="text-center search"> Professor </td>
-					<td class="text-center"><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
-					<td class="text-center"><a href="" class="table-delete confirmar"><span class="glyphicon glyphicon-remove">
+					<td class="text-center search"> {{ $cargo->nome }} </td>
+					<td class="text-center"><a href="{{ route('cargo.editar', $cargo->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+					<td class="text-center"><a href="{{ route('cargo.deletar', $cargo->id) }}" class="table-delete confirmar"><span class="glyphicon glyphicon-remove">
 					</span></a></td>
 				</tr>
 
-				{{-- @empty --}}
-					{{-- <tr class="text-center">
+				@empty
+					<tr class="text-center">
 						<td colspan="5"><h4>Não há cargos cadastrados</h4></td>
 					</tr>
-					@endforelse --}}
+				@endforelse
 
 				</tbody>
 			</table>

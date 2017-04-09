@@ -7,7 +7,7 @@ use App\Models\Disciplina;
 
 class TipoSala extends Model
 {
-	public $timestamp = false;
+	public $timestamps = false;
 
     protected $fillable = ['nome', 'descricao'];
 
