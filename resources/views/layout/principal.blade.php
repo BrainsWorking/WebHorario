@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row">
             <header class="col-xs-12 col-sm-12">
@@ -34,9 +33,10 @@
         <div class="row">
             <div class="text-right saudacao">
                 <ul class="nav">
+                    @if(Auth::user())
                     <li class="dropdown pull-right">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle usuario">
-                            Hugo Salles Cuba <b class="caret"></b>
+                            {{ Auth::user()->nome }} <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Meu perfil</a></li>
@@ -44,6 +44,11 @@
                             <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Sair</a></li>
                         </ul>
                     </li>
+                    @else
+                    <li>
+                        <div class="usuario">Convidado</div>
+                    </li>
+                    @endif
                 </ul>
             </div>
 
