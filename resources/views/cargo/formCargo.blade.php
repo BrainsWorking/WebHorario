@@ -9,7 +9,7 @@
     @if(isset($cargo))
     {!! Form::model($cargo, ['route'=>['cargo.atualizar', $cargo->id], 'method'=>'PUT']) !!}
     @else
-    {!! Form::open(['method' => 'post']) !!}
+    {!! Form::open(['method' => 'post', 'route' => 'cargo.salvar']) !!}
     @endif
 
     <div class="control-group form-group">
