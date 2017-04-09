@@ -14,7 +14,7 @@ class Funcionario extends Authenticatable
 
     protected $fillable = ['nome', 'sexo', 'cpf', 'data_nascimento', 'endereco', 'foto', 'email', 'password', 'cargo_id'];
     protected $hidden = [ 'password', 'remember_token' ];
-	public $timestamp = false;
+	public $timestamps = false;
 	
     public function cargos(){
         return $this->belongsToMany(Cargo::class, 'cargos_funcionarios');

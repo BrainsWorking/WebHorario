@@ -32,8 +32,28 @@ Route::name('logar')->post('logar', 'Auth\LoginController@logar');
 Route::name('deslogar')->get('deslogar', 'Auth\LoginController@deslogar');
 
 #SEMESTRES
-Route::name('semestres')->get('semestres', function (){ return view('semestre.index'); });
-Route::name('semestre.cadastrar')->get('semestre/cadastrar', function (){ return view('semestre.formSemestre'); });
-Route::get('senha', function(){ return bcrypt('123'); });
-Auth::routes();
+Route::name('semestres')->get('semestres', 'SemestreController@index');
+Route::name('semestre.cadastrar')->get('semestre/cadastrar', 'SemestreController@cadastrar');
+Route::name('semestre.editar')->get('semestre/editar/{id}', 'SemestreController@editar');
+Route::name('semestre.salvar')->post('semestre/salvar', 'SemestreController@salvar');
+Route::name('semestre.atualizar')->put('semestre/atualizar/{id}', 'SemestreController@atualizar');
+Route::name('semestre.deletar')->get('semestre/deletar/{id}', 'SemestreController@deletar');
 
+#CARGOS
+Route::name('cargos')->get('cargos', 'CargoController@index');
+Route::name('cargo.cadastrar')->get('cargo/cadastrar', 'CargoController@cadastrar');
+Route::name('cargo.editar')->get('cargo/editar/{id}', 'CargoController@editar');
+Route::name('cargo.salvar')->post('cargo/salvar', 'CargoController@salvar');
+Route::name('cargo.atualizar')->put('cargo/atualizar/{id}', 'CargoController@atualizar');
+Route::name('cargo.deletar')->get('cargo/deletar/{id}', 'CargoController@deletar');
+
+#PESSOAS
+Route::name('pessoas')->get('pessoas', function (){ return view('pessoa.index'); });
+Route::name('pessoa.cadastrar')->get('pessoa/cadastrar', function (){ return view('pessoa.formPessoa'); });
+
+#COORDENADORES
+Route::name('coordenador')->get('coordenadores', function (){ return view('coordenador.index'); });
+Route::name('coordenador.cadastrar')->get('coordenador/cadastrar', function (){ return view('coordenador.formCoordenador'); });
+
+#INSTITUIÇÃO
+Route::name('instituicao')->get('instituicao', function (){ return view('instituicao.formInstituicao'); });
