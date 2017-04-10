@@ -13,27 +13,22 @@ class InstituicaoController extends Controller
 
     public function index(){
         $instituicoes = Instituicao::orderBy('nome', 'asc')->paginate($this->totalPorPag);
-        return view('instituicao.index', compact(instituicoes));        
+        return view('instituicao.index', compact('instituicoes'));        
     }
 
     public function cadastrar(){
-        return view('instituicao.cadastrar');
+        return view('instituicao.formInstituicao');
     }
 
     public function editar($id){
-        $instituicao = Instituicao::findOrFail($id);
-        return view('instituicao.cadastrar', compact('instituicao', 'id'));
+        $instituicao = Instituicao::find($id);
+        return view('instituicao.formInstituicao', compact('instituicao'));
     }
 
     public function salvar(Request $request){
         try{
             $dataForm = $request->all();
-            DB::transaction(function () use ($dataForm) {
-                foreach ($dataForm['nome'] as $key => $nome){
-                    Instituicao::create(array('nome' => $nome, 'cnpj' -> $dataForm['cnpj'][$key]));
-                }
-            }, 3);
-
+            Instituicao::create($dataForm);
             return redirect()->route('instituicoes')->with('success', 'Disciplina cadastrada.');
         }    
         catch(\Exception $e){
@@ -41,14 +36,11 @@ class InstituicaoController extends Controller
         }
     }
 
-    public function atualizar(){
+    public function atualizar(Request $request, $id){
         try{
             $dataForm = $request->all();
-            DB::transaction(function () use ($dataForm) {
-                $instituicao = Instituicao::find($id); 
-                $instituicao->update(array('nome' => $dataForm('nome')[0], 'cnpj' -> $dataForm['cnpj'][0]));
-            }, 3);
-
+            $instituicao = Instituicao::find($id);
+            $instituicao->update($dataForm);
             return redirect()->route('instituicoes')->with('success', 'Disciplina editada.');
         }    
         catch(\Exception $e){
@@ -56,16 +48,13 @@ class InstituicaoController extends Controller
         }
     }
 
-    public function deletar(){
+    public function deletar($id){
         try{
-            DB::transaction(function () use ($id) {
-                $instituicao = Instituicao::find($id);
-                $instituicao->delete();
-            }, 3);
-            return redirect()->route('instituicoes')->with('success', 'Instituicão excluída');
+            Instituicao::find($id)->delete();
+            return redirect()->route('cargos')->with('success', 'Exclusão realizada com sucesso.');
         }
         catch(\Exception $e){
-            return redirect()->route('instituicoes')->with('error', 'Falha ao excluir.');
+            return redirect()->route('cargos')->with('error', 'Erro na exclusão.');
         }
     }
 }
