@@ -133,5 +133,17 @@ CREATE TABLE cursos_disciplinas(
 	ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+CREATE TABLE cursos_funcionarios(
+	curso_id INT NOT NULL,
+	funcionario_id INT NOT NULL,
+	CONSTRAINT PRIMARY KEY(curso_id, funcionario_id),
+	CONSTRAINT FOREIGN KEY(curso_id)
+	REFERENCES cursos(id)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FOREIGN KEY(funcionario_id)
+	REFERENCES funcionarios(id)
+	ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
 
 
