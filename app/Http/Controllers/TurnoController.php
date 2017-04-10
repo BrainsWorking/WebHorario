@@ -46,7 +46,17 @@ class TurnoController extends Controller
         }
     }
 
-    public function deletar(){
+    public function deletar($id){
+        try {
+            DB::transaction(function () use ($id) {
+                $turno = Turno::find($id);
 
+                $turno->delete();
+            }, 3);
+
+            return redirect()->route('turnos')->withSuccess('Exclusão realizada com sucesso');
+        } catch (\Exception $e) {
+            return redirect()->route('turnos')->withError('Erro na exclusão!');
+        }
     }
 }

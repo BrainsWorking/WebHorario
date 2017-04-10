@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'auth'], function () {
+//Route::group(['middleware' => 'auth'], function () {
   # Entrada
   Route::name('home')->get('/home', function () { return view('welcome'); });
 
@@ -10,7 +10,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::name('turno.salvar')->post('turno/salvar', 'TurnoController@salvar');
   Route::name('turno.editar')->get('turno/editar/{id}', 'TurnoController@editar');
   Route::name('turno.atualizar')->patch('turno/atualizar', 'TurnoController@atualizar');
-  Route::name('turno.deletar')->patch('turno/deletar', 'TurnoController@deletar');
+  Route::name('turno.deletar')->get('turno/deletar/{id}', 'TurnoController@deletar');
 
   # DISCIPLINAS
   Route::name('disciplinas')->get("disciplinas", 'DisciplinaController@index');
@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
 
   #INSTITUIÇÃO
   Route::name('instituicao')->get('instituicao', function (){ return view('instituicao.formInstituicao'); });
-});
+//});
 
 # Entrada
 Route::get('/', function() { return redirect()->route('login'); });
