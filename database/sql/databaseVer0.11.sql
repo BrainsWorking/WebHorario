@@ -4,7 +4,8 @@ USE webHorario;
 CREATE TABLE instituicoes(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
-	cnpj VARCHAR(20) NOT NULL,
+	endereco VARCHAR(255) NOT NULL,
+	telefone VARCHAR(20) NOT NULL,
 	CONSTRAINT PRIMARY KEY(id)
 );
 
@@ -119,6 +120,18 @@ CREATE TABLE semestres(
 	inicio DATE NOT NULL,
 	fim DATE NOT NULL,
 	CONSTRAINT PRIMARY KEY(id)
+);
+
+CREATE TABLE disciplinas_semestres(
+	semestre_id INT NOT NULL,
+	disciplina_id INT NOT NULL,
+	CONSTRAINT PRIMARY KEY(semestre_id, disciplina_id),
+	CONSTRAINT FOREIGN KEY(semestre_id)
+	REFERENCES semestre(id)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FOREIGN KEY(disciplina_id)
+	REFERENCES disciplinas(id)
+	ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE cursos_disciplinas(
