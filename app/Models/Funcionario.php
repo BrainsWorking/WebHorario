@@ -7,8 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Auth\UsuarioTrait as Permissivel;
 
-class Funcionario extends Authenticatable
-{
+class Funcionario extends Authenticatable {
     use Notifiable;
     use Permissivel;
 

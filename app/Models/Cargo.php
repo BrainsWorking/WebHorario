@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Funcionario;
 
-class Cargo extends Model
-{
+class Cargo extends Model {
 	public $timestamps = false;
 	
     protected $fillable = ['nome'];

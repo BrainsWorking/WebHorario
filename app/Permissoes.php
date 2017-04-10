@@ -3,6 +3,6 @@ namespace App;
 
 class Permissoes {
 
-    private function professor(){}
+    private function professor(){ return []; }
 
 }
