@@ -117,7 +117,7 @@
     <footer class="text-center">
         <div class="container">
             <p>
-                IFSP - Instituto Federal de Educação, Ciência e Tecnologia de São Paulo Campus
+                Instituto Federal de Educação, Ciência e Tecnologia de São Paulo - Câmpus
                 Caraguatatuba
             </p>
             <p>
@@ -125,15 +125,17 @@
                 3885-2130
             </p>
             <p class="text-center">
-                Desenvolvimento: ACME & Brains Working
+                Desenvolvimento ACME & Brains Working
             </p>
         </div>
     </footer>
-    
+
     <script type="text/javascript" src="{{ asset('/js/jquery-3.2.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/bootbox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/off-canvas.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/footer.js') }}"></script>
+
     @yield('scripts')
 
 </body>
