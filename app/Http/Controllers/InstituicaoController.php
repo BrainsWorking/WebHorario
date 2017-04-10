@@ -29,7 +29,7 @@ class InstituicaoController extends Controller
         try{
             $dataForm = $request->all();
             Instituicao::create($dataForm);
-            return redirect()->route('instituicoes')->with('success', 'Disciplina cadastrada.');
+            return redirect()->route('instituicao')->with('success', 'Disciplina cadastrada.');
         }    
         catch(\Exception $e){
             return redirect()->route('instituicao.cadastrar')->with('error', 'Falha ao cadastrar.');
@@ -41,7 +41,7 @@ class InstituicaoController extends Controller
             $dataForm = $request->all();
             $instituicao = Instituicao::find($id);
             $instituicao->update($dataForm);
-            return redirect()->route('instituicoes')->with('success', 'Disciplina editada.');
+            return redirect()->route('instituicao')->with('success', 'Disciplina editada.');
         }    
         catch(\Exception $e){
             return redirect()->route('instituicao.editar')->with('error', 'Falha ao editar.');
@@ -51,10 +51,10 @@ class InstituicaoController extends Controller
     public function deletar($id){
         try{
             Instituicao::find($id)->delete();
-            return redirect()->route('cargos')->with('success', 'Exclusão realizada com sucesso.');
+            return redirect()->route('instituicao')->with('success', 'Exclusão realizada com sucesso.');
         }
         catch(\Exception $e){
-            return redirect()->route('cargos')->with('error', 'Erro na exclusão.');
+            return redirect()->route('instituicao')->with('error', 'Erro na exclusão.');
         }
     }
 }
