@@ -11,12 +11,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/off-canvas.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <title> @yield('title') - WebHorário</title>
-    <link rel="icon" href="" type="image/x-icon">
+    <link rel="icon" href="{{ asset('/img/webhorario.ico') }}" type="image/x-icon">
     @yield('css')
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row">
             <header class="col-xs-12 col-sm-12">
@@ -34,83 +33,109 @@
         <div class="row">
             <div class="text-right saudacao">
                 <ul class="nav">
+                    @if(Auth::user())
                     <li class="dropdown pull-right">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle usuario">
-                            Hugo Salles Cuba <b class="caret"></b>
+                            {{ Auth::user()->nome }} <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Meu perfil</a></li>
                             <li class="divider"></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Sair</a></li>
+                            <li><a href="{{ route('deslogar') }}"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Sair</a></li>
                         </ul>
                     </li>
+                    @else
+                    <li>
+                        <div class="usuario">Convidado</div>
+                    </li>
+                    @endif
                 </ul>
             </div>
 
         </div>
-            <div class="row">
-                <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="{{ setActive('home') }}">
-                            <a href="{{ route('home') }}">
-                                <span class="glyphicon glyphicon-home"></span> <span class='sidebar-label'>Home</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('turno') }}">
-                            <a href="{{ route('turnos') }}">
-                                <span class="glyphicon glyphicon-time"></span> <span class='sidebar-label'>Turnos</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('disciplina') }}">
-                            <a href="{{ route('disciplinas') }}">
-                                <span class="glyphicon glyphicon-book"></span> <span class='sidebar-label'>Disciplinas</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('curso') }}">
-                            <a href="{{ route('cursos') }}">
-                                <span class="glyphicon glyphicon-education"></span> <span class='sidebar-label'>Cursos</span>
-                            </a>
-                        </li>
-                        <li class="{{ setActive('semestre') }}">
-                            <a href="{{ route('semestres') }}">
-                                <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+        
+        <div class="row">
+            <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="{{ setActive('home') }}">
+                        <a href="{{ route('home') }}">
+                            <span class="glyphicon glyphicon-home"></span> <span class='sidebar-label'>Home</span>
+                        </a>
+                    </li>
+                    <li class="{{ setActive('turno') }}">
+                        <a href="{{ route('turnos') }}">
+                            <span class="glyphicon glyphicon-time"></span> <span class='sidebar-label'>Turnos</span>
+                        </a>
+                    </li>
+                    <li class="{{ setActive('disciplina') }}">
+                        <a href="{{ route('disciplinas') }}">
+                            <span class="glyphicon glyphicon-book"></span> <span class='sidebar-label'>Disciplinas</span>
+                        </a>
+                    </li>
+                    <li class="{{ setActive('curso') }}">
+                        <a href="{{ route('cursos') }}">
+                            <span class="glyphicon glyphicon-education"></span> <span class='sidebar-label'>Cursos</span>
+                        </a>
+                    </li>
+                    <li class="{{ setActive('semestre') }}">
+                        <a href="{{ route('semestres') }}">
+                            <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
+                        </a>
+                    </li>
+                    <li class="{{ setActive('cargo') }}">
+                        <a href="{{ route('cargos') }}">
+                            <span class="glyphicon glyphicon-apple"></span> <span class="sidebar-label">Cargos</span>
+                        </a>
+                    </li>                    
+                    <li class="{{ setActive('pessoa') }}">
+                        <a href="{{ route('pessoas') }}">
+                            <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Pessoas</span>
+                        </a>
+                    </li>
+                    <li class="{{ setActive('coordenador') }}">
+                        <a href="{{ route('coordenador') }}">
+                            <span class="glyphicon glyphicon-bullhorn"></span> <span class='sidebar-label'>Coordenadores</span>
+                        </a>
+                    </li>
+                    <li class="{{ setActive('instituicao') }}">
+                        <a href="{{ route('instituicao') }}">
+                            <span class="glyphicon glyphicon-briefcase"></span> <span class='sidebar-label'>Instituição</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
+            <div class="col-sm-8 col-md-9 col-lg-10 collapsed-canvas" id="content">
 
-                <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
-                <div class="col-sm-8 col-md-9 col-lg-10 collapsed-canvas" id="content">
+                @include('layout.alerts')
 
-                    @include('layout.alerts')
-
-                    @yield('content')
-                </div>
+                @yield('content')
             </div>
         </div>
+    </div>
 
-        <footer class="text-center">
-            <div class="container">
-                <p>
-                    IFSP - Instituto Federal de Educação, Ciência e Tecnologia de São Paulo Campus
-                    Caraguatatuba
-                </p>
-                <p>
-                    Avenida Bahia, 1739 - Indaiá - Caraguatatuba/SP - CEP: 11665-071 - Telefone: +55 (12)
-                    3885-2130
-                </p>
-                <p class="text-center">
-                    Desenvolvimento: ACME & Brains Working
-                </p>
-            </div>
-        </footer>
+    <footer class="text-center">
+        <div class="container">
+            <p>
+                IFSP - Instituto Federal de Educação, Ciência e Tecnologia de São Paulo Campus
+                Caraguatatuba
+            </p>
+            <p>
+                Avenida Bahia, 1739 - Indaiá - Caraguatatuba/SP - CEP: 11665-071 - Telefone: +55 (12)
+                3885-2130
+            </p>
+            <p class="text-center">
+                Desenvolvimento: ACME & Brains Working
+            </p>
+        </div>
+    </footer>
     
-        <script type="text/javascript" src="{{ asset('/js/jquery-3.2.0.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/bootbox.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/off-canvas.js') }}"></script>
-        @yield('scripts')
+    <script type="text/javascript" src="{{ asset('/js/jquery-3.2.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/bootbox.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/off-canvas.js') }}"></script>
+    @yield('scripts')
 
-    </body>
+</body>
 
-    </html>
+</html>

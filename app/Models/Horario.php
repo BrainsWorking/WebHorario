@@ -7,7 +7,7 @@ use App\Models\Turno as Turno;
 
 class Horario extends Model
 {
-    public $timestamp = false;
+    public $timestamps = false;
     
     protected $fillable = ['inicio', 'fim'];
 
