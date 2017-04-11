@@ -27,8 +27,10 @@ class InstituicaoController extends Controller
 
     public function salvar(Request $request){
         try{
-            $dataForm = $request->all();
-            Instituicao::create($dataForm);
+            DB::transaction(function () use ($id) {
+                $dataForm = $request->all();
+                Instituicao::create($dataForm);
+            }, 3); 
             return redirect()->route('instituicao')->with('success', 'Disciplina cadastrada.');
         }    
         catch(\Exception $e){
@@ -39,8 +41,11 @@ class InstituicaoController extends Controller
     public function atualizar(Request $request, $id){
         try{
             $dataForm = $request->all();
-            $instituicao = Instituicao::find($id);
-            $instituicao->update($dataForm);
+            DB::transaction(function () use ($id) {
+                $instituicao = Instituicao::find($id);
+                $instituicao->update($dataForm);
+            }, 3);
+
             return redirect()->route('instituicao')->with('success', 'Disciplina editada.');
         }    
         catch(\Exception $e){
@@ -50,11 +55,13 @@ class InstituicaoController extends Controller
 
     public function deletar($id){
         try{
-            Instituicao::find($id)->delete();
+            DB::transaction(function () use ($id) {
+                Instituicao::find($id)->delete();
+            }, 3);
             return redirect()->route('instituicao')->with('success', 'Exclusão realizada com sucesso.');
         }
         catch(\Exception $e){
-            return redirect()->route('instituicao')->with('error', 'Erro na exclusão.');
+            return redirect()->route('cargos')->with('error', 'Erro na exclusão.');
         }
     }
 }
