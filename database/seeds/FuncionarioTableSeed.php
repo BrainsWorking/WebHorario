@@ -19,7 +19,7 @@ class FuncionarioTableSeed extends Seeder
             'data_nascimento'	=> '2017/12/12',
             'endereco'			=> 'Endereço',
             'foto'				=> 'img/null.jpg',
-            'email' 			=> 'admin@gmail.com',
+            'prontuario' 		=> '1512312',
             'password' 			=> bcrypt('123456')
         ]);
     }
