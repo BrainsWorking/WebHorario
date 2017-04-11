@@ -53,8 +53,6 @@ class CursoController extends Controller
 
         $curso = Curso::find($id);
 
-        $disciplina_id = array();
-
         $disciplina_id = Curso::find($id)->disciplinas()->pluck('id')->toArray();
 
         return view('curso.formCurso', compact('turnos', 'disciplinas', 'curso', 'disciplina_id'));
