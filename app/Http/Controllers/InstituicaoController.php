@@ -27,7 +27,7 @@ class InstituicaoController extends Controller
 
     public function salvar(Request $request){
         try{
-            DB::transaction(function () use ($id) {
+            DB::transaction(function () use ($request) {
                 $dataForm = $request->all();
                 Instituicao::create($dataForm);
             }, 3); 
@@ -41,7 +41,7 @@ class InstituicaoController extends Controller
     public function atualizar(Request $request, $id){
         try{
             $dataForm = $request->all();
-            DB::transaction(function () use ($id) {
+            DB::transaction(function () use ($dataForm, $id) {
                 $instituicao = Instituicao::find($id);
                 $instituicao->update($dataForm);
             }, 3);
