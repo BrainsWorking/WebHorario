@@ -17,7 +17,27 @@ class TurnoController extends Controller
 
     public function editar($id) {
         $turno = Turno::findOrFail($id);
-        return view('turno.editar', compact('turno', 'id'));
+        return view('turno.formTurno', compact('turno'));
+    }
+
+    public function atualizar(Request $request, $id){
+         try{
+            DB::transaction(function () use ($request, $id) {
+
+                $turno = Turno::findOrFail($id);
+
+                $dataForm = $request->all();
+
+                $turno->update($dataForm);
+
+                $turno->horarios()->sync($dataForm['turno_id']);
+                
+            }, 3);
+
+            return redirect()->route('turnos')->withSuccess('Edição realizada com sucesso');
+        }catch(\Exception $e){
+            return redirect()->route('turno.editar', $id)->withError('Erro na edição!');
+        }
     }
     
     public function cadastrar(){
