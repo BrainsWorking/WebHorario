@@ -33,15 +33,16 @@
         </div>
         
         <div class="col-lg-12" style="height: 450px">
+            @include('layout.alerts')
             <div class="hidden-xs hidden-sm col-lg-3"></div>
             <div class="col-lg-6" style="margin-top: 100px">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        {!! Form::open(["method" => "post"]) !!}
-
+                        {!! Form::open(["method" => "post", "route" => "logar"]) !!}
+                        {{ csrf_field() }}
                         <div class="control-group form-group">
-                            {!! Form::label('usuario', 'Prontuário', ['class' => 'control-label']) !!}
-                            {!! Form::text('usuario', null, ['class' => 'form-control', 'required']) !!}
+                            {!! Form::label('email', 'E-Mail', ['class' => 'control-label']) !!}
+                            {!! Form::text('email', null, ['class' => 'form-control', 'required']) !!}
                         </div>
 
                         <div class="control-group form-group">

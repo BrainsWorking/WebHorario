@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row">
             <header class="col-xs-12 col-sm-12">
@@ -34,16 +33,22 @@
         <div class="row">
             <div class="text-right saudacao">
                 <ul class="nav">
+                    @if(Auth::user())
                     <li class="dropdown pull-right">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle usuario">
-                            Hugo Salles Cuba <b class="caret"></b>
+                            {{ Auth::user()->nome }} <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Meu perfil</a></li>
                             <li class="divider"></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Sair</a></li>
+                            <li><a href="{{ route('deslogar') }}"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Sair</a></li>
                         </ul>
                     </li>
+                    @else
+                    <li>
+                        <div class="usuario">Convidado</div>
+                    </li>
+                    @endif
                 </ul>
             </div>
 
@@ -112,7 +117,7 @@
     <footer class="text-center">
         <div class="container">
             <p>
-                IFSP - Instituto Federal de Educação, Ciência e Tecnologia de São Paulo Campus
+                Instituto Federal de Educação, Ciência e Tecnologia de São Paulo - Câmpus
                 Caraguatatuba
             </p>
             <p>
@@ -120,15 +125,17 @@
                 3885-2130
             </p>
             <p class="text-center">
-                Desenvolvimento: ACME & Brains Working
+                Desenvolvimento ACME & Brains Working
             </p>
         </div>
     </footer>
-    
+
     <script type="text/javascript" src="{{ asset('/js/jquery-3.2.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/bootbox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/off-canvas.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/footer.js') }}"></script>
+
     @yield('scripts')
 
 </body>

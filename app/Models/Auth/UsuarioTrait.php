@@ -3,8 +3,8 @@ namespace App\Models\Auth;
 
 trait UsuarioTrait{
     public function pode($acao){
-        $perfil = $this->perfil->nome;
-        return in_array($acao, Restricoes::$perfil());
+        $perfil = $this->cargo->nome;
+        return in_array($acao, Permissoes::$perfil());
     }
 
     public function __call($method, $parameters) {
