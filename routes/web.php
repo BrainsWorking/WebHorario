@@ -9,7 +9,7 @@
   Route::name('turno.formTurno')->get('turno/cadastrar', 'TurnoController@cadastrar');
   Route::name('turno.salvar')->post('turno/salvar', 'TurnoController@salvar');
   Route::name('turno.editar')->get('turno/editar/{id}', 'TurnoController@editar');
-  Route::name('turno.atualizar')->patch('turno/atualizar', 'TurnoController@atualizar');
+  Route::name('turno.atualizar')->put('turno/atualizar/{id}', 'TurnoController@atualizar');
   Route::name('turno.deletar')->get('turno/deletar/{id}', 'TurnoController@deletar');
 
   # DISCIPLINAS
