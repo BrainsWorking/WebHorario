@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Cargo;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\Auth\UsuarioTrait as Permissivel;
+use App\Models\Traits\UsuarioTrait as Permissivel;
 
 class Funcionario extends Authenticatable {
     use Notifiable;

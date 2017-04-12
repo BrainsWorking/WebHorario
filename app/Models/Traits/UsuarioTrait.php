@@ -1,5 +1,5 @@
 <?php 
-namespace App\Models\Auth;
+namespace App\Models\Traits;
 
 trait UsuarioTrait{
     public function pode($acao){
