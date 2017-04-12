@@ -10,7 +10,7 @@ class Disciplina extends Model{
 
 	public $timestamps = false;
 
-    protected $fillable = ['nome', 'iniciais', 'cargaHoraria'];
+    protected $fillable = ['nome', 'sigla', 'aulasSemanais'];
     
     public function cursos(){
         return $this->belongsToMany(Curso::class, 'cursos_disciplinas');
