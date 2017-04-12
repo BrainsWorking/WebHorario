@@ -117,12 +117,10 @@
     <footer class="text-center">
         <div class="container">
             <p>
-                Instituto Federal de Educação, Ciência e Tecnologia de São Paulo - Câmpus
-                Caraguatatuba
+                {{ $dadosInst->nome }}
             </p>
             <p>
-                Avenida Bahia, 1739 - Indaiá - Caraguatatuba/SP - CEP: 11665-071 - Telefone: +55 (12)
-                3885-2130
+                {{ $dadosInst->endereco }} - CEP: {{ $dadosInst->cep }} - Telefone: +55 {{ $dadosInst->telefone }}
             </p>
             <p class="text-center">
                 Desenvolvimento ACME & Brains Working
