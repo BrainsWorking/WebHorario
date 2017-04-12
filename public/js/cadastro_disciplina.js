@@ -16,10 +16,10 @@ $(document).ready(function(){
 						'<input type="text" name="nome['+x+']" class="form-control" required>' +
 					'</div>' +
 					'<div class="form-group col-sm-3">' +
-						'<input type="text" name="iniciais['+x+']" class="form-control" maxlength="5" required>' +
+						'<input type="text" name="sigla['+x+']" class="form-control" maxlength="5" required>' +
 					'</div>' +
                     '<div class="form-group col-sm-2">' +
-                        '<input type="text" name="cargaHoraria['+x+']" class="form-control" maxlength="2" required>' +
+                        '<input type="text" name="aulasSemanais['+x+']" class="form-control" maxlength="2" required>' +
                     '</div>' +
             		'<div class="col-sm-1 remove-field">' +
             			'<button type="button" class="btn btn-danger btn-sm right">' +

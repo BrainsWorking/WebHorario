@@ -25,20 +25,29 @@
 
 	<div class="horarios-turno col-lg-12">
 		@if(isset($turno))
-		@foreach($turno->horarios as $horario)
+		@foreach($turno->horarios as $key => $horario)
+
+		<?php 
+		$inicio = "horario[$horario->id][inicio]";
+		$fim    = "horario[$horario->id][fim]";
+		?>
+
 		<div class="row">
-			<div class="col-lg-1 padding-left-0"><label class="index">Aula 1</label></div>
+			<div class="col-lg-1 padding-left-0"><label class="index">Aula {{$key+1}}</label></div>
 			<div class="col-lg-10">
 				<div class="form-group col-lg-6">
-					{!! Form::text('horario[1][inicio]', $horarios->inicio, ['class'=>'form-control hora', 'placeholder'=>'Início' ,'minlength' => '5', 'required']) !!}
+					{!! Form::text($inicio, $horario->inicio, ['class'=>'form-control hora', 'placeholder'=>'Início' ,'minlength' => '5', 'required']) !!}
 				</div>
 
 				<div class="form-group col-lg-6">
-					{!! Form::text('horario[1][fim]', $horarios->fim, ['class'=>'form-control hora', 'placeholder'=>'Fim' ,'minlength' => '5', 'required']) !!}
+					{!! Form::text($fim, $horario->fim, ['class'=>'form-control hora', 'placeholder'=>'Fim' ,'minlength' => '5', 'required']) !!}
 				</div>
 			</div>
-			<div class="col-lg-1 padding-right-0">
-			</div>
+			<div class="col-lg-1 padding-right-0 remove-field">
+				<button type="button" class="btn btn-danger btn-sm">
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
+            </div>
 		</div>
 		@endforeach
 		@else

@@ -41,8 +41,8 @@
                         {!! Form::open(["method" => "post", "route" => "logar"]) !!}
                         {{ csrf_field() }}
                         <div class="control-group form-group">
-                            {!! Form::label('email', 'E-Mail', ['class' => 'control-label']) !!}
-                            {!! Form::text('email', null, ['class' => 'form-control', 'required']) !!}
+                            {!! Form::label('prontuario', 'Prontuário', ['class' => 'control-label']) !!}
+                            {!! Form::text('prontuario', null, ['class' => 'form-control', 'required']) !!}
                         </div>
 
                         <div class="control-group form-group">

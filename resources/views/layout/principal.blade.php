@@ -116,17 +116,22 @@
 
     <footer class="text-center">
         <div class="container">
-            <p>
-                Instituto Federal de Educação, Ciência e Tecnologia de São Paulo - Câmpus
-                Caraguatatuba
-            </p>
-            <p>
-                Avenida Bahia, 1739 - Indaiá - Caraguatatuba/SP - CEP: 11665-071 - Telefone: +55 (12)
-                3885-2130
-            </p>
-            <p class="text-center">
-                Desenvolvimento ACME & Brains Working
-            </p>
+            @if(isset($dadosInst))
+                <p>
+                   
+                    {{ $dadosInst->nome }}
+                </p>
+                <p>
+                    {{ $dadosInst->endereco or 'Endereço da instituicao' }} - 
+                    CEP: {{ $dadosInst->cep  or 'CEP da instituicao'}} - 
+                    Telefone: +55 {{ $dadosInst->telefone or 'Telefone da instituicao' }}
+                </p>
+                <p class="text-center">
+                    Desenvolvimento ACME & Brains Working
+                </p>
+            @else
+                <a href="{{ route('instituicao') }}">Cadastrar Instituição</a>
+            @endif
         </div>
     </footer>
 
