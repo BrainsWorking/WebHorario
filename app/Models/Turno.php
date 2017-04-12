@@ -13,7 +13,7 @@ class Turno extends Model
     protected $fillable = ['nome'];
     
     public function horarios(){
-        return $this->belongsToMany(Horario::class, 'turnos_horarios');
+        return $this->belongsToMany(Horario::class, 'turnos_horarios')->orderBy('inicio', 'asc');
     }
 
     public function cursos(){
