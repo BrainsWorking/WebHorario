@@ -56,12 +56,12 @@ Route::group(['middleware' => 'auth'], function () {
   Route::name('coordenador.cadastrar')->get('coordenador/cadastrar', function (){ return view('coordenador.formCoordenador'); });
 
   #INSTITUIÇÃO
-  Route::name('instituicao')->get('instituicao', function (){ return view('instituicao.formInstituicao'); });
-  Route::name('instituicao.cadastrar')->get('instituicao/cadastrar', 'instituicaoController@cadastrar');
-  Route::name('instituicao.editar')->get('instituicao/editar/{id}', 'instituicaoController@editar');
-  Route::name('instituicao.salvar')->post('instituicao/salvar', 'instituicaoController@salvar');
-  Route::name('instituicao.atualizar')->put('instituicao/atualizar/{id}', 'instituicaoController@atualizar');
-  Route::name('instituicao.deletar')->get('instituicao/deletar/{id}', 'instituicaoController@deletar');
+  Route::name('instituicao')->get('instituicao', 'InstituicaoController@index');
+  Route::name('instituicao.cadastrar')->get('instituicao/cadastrar', 'InstituicaoController@cadastrar');
+  Route::name('instituicao.editar')->get('instituicao/editar/{id}', 'InstituicaoController@editar');
+  Route::name('instituicao.salvar')->post('instituicao/salvar', 'InstituicaoController@salvar');
+  Route::name('instituicao.atualizar')->put('instituicao/atualizar/{id}', 'InstituicaoController@atualizar');
+  Route::name('instituicao.deletar')->get('instituicao/deletar/{id}', 'InstituicaoController@deletar');
 });
 
 # Entrada

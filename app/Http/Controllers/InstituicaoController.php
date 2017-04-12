@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Instituicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Session;
 
 
 class InstituicaoController extends Controller
@@ -12,7 +13,17 @@ class InstituicaoController extends Controller
     private $totalPorPag = 10;
 
     public function index(){
-        $instituicoes = Instituicao::orderBy('nome', 'asc')->paginate($this->totalPorPag);
+        $instituicao = Instituicao::count();
+
+        if($instituicao == 0){
+            return redirect()->route('instituicao.cadastrar');
+        }else{
+            $instituicao = Instituicao::get()->first();
+
+            return redirect()->route('instituicao.editar', $instituicao->id);
+            
+        }
+
         return view('instituicao.index', compact('instituicoes'));        
     }
 
@@ -28,8 +39,11 @@ class InstituicaoController extends Controller
     public function salvar(Request $request){
         try{
             DB::transaction(function () use ($request) {
+
                 $dataForm = $request->all();
+
                 Instituicao::create($dataForm);
+
             }, 3); 
             return redirect()->route('instituicao')->with('success', 'Disciplina cadastrada.');
         }    
@@ -46,7 +60,7 @@ class InstituicaoController extends Controller
                 $instituicao->update($dataForm);
             }, 3);
 
-            return redirect()->route('instituicao')->with('success', 'Disciplina editada.');
+            return redirect()->route('instituicao.editar', $id)->with('success', 'Disciplina editada.');
         }    
         catch(\Exception $e){
             return redirect()->route('instituicao.editar')->with('error', 'Falha ao editar.');
@@ -61,7 +75,7 @@ class InstituicaoController extends Controller
             return redirect()->route('instituicao')->with('success', 'Exclusão realizada com sucesso.');
         }
         catch(\Exception $e){
-            return redirect()->route('cargos')->with('error', 'Erro na exclusão.');
+            return redirect()->route('instituicao')->with('error', 'Erro na exclusão.');
         }
     }
 }
