@@ -18,7 +18,7 @@ class LoginController extends Controller
             return redirect()->intended(route('home')); 
         } else {
             return redirect()->route('login')
-                ->withInput('prontuario')
+                ->withInput($request->only('prontuario'))
                 ->withError('Prontuário ou senha incorretos');
         }
     }
