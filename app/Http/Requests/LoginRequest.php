@@ -10,7 +10,7 @@ class LoginRequest extends FormRequest
 
     public function rules() { 
         return [
-            'email' => 'email|required',
+            'prontuario' => 'required|alpha_num',
             'password' => 'required'
         ];
     }

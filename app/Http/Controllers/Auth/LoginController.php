@@ -14,12 +14,12 @@ class LoginController extends Controller
     public function index() { return view('auth.login'); }
 
     public function logar(LoginRequest $request) { 
-        if(Auth::attempt($request->only('email', 'password'))){
+        if(Auth::attempt($request->only('prontuario', 'password'))){
             return redirect()->intended(route('home')); 
         } else {
             return redirect()->route('login')
-                ->withInput('email')
-                ->withError('Usuário ou senha incorretos');
+                ->withInput($request->only('prontuario'))
+                ->withError('Prontuário ou senha incorretos');
         }
     }
 
