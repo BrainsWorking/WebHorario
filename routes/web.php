@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
     # Entrada
     Route::name('home')->get('/home', function () {
         return view('welcome');
@@ -50,12 +50,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('cargo.deletar')->get('cargo/deletar/{id}', 'CargoController@deletar');
 
     #PESSOAS
-    Route::name('pessoas')->get('pessoas', function () {
-        return view('pessoa.index');
-    });
-    Route::name('pessoa.cadastrar')->get('pessoa/cadastrar', function () {
-        return view('pessoa.formPessoa');
-    });
+    Route::name('funcionarios')->get('funcionarios', 'FuncionarioController@index');
+    Route::name('funcionario.cadastrar')->get('funcionario/cadastrar', 'FuncionarioController@cadastrar');
+    Route::name('funcionario.editar')->get('funcionario/editar/{id}', 'FuncionarioController@editar');
+    Route::name('funcionario.salvar')->post('funcionario/salvar', 'FuncionarioController@salvar');
+    Route::name('funcionario.atualizar')->put('funcionario/atualizar/{id}', 'FuncionarioController@atualizar');
+    Route::name('funcionario.deletar')->get('funcionario/deletar/{id}', 'FuncionarioController@deletar');
 
     #COORDENADORES
     Route::name('coordenador')->get('coordenadores', 'CoordenadorController@index');
@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('instituicao.atualizar')->put('instituicao/atualizar/{id}', 'InstituicaoController@atualizar');
     Route::name('instituicao.deletar')->get('instituicao/deletar/{id}', 'InstituicaoController@deletar');
 
-});
+// });
 
 # Entrada
 Route::get('/', function () {
