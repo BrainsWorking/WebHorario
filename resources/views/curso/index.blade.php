@@ -25,7 +25,7 @@
 			<tr class="table-line">
 				<td class="text-center table-more-info"><span class="glyphicon glyphicon-chevron-down"></span></td>
 				<td class="text-center search"> {{$curso->nome}} </td>
-				<td class="text-center search"> {{$curso->iniciais}} </td>
+				<td class="text-center search"> {{$curso->sigla}} </td>
 				<td class="text-center">
 					<a href="{{ route('curso.editar', $curso->id) }}"><span class="glyphicon glyphicon-edit"></span></a>
 				</td>
@@ -37,12 +37,12 @@
 				<td colspan="5">
 					<div class="hidden-info-content">
 						<p><b>Nome do Curso:</b> {{$curso->nome}}</p>
-						<p><b>Sigla:</b> {{$curso->iniciais}}</p>
+						<p><b>Sigla:</b> {{$curso->sigla}}</p>
 						<p><b>Turno:</b> {{$curso->turno->nome}}</p>
 						<p><b>Disciplinas:</b></p>
 
 						@foreach($curso->disciplinas as $disciplina)
-						<span class="col-lg-3 text-center">{{ $disciplina['iniciais'] .' - '. $disciplina['nome'] }}</span>
+						<span class="col-lg-3 text-center">{{ $disciplina['sigla'] .' - '. $disciplina['nome'] }}</span>
 						@endforeach
 					</div>
 				</td>

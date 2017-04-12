@@ -10,7 +10,7 @@ class Curso extends Model
 {
 	public $timestamps = false;
 
-    protected $fillable = ['nome', 'iniciais', 'turno_id'];
+    protected $fillable = ['nome', 'sigla', 'turno_id'];
 
     public function disciplinas(){
         return $this->belongsToMany(Disciplina::class, 'cursos_disciplinas');

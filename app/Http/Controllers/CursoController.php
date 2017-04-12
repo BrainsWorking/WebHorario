@@ -42,6 +42,7 @@ class CursoController extends Controller
             }, 3);
 	    	return redirect()->route('cursos')->with('success', 'Inclusão realizada com sucesso');
     	}catch(\Exception $e){
+    	    echo $e;die;
     		return redirect()->route('curso.cadastrar')->with('error', 'Erro na inclusão!');
     	}
     }
