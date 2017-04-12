@@ -15,7 +15,7 @@ class CursoController extends Controller
     public function index() {
 
         $cursos = Curso::orderBy('nome', 'asc')->paginate($this->totalPorPag);
-        
+
         return view('curso.index', compact('cursos'));
     }
 

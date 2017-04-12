@@ -6,6 +6,7 @@ use App\Models\Cargo;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Auth\UsuarioTrait as Permissivel;
+use App\Models\Curso as Curso;
 
 class Funcionario extends Authenticatable
 {
@@ -18,6 +19,10 @@ class Funcionario extends Authenticatable
 	
     public function cargos(){
         return $this->belongsToMany(Cargo::class, 'cargos_funcionarios');
+    }
+
+    public function cursos(){
+        return $this->belongsToMany(Curso::class, 'cursos_funcionarios');
     }
 
     public function setRememberToken($value){} // FIXIT: Só para não dar erro de falta de remember_token
