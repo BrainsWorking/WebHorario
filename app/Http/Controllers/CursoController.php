@@ -15,7 +15,7 @@ class CursoController extends Controller
     public function index() {
 
         $cursos = Curso::orderBy('nome', 'asc')->paginate($this->totalPorPag);
-        
+
         return view('curso.index', compact('cursos'));
     }
 
@@ -52,8 +52,6 @@ class CursoController extends Controller
         $disciplinas = Disciplina::pluck('nome', 'id');
 
         $curso = Curso::find($id);
-
-        $disciplina_id = array();
 
         $disciplina_id = Curso::find($id)->disciplinas()->pluck('id')->toArray();
 

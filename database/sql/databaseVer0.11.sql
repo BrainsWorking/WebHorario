@@ -1,12 +1,12 @@
-DROP DATABASE webHorario;
-
-CREATE DATABASE IF NOT EXISTS webHorario;
-USE webHorario;
+CREATE DATABASE nexvf4wcb2h7psvd;
+USE nexvf4wcb2h7psvd;
 
 CREATE TABLE instituicoes(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
-	cnpj VARCHAR(20) NOT NULL,
+	cep CHAR(9) NOT NULL,
+	endereco VARCHAR(255) NOT NULL,
+	telefone VARCHAR(20) NOT NULL,
 	CONSTRAINT PRIMARY KEY(id)
 );
 
@@ -20,12 +20,14 @@ CREATE TABLE funcionarios(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
 	sexo ENUM('M', 'F') NOT NULL,
-	cpf VARCHAR(20) NOT NULL,
+	cpf CHAR(15) NOT NULL,
 	data_nascimento DATE NOT NULL,
 	endereco VARCHAR(255) NOT NULL,
 	foto VARCHAR(255) NOT NULL,
+	prontuario VARCHAR(255) NOT NULL,
 	email VARCHAR(255) NOT NULL,
-	`password` VARCHAR(255) NOT NULL,	
+	`password` VARCHAR(255) NOT NULL,
+	remember_token CHAR(100),	
 	CONSTRAINT PRIMARY KEY(id)
 );
 
@@ -36,6 +38,7 @@ CREATE TABLE telefones(
 	CONSTRAINT PRIMARY KEY(id),
 	CONSTRAINT FOREIGN KEY(funcionario_id)
 	REFERENCES funcionarios(id)
+	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE cargos_funcionarios(
@@ -43,9 +46,11 @@ CREATE TABLE cargos_funcionarios(
 	funcionario_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(cargo_id, funcionario_id),
 	CONSTRAINT FOREIGN KEY(cargo_id)
-	REFERENCES cargos(id),
+	REFERENCES cargos(id)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
 	CONSTRAINT FOREIGN KEY(funcionario_id)
 	REFERENCES funcionarios(id)
+	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE turnos(
@@ -66,33 +71,36 @@ CREATE TABLE turnos_horarios(
 	horario_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(turno_id, horario_id),
 	CONSTRAINT FOREIGN KEY(turno_id)
-	REFERENCES turnos(id),
+	REFERENCES turnos(id)
+	ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT FOREIGN KEY(horario_id)
 	REFERENCES horarios(id)
+	ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
 CREATE TABLE cursos(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
-	iniciais CHAR(5) NOT NULL,
+	sigla CHAR(5) NOT NULL,
 	turno_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id),
 	CONSTRAINT FOREIGN KEY(turno_id)
 	REFERENCES turnos(id)
+	ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE disciplinas(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
-	iniciais CHAR(5) NOT NULL,
-	cargaHoraria INT NOT NULL,
+	sigla CHAR(5) NOT NULL,
+	aulasSemanais INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id)
 );
 
 CREATE TABLE tiposSala(
 	id INT NOT NULL AUTO_INCREMENT,
-	nome VARCHAR(255) NOT NULL AUTO_INCREMENT,
-	descricao VARCHAR(255) NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(255) NOT NULL,
+	descricao VARCHAR(255) NOT NULL,
 	CONSTRAINT PRIMARY KEY(id)
 );
 
@@ -101,9 +109,11 @@ CREATE TABLE disciplinas_tiposSala(
 	tipoSala_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(disciplina_id, tipoSala_id),
 	CONSTRAINT FOREIGN KEY(disciplina_id)
-	REFERENCES disciplinas(id),
+	REFERENCES disciplinas(id)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
 	CONSTRAINT FOREIGN KEY(tipoSala_id)
 	REFERENCES tiposSala(id)
+	ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE semestres(
@@ -119,10 +129,33 @@ CREATE TABLE cursos_disciplinas(
 	disciplina_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(curso_id, disciplina_id),
 	CONSTRAINT FOREIGN KEY(curso_id)
-	REFERENCES cursos(id),
+	REFERENCES cursos(id)
+	ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT FOREIGN KEY(disciplina_id)
 	REFERENCES disciplinas(id)
+	ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-
+CREATE TABLE cursos_funcionarios(
+	curso_id INT NOT NULL,
+	funcionario_id INT NOT NULL,
+	CONSTRAINT PRIMARY KEY(curso_id, funcionario_id),
+	CONSTRAINT FOREIGN KEY(curso_id)
+	REFERENCES cursos(id)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FOREIGN KEY(funcionario_id)
+	REFERENCES funcionarios(id)
+	ON DELETE RESTRICT ON UPDATE CASCADE
+);
+CREATE TABLE disciplinas_semestres(
+	semestre_id INT NOT NULL,
+	disciplina_id INT NOT NULL,
+	CONSTRAINT PRIMARY KEY(semestre_id, disciplina_id),
+	CONSTRAINT FOREIGN KEY(semestre_id)
+	REFERENCES semestres(id)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FOREIGN KEY(disciplina_id)
+	REFERENCES disciplinas(id)
+	ON DELETE RESTRICT ON UPDATE CASCADE
+);
 

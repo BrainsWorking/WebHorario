@@ -1,3 +1,19 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+footer {
+	display:none;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: auto;
+	width: 100%;
+	background-color: #EAEAEA;
+	padding: 10px;
+}
+
 body{
     font-family: 'Roboto Mono', monospace;
 }
@@ -6,6 +22,7 @@ body{
 	min-width: 500px;
 	padding: 0 15px;
 }
+
 
 .usuario{
 	padding:5px 10px !important;
@@ -50,13 +67,7 @@ header a:hover{
 	background-color: #b2daa6;
 }
 
-footer{
-	background-color: #EAEAEA;
-	padding: 10px;
-}
-
 .sidebar{
-	min-height: 500px;
 	background-color: #EAEAEA;
 	padding: 4px 4px;
 	border-radius: 0 5px 5px 0;

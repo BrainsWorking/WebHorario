@@ -20,8 +20,8 @@
 		{!! Form::text('nome', null, ['class' => 'form-control']) !!}
 	</div>
 	<div class="col-lg-4 form-group padding-right-0">
-		{!! Form::label('iniciais', 'Sigla', ['class' => 'control-label']) !!}
-		{!! Form::text('iniciais', null, ['class' => 'form-control']) !!}
+		{!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}
+		{!! Form::text('sigla', null, ['class' => 'form-control']) !!}
 	</div>
 
 	<div class="form-group">

@@ -46,7 +46,7 @@ class DisciplinaController extends Controller
 
             DB::transaction(function () use ($dataForm) {
                 foreach ($dataForm['nome'] as $key => $nome){
-                    Disciplina::create(array("nome" => $nome, "iniciais" => $dataForm['iniciais'][$key], "cargaHoraria" => $dataForm['cargaHoraria'][$key]));
+                    Disciplina::create(array("nome" => $nome, "sigla" => $dataForm['sigla'][$key], "aulasSemanais" => $dataForm['aulasSemanais'][$key]));
                 }
             }, 3);
 
@@ -63,7 +63,7 @@ class DisciplinaController extends Controller
 
             DB::transaction(function () use ($dataForm, $id) {
                 $disciplina = Disciplina::find($id);
-                $disciplina->update(array("nome" => $dataForm['nome'][0], "iniciais" => $dataForm['iniciais'][0],  "cargaHoraria" => $dataForm['cargaHoraria'][0]));
+                $disciplina->update(array("nome" => $dataForm['nome'][0], "sigla" => $dataForm['sigla'][0],  "aulasSemanais" => $dataForm['aulasSemanais'][0]));
             }, 3);
 
             return redirect()->route('disciplinas')->with('success', 'Disciplina editada');
