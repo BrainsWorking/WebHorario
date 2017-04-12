@@ -116,15 +116,22 @@
 
     <footer class="text-center">
         <div class="container">
-            <p>
-                {{ $dadosInst->nome }}
-            </p>
-            <p>
-                {{ $dadosInst->endereco }} - CEP: {{ $dadosInst->cep }} - Telefone: +55 {{ $dadosInst->telefone }}
-            </p>
-            <p class="text-center">
-                Desenvolvimento ACME & Brains Working
-            </p>
+            @if(isset($dadosInst))
+                <p>
+                   
+                    {{ $dadosInst->nome }}
+                </p>
+                <p>
+                    {{ $dadosInst->endereco or 'Endereço da instituicao' }} - 
+                    CEP: {{ $dadosInst->cep  or 'CEP da instituicao'}} - 
+                    Telefone: +55 {{ $dadosInst->telefone or 'Telefone da instituicao' }}
+                </p>
+                <p class="text-center">
+                    Desenvolvimento ACME & Brains Working
+                </p>
+            @else
+                <a href="{{ route('instituicao') }}">Cadastrar Instituição</a>
+            @endif
         </div>
     </footer>
 
