@@ -50,9 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('cargo.deletar')->get('cargo/deletar/{id}', 'CargoController@deletar');
 
     #PESSOAS
-    Route::name('pessoas')->get('pessoas', function () {
-        return view('pessoa.index');
-    });
+    Route::name('pessoas')->get('pessoas', 'FuncionarioController@index');
     Route::name('pessoa.cadastrar')->get('pessoa/cadastrar', function () {
         return view('pessoa.formPessoa');
     });

@@ -7,7 +7,7 @@ use App\Models\Cargo;
 use App\Models\Funcionario;
 use Illuminate\Support\Facades\Validator;
 
-class funcionarioController extends Controller {
+class FuncionarioController extends Controller {
 
   public function index() { 
     $cargos = Cargos::all();
