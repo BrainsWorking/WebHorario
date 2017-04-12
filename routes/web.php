@@ -57,7 +57,14 @@
 
   #INSTITUIÇÃO
   Route::name('instituicao')->get('instituicao', function (){ return view('instituicao.formInstituicao'); });
-//});
+
+  Route::name('instituicao.cadastrar')->get('instituicao/cadastrar', 'instituicaoController@cadastrar');
+  Route::name('instituicao.editar')->get('instituicao/editar/{id}', 'instituicaoController@editar');
+  Route::name('instituicao.salvar')->post('instituicao/salvar', 'instituicaoController@salvar');
+  Route::name('instituicao.atualizar')->put('instituicao/atualizar/{id}', 'instituicaoController@atualizar');
+  Route::name('instituicao.deletar')->get('instituicao/deletar/{id}', 'instituicaoController@deletar');
+});
+
 
 # Entrada
 Route::get('/', function() { return redirect()->route('login'); });
