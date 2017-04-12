@@ -12,6 +12,8 @@ class TurnoController extends Controller
     public function index() {
         $turnos = Turno::join('horarios', 'turnos.id', '=', 'horarios.id')->get();
 
+
+
         return view('turno.index', compact('turnos'));
     }
 
@@ -21,20 +23,26 @@ class TurnoController extends Controller
     }
 
     public function atualizar(Request $request, $id){
-         try{
+        try{
             DB::transaction(function () use ($request, $id) {
 
                 $turno = Turno::findOrFail($id);
 
-                $dataForm = $request->all();
-
-                $turno->update($dataForm);
-
-                $turno->horarios()->sync($dataForm['turno_id']);
+                $turno->update($request->all());
                 
+                $turno->horarios()->sync([]);
+
+                $horarios = $request->input('horario');
+
+                foreach ($horarios as $horario) {
+                    $horario = Horario::firstOrCreate($horario);
+                
+                    $turno->horarios()->attach($horario);
+                }
             }, 3);
 
             return redirect()->route('turnos')->withSuccess('Edição realizada com sucesso');
+        
         }catch(\Exception $e){
             return redirect()->route('turno.editar', $id)->withError('Erro na edição!');
         }
