@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Curso as Curso;
-use App\Models\TipoSala;
+use App\Models\TipoSala as TipoSala;
 
 class Disciplina extends Model{
 
