@@ -25,6 +25,7 @@ CREATE TABLE funcionarios(
 	endereco VARCHAR(255) NOT NULL,
 	foto VARCHAR(255) NOT NULL,
 	prontuario VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
 	`password` VARCHAR(255) NOT NULL,
 	remember_token CHAR(100),	
 	CONSTRAINT PRIMARY KEY(id)
