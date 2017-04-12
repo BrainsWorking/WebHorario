@@ -1,6 +1,6 @@
 <?php
 
-//Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
   # Entrada
   Route::name('home')->get('/home', function () { return view('welcome'); });
 
@@ -57,7 +57,7 @@
 
   #INSTITUIÇÃO
   Route::name('instituicao')->get('instituicao', function (){ return view('instituicao.formInstituicao'); });
-//});
+});
 
 # Entrada
 Route::get('/', function() { return redirect()->route('login'); });
