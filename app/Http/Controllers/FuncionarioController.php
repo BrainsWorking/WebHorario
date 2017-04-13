@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\Validator;
 class FuncionarioController extends Controller {
 
   public function index() { 
-    $cargos = Cargos::all();
+    $funcionarios = Funcionario::orderBy('nome', 'asc')->paginate();
 
-    return view('funcionario.index', compact('cargos'))->paginate(); 
+    return view('funcionario.index', compact('funcionarios')); 
   }
 
   public function cadastrar(Request $request) {
-    $cargos = Cargos::pluck('id', 'nome');
+    $cargos = Cargo::pluck('id', 'nome');
 
     return view('funcionario.formFuncionario', compact('cargos'));
   }
@@ -28,7 +28,7 @@ class FuncionarioController extends Controller {
   }
 
   public function editar($id = null) {
-    $cargos = Cargos::pluck('id', 'nome');
+    $cargos = Cargo::pluck('id', 'nome');
     $funcionario = is_null($id) ? Auth::user() : Funcionario::findOrFail($id);
 
     return view('funcionario.formFuncionario', compact('cargos', 'funcionario'));

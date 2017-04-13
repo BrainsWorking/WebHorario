@@ -87,9 +87,9 @@
                             <span class="glyphicon glyphicon-apple"></span> <span class="sidebar-label">Cargos</span>
                         </a>
                     </li>                    
-                    <li class="{{ setActive('pessoa') }}">
-                        <a href="{{ route('pessoas') }}">
-                            <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Pessoas</span>
+                    <li class="{{ setActive('funcionario') }}">
+                        <a href="{{ route('funcionarios') }}">
+                            <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Funcionários</span>
                         </a>
                     </li>
                     <li class="{{ setActive('coordenador') }}">
