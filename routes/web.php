@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('funcionario.deletar')->get('funcionario/deletar/{id}', 'FuncionarioController@deletar');
 
     #COORDENADORES
-    Route::name('coordenador')->get('coordenadores', 'CoordenadorController@index');
+    Route::name('coordenadores')->get('coordenadores', 'CoordenadorController@index');
     Route::name('coordenador.cadastrar')->get('coordenador/cadastrar', 'CoordenadorController@cadastrar');
     Route::name('coordenador.editar')->get('coordenador/editar/{id}', 'CoordenadorController@editar');
     Route::name('coordenador.salvar')->post('coordenador/salvar', 'CoordenadorController@salvar');
