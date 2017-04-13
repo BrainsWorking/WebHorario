@@ -93,7 +93,7 @@
                         </a>
                     </li>
                     <li class="{{ setActive('coordenador') }}">
-                        <a href="{{ route('coordenador') }}">
+                        <a href="{{ route('coordenadores') }}">
                             <span class="glyphicon glyphicon-bullhorn"></span> <span class='sidebar-label'>Coordenadores</span>
                         </a>
                     </li>

@@ -21,14 +21,12 @@
             <tbody>
 
             @forelse ($cursos as $curso)
-                @if($curso->funcionario->isNotEmpty())
                 <tr class="table-line">
                     <td class="text-center search">{{ $curso->nome }}</td>
-                    <td class="text-center search">{{ $curso->funcionario->first()->nome }}</td>
+                    <td class="text-center search">{{ $curso->funcionario->nome }}</td>
                     <td class="text-center"><a href="{{ route('coordenador.editar', $curso->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
                     <td class="text-center"><a href="{{ route('coordenador.deletar', $curso->id) }}" class="table-delete confirmar"><span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
-                @endif
             @empty
                 <tr class="text-center">
                     <td colspan="5"><h4>Não há coordenadores cadastrados</h4></td>
