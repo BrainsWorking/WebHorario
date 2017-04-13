@@ -50,19 +50,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('cargo.deletar')->get('cargo/deletar/{id}', 'CargoController@deletar');
 
     #PESSOAS
-<<<<<<< HEAD
-    Route::name('pessoas')->get('pessoas', 'FuncionarioController@index');
-    Route::name('pessoa.cadastrar')->get('pessoa/cadastrar', function () {
-        return view('pessoa.formPessoa');
-    });
-=======
     Route::name('funcionarios')->get('funcionarios', 'FuncionarioController@index');
     Route::name('funcionario.cadastrar')->get('funcionario/cadastrar', 'FuncionarioController@cadastrar');
     Route::name('funcionario.editar')->get('funcionario/editar/{id}', 'FuncionarioController@editar');
     Route::name('funcionario.salvar')->post('funcionario/salvar', 'FuncionarioController@salvar');
     Route::name('funcionario.atualizar')->put('funcionario/atualizar/{id}', 'FuncionarioController@atualizar');
     Route::name('funcionario.deletar')->get('funcionario/deletar/{id}', 'FuncionarioController@deletar');
->>>>>>> 37e4b9b75a9257dfbc57148dece545ad58af3723
+
 
     #COORDENADORES
     Route::name('coordenador')->get('coordenadores', 'CoordenadorController@index');
