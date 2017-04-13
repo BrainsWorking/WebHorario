@@ -22,7 +22,7 @@
                 <div class="col-xs-6 col-sm-6">
                     <a href="{{ route('home') }}">
                         <img class="img-responsive webhorario-logo pull-left" src="{{ asset('/img/webhorario.png') }}">
-                        <h1 class="hidden-xs">Webhorário</h1>
+                        <h3 class="hidden-xs">WebHorário</h3>
                     </a>
                 </div>
                 <div class="col-xs-6 col-sm-6">

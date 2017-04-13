@@ -23,7 +23,7 @@
                 <div class="col-xs-6 col-sm-6">
                     <a href="{{ route('login') }}">
                         <img class="img-responsive webhorario-logo pull-left" src="{{ asset('/img/webhorario.png') }}">
-                        <h1 class="hidden-xs">Webhorário</h1>
+                        <h3 class="hidden-xs">WebHorário</h3>
                     </a>
                 </div>
                 <div class="col-xs-6 col-sm-6">
@@ -47,6 +47,7 @@
 
                         <div class="control-group form-group">
                             {!! Form::label('password', 'Senha', ['class' => 'control-label']) !!}
+                            <a class="right control-label" href="#">Esqueceu sua senha?</a>
                             <div class="input-group">
                                 {!! Form::password('password', ['class' => 'form-control senha', 'required']) !!}
                                 <span class="input-group-addon" data-show="0" style="cursor: pointer">
@@ -55,9 +56,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-log-in"></span> Entrar</button>
-
-                        <a class="btn btn-default btn-sm" href="#"><span class="glyphicon glyphicon-repeat"></span> Esqueci minha senha</a>
+                        <button type="submit" class="btn btn-success right"><span class="glyphicon glyphicon-log-in"></span> Entrar</button>
 
                         {!! Form::close() !!}
                     </div>
@@ -87,6 +86,7 @@
 <script type="text/javascript" src="{{ asset('/js/jquery-3.2.0.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/login.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/footer.js') }}"></script>
 @yield('scripts')
 
 </body>
