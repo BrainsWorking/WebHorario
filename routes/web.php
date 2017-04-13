@@ -1,6 +1,6 @@
 <?php
 
-// Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
     # Entrada
     Route::name('home')->get('/home', function () {
         return view('welcome');
@@ -72,8 +72,7 @@
     Route::name('instituicao.salvar')->post('instituicao/salvar', 'InstituicaoController@salvar');
     Route::name('instituicao.atualizar')->put('instituicao/atualizar/{id}', 'InstituicaoController@atualizar');
     Route::name('instituicao.deletar')->get('instituicao/deletar/{id}', 'InstituicaoController@deletar');
-
-// });
+});
 
 # Entrada
 Route::get('/', function () {
