@@ -17,11 +17,11 @@
 
 	<div class="col-lg-8 form-group padding-left-0">
 		{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
-		{!! Form::text('nome', null, ['class' => 'form-control']) !!}
+		{!! Form::text('nome', null, ['class' => 'form-control', 'required']) !!}
 	</div>
 	<div class="col-lg-4 form-group padding-right-0">
 		{!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}
-		{!! Form::text('sigla', null, ['class' => 'form-control']) !!}
+		{!! Form::text('sigla', null, ['class' => 'form-control', 'required']) !!}
 	</div>
 
 	<div class="form-group">
@@ -32,7 +32,7 @@
 	<div class="form-group">
 		{!! Form::label('disciplinas', 'Disciplinas', ['class' => 'control-label']) !!}
 		{!! Form::select('disciplina_id[]', $disciplinas, $disciplina_id, 
-		['required', 'id' => 'disciplina_id', 'class' => 'form-control', 'multiple']) !!}
+		['id' => 'disciplina_id', 'class' => 'form-control', 'multiple']) !!}
 	</div>
 
 	<button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
