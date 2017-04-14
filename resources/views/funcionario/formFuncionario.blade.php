@@ -1,6 +1,6 @@
 @extends('layout.principal')
 
-@section('title', 'Pessoas')
+@section('title', 'Funcionários')
 
 @section('content')
 @parent
@@ -24,12 +24,12 @@
 
     <div class="control-group form-group col-lg-3 padding-left-0">
         {!! Form::label('rg', 'RG', ['class' => 'control-label']) !!}
-        {!! Form::text('rg', null, ['class' => 'form-control rg', 'minlength' => '12','required']) !!}
+        {!! Form::text('rg', null, ['class' => 'form-control mascara-rg', 'minlength' => '12','required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-3 padding-right-0">
         {!! Form::label('cpf', 'CPF', ['class' => 'control-label']) !!}
-        {!! Form::text('cpf', null, ['class' => 'form-control cpf', 'minlength' => '14','required']) !!}
+        {!! Form::text('cpf', null, ['class' => 'form-control mascara-cpf', 'minlength' => '14','required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-3 padding-right-0">
@@ -66,7 +66,7 @@
         {!! Form::password('password', ['class' => 'form-control']) !!}
     </div>
 
-    {{-- <div class="control-group form-group padding-left-0 col-lg-3" style="margin-top: 14px;">
+    <div class="control-group form-group padding-left-0 col-lg-3" style="margin-top: 14px;">
         <button type="button" class="btn btn-default add-field form-control">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outros telefones
         </button>
@@ -76,15 +76,15 @@
     <div class="control-group form-group padding-right-0 col-lg-9 telefones">
         {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
         @foreach($funcionario->telefone as $telefone)
-        {!! Form::text('telefone[]', $telefone, ['class' => 'form-control telefone', 'required']) !!}
+        {!! Form::text('telefone[]', $telefone, ['class' => 'form-control mascara-telefone', 'required']) !!}
         @endforeach
     </div>
     @else
     <div class="control-group form-group padding-right-0 col-lg-9 telefones">
         {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
-        {!! Form::text('telefone[]', null, ['class' => 'form-control telefone', 'required']) !!}
+        {!! Form::text('telefone[]', null, ['class' => 'form-control mascara-telefone', 'required']) !!}
     </div>
-    @endif --}}
+    @endif
 
     <button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
 
@@ -94,13 +94,5 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="{{ asset('/js/jquery.mask.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/cadastro_pessoa.js') }}"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    $('.cpf').mask('000.000.000-00', {reverse : true});
-    $('.rg').mask('00.000.000-0', {reverse : true});
-    $('.telefone').mask('(00) 00000-0000');
-});
-</script>
 @endsection

@@ -36,7 +36,7 @@ CREATE TABLE funcionarios(
 
 CREATE TABLE telefones(
 	id INT NOT NULL AUTO_INCREMENT,
-	numero VARCHAR(30) NOT NULL,
+	numero VARCHAR(16) NOT NULL,
 	funcionario_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id),
 	CONSTRAINT FOREIGN KEY(funcionario_id)

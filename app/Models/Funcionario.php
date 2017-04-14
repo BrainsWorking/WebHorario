@@ -2,11 +2,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Cargo;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\Traits\UsuarioTrait as Permissivel;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Traits\UsuarioTrait as Permissivel;
+use App\Models\Cargo;
+use App\Models\Telefone;
 
 class Funcionario extends Authenticatable {
     use Notifiable;
@@ -18,6 +19,10 @@ class Funcionario extends Authenticatable {
 	public $timestamps = false;
     protected $dates = ['deleted_at'];
 	
+    public function telefones(){
+        return $this->hasMany(Telefone::class);
+    }
+
     public function cargos(){
         return $this->belongsToMany(Cargo::class, 'cargos_funcionarios');
     }
