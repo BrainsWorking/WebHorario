@@ -36,12 +36,15 @@ class CursoController extends Controller
             DB::transaction(function () use ($dataForm) {
     	    	$curso = Curso::create($dataForm);
 
-    	    	foreach ($dataForm['disciplina_id'] as $disciplina) {
-    	    		$curso->disciplinas()->attach($disciplina);
-    	    	}
+    	    	if(isset($dataForm['disciplina_id'])){
+                    foreach ((array)$dataForm['disciplina_id'] as $disciplina) {
+                        $curso->disciplinas()->attach($disciplina);
+                    }
+                }
             }, 3);
 	    	return redirect()->route('cursos')->with('success', 'Inclusão realizada com sucesso');
     	}catch(\Exception $e){
+    	    dd($e);
     		return redirect()->route('curso.cadastrar')->with('error', 'Erro na inclusão!');
     	}
     }
@@ -67,11 +70,14 @@ class CursoController extends Controller
 
                 $curso->update($dataForm);
 
-                $curso->disciplinas()->sync($dataForm['disciplina_id']);
+                //dd($dataForm['disciplina_id']);
+
+                $curso->disciplinas()->sync(isset($dataForm['disciplina_id']) ? $dataForm['disciplina_id'] : []);
             }, 3);
 
             return redirect()->route('cursos')->with('success', 'Edição realizada com sucesso');
         }catch(\Exception $e){
+            dd($e);
             return redirect()->route('curso.editar', $id)->with('error', 'Erro na edição!');
         }
     }
