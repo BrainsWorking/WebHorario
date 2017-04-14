@@ -19,13 +19,13 @@
     <div class="container-fluid">
         <div class="row">
             <header class="col-xs-12 col-sm-12">
-                <div class="col-xs-6 col-sm-6">
+                <div class="col-xs-6 col-sm-3">
                     <a href="{{ route('home') }}">
                         <img class="img-responsive webhorario-logo pull-left" src="{{ asset('/img/webhorario.png') }}">
-                        <h1 class="hidden-xs">Webhorário</h1>
+                        <h3 class="hidden-xs">WebHorário</h3>
                     </a>
                 </div>
-                <div class="col-xs-6 col-sm-6">
+                <div class="col-xs-6 col-sm-6 right">
                     <a href="http://www.ifspcaraguatatuba.edu.br" target="_blank"><img class="img-responsive ifsp-logo pull-right" src="{{ asset('/img/ifsp.png') }}"></a>
                 </div>
             </header>
@@ -51,11 +51,10 @@
                     @endif
                 </ul>
             </div>
-
         </div>
         
         <div class="row">
-            <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
+            <div class="col-lg-2 sidebar collapsed-canvas" id='sidebar'>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="{{ setActive('home') }}">
                         <a href="{{ route('home') }}">
@@ -105,10 +104,8 @@
                 </ul>
             </div>
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
-            <div class="col-sm-8 col-md-9 col-lg-10 collapsed-canvas" id="content">
-
+            <div class="col-lg-10 collapsed-canvas" id="content">
                 @include('layout.alerts')
-
                 @yield('content')
             </div>
         </div>
