@@ -6,8 +6,8 @@
 @parent
 
 <div class="">
-    @if(isset($pessoa))
-    {!! Form::model($pessoa, ['route'=>['pessoa.atualizar', $pessoa->id], 'method'=>'PUT']) !!}
+    @if(isset($funcionario))
+    {!! Form::model($funcionario, ['route'=>['funcionario.atualizar', $funcionario->id], 'method'=>'PUT']) !!}
     @else
     {!! Form::open(['method' => 'post', 'files' => true]) !!}
     @endif
@@ -34,14 +34,15 @@
 
     <div class="control-group form-group col-lg-3 padding-right-0">
         {!! Form::label('data_nascimento', 'Data de Nascimento', ['class' => 'control-label']) !!}
-        {!! Form::date('data_nascimento', null, ['class' => 'form-control', 'required']) !!}
+        {!! Form::date('data_nascimento', null, ['class' => 'form-control mascara-data', 'required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-3 padding-right-0">
         {!! Form::label('sexo', 'Sexo', ['class' => 'control-label']) !!}
-        {{-- {!! Form::select('sexo', $sexo, null, ['placeholder' => 'Escolha um sexo', 'required', 'id' => 'sexo_id', 'class' => 'form-control']) !!} --}}
-        <select class="form-control">
+        <select class="form-control" required>
             <option>Escolha um sexo</option>
+            <option value='m'>Masculino</option>
+            <option value='f'>Feminino</option>
         </select>
     </div> 
 
@@ -52,10 +53,7 @@
 
     <div class="form-group">
         {!! Form::label('cargo', 'Cargo', ['class' => 'control-label']) !!}
-        {{-- {!! Form::select('cargo_id', $cargo, null, ['placeholder' => 'Escolha um cargo', 'required', 'id' => 'cargo_id', 'class' => 'form-control']) !!} --}}
-        <select class="form-control">
-            <option>Escolha um cargo</option>
-        </select>
+        {!! Form::select('cargo_id', $cargos, null, ['placeholder' => 'Escolha um cargo', 'required', 'id' => 'cargo_id', 'class' => 'form-control']) !!}
     </div>
 
     <div class="control-group form-group col-lg-6 padding-left-0">
@@ -68,16 +66,16 @@
         {!! Form::password('password', ['class' => 'form-control']) !!}
     </div>
 
-    <div class="control-group form-group padding-left-0 col-lg-3" style="margin-top: 14px;">
+    {{-- <div class="control-group form-group padding-left-0 col-lg-3" style="margin-top: 14px;">
         <button type="button" class="btn btn-default add-field form-control">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outros telefones
         </button>
     </div>
 
-    @if(isset($pessoa))
+    @if(isset($funcionario))
     <div class="control-group form-group padding-right-0 col-lg-9 telefones">
         {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
-        @foreach($pessoa->telefone as $telefone)
+        @foreach($funcionario->telefone as $telefone)
         {!! Form::text('telefone[]', $telefone, ['class' => 'form-control telefone', 'required']) !!}
         @endforeach
     </div>
@@ -86,7 +84,7 @@
         {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
         {!! Form::text('telefone[]', null, ['class' => 'form-control telefone', 'required']) !!}
     </div>
-    @endif
+    @endif --}}
 
     <button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
 

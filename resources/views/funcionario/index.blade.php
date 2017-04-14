@@ -9,6 +9,7 @@
 			@include('layout.barra_superior_index', ["route" => "funcionario.cadastrar"])
 			<th class="text-center"></th>
 			<th class="text-center">Nome</th>
+			<th class="text-center">Prontuário</th>
 			<th class="text-center">Cargo</th>
 			<th class="text-center">Editar</th>
 			<th class="text-center">Remover</th>
@@ -20,14 +21,24 @@
 			<tr class="table-line">
 				<td class="text-center table-more-info"><span class="glyphicon glyphicon-chevron-down"></span></td>
 				<td class="text-center search"> {{ $funcionario->nome }} </td>
-				<td class="text-center search"> {{ $funcionario->cpf }} </td>
-				<td class="text-center"><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
-				<td class="text-center"><a href="" class="table-delete confirmar"><span class="glyphicon glyphicon-remove"></span></a></td>
+				<td class="text-center search"> {{ $funcionario->prontuario }} </td>
+				<td class="text-center search"> {{ $funcionario->listaCargos }} </td>
+				<td class="text-center"><a href="{{ route('funcionario.editar',  $funcionario->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+				<td class="text-center"><a href="{{ route('funcionario.deletar', $funcionario->id) }}" class="table-delete confirmar"><span class="glyphicon glyphicon-remove"></span></a></td>
 			</tr>
 			<tr class="hidden-info">
-				<td colspan="5">
+				<td colspan="6">
 					<div class="hidden-info-content">
-						<p><b>Nome:</b> {{ $funcionario->nome }} </p>
+
+						<div class="col-lg-12 padding-left-0">
+							<div class="col-lg-3 padding-left-0">
+								<p><b>Nome:</b> {{ $funcionario->nome }} </p>
+							</div>
+							<div class="col-lg-3 padding-left-0">
+								<p><b>Prontuário:</b> {{ $funcionario->prontuario }} </p>
+							</div>
+						</div>
+
 						<div class="col-lg-12 padding-left-0">
 							<div class="col-lg-3 padding-left-0">
 								<p><b>CPF:</b> {{ $funcionario->cpf }} </p>
@@ -36,9 +47,10 @@
 								<p><b>Nascimento:</b> {{ $funcionario->data_nascimento }} </p>
 							</div>
 						</div>
+
 						<p><b>Endereço:</b> {{ $funcionario->endereco }} </p>
 						<p><b>Email:</b> {{ $funcionario->email }} </p>
-						<p><b>Cargo:</b> {{ $funcionario->cargo->nome }} </p>
+						<p><b>Cargo:</b> {{ $funcionario->listaCargos }} </p>
 					</div>
 				</td>
 			</tr>

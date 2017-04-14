@@ -142,7 +142,10 @@
 	<script type="text/javascript" src="{{ asset('/js/footer.js') }}"></script>
 
     @yield('scripts')
-
+    <script>
+        $('.mascara-data').mask('00/00/0000');
+        $('.mascara-rg').mask('00.000.000-0');
+    </script>
 </body>
 
 </html>
