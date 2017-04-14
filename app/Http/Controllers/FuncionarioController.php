@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cargo;
 use App\Models\Funcionario;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class FuncionarioController extends Controller {
 
@@ -15,35 +16,39 @@ class FuncionarioController extends Controller {
     return view('funcionario.index', compact('funcionarios')); 
   }
 
-  public function cadastrar(Request $request) {
-    $cargos = Cargo::pluck('id', 'nome');
+  public function cadastrar() {
+    $cargos = Cargo::pluck('nome', 'id');
 
     return view('funcionario.formFuncionario', compact('cargos'));
   }
 
   public function salvar(Resquest $request) {
-    Funcionario::create($request->all());
+    DB::transaction(function () use ($request) {
+      $funcionario = Funcionario::create($request->all());
+      $funcionario->cargos()->sync($request->only('cargos'));
+    }, 3);
 
     return redirect()->route('funcionarios')->withSuccess('Funcionário cadastrado com sucesso!');
   }
 
   public function editar($id = null) {
-    $cargos = Cargo::pluck('id', 'nome');
+    $cargos = Cargo::pluck('nome', 'id');
     $funcionario = is_null($id) ? Auth::user() : Funcionario::findOrFail($id);
 
     return view('funcionario.formFuncionario', compact('cargos', 'funcionario'));
   }
 
-  public function atualizar (Request $request){
+  public function atualizar (Request $request, $id){
     $funcionario = Funcionario::findOrFail($id);
-    $funcionario->fill($request);
-    $funcionario->update();
+    $funcionario->update($request->all());
 
     return redirect()->route('funcionarios')->withSuccess('Funcionário atualizado com sucesso!');
   }
 
   public function deletar($id){
     $funcionario = Funcionario::findOrFail($id)->delete();
+
+    return redirect()->route('funcionarios')->withSuccess('Funcionário desativado com sucesso!');
   }
 
 }
