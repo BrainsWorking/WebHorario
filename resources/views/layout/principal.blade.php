@@ -51,7 +51,6 @@
                     @endif
                 </ul>
             </div>
-
         </div>
         
         <div class="row">
@@ -106,9 +105,7 @@
             </div>
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
             <div class="col-sm-8 col-md-9 col-lg-10 collapsed-canvas" id="content">
-
                 @include('layout.alerts')
-
                 @yield('content')
             </div>
         </div>

@@ -173,6 +173,10 @@ form{
 	margin-top: 10px;
 }
 
+.cancelar{
+	margin-right: 10px;
+}
+
 /* Reparos em componente Bootstrap */
 .padding-left-0{
 	padding-left: 0;

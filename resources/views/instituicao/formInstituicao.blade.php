@@ -29,7 +29,7 @@
         {!! Form::text('telefone', null, ['class' => 'form-control telefone', 'required']) !!}
     </div>
 </div>
-<button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span>
+<button type="submit" class="btn btn-success right"><span class="glyphicon glyphicon-floppy-disk"></span>
     Salvar
 </button>
 
