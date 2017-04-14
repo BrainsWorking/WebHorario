@@ -151,6 +151,14 @@ header a:hover{
 	background-color: #43a047;
 }
 
+.close{
+	opacity: .5;
+}
+
+.close:hover{
+	opacity: .7;
+}
+
 /*Forms*/
 .add-field{
 	margin-top: 10px;

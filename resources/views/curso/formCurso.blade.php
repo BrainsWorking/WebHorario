@@ -30,7 +30,8 @@
 	</div>
 
 	<div class="form-group">
-		{!! Form::label('disciplinas', 'Disciplinas', ['class' => 'control-label']) !!}
+		{!! Form::label('disciplinas', 'Disciplinas cadastradas', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-left-0']) !!}
+		{!! Form::label('disciplinas', 'Disciplinas selecionadas', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-right-0', 'style' => 'padding-left: 5%;']) !!}
 		{!! Form::select('disciplina_id[]', $disciplinas, $disciplina_id, 
 		['id' => 'disciplina_id', 'class' => 'form-control', 'multiple']) !!}
 	</div>

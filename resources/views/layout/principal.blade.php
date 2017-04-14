@@ -54,7 +54,7 @@
         </div>
         
         <div class="row">
-            <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
+            <div class="col-lg-2 sidebar collapsed-canvas" id='sidebar'>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="{{ setActive('home') }}">
                         <a href="{{ route('home') }}">
@@ -104,7 +104,7 @@
                 </ul>
             </div>
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
-            <div class="col-sm-8 col-md-9 col-lg-10 collapsed-canvas" id="content">
+            <div class="col-lg-10 collapsed-canvas" id="content">
                 @include('layout.alerts')
                 @yield('content')
             </div>
