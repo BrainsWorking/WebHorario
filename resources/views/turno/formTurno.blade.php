@@ -34,7 +34,7 @@
 
 		<div class="row">
 			<div class="col-lg-1 padding-left-0"><label class="index">Aula {{$key+1}}</label></div>
-			<div class="col-lg-10">
+			<div class="col-lg-5">
 				<div class="form-group col-lg-6">
 					{!! Form::text($inicio, $horario->inicio, ['class'=>'form-control hora', 'placeholder'=>'Início' ,'minlength' => '5', 'required']) !!}
 				</div>
@@ -70,7 +70,8 @@
 		@endif
 	</div>
 
-	<button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
+	<button type="submit" class="btn btn-success right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
+	<a class="btn btn-danger right cancelar" href="{{ route('turnos') }}"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
 
 	{!! Form::close() !!}
 
@@ -78,6 +79,7 @@
 
 	@section('scripts')
 	<script type="text/javascript" src="{{ asset('/js/cadastro_turno.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/jquery.mask.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){

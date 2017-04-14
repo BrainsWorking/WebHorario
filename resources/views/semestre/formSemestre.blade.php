@@ -27,9 +27,13 @@
         {!! Form::date('fim', null, ['class' => 'form-control data', 'required']) !!}
     </div>
 
-    <button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
-
+    <button type="submit" class="btn btn-success right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
+    <a class="btn btn-danger right cancelar" href="{{ route('semestres') }}"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
 
     {!! Form::close() !!}
 </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
 @endsection

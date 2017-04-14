@@ -32,7 +32,7 @@
                     <div class="hidden-info-content">
                         <p><b>Nome da Disciplina:</b> {{$disciplina->nome}}</p>
                         <p><b>Sigla:</b> {{$disciplina->sigla}}</p>
-                        <p><b>Carga Horária:</b> {{$disciplina->aulasSemanais}}</p>
+                        <p><b>Aulas/Semana:</b> {{$disciplina->aulasSemanais}}</p>
                     </div>
                 </td>
             </tr>
