@@ -26,6 +26,10 @@ class FuncionarioController extends Controller {
     DB::transaction(function () use ($request) {
       $funcionario = Funcionario::create($request->all());
       $funcionario->cargos()->sync($request->only('cargos'));
+
+      foreach($request->only('telefone') as $telefone){
+        $funcionario->telefones()->attach(Telefone::create($telefone));
+      }
     }, 3);
 
     return redirect()->route('funcionarios')->withSuccess('Funcionário cadastrado com sucesso!');
@@ -39,14 +43,32 @@ class FuncionarioController extends Controller {
   }
 
   public function atualizar (Request $request, $id){
-    $funcionario = Funcionario::findOrFail($id);
-    $funcionario->update($request->all());
+    DB::transaction(function () use ($request, $id) {
+      $funcionario = Funcionario::findOrFail($id);
+      $funcionario->update($request->all());
+
+      # FIXIT: Não é necessário deletar, mesmo que funcione, uma boa é editar o telefone mesmo
+      #        Verificar se existe, criar ou atualizar
+      foreach($funcionario->telefones as $telefone) {
+        $telefone->delete();
+      }
+
+      foreach($request->only('telefone') as $telefone){
+        $funcionario->telefones()->attach(Telefone::create($telefone));
+      }
+    }, 3);
 
     return redirect()->route('funcionarios')->withSuccess('Funcionário atualizado com sucesso!');
   }
 
   public function deletar($id){
-    $funcionario = Funcionario::findOrFail($id)->delete();
+    $funcionario = Funcionario::findOrFail($id);
+
+    foreach($funcionario->telefones as $telefone) {
+      $telefone->delete();
+    }
+
+    $funcionario->delete();
 
     return redirect()->route('funcionarios')->withSuccess('Funcionário desativado com sucesso!');
   }
