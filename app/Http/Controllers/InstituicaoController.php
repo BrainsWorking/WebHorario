@@ -31,7 +31,7 @@ class InstituicaoController extends Controller
                 $dataForm = $request->all();
                 Instituicao::create($dataForm);
             }, 3); 
-            return redirect()->route('instituicao')->with('success', 'Disciplina cadastrada.');
+            return redirect()->route('instituicao')->with('success', 'Instituição modificada.');
         }    
         catch(\Exception $e){
             return redirect()->route('instituicao.cadastrar')->with('error', 'Falha ao cadastrar.');
@@ -46,7 +46,7 @@ class InstituicaoController extends Controller
                 $instituicao->update($dataForm);
             }, 3);
 
-            return redirect()->route('instituicao')->with('success', 'Disciplina editada.');
+            return redirect()->route('instituicao')->with('success', 'Instituição editada.');
         }    
         catch(\Exception $e){
             return redirect()->route('instituicao.editar')->with('error', 'Falha ao editar.');
@@ -61,7 +61,7 @@ class InstituicaoController extends Controller
             return redirect()->route('instituicao')->with('success', 'Exclusão realizada com sucesso.');
         }
         catch(\Exception $e){
-            return redirect()->route('cargos')->with('error', 'Erro na exclusão.');
+            return redirect()->route('instituicao')->with('error', 'Erro na exclusão.');
         }
     }
 }
