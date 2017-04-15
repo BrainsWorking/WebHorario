@@ -83,9 +83,13 @@ CREATE TABLE cursos(
 	nome VARCHAR(255) NOT NULL,
 	sigla CHAR(5) NOT NULL,
 	turno_id INT NOT NULL,
+	funcionario_id INT,
 	CONSTRAINT PRIMARY KEY(id),
 	CONSTRAINT FOREIGN KEY(turno_id)
 	REFERENCES turnos(id)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	CONSTRAINT FOREIGN KEY(funcionario_id)
+	REFERENCES funcionarios(id)
 	ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -136,17 +140,6 @@ CREATE TABLE cursos_disciplinas(
 	ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-CREATE TABLE cursos_funcionarios(
-	curso_id INT NOT NULL,
-	funcionario_id INT NOT NULL,
-	CONSTRAINT PRIMARY KEY(curso_id, funcionario_id),
-	CONSTRAINT FOREIGN KEY(curso_id)
-	REFERENCES cursos(id)
-	ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT FOREIGN KEY(funcionario_id)
-	REFERENCES funcionarios(id)
-	ON DELETE RESTRICT ON UPDATE CASCADE
-);
 CREATE TABLE disciplinas_semestres(
 	semestre_id INT NOT NULL,
 	disciplina_id INT NOT NULL,

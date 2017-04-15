@@ -13,7 +13,7 @@ class Funcionario extends Authenticatable {
     use Notifiable;
     use Permissivel;
     use SoftDeletes;
-
+    
     protected $fillable = ['nome', 'prontuario', 'rg', 'sexo', 'cpf', 'data_nascimento', 'endereco', 'foto', 'email', 'password'];
     protected $hidden = [ 'password', 'remember_token' ];
 	public $timestamps = false;

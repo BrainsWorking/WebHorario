@@ -22,7 +22,7 @@ class Curso extends Model
     	return $this->belongsTo(Turno::class);
     }
 
-    public function funcionario(){
-        return $this->belongsTo(Funcionario::class);
+    public function coordenador(){
+    	return $this->belongsTo(Funcionario::class);
     }
 }
