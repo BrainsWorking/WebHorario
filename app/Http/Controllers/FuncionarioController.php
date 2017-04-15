@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Cargo;
 use App\Models\Funcionario;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Telefone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class FuncionarioController extends Controller {
 
@@ -22,13 +24,16 @@ class FuncionarioController extends Controller {
     return view('funcionario.formFuncionario', compact('cargos'));
   }
 
-  public function salvar(Resquest $request) {
+  public function salvar(Request $request) {
     DB::transaction(function () use ($request) {
       $funcionario = Funcionario::create($request->all());
-      $funcionario->cargos()->sync($request->only('cargos'));
+      $funcionario->cargos()->sync($request->input('cargos'));
 
-      foreach($request->only('telefone') as $telefone){
-        $funcionario->telefones()->attach(Telefone::create($telefone));
+      foreach($request->input('telefone') as $numero){
+        $telefone = new Telefone;
+        $telefone->numero = $numero;
+        $telefone->funcionario()->associate($funcionario);
+        $telefone->save();
       }
     }, 3);
 
