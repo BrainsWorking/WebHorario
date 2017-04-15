@@ -9,7 +9,7 @@
     @if(isset($funcionario))
     {!! Form::model($funcionario, ['route'=>['funcionario.atualizar', $funcionario->id], 'method'=>'PUT']) !!}
     @else
-    {!! Form::open(['method' => 'post', 'files' => true]) !!}
+    {!! Form::open(['method' => 'post', 'files' => true, 'route'=>'funcionario.salvar']) !!}
     @endif
 
     <div class="control-group form-group col-lg-8 padding-left-0">
@@ -47,18 +47,23 @@
     </div> 
 
     <div class="control-group form-group">
+        {!! Form::label('email', 'E-Mail', ['class' => 'control-label']) !!}
+        {!! Form::email('email', null, ['class' => 'form-control', 'required']) !!}
+    </div>
+
+    <div class="control-group form-group">
         {!! Form::label('endereco', 'Endereço', ['class' => 'control-label']) !!}
         {!! Form::text('endereco', null, ['class' => 'form-control', 'required']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('cargo', 'Cargo', ['class' => 'control-label']) !!}
-        {!! Form::select('cargo_id', $cargos, null, ['placeholder' => 'Escolha um cargo', 'required', 'id' => 'cargo_id', 'class' => 'form-control']) !!}
+        {!! Form::select('cargos[]', $cargos, null, ['placeholder' => 'Escolha um cargo', 'required', 'id' => 'cargo_id', 'class' => 'form-control']) !!}
     </div>
 
     <div class="control-group form-group col-lg-6 padding-left-0">
-        {!! Form::label('login', 'Login (Prontuário)', ['class' => 'control-label']) !!}
-        {!! Form::text('login', null, ['class' => 'form-control prontuario', 'required']) !!}
+        {!! Form::label('prontuario', 'Prontuário', ['class' => 'control-label']) !!}
+        {!! Form::text('prontuario', null, ['class' => 'form-control prontuario', 'required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-6 padding-right-0">
@@ -66,25 +71,16 @@
         {!! Form::password('password', ['class' => 'form-control']) !!}
     </div>
 
-    <div class="control-group form-group padding-left-0 col-lg-3" style="margin-top: 14px;">
-        <button type="button" class="btn btn-default add-field form-control">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outros telefones
-        </button>
+    <div class="row">
+        <div class="control-group form-group col-lg-6 telefones">
+            {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
+            {!! Form::text('telefone[]', @$funcionario->telefones[0], ['class' => 'form-control mascara-telefone', 'required']) !!}
+        </div>
+        <div class="control-group form-group col-lg-6 telefones">
+            {!! Form::label('telefone', 'Telefone Alternativo', ['class' => 'control-label']) !!}
+            {!! Form::text('telefone[]', @$funcionario->telefones[1], ['class' => 'form-control mascara-telefone', 'required']) !!}
+        </div>
     </div>
-
-    @if(isset($funcionario))
-    <div class="control-group form-group padding-right-0 col-lg-9 telefones">
-        {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
-        @foreach($funcionario->telefone as $telefone)
-        {!! Form::text('telefone[]', $telefone, ['class' => 'form-control mascara-telefone', 'required']) !!}
-        @endforeach
-    </div>
-    @else
-    <div class="control-group form-group padding-right-0 col-lg-9 telefones">
-        {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
-        {!! Form::text('telefone[]', null, ['class' => 'form-control mascara-telefone', 'required']) !!}
-    </div>
-    @endif
 
     <button type="submit" class="btn btn-success right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
     <a class="btn btn-danger right cancelar" href="{{ route('funcionarios') }}"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
@@ -95,5 +91,4 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/js/cadastro_pessoa.js') }}"></script>
 @endsection

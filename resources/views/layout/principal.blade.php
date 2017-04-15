@@ -104,7 +104,7 @@
                 </ul>
             </div>
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
-            <div class="col-lg-10 collapsed-canvas" id="content">
+            <div class="col-lg-10 collapsed-canvas clearfix" id="content">
                 @include('layout.alerts')
                 @yield('content')
             </div>

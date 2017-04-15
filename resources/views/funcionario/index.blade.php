@@ -34,10 +34,13 @@
 							<div class="col-lg-3 padding-left-0">
 								<p><b>Nome:</b> {{ $funcionario->nome }} </p>
 							</div>
+
 							<div class="col-lg-3 padding-left-0">
 								<p><b>Prontuário:</b> {{ $funcionario->prontuario }} </p>
 							</div>
 						</div>
+
+						<p><b>Cargo:</b> {{ $funcionario->listaCargos }} </p>
 
 						<div class="col-lg-12 padding-left-0">
 							<div class="col-lg-3 padding-left-0">
@@ -50,7 +53,11 @@
 
 						<p><b>Endereço:</b> {{ $funcionario->endereco }} </p>
 						<p><b>Email:</b> {{ $funcionario->email }} </p>
-						<p><b>Cargo:</b> {{ $funcionario->listaCargos }} </p>
+						<?php $t = $funcionario->telefones;?>
+						<p><b>Telefone:</b> {{ $t[0] }} </p>
+						@if(!is_null(@$funcionario->telefones[1]))
+							s<p><b>Telefone:</b> {{ $funcionario->telefones[1] }} </p>
+						@endif
 					</div>
 				</td>
 			</tr>

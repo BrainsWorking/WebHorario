@@ -21,12 +21,12 @@ CREATE TABLE funcionarios(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
 	sexo ENUM('M', 'F') NOT NULL,
-	cpf CHAR(11) NOT NULL,
+	cpf CHAR(11) NOT NULL UNIQUE,
 	rg CHAR(9) NOT NULL,
 	data_nascimento DATE NOT NULL,
 	endereco VARCHAR(255) NOT NULL,
 	foto VARCHAR(255) NOT NULL,
-	prontuario VARCHAR(255) NOT NULL,
+	prontuario VARCHAR(255) NOT NULL UNIQUE,
 	email VARCHAR(255) NOT NULL,
 	`password` VARCHAR(255) NOT NULL,
 	remember_token CHAR(100),	
@@ -84,7 +84,7 @@ CREATE TABLE turnos_horarios(
 CREATE TABLE cursos(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
-	sigla CHAR(5) NOT NULL,
+	sigla CHAR(5) NOT NULL UNIQUE,
 	turno_id INT NOT NULL,
 	funcionario_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id),
@@ -99,7 +99,7 @@ CREATE TABLE cursos(
 CREATE TABLE disciplinas(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
-	sigla CHAR(5) NOT NULL,
+	sigla CHAR(5) NOT NULL UNIQUE,
 	aulasSemanais INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id)
 );
