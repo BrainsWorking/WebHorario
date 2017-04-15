@@ -11,7 +11,7 @@ class Funcionario extends Authenticatable {
     use Notifiable;
     use Permissivel;
 
-    protected $fillable = ['nome', 'prontuario', 'sexo', 'cpf', 'data_nascimento', 'endereco', 'foto', 'email', 'password', 'cargo_id'];
+    protected $fillable = ['nome', 'sexo', 'cpf', 'data_nascimento', 'endereco', 'foto', 'prontuario', 'email', 'password', 'cargo_id'];
     protected $hidden = [ 'password', 'remember_token' ];
 	public $timestamps = false;
 	
