@@ -7,11 +7,15 @@ use App\Models\Funcionario;
 
 class Telefone extends Model
 {
-    protected $fillable = ['numero', 'funcionario_id'];
+    protected $fillable = [ 'numero', 'funcionario_id' ];
     public $timestamps = false;
 
     public function funcionario(){
         return belongsTo(Funcionario::class);
+    }
+
+    public function setNumeroAttribute($numero){
+        $this->attributes['numero'] = limpaPontuacao($numero);
     }
 
     public function getNumeroAttribute(){
