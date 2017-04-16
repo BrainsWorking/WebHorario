@@ -56,10 +56,12 @@
         {!! Form::text('endereco', null, ['class' => 'form-control', 'required']) !!}
     </div>
 
-    <div class="form-group">
-        {!! Form::label('cargo', 'Cargo', ['class' => 'control-label']) !!}
-        {!! Form::select('cargos[]', $cargos, null, ['placeholder' => 'Escolha um cargo', 'required', 'id' => 'cargo_id', 'class' => 'form-control']) !!}
-    </div>
+	<div class="form-group">
+		{!! Form::label('cargos', 'Cargos disponíveis', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-left-0']) !!}
+		{!! Form::label('cargos', 'Cargos selecionados', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-right-0', 'style' => 'padding-left: 5%;']) !!}
+		{!! Form::select('cargos[]', $cargos, $cargosFuncionario, 
+		['id' => 'cargos-multiselect', 'class' => 'form-control', 'multiple']) !!}
+	</div>
 
     <div class="control-group form-group col-lg-6 padding-left-0">
         {!! Form::label('prontuario', 'Prontuário', ['class' => 'control-label']) !!}
@@ -74,11 +76,11 @@
     <div class="row">
         <div class="control-group form-group col-lg-6 telefones">
             {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
-            {!! Form::text('telefone[]', @$funcionario->telefones[0], ['class' => 'form-control mascara-telefone', 'required']) !!}
+            {!! Form::text('telefone[0]', $telefones[0], ['class' => 'form-control mascara-telefone', 'required']) !!}
         </div>
         <div class="control-group form-group col-lg-6 telefones">
             {!! Form::label('telefone', 'Telefone Alternativo', ['class' => 'control-label']) !!}
-            {!! Form::text('telefone[]', @$funcionario->telefones[1], ['class' => 'form-control mascara-telefone', 'required']) !!}
+            {!! Form::text('telefone[1]', @$telefones[1], ['class' => 'form-control mascara-telefone', 'required']) !!}
         </div>
     </div>
 
@@ -91,4 +93,7 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
+<script>
+	$('#cargos-multiselect').multiSelect();
+</script>
 @endsection

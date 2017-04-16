@@ -43,8 +43,10 @@ class FuncionarioController extends Controller {
   public function editar($id = null) {
     $cargos = Cargo::pluck('nome', 'id');
     $funcionario = is_null($id) ? Auth::user() : Funcionario::findOrFail($id);
+    $cargosFuncionario = $funcionario->cargos()->pluck('id')->toArray();
+    $telefones = $funcionario->telefones()->pluck('numero')->toArray();
 
-    return view('funcionario.formFuncionario', compact('cargos', 'funcionario'));
+    return view('funcionario.formFuncionario', compact('cargos', 'funcionario', 'cargosFuncionario', 'telefones'));
   }
 
   public function atualizar (Request $request, $id){

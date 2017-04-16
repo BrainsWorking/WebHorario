@@ -53,10 +53,11 @@
 
 						<p><b>Endereço:</b> {{ $funcionario->endereco }} </p>
 						<p><b>Email:</b> {{ $funcionario->email }} </p>
-						<?php $t = $funcionario->telefones;?>
-						<p><b>Telefone:</b> {{ $t[0] }} </p>
+						@if(!is_null(@$funcionario->telefones[0]))
+							<p><b>Telefone:</b> {{ $funcionario->telefones[0]->numero }} </p>
+						@endif
 						@if(!is_null(@$funcionario->telefones[1]))
-							s<p><b>Telefone:</b> {{ $funcionario->telefones[1] }} </p>
+							<p><b>Telefone Alternativo:</b> {{ $funcionario->telefones[1]->numero }} </p>
 						@endif
 					</div>
 				</td>
