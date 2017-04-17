@@ -1,11 +1,6 @@
 <?php
 
 Route::group(['middleware' => 'auth'], function () {
-    # Entrada
-    Route::name('home')->get('/home', function () {
-        return view('welcome');
-    });
-
     # TURNOS
     Route::name('turnos')->get('turnos', 'TurnoController@index');
     Route::name('turno.formTurno')->get('turno/cadastrar', 'TurnoController@cadastrar');
@@ -75,9 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 # Entrada
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+Route::name('home')->get('/', 'HomeController@index');
 
 # Login
 Route::name('login')->get('login', 'Auth\LoginController@index');
