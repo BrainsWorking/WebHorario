@@ -3,8 +3,25 @@ namespace App\Models\Traits;
 
 trait UsuarioTrait{
     public function pode($acao){
-        $perfil = $this->cargo->nome;
-        return in_array($acao, Permissoes::$perfil());
+        $permissoes = new Permissoes;
+
+        foreach($this->cargos as $cargo){
+            $cargo = $cargo->nome;
+
+            if(method_exists($permissoes, $cargo) 
+            && in_array($acao, $permissoes->$cargo())) {
+                return true;
+            }
+        }
+
+        if(method_exists($this, 'isCoordenador') && $this->isCoordenador()){
+            if(method_exists($permissoes, 'coordenador') 
+            && in_array($acao, $permissoes->coordenador())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function naoPode($acao){
