@@ -94,7 +94,6 @@ header a:hover{
 
 #content{
 	margin-bottom: 10px;
-	min-height: 450px;
 }
 
 .top-bar{
@@ -194,3 +193,8 @@ form{
 	padding-right: 0;
 }
 
+
+/* Overrrides multiselect */
+.ms-container .ms-list{
+	height: 150px;
+}

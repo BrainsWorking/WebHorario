@@ -3,15 +3,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> @yield('title') - WebHorário</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ asset('/img/webhorario.ico') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/off-canvas.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-    <title> @yield('title') - WebHorário</title>
-    <link rel="icon" href="{{ asset('/img/webhorario.ico') }}" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="{{ asset('/css/multi-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
     @yield('css')
 </head>
 
@@ -104,7 +105,7 @@
                 </ul>
             </div>
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
-            <div class="col-lg-10 collapsed-canvas" id="content">
+            <div class="col-lg-10 collapsed-canvas clearfix" id="content">
                 @include('layout.alerts')
                 @yield('content')
             </div>
@@ -137,9 +138,26 @@
     <script type="text/javascript" src="{{ asset('/js/bootbox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/off-canvas.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/footer.js') }}"></script>
-
+    <script type="text/javascript" src="{{ asset('/js/jquery.mask.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/jquery.multi-select.js') }}"></script>
     @yield('scripts')
+    <script>
+        $('.mascara-data').mask('00/00/0000');
+        $('.mascara-rg').mask('00.000.000-0');
+        $('.mascara-cpf').mask('000.000.000-00');
+        
+        var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 0-0000-0000' : '(00) 0000-00009';
+        }
 
+        spOptions = {
+            onKeyPress: function(val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
+
+        $('.mascara-telefone').mask(SPMaskBehavior, spOptions);
+    </script>
 </body>
 
 </html>
