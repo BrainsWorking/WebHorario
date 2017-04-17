@@ -10,10 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class CursoController extends Controller
 {
-	private $totalPorPag = 10;
-
     public function index() {
-        $cursos = Curso::orderBy('nome', 'asc')->paginate($this->totalPorPag);
+        $cursos = Curso::orderBy('nome', 'asc')->paginate();
 
         return view('curso.index', compact('cursos'));
     }
