@@ -5,6 +5,10 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use \Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -42,9 +46,41 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $e)
     {
-        return parent::render($request, $exception);
+
+        // Por algum motivo a sessão não está dando flash nos erros de HTTP
+        if($this->isHttpException($e)) {
+            switch ($e->getStatusCode()) {
+                case 404:
+                    return redirect()->route('home')->withError('Página não encontrada');
+                break;
+
+                case 500:
+                    return redirect()->route('home')->withError('Erro interno');
+                break;
+
+                default:
+                    return $this->renderHttpException($e);
+                break;
+            }
+        }
+
+        if($e instanceof ModelNotFoundException){
+            $modelo = explode('\\',$e->getModel());
+            $modelo = end($modelo);
+            return redirect()->back()->withError("Não foi possível encontrar o $modelo solicitado");
+        }
+
+        if (config('app.debug') && $this->shouldReport($e) && !$request->ajax()) {
+            $whoops = new \Whoops\Run;
+            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+            $whoops->register();
+
+            return $whoops->handleException($e);
+        }
+
+        return parent::render($request, $e);
     }
 
     /**
