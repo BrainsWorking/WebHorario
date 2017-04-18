@@ -27,6 +27,17 @@
         {!! Form::date('fim', null, ['class' => 'form-control data', 'required']) !!}
     </div>
 
+    <div class="form-group">
+        <label class="control-label">SELECIONE AS DISCIPLINAS QUE SERÃO OFERECIDAS NO SEMESTRE</label>
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('disciplinas', 'Disciplinas cadastradas', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-left-0']) !!}
+        {!! Form::label('disciplinas', 'Disciplinas selecionadas', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-right-0', 'style' => 'padding-left: 5%;']) !!}
+        {!! Form::select('disciplina_id[]', $disciplinas, $disciplina_id, 
+        ['id' => 'disciplina_id', 'class' => 'form-control', 'multiple']) !!}
+    </div>
+
     <button type="submit" class="btn btn-success right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
     <a class="btn btn-danger right cancelar" href="{{ route('semestres') }}"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
 
@@ -35,5 +46,8 @@
 @endsection
 
 @section('scripts')
+    <script>
+        $('#disciplina_id').multiSelect();
+    </script>
     <script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
 @endsection
