@@ -76,7 +76,7 @@
     <div class="row">
         <div class="control-group form-group col-lg-6 telefones">
             {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
-            {!! Form::text('telefone[0]', $telefones[0], ['class' => 'form-control mascara-telefone', 'required']) !!}
+            {!! Form::text('telefone[0]', @$telefones[0], ['class' => 'form-control mascara-telefone', 'required']) !!}
         </div>
         <div class="control-group form-group col-lg-6 telefones">
             {!! Form::label('telefone', 'Telefone Alternativo', ['class' => 'control-label']) !!}
