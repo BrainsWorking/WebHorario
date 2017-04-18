@@ -33,6 +33,10 @@
 							<p><b>Identificação do Semestre:</b> {{ $semestre->nome }} </p>
 							<p><b>Data de Início:</b> {{ converterDataBrasil($semestre->inicio) }} </p>
 							<p><b>Data Fim:</b> {{ converterDataBrasil($semestre->fim) }} </p>
+							<p><b>Disciplinas Ofertadas:</b></p>
+							@foreach($semestre->disciplinas as $disciplina)
+								<span class="col-lg-2 text-center">{{ $disciplina['sigla'] .' - '. $disciplina['nome'] }}</span>
+							@endforeach
 						</div>
 					</td>
 				</tr>

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Curso as Curso;
 use App\Models\TipoSala as TipoSala;
+use App\Models\Semestre as Semestre;
 
 class Disciplina extends Model{
 
@@ -18,6 +19,10 @@ class Disciplina extends Model{
 
     public function tipoSalas(){
         return $this->belongsToMany(TipoSala::class, 'disciplinas_tiposSalas');
+    }
+
+    public function semestres(){
+    	return $this->belongsToMany(Semestre::class, 'disciplinas_semestres');
     }
     
 }
