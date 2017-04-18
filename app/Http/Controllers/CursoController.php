@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Turno;
+use App\Models\Funcionario;
 use App\Models\Disciplina;
 use Illuminate\Support\Facades\DB;
 
@@ -19,15 +20,24 @@ class CursoController extends Controller
     public function cadastrar(){
     	$turnos = Turno::pluck('nome', 'id');
     	$disciplinas = Disciplina::pluck('nome', 'id');
-        $disciplina_id = array();
+        $funcionarios = Funcionario::all();
 
-    	return view('curso.formCurso', compact('turnos', 'disciplinas', 'disciplina_id'));
+        # O for abaixo remove os funcionários que já são coordenadores de curso para que o mesmos
+        # não sejam coordenadores em mais de um curso
+        foreach($funcionarios as $key => $funcionario){
+            if($funcionario->isCoordenador()){
+                unset($funcionarios[$key]);
+            }
+        }
+        $funcionarios = $funcionarios->pluck('nome', 'id');
+
+    	return view('curso.formCurso', compact('turnos', 'disciplinas', 'funcionarios'));
     }
 
     public function salvar(Request $request){
         $dataForm = $request->all();
 
-        DB::transaction(function () use ($dataForm) {
+        DB::transaction(function () use ($request) {
             $curso = Curso::create($dataForm);
 
             if(isset($dataForm['disciplina_id'])){
@@ -43,11 +53,12 @@ class CursoController extends Controller
     public function editar($id){
     	$turnos = Turno::pluck('nome', 'id');
         $disciplinas = Disciplina::pluck('nome', 'id');
+        $funcionarios = Funcionario::pluck('nome', 'id');
         $curso = Curso::find($id);
 
-        $disciplina_id = Curso::find($id)->disciplinas()->pluck('id')->toArray();
+        $disciplina_id = Curso::findOrFail($id)->disciplinas()->pluck('id')->toArray();
 
-        return view('curso.formCurso', compact('turnos', 'disciplinas', 'curso', 'disciplina_id'));
+        return view('curso.formCurso', compact('turnos', 'disciplinas', 'curso', 'disciplina_id', 'funcionarios'));
     }
 
     public function atualizar(Request $request, $id){
