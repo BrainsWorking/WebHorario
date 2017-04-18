@@ -140,6 +140,7 @@
 	<script type="text/javascript" src="{{ asset('/js/footer.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/jquery.mask.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/jquery.multi-select.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/tooltip.js') }}"></script>
     @yield('scripts')
     <script>
         $('.mascara-data').mask('00/00/0000');
