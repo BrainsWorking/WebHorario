@@ -161,7 +161,7 @@ INSERT INTO `funcionarios` (`id`, `nome`, `sexo`, `cpf`, `data_nascimento`, `end
 
 INSERT INTO `cargos` (`id`, `nome`) VALUES ('1', 'Professor');
 INSERT INTO `cargos` (`id`, `nome`) VALUES ('2', 'Diretor');
-INSERT INTO `cargos` (`id`, `nome`) VALUES ('3', 'Coordenador');
+INSERT INTO `cargos` (`id`, `nome`) VALUES ('3', 'Manim da Cantina');
 
 INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('1', '1');
 INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('1', '2');

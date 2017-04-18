@@ -1,5 +1,5 @@
 @extends('layout.principal')
-@section('title', 'Pessoas')
+@section('title', 'Funcionários')
 @section('content')
 @parent
 	
