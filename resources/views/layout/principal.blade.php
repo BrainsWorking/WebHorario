@@ -81,20 +81,10 @@
                         <a href="{{ route('semestres') }}">
                             <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
                         </a>
-                    </li>
-                    <li class="{{ setActive('cargo') }}">
-                        <a href="{{ route('cargos') }}">
-                            <span class="glyphicon glyphicon-apple"></span> <span class="sidebar-label">Cargos</span>
-                        </a>
-                    </li>                    
+                    </li>            
                     <li class="{{ setActive('funcionario') }}">
                         <a href="{{ route('funcionarios') }}">
                             <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Funcionários</span>
-                        </a>
-                    </li>
-                    <li class="{{ setActive('coordenador') }}">
-                        <a href="{{ route('coordenadores') }}">
-                            <span class="glyphicon glyphicon-bullhorn"></span> <span class='sidebar-label'>Coordenadores</span>
                         </a>
                     </li>
                     <li class="{{ setActive('instituicao') }}">
