@@ -3,15 +3,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> @yield('title') - WebHorário</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ asset('/img/webhorario.ico') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/off-canvas.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-    <title> @yield('title') - WebHorário</title>
-    <link rel="icon" href="{{ asset('/img/webhorario.ico') }}" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="{{ asset('/css/multi-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
     @yield('css')
 </head>
 
@@ -19,13 +20,13 @@
     <div class="container-fluid">
         <div class="row">
             <header class="col-xs-12 col-sm-12">
-                <div class="col-xs-6 col-sm-6">
+                <div class="col-xs-6 col-sm-3">
                     <a href="{{ route('home') }}">
                         <img class="img-responsive webhorario-logo pull-left" src="{{ asset('/img/webhorario.png') }}">
-                        <h1 class="hidden-xs">Webhorário</h1>
+                        <h3 class="hidden-xs">WebHorário</h3>
                     </a>
                 </div>
-                <div class="col-xs-6 col-sm-6">
+                <div class="col-xs-6 col-sm-6 right">
                     <a href="http://www.ifspcaraguatatuba.edu.br" target="_blank"><img class="img-responsive ifsp-logo pull-right" src="{{ asset('/img/ifsp.png') }}"></a>
                 </div>
             </header>
@@ -51,11 +52,10 @@
                     @endif
                 </ul>
             </div>
-
         </div>
         
         <div class="row">
-            <div class="col-sm-4 col-md-3 col-lg-2 sidebar collapsed-canvas" id='sidebar'>
+            <div class="col-lg-2 sidebar collapsed-canvas" id='sidebar'>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="{{ setActive('home') }}">
                         <a href="{{ route('home') }}">
@@ -81,20 +81,10 @@
                         <a href="{{ route('semestres') }}">
                             <span class="glyphicon glyphicon-calendar"></span> <span class='sidebar-label'>Semestres</span>
                         </a>
-                    </li>
-                    <li class="{{ setActive('cargo') }}">
-                        <a href="{{ route('cargos') }}">
-                            <span class="glyphicon glyphicon-apple"></span> <span class="sidebar-label">Cargos</span>
-                        </a>
-                    </li>                    
+                    </li>            
                     <li class="{{ setActive('funcionario') }}">
                         <a href="{{ route('funcionarios') }}">
                             <span class="glyphicon glyphicon-user"></span> <span class='sidebar-label'>Funcionários</span>
-                        </a>
-                    </li>
-                    <li class="{{ setActive('coordenador') }}">
-                        <a href="{{ route('coordenador') }}">
-                            <span class="glyphicon glyphicon-bullhorn"></span> <span class='sidebar-label'>Coordenadores</span>
                         </a>
                     </li>
                     <li class="{{ setActive('instituicao') }}">
@@ -105,10 +95,8 @@
                 </ul>
             </div>
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
-            <div class="col-sm-8 col-md-9 col-lg-10 collapsed-canvas" id="content">
-
+            <div class="col-lg-10 collapsed-canvas clearfix" id="content">
                 @include('layout.alerts')
-
                 @yield('content')
             </div>
         </div>
@@ -140,9 +128,27 @@
     <script type="text/javascript" src="{{ asset('/js/bootbox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/off-canvas.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/footer.js') }}"></script>
-
+    <script type="text/javascript" src="{{ asset('/js/jquery.mask.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/jquery.multi-select.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/tooltip.js') }}"></script>
     @yield('scripts')
+    <script>
+        $('.mascara-data').mask('00/00/0000');
+        $('.mascara-rg').mask('00.000.000-0');
+        $('.mascara-cpf').mask('000.000.000-00');
+        
+        var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 0-0000-0000' : '(00) 0000-00009';
+        }
 
+        spOptions = {
+            onKeyPress: function(val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
+
+        $('.mascara-telefone').mask(SPMaskBehavior, spOptions);
+    </script>
 </body>
 
 </html>

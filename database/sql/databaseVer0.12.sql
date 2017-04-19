@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS nexvf4wcb2h7psvd;
 CREATE DATABASE nexvf4wcb2h7psvd;
 USE nexvf4wcb2h7psvd;
 
@@ -20,20 +21,22 @@ CREATE TABLE funcionarios(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
 	sexo ENUM('M', 'F') NOT NULL,
-	cpf CHAR(15) NOT NULL,
+	cpf CHAR(11) NOT NULL UNIQUE,
+	rg CHAR(9) NOT NULL,
 	data_nascimento DATE NOT NULL,
 	endereco VARCHAR(255) NOT NULL,
 	foto VARCHAR(255) NOT NULL,
-	prontuario VARCHAR(255) NOT NULL,
+	prontuario VARCHAR(255) NOT NULL UNIQUE,
 	email VARCHAR(255) NOT NULL,
 	`password` VARCHAR(255) NOT NULL,
 	remember_token CHAR(100),	
+	deleted_at TIMESTAMP NULL,
 	CONSTRAINT PRIMARY KEY(id)
 );
 
 CREATE TABLE telefones(
 	id INT NOT NULL AUTO_INCREMENT,
-	numero VARCHAR(30) NOT NULL,
+	numero VARCHAR(16) NOT NULL,
 	funcionario_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id),
 	CONSTRAINT FOREIGN KEY(funcionario_id)
@@ -81,9 +84,9 @@ CREATE TABLE turnos_horarios(
 CREATE TABLE cursos(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
-	sigla CHAR(5) NOT NULL,
+	sigla CHAR(5) NOT NULL UNIQUE,
 	turno_id INT NOT NULL,
-	funcionario_id INT,
+	funcionario_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id),
 	CONSTRAINT FOREIGN KEY(turno_id)
 	REFERENCES turnos(id)
@@ -96,7 +99,7 @@ CREATE TABLE cursos(
 CREATE TABLE disciplinas(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
-	sigla CHAR(5) NOT NULL,
+	sigla CHAR(5) NOT NULL UNIQUE,
 	aulasSemanais INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id)
 );
@@ -152,3 +155,17 @@ CREATE TABLE disciplinas_semestres(
 	ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+INSERT INTO `funcionarios` (`id`, `nome`, `sexo`, `cpf`, `data_nascimento`, `endereco`, `foto`, `prontuario`, `email`, `password`, `rg`) VALUES ('1', 'Fulano', 'M', '11111111111', '1990-09-12', 'Em casa', 'null.jpg', '1501111', 'fulano@webhorario.com', '$2y$10$8bhPBEPB4mwGOvE.GLC7cOj8xKC7VgTBM43JgcfcF9oYJzX8lUQuS', '111111111');
+INSERT INTO `funcionarios` (`id`, `nome`, `sexo`, `cpf`, `data_nascimento`, `endereco`, `foto`, `prontuario`, `email`, `password`, `rg`) VALUES ('2', 'Ciclano', 'M', '22222222222', '1990-09-12', 'Em casa', 'null.jpg', '1502222', 'ciclano@webhorario.com', '$2y$10$8bhPBEPB4mwGOvE.GLC7cOj8xKC7VgTBM43JgcfcF9oYJzX8lUQuS', '222222222');
+INSERT INTO `funcionarios` (`id`, `nome`, `sexo`, `cpf`, `data_nascimento`, `endereco`, `foto`, `prontuario`, `email`, `password`, `rg`) VALUES ('3', 'Beltrano', 'M', '33333333333', '1990-09-12', 'Em casa', 'null.jpg', '1503333', 'beltrano@webhorario.com', '$2y$10$8bhPBEPB4mwGOvE.GLC7cOj8xKC7VgTBM43JgcfcF9oYJzX8lUQuS', '333333333');
+
+INSERT INTO `cargos` (`id`, `nome`) VALUES ('1', 'Professor');
+INSERT INTO `cargos` (`id`, `nome`) VALUES ('2', 'Diretor');
+INSERT INTO `cargos` (`id`, `nome`) VALUES ('3', 'Manim da Cantina');
+
+INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('1', '1');
+INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('1', '2');
+INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('1', '3');
+INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('2', '2');
+INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('2', '3');
+INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('3', '3');

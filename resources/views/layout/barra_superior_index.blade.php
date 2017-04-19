@@ -1,10 +1,10 @@
 <div class="padding-right-0 padding-left-0 top-bar">
 	<div class="col-sm-8 padding-left-0">
 		<div class="input-group col-lg-12">
+			<input type="text" class="form-control input-filter" placeholder="Pesquisar">
 			<span class="input-group-addon">
 				<i class="glyphicon glyphicon-search"></i>
 			</span>
-			<input type="text" class="form-control input-filter" placeholder="Pesquisar">
 		</div>
 	</div>
 

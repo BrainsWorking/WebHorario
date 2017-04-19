@@ -11,7 +11,7 @@ footer {
 	height: auto;
 	width: 100%;
 	background-color: #EAEAEA;
-	padding: 10px;
+	padding-top: 10px;
 }
 
 body{
@@ -55,11 +55,11 @@ header a:hover{
 }
 
 .ifsp-logo{
-	max-width: 270px;
+	max-width: 210px;
 }
 
 .webhorario-logo{
-	max-width: 70px;
+	max-width: 50px;
 	margin-right: 10px;
 }
 
@@ -94,7 +94,6 @@ header a:hover{
 
 #content{
 	margin-bottom: 10px;
-	min-height: 450px;
 }
 
 .top-bar{
@@ -151,6 +150,14 @@ header a:hover{
 	background-color: #43a047;
 }
 
+.close{
+	opacity: .5;
+}
+
+.close:hover{
+	opacity: .7;
+}
+
 /*Forms*/
 .add-field{
 	margin-top: 10px;
@@ -173,6 +180,10 @@ form{
 	margin-top: 10px;
 }
 
+.cancelar{
+	margin-right: 10px;
+}
+
 /* Reparos em componente Bootstrap */
 .padding-left-0{
 	padding-left: 0;
@@ -182,3 +193,8 @@ form{
 	padding-right: 0;
 }
 
+
+/* Overrrides multiselect */
+.ms-container .ms-list{
+	height: 150px;
+}

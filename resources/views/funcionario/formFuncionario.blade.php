@@ -1,15 +1,15 @@
 @extends('layout.principal')
 
-@section('title', 'Pessoas')
+@section('title', 'Funcionários')
 
 @section('content')
 @parent
 
 <div class="">
-    @if(isset($pessoa))
-    {!! Form::model($pessoa, ['route'=>['pessoa.atualizar', $pessoa->id], 'method'=>'PUT']) !!}
+    @if(isset($funcionario))
+    {!! Form::model($funcionario, ['route'=>['funcionario.atualizar', $funcionario->id], 'method'=>'PUT']) !!}
     @else
-    {!! Form::open(['method' => 'post', 'files' => true]) !!}
+    {!! Form::open(['method' => 'post', 'files' => true, 'route'=>'funcionario.salvar']) !!}
     @endif
 
     <div class="control-group form-group col-lg-8 padding-left-0">
@@ -24,43 +24,48 @@
 
     <div class="control-group form-group col-lg-3 padding-left-0">
         {!! Form::label('rg', 'RG', ['class' => 'control-label']) !!}
-        {!! Form::text('rg', null, ['class' => 'form-control rg', 'minlength' => '12','required']) !!}
+        {!! Form::text('rg', null, ['class' => 'form-control mascara-rg', 'minlength' => '12','required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-3 padding-right-0">
         {!! Form::label('cpf', 'CPF', ['class' => 'control-label']) !!}
-        {!! Form::text('cpf', null, ['class' => 'form-control cpf', 'minlength' => '14','required']) !!}
+        {!! Form::text('cpf', null, ['class' => 'form-control mascara-cpf', 'minlength' => '14','required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-3 padding-right-0">
         {!! Form::label('data_nascimento', 'Data de Nascimento', ['class' => 'control-label']) !!}
-        {!! Form::date('data_nascimento', null, ['class' => 'form-control', 'required']) !!}
+        {!! Form::date('data_nascimento', null, ['class' => 'form-control mascara-data', 'required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-3 padding-right-0">
         {!! Form::label('sexo', 'Sexo', ['class' => 'control-label']) !!}
-        {{-- {!! Form::select('sexo', $sexo, null, ['placeholder' => 'Escolha um sexo', 'required', 'id' => 'sexo_id', 'class' => 'form-control']) !!} --}}
-        <select class="form-control">
+        <select class="form-control" required>
             <option>Escolha um sexo</option>
+            <option value='m'>Masculino</option>
+            <option value='f'>Feminino</option>
         </select>
     </div> 
+
+    <div class="control-group form-group">
+        {!! Form::label('email', 'E-Mail', ['class' => 'control-label']) !!}
+        {!! Form::email('email', null, ['class' => 'form-control', 'required']) !!}
+    </div>
 
     <div class="control-group form-group">
         {!! Form::label('endereco', 'Endereço', ['class' => 'control-label']) !!}
         {!! Form::text('endereco', null, ['class' => 'form-control', 'required']) !!}
     </div>
 
-    <div class="form-group">
-        {!! Form::label('cargo', 'Cargo', ['class' => 'control-label']) !!}
-        {{-- {!! Form::select('cargo_id', $cargo, null, ['placeholder' => 'Escolha um cargo', 'required', 'id' => 'cargo_id', 'class' => 'form-control']) !!} --}}
-        <select class="form-control">
-            <option>Escolha um cargo</option>
-        </select>
-    </div>
+	<div class="form-group">
+		{!! Form::label('cargos', 'Cargos disponíveis', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-left-0']) !!}
+		{!! Form::label('cargos', 'Cargos selecionados', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-right-0', 'style' => 'padding-left: 5%;']) !!}
+		{!! Form::select('cargos[]', $cargos, @$cargosFuncionario, 
+		['id' => 'cargos-multiselect', 'class' => 'form-control', 'multiple']) !!}
+	</div>
 
     <div class="control-group form-group col-lg-6 padding-left-0">
-        {!! Form::label('login', 'Login (Prontuário)', ['class' => 'control-label']) !!}
-        {!! Form::text('login', null, ['class' => 'form-control prontuario', 'required']) !!}
+        {!! Form::label('prontuario', 'Prontuário', ['class' => 'control-label']) !!}
+        {!! Form::text('prontuario', null, ['class' => 'form-control prontuario', 'required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-6 padding-right-0">
@@ -68,41 +73,27 @@
         {!! Form::password('password', ['class' => 'form-control']) !!}
     </div>
 
-    <div class="control-group form-group padding-left-0 col-lg-3" style="margin-top: 14px;">
-        <button type="button" class="btn btn-default add-field form-control">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outros telefones
-        </button>
+    <div class="row">
+        <div class="control-group form-group col-lg-6 telefones">
+            {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
+            {!! Form::text('telefone[0]', @$telefones[0], ['class' => 'form-control mascara-telefone', 'required']) !!}
+        </div>
+        <div class="control-group form-group col-lg-6 telefones">
+            {!! Form::label('telefone', 'Telefone Alternativo', ['class' => 'control-label']) !!}
+            {!! Form::text('telefone[1]', @$telefones[1], ['class' => 'form-control mascara-telefone', 'required']) !!}
+        </div>
     </div>
 
-    @if(isset($pessoa))
-    <div class="control-group form-group padding-right-0 col-lg-9 telefones">
-        {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
-        @foreach($pessoa->telefone as $telefone)
-        {!! Form::text('telefone[]', $telefone, ['class' => 'form-control telefone', 'required']) !!}
-        @endforeach
-    </div>
-    @else
-    <div class="control-group form-group padding-right-0 col-lg-9 telefones">
-        {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
-        {!! Form::text('telefone[]', null, ['class' => 'form-control telefone', 'required']) !!}
-    </div>
-    @endif
-
-    <button type="submit" class="btn btn-success btn-lg right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
-
+    <button type="submit" class="btn btn-success right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
+    <a class="btn btn-danger right cancelar" href="{{ route('funcionarios') }}"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
 
     {!! Form::close() !!}
 </div>
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="{{ asset('/js/jquery.mask.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/js/cadastro_pessoa.js') }}"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    $('.cpf').mask('000.000.000-00', {reverse : true});
-    $('.rg').mask('00.000.000-0', {reverse : true});
-    $('.telefone').mask('(00) 00000-0000');
-});
+<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
+<script>
+	$('#cargos-multiselect').multiSelect();
 </script>
 @endsection

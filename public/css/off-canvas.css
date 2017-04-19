@@ -8,3 +8,25 @@
 
 #content.collapsed-canvas { width: calc(100% - 50px) }
 #content { width: calc(100% - 200px) }
+
+/*
+////////////// Alternativa com tela menor
+#sidebar { overflow-x: hidden }
+#content, #sidebar { transition: .3s ease width }
+
+#sidebar { width: 200px; float: left; }
+#sidebar.collapsed-canvas{ width: 50px; }
+#sidebar .sidebar-label { opacity: 1; transition: .3s ease opacity }
+#sidebar.collapsed-canvas .sidebar-label { opacity: 0; transition: .3s ease opacity }
+
+#content.collapsed-canvas{ margin-left: calc(auto + 50px) }
+#content { 
+  width: 75%;
+  min-width: 300px; 
+  float: none ;
+  background: #EAEAEA;
+  border-radius: 5px;
+  margin: 3px auto; 
+  margin-left: calc(auto + 200px)
+}
+*/

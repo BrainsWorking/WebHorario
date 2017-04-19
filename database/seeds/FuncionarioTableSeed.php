@@ -1,8 +1,7 @@
-<?php
 
+<?php
 use Illuminate\Database\Seeder;
 use App\Models\Funcionario;
-
 class FuncionarioTableSeed extends Seeder
 {
     /**
@@ -21,6 +20,7 @@ class FuncionarioTableSeed extends Seeder
             'foto'				=> 'img/null.jpg',
             'email'             => 'admin@gmail.com',
             'prontuario' 		=> '1512312',
+            'email' => 'admin@admin.com',
             'password' 			=> bcrypt('123456')
         ]);
     }

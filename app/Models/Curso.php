@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\FuncionarioController;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Disciplina as Disciplina;
 use App\Models\Turno as Turno;
@@ -21,7 +22,7 @@ class Curso extends Model
     	return $this->belongsTo(Turno::class);
     }
 
-    public function funcionario(){
-        return $this->belongsToMany(Funcionario::class, 'cursos_funcionarios');
+    public function coordenador(){
+    	return $this->belongsTo(Funcionario::class);
     }
 }

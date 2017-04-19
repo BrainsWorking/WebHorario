@@ -1,11 +1,6 @@
 <?php
 
 Route::group(['middleware' => 'auth'], function () {
-    # Entrada
-    Route::name('home')->get('/home', function () {
-        return view('welcome');
-    });
-
     # TURNOS
     Route::name('turnos')->get('turnos', 'TurnoController@index');
     Route::name('turno.formTurno')->get('turno/cadastrar', 'TurnoController@cadastrar');
@@ -59,7 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     #COORDENADORES
-    Route::name('coordenador')->get('coordenadores', 'CoordenadorController@index');
+    Route::name('coordenadores')->get('coordenadores', 'CoordenadorController@index');
     Route::name('coordenador.cadastrar')->get('coordenador/cadastrar', 'CoordenadorController@cadastrar');
     Route::name('coordenador.editar')->get('coordenador/editar/{id}', 'CoordenadorController@editar');
     Route::name('coordenador.salvar')->post('coordenador/salvar', 'CoordenadorController@salvar');
@@ -76,9 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 # Entrada
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+Route::name('home')->get('/', 'HomeController@index');
 
 # Login
 Route::name('login')->get('login', 'Auth\LoginController@index');
