@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('funcionario.atualizar')->put('funcionario/atualizar/{id}', 'FuncionarioController@atualizar');
     Route::name('funcionario.deletar')->get('funcionario/deletar/{id}', 'FuncionarioController@deletar');
 
+
     #COORDENADORES
     Route::name('coordenadores')->get('coordenadores', 'CoordenadorController@index');
     Route::name('coordenador.cadastrar')->get('coordenador/cadastrar', 'CoordenadorController@cadastrar');
