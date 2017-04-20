@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Fpa;
+use App\Models\Disciplina;
 
 class Semestre extends Model
 {
@@ -12,5 +14,9 @@ class Semestre extends Model
 
     public function disciplinas(){
         return $this->belongsToMany(Disciplina::class, 'disciplinas_semestres');
+    }
+
+     public function fpas(){
+        return $this->belongsToMany(Fpa::class, 'fpas');
     }
 }
