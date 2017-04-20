@@ -3,17 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Fpa;
+use App\Models\Disciplina;
 
 class Semestre extends Model
 {
-	public $timestamps = false;
-	
     protected $fillable = ['nome', 'inicio', 'fim'];
+    public $timestamps = false;
 
     public function disciplinas() {
         return $this->belongsToMany(Disciplina::class, 'disciplinas_semestres');
     }
-
+  
+    public function fpas(){
+        return $this->belongsToMany(Fpa::class, 'fpas');
+    }
+  
     public function setInicioAttribute($data) {
         $this->attributes['inicio'] = converterDataBrasi($data);
     }
@@ -36,6 +41,5 @@ class Semestre extends Model
         $fim       = $this->attributes['fim'];
 
         return ($inicio < $dataAtual && $dataAtual < $fim);
-
     }
 }

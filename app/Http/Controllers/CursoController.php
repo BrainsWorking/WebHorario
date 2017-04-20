@@ -37,7 +37,7 @@ class CursoController extends Controller
     public function salvar(Request $request){
         $dataForm = $request->all();
 
-        DB::transaction(function () use ($request) {
+        DB::transaction(function () use ($dataForm) {
             $curso = Curso::create($dataForm);
 
             if(isset($dataForm['disciplina_id'])){

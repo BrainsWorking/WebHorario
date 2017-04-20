@@ -59,7 +59,7 @@
 	<div class="form-group">
 		{!! Form::label('cargos', 'Cargos disponíveis', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-left-0']) !!}
 		{!! Form::label('cargos', 'Cargos selecionados', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-right-0', 'style' => 'padding-left: 5%;']) !!}
-		{!! Form::select('cargos[]', $cargos, $cargosFuncionario, 
+		{!! Form::select('cargos[]', $cargos, @$cargosFuncionario, 
 		['id' => 'cargos-multiselect', 'class' => 'form-control', 'multiple']) !!}
 	</div>
 
@@ -76,7 +76,7 @@
     <div class="row">
         <div class="control-group form-group col-lg-6 telefones">
             {!! Form::label('telefone', 'Telefone', ['class' => 'control-label']) !!}
-            {!! Form::text('telefone[0]', $telefones[0], ['class' => 'form-control mascara-telefone', 'required']) !!}
+            {!! Form::text('telefone[0]', @$telefones[0], ['class' => 'form-control mascara-telefone', 'required']) !!}
         </div>
         <div class="control-group form-group col-lg-6 telefones">
             {!! Form::label('telefone', 'Telefone Alternativo', ['class' => 'control-label']) !!}
