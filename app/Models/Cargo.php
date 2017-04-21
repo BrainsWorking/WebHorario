@@ -7,7 +7,7 @@ use App\Models\Funcionario;
 
 class Cargo extends Model {
 	
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome', 'sigla'];
 	public $timestamps = false;
 
     public function funcionarios(){

@@ -14,6 +14,7 @@ CREATE TABLE instituicoes(
 CREATE TABLE cargos(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
+	sigla VARCHAR(6),
 	CONSTRAINT PRIMARY KEY(id)
 );
 
@@ -195,9 +196,10 @@ INSERT INTO `telefones` (`id`, `numero`, `funcionario_id`) VALUES
 (4, '1236698745' , 3);
 
 # CARGOS
-INSERT INTO `cargos` (`id`, `nome`) VALUES 
-(1, 'Professor'),
-(2, 'Diretor');
+INSERT INTO `cargos` (`id`, `nome`, `sigla`) VALUES 
+(1, 'Professor', null),
+(2, 'Diretor Educacional', 'DAE');
+(3, 'Secretaria', 'CRA');
 
 # CARGOS DOS FUNCIONARIOS
 INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES 
