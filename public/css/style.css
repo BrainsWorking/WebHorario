@@ -132,6 +132,28 @@ header a:hover{
 	padding-left: 10px;
 }
 
+.hidden-info-content-data{
+	border-color: #adadad;
+	cursor: default;
+	margin-bottom: 3px;
+	width: 24%;
+}
+
+.hidden-info-content-data-horario {
+	border-color: #adadad;
+	cursor: default;
+	padding: 2px;
+	margin: 5px;
+}
+
+.hidden-info-content-data-horario p{
+	margin-bottom: 1px;
+}
+
+.horario-indice{
+	padding-top: 7%;
+}
+
 .table-responsive{
 	padding: 0px;
 	border:0;
