@@ -12,7 +12,7 @@ class Semestre extends Model
     public $timestamps = false;
 
     public function disciplinas() {
-        return $this->belongsToMany(Disciplina::class, 'disciplinas_semestres');
+        return $this->belongsToMany(Disciplina::class, 'disciplinas_semestres')->orderBy('nome', 'asc');
     }
   
     public function fpas(){

@@ -15,7 +15,7 @@ class Curso extends Model
     protected $fillable = ['nome', 'sigla', 'turno_id', 'funcionario_id'];
 
     public function disciplinas(){
-        return $this->belongsToMany(Disciplina::class, 'cursos_disciplinas');
+        return $this->belongsToMany(Disciplina::class, 'cursos_disciplinas')->orderBy('nome', 'asc');;
     }
     
     public function turno(){
