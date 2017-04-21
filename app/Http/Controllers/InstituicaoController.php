@@ -50,7 +50,7 @@ class InstituicaoController extends Controller
     }
 
     public function deletar($id){
-        Instituicao::find($id)->delete();
+        Instituicao::findOrFail($id)->delete();
 
         return redirect()->route('instituicao')->with('success', 'Exclusão realizada com sucesso.');
     }

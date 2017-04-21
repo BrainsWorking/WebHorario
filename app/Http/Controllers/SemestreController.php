@@ -7,8 +7,7 @@ use App\Models\Semestre;
 use App\Models\Disciplina;
 use Illuminate\Support\Facades\DB;
 
-class SemestreController extends Controller
-{
+class SemestreController extends Controller {
 
     public function index(){
     	$semestres = Semestre::orderBy('nome', 'desc')->paginate();
@@ -40,7 +39,7 @@ class SemestreController extends Controller
 
     public function editar($id){
         $disciplinas = Disciplina::pluck('nome', 'id');
-        $semestre = Semestre::find($id);
+        $semestre = Semestre::findOrFail($id);
         $disciplina_id = $semestre->disciplinas()->pluck('id')->toArray();
 
         return view('semestre.formSemestre', compact('semestre', 'disciplinas', 'disciplina_id'));
@@ -50,7 +49,7 @@ class SemestreController extends Controller
         $dataForm = $request->all();
 
         DB::transaction(function() use ($dataForm, $id){
-            $semestre = Semestre::find($id);
+            $semestre = Semestre::findOrFail($id);
             $semestre->update($dataForm);
             $semestre->disciplinas()->sync(
                 isset($dataForm['disciplina_id']) ? $dataForm['disciplina_id'] : []);
@@ -60,7 +59,7 @@ class SemestreController extends Controller
 
     public function deletar($id){
         DB::transaction(function() use ($id){
-            $semestre = Semestre::find($id);
+            $semestre = Semestre::findOrFail($id);
             $semestre->delete();
         }, 3);
         return redirect()->route('semestres')->with('success', 'Exclusão realizada com sucesso!');

@@ -50,7 +50,7 @@ class DisciplinaController extends Controller
         $dataForm = $request->all();
 
         DB::transaction(function () use ($dataForm, $id) {
-            $disciplina = Disciplina::find($id);
+            $disciplina = Disciplina::findOrFail($id);
             $disciplina->update(array("nome" => $dataForm['nome'][0], "sigla" => $dataForm['sigla'][0],  "aulasSemanais" => $dataForm['aulasSemanais'][0]));
         }, 3);
 

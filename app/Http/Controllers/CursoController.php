@@ -54,7 +54,7 @@ class CursoController extends Controller
     	$turnos = Turno::pluck('nome', 'id');
         $disciplinas = Disciplina::pluck('nome', 'id');
         $funcionarios = Funcionario::pluck('nome', 'id');
-        $curso = Curso::find($id);
+        $curso = Curso::findOrFail($id);
 
         $disciplina_id = Curso::findOrFail($id)->disciplinas()->pluck('id')->toArray();
 
@@ -65,7 +65,7 @@ class CursoController extends Controller
         $dataForm = $request->all();
 
         DB::transaction(function () use ($dataForm, $id) {
-            $curso = Curso::find($id);
+            $curso = Curso::findOrFail($id);
 
             $curso->update($dataForm);
 
@@ -77,7 +77,7 @@ class CursoController extends Controller
 
     public function deletar($id){
         DB::transaction(function () use ($id) {
-            $curso = Curso::find($id);
+            $curso = Curso::findOrFail($id);
 
             $curso->delete();
         }, 3);

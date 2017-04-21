@@ -61,7 +61,7 @@ class TurnoController extends Controller
 
     public function deletar($id){
         DB::transaction(function () use ($id) {
-            $turno = Turno::find($id);
+            $turno = Turno::findOrFail($id);
 
             $turno->delete();
         }, 3);
