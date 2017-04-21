@@ -1,8 +1,14 @@
 <?php
-function setActive($name, $activeClass = 'active') {
-    $active = preg_match('/' . $name . '(\.*\w)*/', Route::currentRouteName());
-    return $active? $activeClass : '' ;
-}
+/*
+|--------------------------------------------------------------------------
+| Helpers/Formatters
+|--------------------------------------------------------------------------
+|
+| Arquivo onde devem ser colocados formatadores e conversores
+| ** FUNÇÕES DE USO EXCLUSÍVO EM CONTROLLERS E MODELS **
+|             ** FAVOR NÃO USAR EM VIEWS **
+|
+*/
 
 function converterDataBrasil($data){
 	$dataFormatada = explode('-', $data);
