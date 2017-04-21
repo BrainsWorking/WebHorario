@@ -53,3 +53,10 @@ function formataTelefone($telefone){
     
     return $telefone;
 }
+
+
+# Converte espaços em dash(_) e retorna tudo em letra minúscula
+function formatarDash($string){
+    $string = preg_replace('/ /', '_', $string);
+    return str;
+}
