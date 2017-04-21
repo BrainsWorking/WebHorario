@@ -128,6 +128,8 @@ CREATE TABLE semestres(
 	nome VARCHAR(255) NOT NULL,
 	inicio DATE NOT NULL,
 	fim DATE NOT NULL,
+	fpaInicio DATE NOT NULL,
+	fpaFim DATE NOT NULL,
 	CONSTRAINT PRIMARY KEY(id)
 );
 
@@ -154,6 +156,7 @@ CREATE TABLE disciplinas_semestres(
 	REFERENCES disciplinas(id)
 	ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
 CREATE TABLE fpas(
 	horario_id INT NOT NULL,
 	semestre_id INT NOT NULL,
@@ -176,17 +179,73 @@ CREATE TABLE fpas(
 
 );
 
-INSERT INTO `funcionarios` (`id`, `nome`, `sexo`, `cpf`, `data_nascimento`, `endereco`, `foto`, `prontuario`, `email`, `password`, `rg`) VALUES ('1', 'Fulano', 'M', '11111111111', '1990-09-12', 'Em casa', 'null.jpg', '1501111', 'fulano@webhorario.com', '$2y$10$8bhPBEPB4mwGOvE.GLC7cOj8xKC7VgTBM43JgcfcF9oYJzX8lUQuS', '111111111');
-INSERT INTO `funcionarios` (`id`, `nome`, `sexo`, `cpf`, `data_nascimento`, `endereco`, `foto`, `prontuario`, `email`, `password`, `rg`) VALUES ('2', 'Ciclano', 'M', '22222222222', '1990-09-12', 'Em casa', 'null.jpg', '1502222', 'ciclano@webhorario.com', '$2y$10$8bhPBEPB4mwGOvE.GLC7cOj8xKC7VgTBM43JgcfcF9oYJzX8lUQuS', '222222222');
-INSERT INTO `funcionarios` (`id`, `nome`, `sexo`, `cpf`, `data_nascimento`, `endereco`, `foto`, `prontuario`, `email`, `password`, `rg`) VALUES ('3', 'Beltrano', 'M', '33333333333', '1990-09-12', 'Em casa', 'null.jpg', '1503333', 'beltrano@webhorario.com', '$2y$10$8bhPBEPB4mwGOvE.GLC7cOj8xKC7VgTBM43JgcfcF9oYJzX8lUQuS', '333333333');
 
-INSERT INTO `cargos` (`id`, `nome`) VALUES ('1', 'Professor');
-INSERT INTO `cargos` (`id`, `nome`) VALUES ('2', 'Diretor');
-INSERT INTO `cargos` (`id`, `nome`) VALUES ('3', 'Manim da Cantina');
+START TRANSACTION;
+# FUNCIONARIOS
+INSERT INTO `funcionarios` (`id`, `nome`, `sexo`, `cpf`, `data_nascimento`, `endereco`, `foto`, `prontuario`, `email`, `password`, `rg`) VALUES 
+(1, 'Fulano'  , 'M', '11111111111', '1990-09-12', 'Em casa', 'null.jpg', '1501111', 'fulano@webhorario.com'  , '$2y$10$8bhPBEPB4mwGOvE.GLC7cOj8xKC7VgTBM43JgcfcF9oYJzX8lUQuS', '111111111'),
+(2, 'Ciclana' , 'F', '22222222222', '1990-09-12', 'Em casa', 'null.jpg', '1502222', 'ciclano@webhorario.com' , '$2y$10$8bhPBEPB4mwGOvE.GLC7cOj8xKC7VgTBM43JgcfcF9oYJzX8lUQuS', '222222222'),
+(3, 'Beltrano', 'M', '33333333333', '1990-09-12', 'Em casa', 'null.jpg', '1503333', 'beltrano@webhorario.com', '$2y$10$8bhPBEPB4mwGOvE.GLC7cOj8xKC7VgTBM43JgcfcF9oYJzX8lUQuS', '333333333');
 
-INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('1', '1');
-INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('1', '2');
-INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('1', '3');
-INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('2', '2');
-INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('2', '3');
-INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES ('3', '3');
+# TELEFONES DOS FUNCIONARIOS
+INSERT INTO `telefones` (`id`, `numero`, `funcionario_id`) VALUES
+(1, '1112345678' , 1),
+(2, '12912345678', 1),
+(3, '12998743210', 2),
+(4, '1236698745' , 3);
+
+# CARGOS
+INSERT INTO `cargos` (`id`, `nome`) VALUES 
+(1, 'Professor'),
+(2, 'Diretor');
+
+# CARGOS DOS FUNCIONARIOS
+INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES 
+(1, 1), (1, 2),
+(2, 2),
+(3, 1);
+
+#SEMESTRES
+INSERT INTO `semestre` (`id`, `nome`, `inicio`, `fim`, `fpaInicio`, `fpaFim`) VALUES
+(1, '2017-1','2017-01-01', '2017-06-20', '2016-10-15', '2016-12-24'),
+(2, '2017-2','2017-07-01', '2017-12-24', '2017-05-15', '2017-06-28');
+
+# TURNOS
+INSERT INTO `turnos` (`id`, `nome`) VALUES
+(1, 'Matutino'),
+(2, 'Vespertino'),
+(3, 'Noturno'),
+(4, 'Integral');
+
+# CURSOS
+INSERT INTO `cursos` (`id`, `nome`, `sigla`, `turno_id`, `funcionario_id`) VALUES
+(1, 'Física', 'FIS', 1, 1),
+(2, 'Informática para Internet', 'WEB', 2, null),
+(3, 'Análise e Desenvolvimento de Sistemas', 'ADS', 3, 2),
+(4, 'Informática Integrado ao Ensino Médio', 'INF', 4, 3);
+
+# DISCIPLINAS
+INSERT INTO `disciplinas` (`id`, `nome`, `sigla`, `aulasSemanais`) VALUES
+( 1, 'Lógica'        , 'LOG', 2),
+( 2, 'Física'        , 'FIS', 4),
+( 3, 'Matemática'    , 'MAT', 2),
+( 4, 'Web'           , 'WEB', 2),
+( 5, 'Projeto'       , 'PRJ', 4),
+( 6, 'Estatística'   , 'EST', 2),
+( 7, 'Geometria'     , 'GEO', 4),
+( 8, 'História'      , 'HIS', 2),
+( 9, 'Termodinâmica' , 'TRM', 4),
+(10, 'Banco de Dados', 'BDD', 2);
+
+
+# DISCIPLINAS DO SEMESTRE
+INSERT INTO `disciplinas_semestres` (`id`, `semestre_id`, `disciplina_id`) VALUES
+(1,1), (1,2), (1,3), (1,4), (1, 5), (1,6), (1,7),
+(2,8), (2,9), (2,4), (2,7), (2,10);
+
+# HORARIOS
+INSERT INTO `horarios` (`id`, `inicio`, `fim`) VALUES
+
+# HORÁRIOS DO TURNO
+INSERT INTO `turnos_horarios` (`id`, `turno_id`, `horario_id`) VALUES
+COMMIT;
