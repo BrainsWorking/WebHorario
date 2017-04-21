@@ -6,7 +6,7 @@ trait UsuarioTrait{
         $permissoes = new Permissoes;
 
         foreach($this->cargos as $cargo){
-            $cargo = $cargo->nome;
+            $cargo = formatarDash($cargo->nome);
 
             if(method_exists($permissoes, $cargo) 
             && in_array($acao, $permissoes->$cargo())) {
@@ -14,9 +14,8 @@ trait UsuarioTrait{
             }
         }
 
-        if(method_exists($this, 'isCoordenador') && $this->isCoordenador()){
-            if(method_exists($permissoes, 'coordenador') 
-            && in_array($acao, $permissoes->coordenador())) {
+        if($this->isCoordenador()){
+            if(in_array($acao, $permissoes->coordenador())) {
                 return true;
             }
         }
