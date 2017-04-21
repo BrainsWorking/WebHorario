@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\FuncionarioController;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Disciplina as Disciplina;
-use App\Models\Turno as Turno;
-use App\Models\Funcionario as Funcionario;
+use App\Models\Disciplina;
+use App\Models\Turno;
+use App\Models\Funcionario;
 
-class Curso extends Model
-{
-	public $timestamps = false;
-
+class Curso extends Model {
+    
     protected $fillable = ['nome', 'sigla', 'turno_id', 'funcionario_id'];
+	public $timestamps = false;
 
     public function disciplinas(){
         return $this->belongsToMany(Disciplina::class, 'cursos_disciplinas');

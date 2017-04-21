@@ -7,27 +7,25 @@ use App\Models\Funcionario;
 use App\Models\Disciplina;
 use App\Models\Horario;
 
-class Fpa extends Model
-{
+class Fpa extends Model {
 
-	public $timestamps = false;
-	
     protected $fillable = ['horario_id', 'semestre_id', 'disciplina_id', 'funcionario_id', 'diaSemana'];
+	public $timestamps = false;
 
     public function horarios(){
-        return $this->belongsToMany(Horario::class, 'horarios');
+        return $this->belongsTo(Horario::class);
     }
 
     public function semestres(){
-        return $this->belongsToMany(Semestre::class, 'semestres');
+        return $this->belongsTo(Semestre::class);
     }
 
     public function disciplinas(){
-        return $this->belongsToMany(Disciplina::class, 'disciplinas');
+        return $this->belongsTo(Disciplina::class);
     }
 
     public function funcionarios(){
-        return $this->belongsToMany(Funcionario::class, 'funcionarios');
+        return $this->belongsTo(Funcionario::class);
     }
 
 }

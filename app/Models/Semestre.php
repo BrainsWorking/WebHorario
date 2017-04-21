@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Fpa;
 use App\Models\Disciplina;
 
-class Semestre extends Model
-{
-    protected $fillable = ['nome', 'inicio', 'fim'];
+class Semestre extends Model {
+
+    protected $fillable = ['nome', 'inicio', 'fim', 'fpaInicio', 'fpaFim'];
     public $timestamps = false;
 
     public function disciplinas() {
@@ -16,29 +16,45 @@ class Semestre extends Model
     }
   
     public function fpas(){
-        return $this->belongsToMany(Fpa::class, 'fpas');
+        return $this->hasMany(Fpa::class);
     }
   
     public function setInicioAttribute($data) {
-        $this->attributes['inicio'] = converterDataBrasi($data);
+        $this->attributes['inicio'] = converterDataIngles($data);
     }
 
     public function getInicioAttribute() {
-        return converterDataIngles($this->attributes['inicio']);
+        return converterDataBrasil($this->attributes['inicio']);
     }
 
     public function setFimAttribute($data) {
-        $this->attributes['fim'] = converterDataBrasi($data);
+        $this->attributes['fim'] = converterDataIngles($data);
     }
 
     public function getFimAttribute() {
-        return converterDataIngles($this->attributes['fim']);
+        return converterDataBrasil($this->attributes['fim']);
     }
 
-    public function getAtivoAttribute() {
+    public function setInicioAttribute($data) {
+        $this->attributes['fpaInicio'] = converterDataIngles($data);
+    }
+
+    public function getInicioAttribute() {
+        return converterDataBrasil($this->attributes['fpaInicio']);
+    }
+
+    public function setFimAttribute($data) {
+        $this->attributes['fpaFim'] = converterDataIngles($data);
+    }
+
+    public function getFimAttribute() {
+        return converterDataBrasil($this->attributes['fpaFim']);
+    }
+
+    public function getFpaAtivoAttribute() {
         $dataAtual = date('Y-m-d');
-        $inicio    = $this->attributes['inicio'];
-        $fim       = $this->attributes['fim'];
+        $inicio    = $this->attributes['fpaInicio'];
+        $fim       = $this->attributes['fpaFim'];
 
         return ($inicio < $dataAtual && $dataAtual < $fim);
     }
