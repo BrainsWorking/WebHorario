@@ -33,12 +33,23 @@
                 <tr class="hidden-info">
                     <td colspan="5">
                         <div class="hidden-info-content">
-                            <p><b>Nome do Turno:</b> {{$turno->nome}}</p>
-                            <p><b>Quantidade de Aulas:</b> {{$turno->quantidadeAulas}}</p>
-                            <p><b>Horarios: </b></p>
-                            @foreach($turno->horarios as $horario)
-                            <span class="col-lg-2 text-center">{{$horario->inicio.'-'.$horario->fim}}</span>
-                            @endforeach                            
+                            <div class="col-lg-3">
+                                <p><b>Nome do Turno:</b> {{$turno->nome}}</p>
+                                <p><b>Quantidade de Aulas:</b> {{$turno->quantidadeAulas}}</p>
+                            </div>
+                            <div class="col-lg-9">
+                                @foreach($turno->horarios as $horario)
+                                <div class="col-lg-2 btn hidden-info-content-data-horario text-center">
+                                    <div class="col-lg-2 horario-indice">
+                                        <p><b>A{{ $loop->iteration }}</b></p>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p><span class="glyphicon glyphicon-log-in"></span> {{$horario->inicio}}h</p>
+                                        <p><span class="glyphicon glyphicon-log-out"></span> {{$horario->fim}}h</p>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
                     </td>
                 </tr>
