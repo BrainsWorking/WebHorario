@@ -27,6 +27,16 @@
         {!! Form::date('fim', null, ['class' => 'form-control data', 'required']) !!}
     </div>
 
+    <div class="control-group form-group col-sm-6 padding-left-0">
+        {!! Form::label('inicio', 'Data de abertura do FPA', ['class' => 'control-label']) !!}
+        {!! Form::date('fpaInicio', null, ['class' => 'form-control data', 'required']) !!}
+    </div>
+
+    <div class="control-group form-group col-sm-6 padding-right-0">
+        {!! Form::label('fim', 'Data de fechamento do FPA', ['class' => 'control-label']) !!}
+        {!! Form::date('fpaFim', null, ['class' => 'form-control data', 'required']) !!}
+    </div>
+
     <div class="form-group">
         <label class="control-label">SELECIONE AS DISCIPLINAS QUE SERÃO OFERECIDAS NO SEMESTRE</label> 
         <a href="#" data-toggle="tooltip" data-placement='right' title="Selecione as disciplinas oferecidas neste semestre. Caso a disciplina desejada não esteja cadastrada, utilize o menu de 'Disciplinas' e cadastre-a. Logo após volte neste formulário utilizando a opção de edição de semestre."><span class="glyphicon glyphicon-info-sign"></span></a>
