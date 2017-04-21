@@ -8,15 +8,12 @@
 	<div class="col-lg-12 table-responsive">
 		<table class="table table-condensed table-hover">
 			<thead>
-				
 				@include('layout.barra_superior_index', ["route" => "semestre.cadastrar"])
-
 				<th class="text-center"></th>
 				<th class="text-center">Identificação</th>
 				<th class="text-center">Editar</th>
 				<th class="text-center">Remover</th>
 			</thead>
-
 
 			<tbody>
 
@@ -33,27 +30,34 @@
 							<p><b>Identificação do Semestre:</b> {{ $semestre->nome }} </p>
 							<p><b>Data de Início:</b> {{ $semestre->inicio }} </p>
 							<p><b>Data Fim:</b> {{ $semestre->fim }} </p>
-							<p><b>Disciplinas Ofertadas:</b></p>
+							
+							@if(!empty($semestre->disciplinas[0]))
+								<p><b>Disciplinas Ofertadas:</b></p>
+							@else
+								<p><b>Cadastre as disciplinas ofertadas utilizando a opção "Editar"</b></p>
+							@endif
+
 							@foreach($semestre->disciplinas as $disciplina)
-								<span class="col-lg-2 text-center">{{ $disciplina['sigla'] .' - '. $disciplina['nome'] }}</span>
+								<span class="btn hidden-info-content-data text-center">{{ $disciplina['sigla'] .' - '. $disciplina['nome'] }}</span>
 							@endforeach
+
 						</div>
 					</td>
 				</tr>
 
 				@empty
-					<tr class="text-center">
-						<td colspan="5"><h4>Não há semestres cadastradas</h4></td>
-					</tr>
+				<tr class="text-center">
+					<td colspan="5"><h4>Não há semestres cadastradas</h4></td>
+				</tr>
 				@endforelse
 
-				</tbody>
-			</table>
+			</tbody>
+		</table>
 
-		</div>
-		@endsection
+	</div>
+	@endsection
 
-		@section('scripts')
-		<script type="text/javascript" src="{{ asset('/js/table.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
-		@endsection
+	@section('scripts')
+	<script type="text/javascript" src="{{ asset('/js/table.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
+	@endsection

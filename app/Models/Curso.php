@@ -13,7 +13,7 @@ class Curso extends Model {
 	public $timestamps = false;
 
     public function disciplinas(){
-        return $this->belongsToMany(Disciplina::class, 'cursos_disciplinas');
+        return $this->belongsToMany(Disciplina::class, 'cursos_disciplinas')->orderBy('nome', 'asc');;
     }
     
     public function turno(){
