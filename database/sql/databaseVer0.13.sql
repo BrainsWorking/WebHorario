@@ -154,13 +154,15 @@ CREATE TABLE disciplinas_semestres(
 	REFERENCES disciplinas(id)
 	ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
 CREATE TABLE fpas(
+	id INT NOT NULL AUTO_INCREMENT,
 	horario_id INT NOT NULL,
 	semestre_id INT NOT NULL,
 	disciplina_id INT NOT NULL,
 	funcionario_id INT NOT NULL, 
 	diaSemana ENUM ('SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'),
-	CONSTRAINT PRIMARY KEY (horario_id, semestre_id, disciplina_id, funcionario_id),
+	CONSTRAINT PRIMARY KEY (id),
 	CONSTRAINT FOREIGN KEY (horario_id)
 	REFERENCES horarios(id)
 	ON DELETE CASCADE ON UPDATE CASCADE,

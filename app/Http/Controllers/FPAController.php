@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Instituicao;
+use App\Models\FPA;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FPAController extends Controller{
     
@@ -12,26 +11,16 @@ class FPAController extends Controller{
         return view('welcome');
     }
 
-    public function salvar(){
-
+    public function salvar(Request $request){
+        Fpa::firstOrCreate($request->all());
     }
 
     public function cadastrar(){
         return view('Fpa.formFpa');
     }
 
-    public function editar(){
-
-    }
-
-    public function atualizar(){
-
-    }
-
-    public function deletar(){
-
+    public function deletar($id){
+        Fpa::findOrFail($id) -> delete();
     }
 
 }
-
-?>
