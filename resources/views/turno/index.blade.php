@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-lg-9">
                                 @foreach($turno->horarios as $horario)
-                                <div class="col-lg-2 btn hidden-info-content-data-horario text-center">
+                                <div class="col-lg-2 btn hidden-info-content-data-turno text-center">
                                     <div class="col-lg-2 horario-indice">
                                         <p><b>A{{ $loop->iteration }}</b></p>
                                     </div>
