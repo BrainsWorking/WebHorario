@@ -27,74 +27,37 @@
 				<tr class="hidden-info">
 					<td colspan="5">
 						<div class="hidden-info-content">
-							<div class="col-lg-3">
-								<p><b>Identificação do Semestre:</b> {{ $semestre->nome }} </p>
-								<p><b>Data de Início:</b> {{ converterDataBrasil($semestre->inicio) }} </p>
-								<p><b>Data Fim:</b> {{ converterDataBrasil($semestre->fim) }} </p>
-
-								@if(!empty($semestre->disciplinas[0]))
+							<p><b>Identificação do Semestre:</b> {{ $semestre->nome }} </p>
+							<p><b>Data de Início:</b> {{ converterDataBrasil($semestre->inicio) }} </p>
+							<p><b>Data Fim:</b> {{ converterDataBrasil($semestre->fim) }} </p>
+							
+							@if(!empty($semestre->disciplinas[0]))
 								<p><b>Disciplinas Ofertadas:</b></p>
-								@else
+							@else
 								<p><b>Cadastre as disciplinas ofertadas utilizando a opção "Editar"</b></p>
-								@endif
-							</div>
-							<div class="col-lg-9">
-								@foreach($semestre->disciplinas as $disciplina)
-								<div class="col-lg-6 hidden-info-content-data-semestre">
-									<div class="col-lg-4">
-										<p><b>{{$disciplina->cursos[0]['nome']}}</b></p>
-									</div>
-									<div class="col-lg-8">
-										<div class="col-lg-1 hidden-info-content-semestre-disciplina">
-											<p data-toggle="tooltip" title="{{$disciplina['nome']}}">
-												{{ $disciplina['sigla']}}
-											</p>
-										</div>
-										<div class="col-lg-1 hidden-info-content-semestre-disciplina">
-											<p data-toggle="tooltip" title="{{$disciplina['nome']}}">
-												{{ $disciplina['sigla']}}
-											</p>
-										</div>
-										<div class="col-lg-1 hidden-info-content-semestre-disciplina">
-											<p data-toggle="tooltip" title="{{$disciplina['nome']}}">
-												{{ $disciplina['sigla']}}
-											</p>
-										</div>
-										<div class="col-lg-1 hidden-info-content-semestre-disciplina">
-											<p data-toggle="tooltip" title="{{$disciplina['nome']}}">
-												{{ $disciplina['sigla']}}
-											</p>
-										</div>
-										<div class="col-lg-1 hidden-info-content-semestre-disciplina">
-											<p data-toggle="tooltip" title="{{$disciplina['nome']}}">
-												{{ $disciplina['sigla']}}
-											</p>
-										</div>
-										<div class="col-lg-1 hidden-info-content-semestre-disciplina">
-											<p data-toggle="tooltip" title="{{$disciplina['nome']}}">
-												{{ $disciplina['sigla']}}
-											</p>
-										</div>
-									</div>
-								</div>
-								@endforeach
-							</div>
-						</td>
-					</tr>
+							@endif
 
-					@empty
-					<tr class="text-center">
-						<td colspan="5"><h4>Não há semestres cadastradas</h4></td>
-					</tr>
-					@endforelse
+							@foreach($semestre->disciplinas as $disciplina)
+								<span class="btn hidden-info-content-data-curso text-center">{{ $disciplina['sigla'] .' - '. $disciplina['nome'] }}</span>
+							@endforeach
 
-				</tbody>
-			</table>
+						</div>
+					</td>
+				</tr>
 
-		</div>
-		@endsection
+				@empty
+				<tr class="text-center">
+					<td colspan="5"><h4>Não há semestres cadastradas</h4></td>
+				</tr>
+				@endforelse
 
-		@section('scripts')
-		<script type="text/javascript" src="{{ asset('/js/table.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
-		@endsection
+			</tbody>
+		</table>
+
+	</div>
+	@endsection
+
+	@section('scripts')
+	<script type="text/javascript" src="{{ asset('/js/table.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
+	@endsection
