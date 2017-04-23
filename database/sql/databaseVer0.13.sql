@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS nexvf4wcb2h7psvd;
-CREATE DATABASE nexvf4wcb2h7psvd;
+CREATE DATABASE nexvf4wcb2h7psvd DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 USE nexvf4wcb2h7psvd;
 
 CREATE TABLE instituicoes(
@@ -159,12 +159,13 @@ CREATE TABLE disciplinas_semestres(
 );
 
 CREATE TABLE fpas(
+	id INT NOT NULL AUTO_INCREMENT,
 	horario_id INT NOT NULL,
 	semestre_id INT NOT NULL,
 	disciplina_id INT NOT NULL,
 	funcionario_id INT NOT NULL, 
 	diaSemana ENUM ('SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'),
-	CONSTRAINT PRIMARY KEY (horario_id, semestre_id, disciplina_id, funcionario_id),
+	CONSTRAINT PRIMARY KEY (id),
 	CONSTRAINT FOREIGN KEY (horario_id)
 	REFERENCES horarios(id)
 	ON DELETE CASCADE ON UPDATE CASCADE,
@@ -247,7 +248,40 @@ INSERT INTO `disciplinas_semestres` (`id`, `semestre_id`, `disciplina_id`) VALUE
 
 # HORARIOS
 INSERT INTO `horarios` (`id`, `inicio`, `fim`) VALUES
+( 1, '06:00', '07:00'),
+( 2, '07:00', '08:00'),
+( 3, '08:00', '09:00'),
+( 4, '09:00', '10:00'),
+( 5, '13:00', '14:00'),
+( 6, '14:00', '15:00'),
+( 7, '15:00', '16:00'),
+( 8, '16:00', '17:00'),
+( 9, '19:00', '20:00'),
+(10, '20:00', '21:00'),
+(11, '21:00', '22:00'),
+(12, '22:00', '23:00');
 
 # HORÁRIOS DO TURNO
 INSERT INTO `turnos_horarios` (`id`, `turno_id`, `horario_id`) VALUES
+( 1, 1,  1),
+( 2, 1,  2),
+( 3, 1,  3),
+( 4, 1,  4),
+( 5, 2,  5),
+( 6, 2,  6),
+( 7, 2,  7),
+( 8, 2,  8),
+( 9, 3,  9),
+(10, 3, 10),
+(11, 3, 11),
+(12, 3, 12),
+(13, 4,  1),
+(14, 4,  2),
+(15, 4,  3),
+(16, 4,  4),
+(17, 4,  5),
+(18, 4,  6),
+(19, 4,  7),
+(20, 4,  8),
+(20, 4,  9);
 COMMIT;
