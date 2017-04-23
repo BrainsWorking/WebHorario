@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 use App\Models\Disciplina;
-use App\Http\Requests\DisciplinaRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DisciplinaController extends Controller
 {
@@ -18,11 +17,11 @@ class DisciplinaController extends Controller
 
     public function editar($id) {
         $disciplina = Disciplina::findOrFail($id);
-        return view('disciplina.cadastrar', compact('disciplina', 'id'));
+        return view('disciplina.formDisciplina', compact('disciplina', 'id'));
     }
 
     public function cadastrar(){
-        return view('disciplina.cadastrar');
+        return view('disciplina.formDisciplina');
     }
     
     public function deletar($id){
@@ -35,23 +34,26 @@ class DisciplinaController extends Controller
         return redirect()->route('disciplinas')->with('success', 'Disciplina excluída');
     }
 
-    public function salvar(DisciplinaRequest $request){
+    public function salvar(Request $request){
         $dataForm = $request->all();
 
         DB::transaction(function () use ($dataForm) {
-            foreach ($dataForm['nome'] as $key => $nome){
+            /*foreach ($dataForm['nome'] as $key => $nome){
                 Disciplina::create(array("nome" => $nome, "sigla" => $dataForm['sigla'][$key], "aulasSemanais" => $dataForm['aulasSemanais'][$key]));
+            }*/
+            foreach ($dataForm['disciplina'] as $disciplina){
+                Disciplina::create($disciplina);
             }
         }, 3);
 
         return redirect()->route('disciplinas')->with('success', 'Disciplina cadastrada');
     }
 
-    public function atualizar(DisciplinaRequest $request, $id){
+    public function atualizar(Request $request, $id){
         $dataForm = $request->all();
 
         DB::transaction(function () use ($dataForm, $id) {
-            $disciplina = Disciplina::findOrFail($id);
+            $disciplina = Disciplina::find($id);
             $disciplina->update(array("nome" => $dataForm['nome'][0], "sigla" => $dataForm['sigla'][0],  "aulasSemanais" => $dataForm['aulasSemanais'][0]));
         }, 3);
 
