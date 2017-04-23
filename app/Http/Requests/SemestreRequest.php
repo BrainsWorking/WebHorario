@@ -12,9 +12,9 @@ class SemestreRequest extends FormRequest {
         return [
             'nome'      => 'string|required',
             'inicio'    => 'date|timeBefore:fim|required',
-            'fim'       => 'date|timeAfter:inicio|required',
+            'fim'       => 'date|required',
             'fpaInicio' => 'date|timeBefore:fpaFim|required',
-            'fpaFim'    => 'date|timeAfter:fpaInicio|required'
+            'fpaFim'    => 'date|required'
         ];
     }
 }
