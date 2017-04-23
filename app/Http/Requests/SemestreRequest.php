@@ -17,4 +17,15 @@ class SemestreRequest extends FormRequest {
             'fpaFim'    => 'date|required'
         ];
     }
+
+    public function all(){
+        $data = parent::all();
+        
+        $data['inicio']    = converterDataIngles($data['inicio']);
+        $data['fim']       = converterDataIngles($data['fim']);
+        $data['fpaInicio'] = converterDataIngles($data['fpaInicio']);
+        $data['fpaFim']    = converterDataIngles($data['fpaFim']);
+
+        return $data;
+    }
 }
