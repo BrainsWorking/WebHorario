@@ -35,19 +35,19 @@ class Semestre extends Model {
         return converterDataBrasil($this->attributes['fim']);
     }
 
-    public function setInicioAttribute($data) {
+    public function setFpaInicioAttribute($data) {
         $this->attributes['fpaInicio'] = converterDataIngles($data);
     }
 
-    public function getInicioAttribute() {
+    public function getFpaInicioAttribute() {
         return converterDataBrasil($this->attributes['fpaInicio']);
     }
 
-    public function setFimAttribute($data) {
+    public function setFpaFimAttribute($data) {
         $this->attributes['fpaFim'] = converterDataIngles($data);
     }
 
-    public function getFimAttribute() {
+    public function getFpaFimAttribute() {
         return converterDataBrasil($this->attributes['fpaFim']);
     }
 

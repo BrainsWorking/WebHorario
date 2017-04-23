@@ -19,22 +19,22 @@
 
     <div class="control-group form-group col-sm-6 padding-left-0">
         {!! Form::label('inicio', 'Data Início', ['class' => 'control-label']) !!}
-        {!! Form::date('inicio', null, ['class' => 'form-control data', 'required']) !!}
+        {!! Form::date('inicio', null, ['class' => 'form-control mascara-data', 'required']) !!}
     </div>
 
     <div class="control-group form-group col-sm-6 padding-right-0">
         {!! Form::label('fim', 'Data Fim', ['class' => 'control-label']) !!}
-        {!! Form::date('fim', null, ['class' => 'form-control data', 'required']) !!}
+        {!! Form::date('fim', null, ['class' => 'form-control mascara-data', 'required']) !!}
     </div>
 
     <div class="control-group form-group col-sm-6 padding-left-0">
         {!! Form::label('inicio', 'Data de abertura do FPA', ['class' => 'control-label']) !!}
-        {!! Form::date('fpaInicio', null, ['class' => 'form-control data', 'required']) !!}
+        {!! Form::date('fpaInicio', null, ['class' => 'form-control mascara-data', 'required']) !!}
     </div>
 
     <div class="control-group form-group col-sm-6 padding-right-0">
         {!! Form::label('fim', 'Data de fechamento do FPA', ['class' => 'control-label']) !!}
-        {!! Form::date('fpaFim', null, ['class' => 'form-control data', 'required']) !!}
+        {!! Form::date('fpaFim', null, ['class' => 'form-control mascara-data', 'required']) !!}
     </div>
 
     <div class="form-group">

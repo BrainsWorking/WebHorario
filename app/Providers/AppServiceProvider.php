@@ -25,11 +25,11 @@ class AppServiceProvider extends ServiceProvider
         View::share('dadosInst', $instituicao);
 
         // regras de validação personalizadas
-        Validator::extend('sex'       , 'CustomValidator@sex');
-        Validator::extend('timeAfter' , 'CustomValidator@timeAfter');
-        Validator::extend('timeBefore', 'CustomValidator@timeBefore');
-        Validator::extend('rg'        , 'CustomValidator@rg');
-        Validator::extend('cpf'       , 'CustomValidator@cpf');
+        Validator::extend('sex'       , 'App\Http\Requests\Validators\CustomValidator@sex');
+        Validator::extend('timeAfter' , 'App\Http\Requests\Validators\CustomValidator@timeAfter');
+        Validator::extend('timeBefore', 'App\Http\Requests\Validators\CustomValidator@timeBefore');
+        Validator::extend('rg'        , 'App\Http\Requests\Validators\CustomValidator@rg');
+        Validator::extend('cpf'       , 'App\Http\Requests\Validators\CustomValidator@cpf');
     }
 
     /**
