@@ -36,13 +36,10 @@ class DisciplinaController extends Controller
 
     public function salvar(Request $request){
         $dataForm = $request->all();
-
+        
         DB::transaction(function () use ($dataForm) {
-            /*foreach ($dataForm['nome'] as $key => $nome){
+            foreach ($dataForm['nome'] as $key => $nome){
                 Disciplina::create(array("nome" => $nome, "sigla" => $dataForm['sigla'][$key], "aulasSemanais" => $dataForm['aulasSemanais'][$key]));
-            }*/
-            foreach ($dataForm['disciplina'] as $disciplina){
-                Disciplina::create($disciplina);
             }
         }, 3);
 
