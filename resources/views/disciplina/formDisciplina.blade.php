@@ -21,15 +21,15 @@
             <div class="disciplinas">
                 <div class="control-group form-group col-sm-6">
                     {!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
-                    {!! Form::text('disciplina[nome]', null, ['class' => 'form-control', 'required']) !!}
+                    {!! Form::text('nome[]', null, ['class' => 'form-control', 'required']) !!}
                 </div>
                 <div class="control-group form-group col-sm-3">
                     {!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}
-                    {!! Form::text('disciplina[sigla]', null, ['class' => 'form-control', 'required', 'maxlength' => '5', 'required']) !!}
+                    {!! Form::text('sigla[]', null, ['class' => 'form-control', 'required', 'maxlength' => '5', 'required']) !!}
                 </div>
                 <div class="control-group form-group col-sm-2">
                     {!! Form::label('aulasSemanais', 'Aulas/semana', ['class' => 'control-label']) !!}
-                    {!! Form::text('disciplina[aulasSemanais]', null, ['class' => 'form-control', 'required']) !!}
+                    {!! Form::text('aulasSemanais[]', null, ['class' => 'form-control', 'required']) !!}
                 </div>
             </div>
         </div>
