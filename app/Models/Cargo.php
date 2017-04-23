@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Funcionario;
 
 class Cargo extends Model {
-	public $timestamps = false;
 	
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome', 'sigla'];
+	public $timestamps = false;
 
     public function funcionarios(){
         return $this->belongsToMany(Funcionario::class, 'cargos_funcionarios');

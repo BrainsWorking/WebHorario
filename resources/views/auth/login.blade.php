@@ -42,21 +42,21 @@
                         {{ csrf_field() }}
                         <div class="control-group form-group">
                             {!! Form::label('prontuario', 'Prontuário', ['class' => 'control-label']) !!}
-                            {!! Form::text('prontuario', null, ['class' => 'form-control', 'required']) !!}
+                            {!! Form::text('prontuario', null, ['class' => 'form-control', 'required', 'autofocus', 'tabindex' => 1]) !!}
                         </div>
 
                         <div class="control-group form-group">
                             {!! Form::label('password', 'Senha', ['class' => 'control-label']) !!}
                             <a class="right control-label" href="#">Esqueceu sua senha?</a>
                             <div class="input-group">
-                                {!! Form::password('password', ['class' => 'form-control senha', 'required']) !!}
+                                {!! Form::password('password', ['class' => 'form-control senha', 'required', 'tabindex' => 2]) !!}
                                 <span class="input-group-addon" data-show="0" style="cursor: pointer">
                                     <i class="glyphicon glyphicon-eye-open"></i>
                                 </span>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-success right"><span class="glyphicon glyphicon-log-in"></span> Entrar</button>
+                        <button type="submit" tabindex='3' class="btn btn-success right"><span class="glyphicon glyphicon-log-in"></span> Entrar</button>
 
                         {!! Form::close() !!}
                     </div>
