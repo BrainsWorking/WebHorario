@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Curso;
 use App\Models\Turno;
 use App\Models\Funcionario;
 use App\Models\Disciplina;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CursoRequest;
 
 class CursoController extends Controller
 {
@@ -34,7 +35,7 @@ class CursoController extends Controller
     	return view('curso.formCurso', compact('turnos', 'disciplinas', 'funcionarios'));
     }
 
-    public function salvar(Request $request){
+    public function salvar(CursoRequest $request){
         $dataForm = $request->all();
 
         DB::transaction(function () use ($dataForm) {
@@ -61,7 +62,7 @@ class CursoController extends Controller
         return view('curso.formCurso', compact('turnos', 'disciplinas', 'curso', 'disciplina_id', 'funcionarios'));
     }
 
-    public function atualizar(Request $request, $id){
+    public function atualizar(CursoRequest $request, $id){
         $dataForm = $request->all();
 
         DB::transaction(function () use ($dataForm, $id) {

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Instituicao;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Http\Requests\InstituicaoRequest;
 use App\Http\Controllers\Session;
+use App\Models\Instituicao;
 
 
 class InstituicaoController extends Controller
@@ -34,13 +35,13 @@ class InstituicaoController extends Controller
         return view('instituicao.formInstituicao', compact('instituicao'));
     }
 
-    public function salvar(Request $request){
+    public function salvar(InstituicaoRequest $request){
         Instituicao::create($request->all());
 
         return redirect()->route('instituicao')->with('success', 'Instituição modificada.');
     }
 
-    public function atualizar(Request $request, $id){
+    public function atualizar(InstituicaoRequest $request, $id){
         $dataForm = $request->all();
 
         $instituicao = Instituicao::findOrFail($id);

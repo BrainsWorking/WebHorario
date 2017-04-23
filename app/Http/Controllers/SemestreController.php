@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Semestre;
 use App\Models\Disciplina;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\SemestreRequest;
 
 class SemestreController extends Controller {
 
@@ -21,7 +22,7 @@ class SemestreController extends Controller {
         return view('semestre.formSemestre', compact('disciplinas', 'disciplina_id'));
     }
 
-    public function salvar(Request $request){
+    public function salvar(SemestreRequest $request){
         $dataForm = $request->all();
 
         DB::transaction(function() use ($dataForm){
@@ -45,7 +46,7 @@ class SemestreController extends Controller {
         return view('semestre.formSemestre', compact('semestre', 'disciplinas', 'disciplina_id'));
     }
 
-    public function atualizar(Request $request, $id){
+    public function atualizar(SemestreRequest $request, $id){
         $dataForm = $request->all();
 
         DB::transaction(function() use ($dataForm, $id){
