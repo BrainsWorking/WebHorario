@@ -17,11 +17,11 @@ class DisciplinaController extends Controller
 
     public function editar($id) {
         $disciplina = Disciplina::findOrFail($id);
-        return view('disciplina.cadastrar', compact('disciplina', 'id'));
+        return view('disciplina.formDisciplina', compact('disciplina', 'id'));
     }
 
     public function cadastrar(){
-        return view('disciplina.cadastrar');
+        return view('disciplina.formDisciplina');
     }
     
     public function deletar($id){
