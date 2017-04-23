@@ -16,8 +16,8 @@ class Funcionario extends Authenticatable {
     
     protected $fillable = ['nome', 'prontuario', 'rg', 'sexo', 'cpf', 'data_nascimento', 'endereco', 'foto', 'email', 'password'];
     protected $hidden = [ 'password', 'remember_token' ];
-	public $timestamps = false;
     protected $dates = ['deleted_at'];
+	public $timestamps = false;
 	
     public function telefones(){
         return $this->hasMany(Telefone::class);
@@ -102,6 +102,10 @@ class Funcionario extends Authenticatable {
 
     public function getCpfAttribute(){
         return formataCPF($this->attributes['cpf']);
+    }
+
+    public function setPasswordAttribute($password){
+        $this->attributes['password'] = bcrypt($password);
     }
 
 }

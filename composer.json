@@ -18,7 +18,8 @@
     },
     "autoload": {
         "files": [
-            "app/Helpers/Formatters.php"
+            "app/Helpers/Formatters.php",
+            "app/Helpers/View.php"
         ],
         "classmap": [
             "database"

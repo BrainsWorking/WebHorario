@@ -85,6 +85,7 @@ return [
     'unique'               => ':attribute já está em uso.',
     'uploaded'             => ':attribute falhou no upload.',
     'url'                  => 'O formato de :attribute é inválido.',
+    'time_before'          => 'Um(a) dos(as) horários/datas iniciais é maior que o(a) final.',
 
     /*
     |--------------------------------------------------------------------------

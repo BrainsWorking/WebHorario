@@ -3,15 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Curso as Curso;
-use App\Models\TipoSala as TipoSala;
-use App\Models\Semestre as Semestre;
+use App\Models\Curso;
+use App\Models\TipoSala;
+use App\Models\Semestre;
 
-class Disciplina extends Model{
-
-	public $timestamps = false;
+class Disciplina extends Model {
 
     protected $fillable = ['nome', 'sigla', 'aulasSemanais'];
+	public $timestamps = false;
     
     public function cursos(){
         return $this->belongsToMany(Curso::class, 'cursos_disciplinas');

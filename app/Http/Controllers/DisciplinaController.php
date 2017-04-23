@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Disciplina;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Models\Disciplina;
+use App\Http\Requests\DisciplinaRequest;
 
 class DisciplinaController extends Controller
 {
@@ -34,7 +35,7 @@ class DisciplinaController extends Controller
         return redirect()->route('disciplinas')->with('success', 'Disciplina excluída');
     }
 
-    public function salvar(Request $request){
+    public function salvar(DisciplinaRequest $request){
         $dataForm = $request->all();
 
         DB::transaction(function () use ($dataForm) {
@@ -46,11 +47,11 @@ class DisciplinaController extends Controller
         return redirect()->route('disciplinas')->with('success', 'Disciplina cadastrada');
     }
 
-    public function atualizar(Request $request, $id){
+    public function atualizar(DisciplinaRequest $request, $id){
         $dataForm = $request->all();
 
         DB::transaction(function () use ($dataForm, $id) {
-            $disciplina = Disciplina::find($id);
+            $disciplina = Disciplina::findOrFail($id);
             $disciplina->update(array("nome" => $dataForm['nome'][0], "sigla" => $dataForm['sigla'][0],  "aulasSemanais" => $dataForm['aulasSemanais'][0]));
         }, 3);
 
