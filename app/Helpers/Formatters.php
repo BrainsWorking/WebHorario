@@ -11,15 +11,23 @@
 */
 
 function converterDataBrasil($data){
-	$dataFormatada = explode('-', $data);
+    if(strpos($data, '-')){
+        $dataFormatada = explode('-', $data);
 
-	return $dataFormatada[2] . "/". $dataFormatada[1] ."/". $dataFormatada[0];
+        return $dataFormatada[2] . "/". $dataFormatada[1] ."/". $dataFormatada[0];
+    }
+
+    return $data;
 }
 
 function converterDataIngles($data){
-    $dataFormatada = explode('/', $data);
+    if(strpos($data, '/')){
+        $dataFormatada = explode('/', $data);
 
-	return $dataFormatada[2] . "-". $dataFormatada[1] ."-". $dataFormatada[0];
+        return $dataFormatada[2] . "-". $dataFormatada[1] ."-". $dataFormatada[0];
+    }
+
+    return $data;
 }
 
 function limpaPontuacao($valor) {
