@@ -199,7 +199,7 @@ INSERT INTO `telefones` (`id`, `numero`, `funcionario_id`) VALUES
 # CARGOS
 INSERT INTO `cargos` (`id`, `nome`, `sigla`) VALUES 
 (1, 'Professor', null),
-(2, 'Diretor Educacional', 'DAE');
+(2, 'Diretor Educacional', 'DAE'),
 (3, 'Secretaria', 'CRA');
 
 # CARGOS DOS FUNCIONARIOS
@@ -209,7 +209,7 @@ INSERT INTO `cargos_funcionarios` (`funcionario_id`, `cargo_id`) VALUES
 (3, 1);
 
 #SEMESTRES
-INSERT INTO `semestre` (`id`, `nome`, `inicio`, `fim`, `fpaInicio`, `fpaFim`) VALUES
+INSERT INTO `semestres` (`id`, `nome`, `inicio`, `fim`, `fpaInicio`, `fpaFim`) VALUES
 (1, '2017-1','2017-01-01', '2017-06-20', '2016-10-15', '2016-12-24'),
 (2, '2017-2','2017-07-01', '2017-12-24', '2017-05-15', '2017-06-28');
 
@@ -242,7 +242,7 @@ INSERT INTO `disciplinas` (`id`, `nome`, `sigla`, `aulasSemanais`) VALUES
 
 
 # DISCIPLINAS DO SEMESTRE
-INSERT INTO `disciplinas_semestres` (`id`, `semestre_id`, `disciplina_id`) VALUES
+INSERT INTO `disciplinas_semestres` (`semestre_id`, `disciplina_id`) VALUES
 (1,1), (1,2), (1,3), (1,4), (1, 5), (1,6), (1,7),
 (2,8), (2,9), (2,4), (2,7), (2,10);
 
@@ -262,26 +262,26 @@ INSERT INTO `horarios` (`id`, `inicio`, `fim`) VALUES
 (12, '22:00', '23:00');
 
 # HORÁRIOS DO TURNO
-INSERT INTO `turnos_horarios` (`id`, `turno_id`, `horario_id`) VALUES
-( 1, 1,  1),
-( 2, 1,  2),
-( 3, 1,  3),
-( 4, 1,  4),
-( 5, 2,  5),
-( 6, 2,  6),
-( 7, 2,  7),
-( 8, 2,  8),
-( 9, 3,  9),
-(10, 3, 10),
-(11, 3, 11),
-(12, 3, 12),
-(13, 4,  1),
-(14, 4,  2),
-(15, 4,  3),
-(16, 4,  4),
-(17, 4,  5),
-(18, 4,  6),
-(19, 4,  7),
-(20, 4,  8),
-(20, 4,  9);
+INSERT INTO `turnos_horarios` (`turno_id`, `horario_id`) VALUES
+( 1,  1),
+( 1,  2),
+( 1,  3),
+( 1,  4),
+( 2,  5),
+( 2,  6),
+( 2,  7),
+( 2,  8),
+( 3,  9),
+( 3, 10),
+( 3, 11),
+( 3, 12),
+( 4,  1),
+( 4,  2),
+( 4,  3),
+( 4,  4),
+( 4,  5),
+( 4,  6),
+( 4,  7),
+( 4,  8),
+( 4,  9);
 COMMIT;

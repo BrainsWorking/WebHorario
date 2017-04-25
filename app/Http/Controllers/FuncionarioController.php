@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Cargo;
-use App\Models\Funcionario;
-use App\Models\Telefone;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Http\Requests\FuncionarioRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Funcionario;
+use App\Models\Telefone;
+use App\Models\Cargo;
 
 class FuncionarioController extends Controller {
 
@@ -24,7 +25,7 @@ class FuncionarioController extends Controller {
     return view('funcionario.formFuncionario', compact('cargos'));
   }
 
-  public function salvar(Request $request) {
+  public function salvar(FuncionarioRequest $request) {
     DB::transaction(function () use ($request) {
       $funcionario = Funcionario::create($request->all());
       $funcionario->cargos()->sync($request->input('cargos'));
@@ -49,7 +50,7 @@ class FuncionarioController extends Controller {
     return view('funcionario.formFuncionario', compact('cargos', 'funcionario', 'cargosFuncionario', 'telefones'));
   }
 
-  public function atualizar (Request $request, $id){
+  public function atualizar (FuncionarioRequest $request, $id){
     DB::transaction(function () use ($request, $id) {
       $funcionario = Funcionario::findOrFail($id);
       $funcionario->update($request->all());

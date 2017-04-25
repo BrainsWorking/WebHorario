@@ -27,21 +27,21 @@ class CargoController extends Controller
     }
 
     public function editar($id){
-    	$cargo = Cargo::find($id);
+    	$cargo = Cargo::findOrFail($id);
 
     	return view('cargo.formCargo', compact('cargo'));
     }
 
     public function atualizar(Request $request, $id){
     		$data = $request->all();
-    		$cargo = Cargo::find($id);
+    		$cargo = Cargo::findOrFail($id);
     		$cargo->update($data);
 
     		return redirect()->route('cargos')->with('success', 'Edição realizada com sucesso');
     }
 
     public function deletar($id){
-    		Cargo::find($id)->delete();
+    		Cargo::findOrFail($id)->delete();
 
     		return redirect()->route('cargos')->with('success', 'Exclusão realizada com sucesso!');
     }

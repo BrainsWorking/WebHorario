@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Turno;
 use App\Models\Horario;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\TurnoRequest;
 
 class TurnoController extends Controller
 {
@@ -21,7 +22,7 @@ class TurnoController extends Controller
         return view('turno.formTurno', compact('turno'));
     }
 
-    public function atualizar(Request $request, $id){
+    public function atualizar(TurnoRequest $request, $id){
         DB::transaction(function () use ($request, $id) {
             $turno = Turno::findOrFail($id);
 
@@ -44,7 +45,7 @@ class TurnoController extends Controller
         return view('turno.formTurno');
     }
 
-    public function salvar(Request $request){
+    public function salvar(TurnoRequest $request){
         DB::transaction(function () use ($request) {
             $turno = Turno::firstOrCreate($request->only(['nome']));
             $horarios = $request->input('horario');
@@ -61,7 +62,7 @@ class TurnoController extends Controller
 
     public function deletar($id){
         DB::transaction(function () use ($id) {
-            $turno = Turno::find($id);
+            $turno = Turno::findOrFail($id);
 
             $turno->delete();
         }, 3);

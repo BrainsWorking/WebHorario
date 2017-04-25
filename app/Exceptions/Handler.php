@@ -57,7 +57,7 @@ class Handler extends ExceptionHandler
                 break;
 
                 case 500:
-                    return redirect()->route('home')->withError('Erro interno');
+                    return redirect()->route('home')->withError('Erro interno, tente novamente');
                 break;
 
                 default:

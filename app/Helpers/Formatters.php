@@ -1,19 +1,33 @@
 <?php
-function setActive($name, $activeClass = 'active') {
-    $active = preg_match('/' . $name . '(\.*\w)*/', Route::currentRouteName());
-    return $active? $activeClass : '' ;
-}
+/*
+|--------------------------------------------------------------------------
+| Helpers/Formatters
+|--------------------------------------------------------------------------
+|
+| Arquivo onde devem ser colocados formatadores e conversores
+| ** FUNÇÕES DE USO EXCLUSÍVO EM CONTROLLERS E MODELS **
+|             ** FAVOR NÃO USAR EM VIEWS **
+|
+*/
 
 function converterDataBrasil($data){
-	$dataFormatada = explode('-', $data);
+    if(strpos($data, '-')){
+        $dataFormatada = explode('-', $data);
 
-	return $dataFormatada[2] . "/". $dataFormatada[1] ."/". $dataFormatada[0];
+        return $dataFormatada[2] . "/". $dataFormatada[1] ."/". $dataFormatada[0];
+    }
+
+    return $data;
 }
 
 function converterDataIngles($data){
-    $dataFormatada = explode('/', $data);
+    if(strpos($data, '/')){
+        $dataFormatada = explode('/', $data);
 
-	return $dataFormatada[2] . "-". $dataFormatada[1] ."-". $dataFormatada[0];
+        return $dataFormatada[2] . "-". $dataFormatada[1] ."-". $dataFormatada[0];
+    }
+
+    return $data;
 }
 
 function limpaPontuacao($valor) {
@@ -46,4 +60,11 @@ function formataTelefone($telefone){
     } 
     
     return $telefone;
+}
+
+
+# Converte espaços em dash(_) e retorna tudo em letra minúscula
+function formatarDash($string){
+    $string = preg_replace('/ /', '_', $string);
+    return str;
 }

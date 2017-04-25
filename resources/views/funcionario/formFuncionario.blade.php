@@ -19,12 +19,12 @@
 
     <div class="control-group form-group col-lg-4 padding-right-0">
         {!! Form::label('foto', 'Foto', ['class' => 'control-label']) !!}
-        {!! Form::file('foto', ['class' => 'form-control', 'required']) !!}
+        {!! Form::file('foto', ['class' => 'form-control']) !!}
     </div>
 
     <div class="control-group form-group col-lg-3 padding-left-0">
         {!! Form::label('rg', 'RG', ['class' => 'control-label']) !!}
-        {!! Form::text('rg', null, ['class' => 'form-control mascara-rg', 'minlength' => '12','required']) !!}
+        {!! Form::text('rg', null, ['class' => 'form-control mascara-rg', 'minlength' => '12']) !!}
     </div>
 
     <div class="control-group form-group col-lg-3 padding-right-0">

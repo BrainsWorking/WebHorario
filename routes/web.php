@@ -76,3 +76,5 @@ Route::name('home')->get('/', 'HomeController@index');
 # Login
 Route::name('login')->get('login', 'Auth\LoginController@index');
 Route::name('logar')->post('logar', 'Auth\LoginController@logar');
+
+Route::get('teste', 'FPAController@cadastrar');

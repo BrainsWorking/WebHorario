@@ -28,9 +28,11 @@
 					<td colspan="5">
 						<div class="hidden-info-content">
 							<p><b>Identificação do Semestre:</b> {{ $semestre->nome }} </p>
-							<p><b>Data de Início:</b> {{ converterDataBrasil($semestre->inicio) }} </p>
-							<p><b>Data Fim:</b> {{ converterDataBrasil($semestre->fim) }} </p>
-							
+							<p><b>Data de Início:</b> {{ $semestre->inicio }} </p>
+							<p><b>Data Fim:</b> {{ $semestre->fim }} </p>
+							<p><b>Data de abertura do FPA:</b> {{ $semestre->fpaInicio }} </p>
+							<p><b>Data de fechamento do FPA:</b> {{ $semestre->fpaFim }} </p>
+
 							@if(!empty($semestre->disciplinas[0]))
 								<p><b>Disciplinas Ofertadas:</b></p>
 							@else
