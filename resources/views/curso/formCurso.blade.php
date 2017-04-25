@@ -1,6 +1,6 @@
 	@extends('layout.principal')
 
-	@section('title', 'Turnos')
+	@section('title', 'Cursos')
 
 	@section('content')
 	@parent

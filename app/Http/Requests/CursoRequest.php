@@ -12,8 +12,8 @@ class CursoRequest extends FormRequest {
         return [
             'nome'           => 'string|required', 
             'sigla'          => 'string|max:5|required', 
-            'turno_id'       => 'exists:Turnos|required', 
-            'funcionario_id' => 'exists:Funcionarios'
+            'turno_id'       => 'exists:Turnos,id|required', 
+            'funcionario_id' => 'exists:Funcionarios,id'
         ];
     }
 }
