@@ -4,6 +4,22 @@
 
 <h1>FPA</h1>
 
+<div class="col-lg-5 form-group padding-left-0">
+    {!! Form::label('docente', 'Docente', ['class' => 'control-label']) !!}
+    {!! Form::text('nome', $funcionario->nome, ['class' => 'form-control', 'required' ,]) !!}
+</div>
+
+<div class="col-lg-5 form-group padding-left-0">
+    {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
+    {!! Form::text('email', $funcionario->email, ['class' => 'form-control', 'required' ,]) !!}
+</div>
+
+<div class="col-lg-2 form-group padding-left-0">
+    {!! Form::label('prontuario', 'Prontuario', ['class' => 'control-label']) !!}
+    {!! Form::text('prontuario', $funcionario->prontuario, ['class' => 'form-control', 'required' ,]) !!}
+</div>
+
+
 <table class='table table-bordered table-hover'>
 <thead>
     <tr>

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\FPA;
 use App\Models\Disciplina;
 use App\Models\Horario;
+use App\Models\Telefone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FPAController extends Controller{
     
@@ -37,7 +39,11 @@ class FPAController extends Controller{
 
         $dias_semana = ['seg', 'ter', 'qua', 'qui', 'sex', 'sab'];
 
-        return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana'));
+        $funcionario = Auth::user();
+
+        $telefones = Auth::user()->telefones;
+
+        return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'funcionario', 'telefones'));
     }
 
     public function deletar($id){
