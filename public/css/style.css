@@ -132,26 +132,31 @@ header a:hover{
 	padding-left: 10px;
 }
 
-.hidden-info-content-data{
+.hidden-info-content-data-curso{
 	border-color: #adadad;
 	cursor: default;
 	margin-bottom: 3px;
 	width: 24%;
 }
 
-.hidden-info-content-data-horario {
+.hidden-info-content-data-turno {
 	border-color: #adadad;
 	cursor: default;
 	padding: 2px;
 	margin: 5px;
 }
 
-.hidden-info-content-data-horario p{
+.hidden-info-content-data-turno p{
 	margin-bottom: 1px;
 }
 
 .horario-indice{
 	padding-top: 7%;
+}
+
+.hidden-info-content-data-semestre{
+	border: 1px solid #adadad;
+	border-radius: 4px;
 }
 
 .table-responsive{

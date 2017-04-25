@@ -40,7 +40,7 @@
 							@endif
 
 							@foreach($semestre->disciplinas as $disciplina)
-								<span class="btn hidden-info-content-data text-center">{{ $disciplina['sigla'] .' - '. $disciplina['nome'] }}</span>
+								<span class="btn hidden-info-content-data-curso text-center">{{ $disciplina['sigla'] .' - '. $disciplina['nome'] }}</span>
 							@endforeach
 
 						</div>
