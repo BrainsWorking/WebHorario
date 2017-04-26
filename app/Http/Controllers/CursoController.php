@@ -20,7 +20,7 @@ class CursoController extends Controller
 
     public function cadastrar(){
     	$turnos = Turno::pluck('nome', 'id');
-    	$disciplinas = Disciplina::pluck('nome', 'id');
+    	$disciplinas = Disciplina::orderBy('nome','asc')->pluck('nome', 'id');
         $funcionarios = Funcionario::all();
 
         # O for abaixo remove os funcionários que já são coordenadores de curso para que o mesmos
@@ -53,8 +53,9 @@ class CursoController extends Controller
 
     public function editar($id){
     	$turnos = Turno::pluck('nome', 'id');
-        $disciplinas = Disciplina::pluck('nome', 'id');
-        $funcionarios = Funcionario::pluck('nome', 'id');
+
+        $disciplinas = Disciplina::orderBy('nome','asc')->pluck('nome', 'id');
+        $funcionarios = Funcionario::orderBy('nome','asc')->pluck('nome', 'id');
         $curso = Curso::findOrFail($id);
 
         $disciplina_id = Curso::findOrFail($id)->disciplinas()->pluck('id')->toArray();

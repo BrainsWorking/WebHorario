@@ -12,12 +12,11 @@ class SemestreController extends Controller {
 
     public function index(){
     	$semestres = Semestre::orderBy('nome', 'desc')->paginate();
-
     	return view('semestre.index', compact('semestres'));
     }
 
     public function cadastrar(){
-        $disciplinas = Disciplina::pluck('nome', 'id');
+        $disciplinas = Disciplina::orderBy('nome', 'asc')->pluck('nome', 'id');
         $disciplina_id = array();
         return view('semestre.formSemestre', compact('disciplinas', 'disciplina_id'));
     }
@@ -39,7 +38,8 @@ class SemestreController extends Controller {
     }
 
     public function editar($id){
-        $disciplinas = Disciplina::pluck('nome', 'id');
+
+        $disciplinas = Disciplina::orderBy('nome', 'asc')->pluck('nome', 'id');
         $semestre = Semestre::findOrFail($id);
         $disciplina_id = $semestre->disciplinas()->pluck('id')->toArray();
 

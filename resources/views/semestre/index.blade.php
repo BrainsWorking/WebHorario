@@ -16,7 +16,6 @@
 			</thead>
 
 			<tbody>
-
 				@forelse ($semestres as $semestre)
 				<tr class="table-line">
 					<td class="text-center table-more-info"><span class="glyphicon glyphicon-chevron-down"></span></td>
@@ -34,32 +33,53 @@
 							<p><b>Data de fechamento do FPA:</b> {{ $semestre->fpaFim }} </p>
 
 							@if(!empty($semestre->disciplinas[0]))
-								<p><b>Disciplinas Ofertadas:</b></p>
-							@else
+							<p><b>Disciplinas Ofertadas:</b></p>
+								@php
+									foreach($semestre->disciplinas as $disciplina){
+										foreach($disciplina->cursos as $curso){
+											$disciplina_por_curso[$curso['nome']][] = $disciplina;
+										}
+									}
+								@endphp
+
+								@foreach($disciplina_por_curso as $curso => $disciplinas)
+									<div class="hidden-info-content-data-semestre">
+										<div class="col-lg-12 curso-semestre-indice text-center">
+											<p><b>{{$curso}}</b></p>
+										</div>
+										<ul>
+											@foreach($disciplinas as $disciplina)
+											<div class="col-lg-6">
+												<li>{{$disciplina['sigla'] ." - ". $disciplina['nome']}}</li>
+											</div>
+											@endforeach
+										</ul>
+									</div>
+								@endforeach
+
+								@php
+								$disciplina_por_curso = null;
+								@endphp
+
+								@else
 								<p><b>Cadastre as disciplinas ofertadas utilizando a opção "Editar"</b></p>
-							@endif
+								@endif
+							</div>
+						</td>
+					</tr>
+					@empty
+					<tr class="text-center">
+						<td colspan="5"><h4>Não há semestres cadastradas</h4></td>
+					</tr>
+					@endforelse
 
-							@foreach($semestre->disciplinas as $disciplina)
-								<span class="btn hidden-info-content-data text-center">{{ $disciplina['sigla'] .' - '. $disciplina['nome'] }}</span>
-							@endforeach
+				</tbody>
+			</table>
 
-						</div>
-					</td>
-				</tr>
+		</div>
+		@endsection
 
-				@empty
-				<tr class="text-center">
-					<td colspan="5"><h4>Não há semestres cadastradas</h4></td>
-				</tr>
-				@endforelse
-
-			</tbody>
-		</table>
-
-	</div>
-	@endsection
-
-	@section('scripts')
-	<script type="text/javascript" src="{{ asset('/js/table.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
-	@endsection
+		@section('scripts')
+		<script type="text/javascript" src="{{ asset('/js/table.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
+		@endsection
