@@ -1,11 +1,9 @@
-'use strict'
+function atualizarAula() {
 
-function atualizarAula(el) {
-
-    let horario    = el.attr('data-horario')
-    let semana     = el.attr('data-semana')
-    let disciplina = el.val()
-    let url = ROOT + 'fpa/'
+    let horario    = $(this).attr('data-horario')
+    let semana     = $(this).attr('data-semana')
+    let disciplina = $(this).val()
+    let url = ROOT + '/fpa/'
 
     if(disciplina == ''){
         url += 'removerAula'
@@ -14,15 +12,17 @@ function atualizarAula(el) {
     }
 
     $.ajax({
-        method: 'POST',
+        method: 'GET',
         url: url,
         data: {
             horario_id:    horario,
             disciplina_id: disciplina,
-            semana:        semana
+            diaSemana:        semana
         }
-    }).fail((jqXHR, erro) => {
-        alert(erro)
-        el.val('')
-    })
+    }).fail((XHR, erro) => {
+        console.log(erro)
+        $(this).val('')
+    }).done((XHR, msg, bla) => console.log(XHR))
 }
+
+$('.disciplina-fpa').change(atualizarAula)
