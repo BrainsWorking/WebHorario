@@ -73,7 +73,11 @@ class FPAController extends Controller{
 
         $funcionario = Auth::user();
 
-        return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'funcionario', 'semestre'));
+        $fpas = Fpa::
+            where('funcionario_id', '=', $funcionario->id)->
+            where('semestre_id', '=', $semestre->id)->get();
+
+        return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'funcionario', 'semestre', 'fpas'));
     }
 
     public function deletar($id){

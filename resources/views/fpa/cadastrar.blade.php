@@ -47,11 +47,18 @@
 <div class="col-lg-12 form-group padding-left-0">
     {!! Form::label('telefones', 'Telefones', ['class' => 'control-label']) !!}
 </div>
-@foreach($funcionario->telefones as $telefone)
+
+@if($funcionario->telefones->count() > 1)
+    @foreach($funcionario->telefones as $telefone)
+        <div class="col-lg-6 form-group padding-left-0">
+            {!! Form::text('telefone', $telefone->numero, ['class' => 'form-control', 'required' , 'disabled']) !!}
+        </div>
+    @endforeach
+@else
     <div class="col-lg-12 form-group padding-left-0">
-        {!! Form::text('telefone', $telefone->numero, ['class' => 'form-control', 'required' , 'disabled']) !!}
+        {!! Form::text('telefone', $funcionario->telefones[0]->numero, ['class' => 'form-control', 'required' , 'disabled']) !!}
     </div>
-@endforeach
+@endif
 
 
 <div class="col-lg-12 form-group padding-left-0">
