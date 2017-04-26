@@ -4,6 +4,70 @@
 
 <h1>FPA</h1>
 
+<div class="col-lg-6 form-group padding-left-0">
+    {!! Form::label('', 'Abertura da FPA', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->fpaInicio, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-6 form-group padding-left-0">
+    {!! Form::label('', 'Fechamento da FPA', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->fpaFim, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-4 form-group padding-left-0">
+    {!! Form::label('', 'Semestre', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->nome, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-4 form-group padding-left-0">
+    {!! Form::label('', 'Data de Inicio', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->inicio, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-4 form-group padding-left-0">
+    {!! Form::label('', 'Data de Fim', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->fim, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-4 form-group padding-left-0">
+    {!! Form::label('docente', 'Docente', ['class' => 'control-label']) !!}
+    {!! Form::text('nome', $funcionario->nome, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-4 form-group padding-left-0">
+    {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
+    {!! Form::text('email', $funcionario->email, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-4 form-group padding-left-0">
+    {!! Form::label('prontuario', 'Prontuario', ['class' => 'control-label']) !!}
+    {!! Form::text('prontuario', $funcionario->prontuario, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-12 form-group padding-left-0">
+    {!! Form::label('telefones', 'Telefones', ['class' => 'control-label']) !!}
+</div>
+
+@if($funcionario->telefones->count() > 1)
+    @foreach($funcionario->telefones as $telefone)
+        <div class="col-lg-6 form-group padding-left-0">
+            {!! Form::text('telefone', $telefone->numero, ['class' => 'form-control', 'required' , 'disabled']) !!}
+        </div>
+    @endforeach
+@else
+    <div class="col-lg-12 form-group padding-left-0">
+        {!! Form::text('telefone', $funcionario->telefones[0]->numero, ['class' => 'form-control', 'required' , 'disabled']) !!}
+    </div>
+@endif
+
+
+<div class="col-lg-12 form-group padding-left-0">
+    {!! Form::label('', 'SELECIONE AS DISCIPLINAS QUE DESEJA LECIONAR', ['class' => 'control-label']) !!}
+    <a href="#" data-toggle="tooltip" data-placement='right' title="Para selecionar uma disciplina basta clicar em um campo em que exista uma seta apontando para baixo.">
+        <span class="glyphicon glyphicon-info-sign"></span>
+    </a>
+</div>
+
 <table class='table table-bordered table-hover'>
 <thead>
     <tr>
@@ -26,7 +90,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    <select class="chosen-select" data-placeholder="Seleciona uma disciplina" data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
+                    <select class="chosen-select disciplina-fpa" data-placeholder=" " data-horario="{{$horario->id}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
                         <option value=''></option>
                         @foreach($disciplinas as $disciplina)
                             <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
@@ -48,7 +112,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    <select class="chosen-select" data-placeholder="Seleciona uma disciplina" data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
+                    <select class="chosen-select disciplina-fpa" data-placeholder=" " data-horario="{{$horario->id}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
                         <option value=''></option>
                         @foreach($disciplinas as $disciplina)
                             <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
@@ -71,7 +135,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    <select class="chosen-select" data-placeholder="Seleciona uma disciplina" data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
+                    <select class="chosen-select disciplina-fpa" data-placeholder=" " data-horario="{{$horario->id}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
                         <option value=''></option>
                         @foreach($disciplinas as $disciplina)
                             <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
@@ -98,6 +162,7 @@
 @endsection
 @section('scripts')
     <script type="text/javascript" src="{{asset('js/chosen.jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/fpa-ajax.js')}}"></script>
     <script>
         $(".chosen-select").chosen({
             no_results_text: "Nenhuma disciplina encontrada!",

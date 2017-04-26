@@ -78,3 +78,4 @@ Route::name('login')->get('login', 'Auth\LoginController@index');
 Route::name('logar')->post('logar', 'Auth\LoginController@logar');
 
 Route::get('teste', 'FPAController@cadastrar');
+Route::get('fpa/adicionarAula', 'FPAController@salvar');
