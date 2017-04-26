@@ -6,19 +6,33 @@
 
 <div class="col-lg-5 form-group padding-left-0">
     {!! Form::label('docente', 'Docente', ['class' => 'control-label']) !!}
-    {!! Form::text('nome', $funcionario->nome, ['class' => 'form-control', 'required' ,]) !!}
+    {!! Form::text('nome', $funcionario->nome, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
 <div class="col-lg-5 form-group padding-left-0">
     {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
-    {!! Form::text('email', $funcionario->email, ['class' => 'form-control', 'required' ,]) !!}
+    {!! Form::text('email', $funcionario->email, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
 <div class="col-lg-2 form-group padding-left-0">
     {!! Form::label('prontuario', 'Prontuario', ['class' => 'control-label']) !!}
-    {!! Form::text('prontuario', $funcionario->prontuario, ['class' => 'form-control', 'required' ,]) !!}
+    {!! Form::text('prontuario', $funcionario->prontuario, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
+<div class="col-lg-12 form-group padding-left-0">
+    {!! Form::label('telefones', 'Telefones', ['class' => 'control-label']) !!}
+</div>
+@foreach($funcionario->telefones as $telefone)
+    <div class="col-lg-12 form-group padding-left-0">
+        {!! Form::text('telefone', $telefone->numero, ['class' => 'form-control', 'required' , 'disabled']) !!}
+    </div>
+@endforeach
+
+
+<div class="form-group">
+    <label class="control-label">SELECIONE AS DISCIPLINAS QUE DESEJA LECIONAR</label> 
+    <a href="#" data-toggle="tooltip" data-placement='right' title="Para selecionar um disciplina basa clicar em um em que existe uma seta apontando para baixo."><span class="glyphicon glyphicon-info-sign"></span></a>
+</div>
 
 <table class='table table-bordered table-hover'>
 <thead>
@@ -42,7 +56,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    <select class="chosen-select" data-placeholder="Seleciona uma disciplina" data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
+                    <select class="chosen-select" data-placeholder=" " data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
                         <option value=''></option>
                         @foreach($disciplinas as $disciplina)
                             <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
@@ -64,7 +78,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    <select class="chosen-select" data-placeholder="Seleciona uma disciplina" data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
+                    <select class="chosen-select" data-placeholder=" " data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
                         <option value=''></option>
                         @foreach($disciplinas as $disciplina)
                             <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
@@ -87,7 +101,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    <select class="chosen-select" data-placeholder="Seleciona uma disciplina" data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
+                    <select class="chosen-select" data-placeholder=" " data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
                         <option value=''></option>
                         @foreach($disciplinas as $disciplina)
                             <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
