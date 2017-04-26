@@ -122,7 +122,7 @@
             @endif
         </div>
     </footer>
-
+    <script type="text/javascript"> var ROOT = '{{ url('/') }}' </script>
     <script type="text/javascript" src="{{ asset('/js/jquery-3.2.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/bootbox.min.js') }}"></script>
