@@ -49,7 +49,9 @@ class FPAController extends Controller{
     }
 
     public function cadastrar(){
-        $disciplinas = Semestre::FpaAtivo()->disciplinas;
+        $semestre = Semestre::FpaAtivo();
+
+        $disciplinas = $semestre->disciplinas;
 
         $horarios = Horario::orderBy('inicio')->get();
         $horarios_manha = $horarios_tarde = $horarios_noite = [];
@@ -71,7 +73,7 @@ class FPAController extends Controller{
 
         $funcionario = Auth::user();
 
-        return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'funcionario'));
+        return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'funcionario', 'semestre'));
     }
 
     public function deletar($id){

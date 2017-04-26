@@ -4,17 +4,42 @@
 
 <h1>FPA</h1>
 
-<div class="col-lg-5 form-group padding-left-0">
+<div class="col-lg-6 form-group padding-left-0">
+    {!! Form::label('', 'Abertura da FPA', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->fpaInicio, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-6 form-group padding-left-0">
+    {!! Form::label('', 'Fechamento da FPA', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->fpaFim, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-4 form-group padding-left-0">
+    {!! Form::label('', 'Semestre', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->nome, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-4 form-group padding-left-0">
+    {!! Form::label('', 'Data de Inicio', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->inicio, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-4 form-group padding-left-0">
+    {!! Form::label('', 'Data de Fim', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->fim, ['class' => 'form-control', 'required' , 'disabled']) !!}
+</div>
+
+<div class="col-lg-4 form-group padding-left-0">
     {!! Form::label('docente', 'Docente', ['class' => 'control-label']) !!}
     {!! Form::text('nome', $funcionario->nome, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
-<div class="col-lg-5 form-group padding-left-0">
+<div class="col-lg-4 form-group padding-left-0">
     {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
     {!! Form::text('email', $funcionario->email, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
-<div class="col-lg-2 form-group padding-left-0">
+<div class="col-lg-4 form-group padding-left-0">
     {!! Form::label('prontuario', 'Prontuario', ['class' => 'control-label']) !!}
     {!! Form::text('prontuario', $funcionario->prontuario, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
@@ -29,9 +54,11 @@
 @endforeach
 
 
-<div class="form-group">
-    <label class="control-label">SELECIONE AS DISCIPLINAS QUE DESEJA LECIONAR</label> 
-    <a href="#" data-toggle="tooltip" data-placement='right' title="Para selecionar um disciplina basa clicar em um em que existe uma seta apontando para baixo."><span class="glyphicon glyphicon-info-sign"></span></a>
+<div class="col-lg-12 form-group padding-left-0">
+    {!! Form::label('', 'SELECIONE AS DISCIPLINAS QUE DESEJA LECIONAR', ['class' => 'control-label']) !!}
+    <a href="#" data-toggle="tooltip" data-placement='right' title="Para selecionar uma disciplina basta clicar em um campo em que exista uma seta apontando para baixo.">
+        <span class="glyphicon glyphicon-info-sign"></span>
+    </a>
 </div>
 
 <table class='table table-bordered table-hover'>
