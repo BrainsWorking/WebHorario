@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FPA;
+use App\Models\Semestre;
 use App\Models\Disciplina;
 use App\Models\Horario;
 use App\Models\Telefone;
@@ -20,7 +21,12 @@ class FPAController extends Controller{
     }
 
     public function cadastrar(){
-        $disciplinas = Disciplina::all();
+        $disciplinas = Semestre::
+            where('fpaInicio', '<' , date('Y-m-d'))
+            ->where('fpaFim', '>', date('Y-m-d'))->firstOrFail()->disciplinas;
+        
+
+        //$disciplinas = Disciplina::all();
         $horarios = Horario::orderBy('inicio')->get();
         
         $horarios_manha = $horarios_tarde = $horarios_noite = [];
@@ -41,9 +47,7 @@ class FPAController extends Controller{
 
         $funcionario = Auth::user();
 
-        $telefones = Auth::user()->telefones;
-
-        return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'funcionario', 'telefones'));
+        return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'funcionario'));
     }
 
     public function deletar($id){
