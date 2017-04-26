@@ -155,8 +155,22 @@ header a:hover{
 }
 
 .hidden-info-content-data-semestre{
+	cursor: default;
+	float: left;
+	padding: 2px;
+	width: 49%;
+	margin-bottom: 3px;
+	margin-right: 3px;
+	box-sizing: border-box;
 	border: 1px solid #adadad;
-	border-radius: 4px;
+	border-radius: 4px;	
+	min-height: 130px;
+}
+
+.curso-semestre-indice{
+	border-bottom: 2px solid #adadad;
+	padding-top: 10px;
+	margin-bottom: 5px;
 }
 
 .table-responsive{

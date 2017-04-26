@@ -12,7 +12,6 @@ class SemestreController extends Controller {
 
     public function index(){
     	$semestres = Semestre::orderBy('nome', 'desc')->paginate();
-
     	return view('semestre.index', compact('semestres'));
     }
 
