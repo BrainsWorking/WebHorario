@@ -164,12 +164,13 @@ header a:hover{
 	box-sizing: border-box;
 	border: 1px solid #adadad;
 	border-radius: 4px;	
+	min-height: 130px;
 }
 
 .curso-semestre-indice{
-	border-right: 2px solid #adadad;
-	min-height: 120px;
-	padding: 10px;
+	border-bottom: 2px solid #adadad;
+	padding-top: 10px;
+	margin-bottom: 5px;
 }
 
 .table-responsive{

@@ -44,14 +44,16 @@
 
 								@foreach($disciplina_por_curso as $curso => $disciplinas)
 									<div class="hidden-info-content-data-semestre">
-										<div class="col-lg-4 curso-semestre-indice">
-										<p><b>{{$curso}}</b></p>
+										<div class="col-lg-12 curso-semestre-indice text-center">
+											<p><b>{{$curso}}</b></p>
 										</div>
-										@foreach($disciplinas as $disciplina)
-											<div class="col-lg-8">
-												{{$disciplina['sigla'] ." - ". $disciplina['nome']}}
+										<ul>
+											@foreach($disciplinas as $disciplina)
+											<div class="col-lg-6">
+												<li>{{$disciplina['sigla'] ." - ". $disciplina['nome']}}</li>
 											</div>
-										@endforeach
+											@endforeach
+										</ul>
 									</div>
 								@endforeach
 
