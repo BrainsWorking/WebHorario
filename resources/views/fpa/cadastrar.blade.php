@@ -56,7 +56,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    <select class="chosen-select" data-placeholder=" " data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
+                    <select class="chosen-select disciplina-fpa" data-placeholder=" " data-horario="{{$horario->id}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
                         <option value=''></option>
                         @foreach($disciplinas as $disciplina)
                             <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
@@ -78,7 +78,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    <select class="chosen-select" data-placeholder=" " data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
+                    <select class="chosen-select disciplina-fpa" data-placeholder=" " data-horario="{{$horario->id}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
                         <option value=''></option>
                         @foreach($disciplinas as $disciplina)
                             <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
@@ -101,7 +101,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    <select class="chosen-select" data-placeholder=" " data-horario="{{$horario}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
+                    <select class="chosen-select disciplina-fpa" data-placeholder=" " data-horario="{{$horario->id}}" data-semana="{{$semana}}" onclick="alterarAula($(this))">
                         <option value=''></option>
                         @foreach($disciplinas as $disciplina)
                             <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
@@ -128,6 +128,7 @@
 @endsection
 @section('scripts')
     <script type="text/javascript" src="{{asset('js/chosen.jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/fpa-ajax.js')}}"></script>
     <script>
         $(".chosen-select").chosen({
             no_results_text: "Nenhuma disciplina encontrada!",

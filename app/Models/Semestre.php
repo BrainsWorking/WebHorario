@@ -51,11 +51,13 @@ class Semestre extends Model {
         return converterDataBrasil($this->attributes['fpaFim']);
     }
 
-    public function getFpaAtivoAttribute() {
-        $dataAtual = date('Y-m-d');
-        $inicio    = $this->attributes['fpaInicio'];
-        $fim       = $this->attributes['fpaFim'];
-
-        return ($inicio < $dataAtual && $dataAtual < $fim);
+    public static function FpaAtivo(){
+        $data_atual = date('Y-m-d');
+        
+        return Semestre::
+              where('fpaInicio', '<', $data_atual)
+            ->where('fpaFim'   , '>', $data_atual)
+            ->firstOrFail();
     }
+
 }
