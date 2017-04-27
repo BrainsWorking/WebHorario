@@ -18,7 +18,7 @@ class FuncionarioRequest extends FormRequest {
             'data_nascimento' => 'date|required',
             'endereco'        => 'string|required',
             'foto'            => 'image|dimensions:max_width=250,max_height=250|required',
-            'email'           => 'email|unique:Funcionarios,email|required',
+            'email'           => 'email|unique:funcionarios,email|required',
             'password'        => 'required',
         ];
     }
