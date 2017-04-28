@@ -40,7 +40,7 @@
                             <p><b>Nome do Curso:</b> {{$curso->nome}}</p>
                             <p><b>Sigla:</b> {{$curso->sigla}}</p>
                             <p><b>Turno:</b> {{$curso->turno->nome}}</p>
-                            {{-- <p><b>Coordenador: </b> {{dd($curso->coordenador ." - ". $curso->funcionario_id)}}</p> --}}
+                            <p><b>Coordenador: </b> {{ $curso->coordenador->nome }} </p>
 
                             @if(!empty($curso->disciplinas[0]))
                                 <p><b>Disciplinas:</b></p>
