@@ -40,11 +40,18 @@
                             <p><b>Nome do Curso:</b> {{$curso->nome}}</p>
                             <p><b>Sigla:</b> {{$curso->sigla}}</p>
                             <p><b>Turno:</b> {{$curso->turno->nome}}</p>
-                            <p><b>Disciplinas:</b></p>
+                            {{-- <p><b>Coordenador: </b> {{dd($curso->coordenador ." - ". $curso->funcionario_id)}}</p> --}}
 
-                            @foreach($curso->disciplinas as $disciplina)
-                                <span class="btn hidden-info-content-data-curso">{{ $disciplina['sigla'] .' - '. $disciplina['nome'] }}</span>
-                            @endforeach
+                            @if(!empty($curso->disciplinas[0]))
+                                <p><b>Disciplinas:</b></p>
+
+                                @foreach($curso->disciplinas as $disciplina)
+                                    <span class="btn hidden-info-content-data-curso">{{ $disciplina['sigla'] .' - '. $disciplina['nome'] }}</span>
+                                @endforeach
+                            @else
+                                {{-- <p><b>Cadastre as disciplinas do curso utilizando a opção "Editar".</b></p> --}}
+                                <p><b>Nenhuma disciplina cadastrada, utilize a opção "Editar" para realizar esta ação.</b></p>
+                            @endif
                         </div>
                     </td>
                 </tr>
