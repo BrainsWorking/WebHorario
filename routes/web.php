@@ -68,6 +68,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('instituicao.salvar')->post('instituicao/salvar', 'InstituicaoController@salvar');
     Route::name('instituicao.atualizar')->put('instituicao/atualizar/{id}', 'InstituicaoController@atualizar');
     Route::name('instituicao.deletar')->get('instituicao/deletar/{id}', 'InstituicaoController@deletar');
+
+    #FPA
+    Route::name('fpa')->get('fpa', 'FPAController@cadastrar');
+    //Route::name('fpa.cadastrar')->get('fpa/cadastrar', 'FPAController@cadastrar');
+    //Route::name('fpa.editar')->get('fpa/editar/{id}', 'FPAController@editar');
+    Route::name('fpa.salvar')->post('fpa/salvar', 'FPAController@salvar');
+    //Route::name('fpa.atualizar')->put('fpa/atualizar/{id}', 'FPAController@atualizar');
+    //Route::name('fpa.deletar')->get('fpa/deletar/{id}', 'FPAController@deletar');
+
 });
 
 # Entrada
@@ -78,4 +87,3 @@ Route::name('login')->get('login', 'Auth\LoginController@index');
 Route::name('logar')->post('logar', 'Auth\LoginController@logar');
 
 Route::get('teste', 'FPAController@cadastrar');
-Route::get('fpa/adicionarAula', 'FPAController@salvar');

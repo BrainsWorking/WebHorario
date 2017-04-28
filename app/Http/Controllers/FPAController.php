@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Fpa;
 use App\Models\Semestre;
-use App\Models\Disciplina;
 use App\Models\Horario;
-use App\Models\Telefone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Curso;
 
 class FPAController extends Controller{
     
@@ -40,12 +39,14 @@ class FPAController extends Controller{
         //     horário onde esta disciplina deva ser removida");
         // }
 
-        $dados = $request->all();
-        $dados['funcionario_id'] = Auth::user()->id;
-        $dados['semestre_id'] = Semestre::fpaAtivo()->id;
-        Fpa::firstOrCreate($dados);
+        //$dados = $request->all();
+        //$dados['funcionario_id'] = Auth::user()->id;
+        //$dados['semestre_id'] = Semestre::fpaAtivo()->id;
+        //Fpa::firstOrCreate($dados);
 
-        return response($dados);
+        //return response($dados);
+
+        return $request->all();
     }
 
     public function cadastrar(){
@@ -73,11 +74,7 @@ class FPAController extends Controller{
 
         $funcionario = Auth::user();
 
-        $fpas = Fpa::
-            where('funcionario_id', '=', $funcionario->id)->
-            where('semestre_id', '=', $semestre->id)->get();
-
-        return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'funcionario', 'semestre', 'fpas'));
+        return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'semestre', 'funcionario'));
     }
 
     public function deletar($id){
