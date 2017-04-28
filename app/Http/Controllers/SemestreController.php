@@ -16,7 +16,7 @@ class SemestreController extends Controller {
     }
 
     public function cadastrar(){
-        $disciplinas = Disciplina::orderBy('nome', 'asc')->pluck('nome', 'id');
+        $disciplinas = $this->getDisciplinasComCurso();
         $disciplina_id = array();
         return view('semestre.formSemestre', compact('disciplinas', 'disciplina_id'));
     }
@@ -39,7 +39,7 @@ class SemestreController extends Controller {
 
     public function editar($id){
 
-        $disciplinas = Disciplina::orderBy('nome', 'asc')->pluck('nome', 'id');
+        $disciplinas = $this->getDisciplinasComCurso();
         $semestre = Semestre::findOrFail($id);
         $disciplina_id = $semestre->disciplinas()->pluck('id')->toArray();
 
@@ -64,5 +64,16 @@ class SemestreController extends Controller {
             $semestre->delete();
         }, 3);
         return redirect()->route('semestres')->with('success', 'Exclusão realizada com sucesso!');
+    }
+
+    private function getDisciplinasComCurso(){
+        $disciplinas = Disciplina::orderBy('nome', 'asc')->get();
+        # o for retira todas as disciplinas que não estão vinculadas com nenhum curso
+        foreach ($disciplinas as $key => $disciplina) {
+            if(empty($disciplina->cursos[0])){
+                unset($disciplinas[$key]);
+            }
+        }
+        return $disciplinas = $disciplinas->pluck('nome', 'id');
     }
 }
