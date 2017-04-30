@@ -27,7 +27,8 @@
 
 	<div class="form-group">
 		{!! Form::label('funcionario', 'Coordenador', ['class' => 'control-label']) !!}
-		{!! Form::select('funcionario_id', $funcionarios, null, ['placeholder' => 'Escolha um coordenador', 'required', 'id' => 'funcionario_id', 'class' => 'form-control']) !!}
+		<a href="#" data-toggle="tooltip" data-placement='right' title="Caso o funcionário desejado não apareça na lista verifique se o mesmo está cadastrado no menu 'Funcionários' ou se o referido funcionário já não está cadastrado como coordenador de outro curso."><span class="glyphicon glyphicon-info-sign"></span></a>
+		{!! Form::select('funcionario_id', $funcionarios, null, ['placeholder' => 'Escolha um coordenador', 'id' => 'funcionario_id', 'class' => 'form-control']) !!}
 	</div>
 
 	<div class="form-group">
