@@ -34,21 +34,14 @@
 
 							@if(!empty($semestre->disciplinas[0]))
 							<p><b>Disciplinas Ofertadas:</b></p>
-								@php
-									foreach($semestre->disciplinas as $disciplina){
-										foreach($disciplina->cursos as $curso){
-											$disciplina_por_curso[$curso['nome']][] = $disciplina;
-										}
-									}
-								@endphp
-
-								@foreach($disciplina_por_curso as $curso => $disciplinas)
+								
+								@foreach($semestre->getDisciplinasPorCursoAttribute() as $curso)
 									<div class="hidden-info-content-data-semestre">
 										<div class="col-lg-12 curso-semestre-indice text-center">
-											<p><b>{{$curso}}</b></p>
+											<p><b>{{$curso['nome']}}</b></p>
 										</div>
 										<ul>
-											@foreach($disciplinas as $disciplina)
+											@foreach($curso['disciplinas'] as $disciplina)
 											<div class="col-lg-6">
 												<li>{{$disciplina['sigla'] ." - ". $disciplina['nome']}}</li>
 											</div>
@@ -56,10 +49,6 @@
 										</ul>
 									</div>
 								@endforeach
-
-								@php
-								$disciplina_por_curso = null;
-								@endphp
 
 								@else
 								<p><b>Cadastre as disciplinas ofertadas utilizando a opção "Editar"</b></p>

@@ -39,7 +39,7 @@
 
     <div class="form-group">
         <label class="control-label">SELECIONE AS DISCIPLINAS QUE SERÃO OFERECIDAS NO SEMESTRE</label> 
-        <a href="#" data-toggle="tooltip" data-placement='right' title="Selecione as disciplinas oferecidas neste semestre. Caso a disciplina desejada não esteja cadastrada, utilize o menu de 'Disciplinas' e cadastre-a. Logo após volte neste formulário utilizando a opção de edição de semestre."><span class="glyphicon glyphicon-info-sign"></span></a>
+        <a href="#" data-toggle="tooltip" data-placement='right' title="Caso a disciplina desejada não esteja listada, verifique se a mesma está cadastrada no menu 'Disciplinas' e se está vinculada a um curso, no menu 'Cursos'. "><span class="glyphicon glyphicon-info-sign"></span></a>
     </div>
 
     <div class="form-group">

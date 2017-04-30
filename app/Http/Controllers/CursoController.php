@@ -14,23 +14,14 @@ class CursoController extends Controller
 {
     public function index() {
         $cursos = Curso::orderBy('nome', 'asc')->paginate();
-
+        
         return view('curso.index', compact('cursos'));
     }
 
     public function cadastrar(){
     	$turnos = Turno::pluck('nome', 'id');
     	$disciplinas = Disciplina::orderBy('nome','asc')->pluck('nome', 'id');
-        $funcionarios = Funcionario::all();
-
-        # O for abaixo remove os funcionários que já são coordenadores de curso para que o mesmos
-        # não sejam coordenadores em mais de um curso
-        foreach($funcionarios as $key => $funcionario){
-            if($funcionario->isCoordenador()){
-                unset($funcionarios[$key]);
-            }
-        }
-        $funcionarios = $funcionarios->pluck('nome', 'id');
+        $funcionarios = $this->getFuncionarios();
 
     	return view('curso.formCurso', compact('turnos', 'disciplinas', 'funcionarios'));
     }
@@ -55,7 +46,7 @@ class CursoController extends Controller
     	$turnos = Turno::pluck('nome', 'id');
 
         $disciplinas = Disciplina::orderBy('nome','asc')->pluck('nome', 'id');
-        $funcionarios = Funcionario::orderBy('nome','asc')->pluck('nome', 'id');
+        $funcionarios = $this->getFuncionarios($id);
         $curso = Curso::findOrFail($id);
 
         $disciplina_id = Curso::findOrFail($id)->disciplinas()->pluck('id')->toArray();
@@ -85,5 +76,20 @@ class CursoController extends Controller
         }, 3);
 
         return redirect()->route('cursos')->with('success', 'Exclusão realizada com sucesso');
+    }
+
+    private function getFuncionarios($id = null){
+        $funcionarios = Funcionario::orderBy('nome', 'asc')->get();
+        if (!is_null($id)) {
+            $id_coordenador = Curso::findOrFail($id)['funcionario_id'];
+        }
+        # O for abaixo remove os funcionários que já são coordenadores de curso para que o mesmos
+        # não sejam coordenadores em mais de um curso
+        foreach($funcionarios as $key => $funcionario){
+            if($funcionario->isCoordenador() && $funcionario->id != @$id_coordenador){
+                unset($funcionarios[$key]);
+            }
+        }
+        return $funcionarios = $funcionarios->pluck('nome', 'id');
     }
 }
