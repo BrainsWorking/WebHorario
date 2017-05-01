@@ -23,4 +23,8 @@ class Curso extends Model {
     public function coordenador(){
     	return $this->belongsTo(Funcionario::class, 'funcionario_id');
     }
+
+    public function hasCoordenador(){
+        return !is_null(($this->coordenador));
+    }
 }
