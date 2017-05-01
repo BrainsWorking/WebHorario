@@ -34,17 +34,14 @@
 
     <div class="control-group form-group col-lg-3 padding-right-0">
         {!! Form::label('data_nascimento', 'Data de Nascimento', ['class' => 'control-label']) !!}
-        {!! Form::date('data_nascimento', null, ['class' => 'form-control mascara-data', 'required']) !!}
+        {!! Form::text('data_nascimento', null, ['class' => 'form-control mascara-data', 'required']) !!}
     </div>
 
-    <div class="control-group form-group col-lg-3 padding-right-0">
-        {!! Form::label('sexo', 'Sexo', ['class' => 'control-label']) !!}
-        <select class="form-control" required>
-            <option>Escolha um sexo</option>
-            <option value='m'>Masculino</option>
-            <option value='f'>Feminino</option>
-        </select>
-    </div> 
+	<div class="control-group form-group col-lg-3 padding-right-0">
+		{!! Form::label('sexo', 'Sexo:', ['class' => 'control-label']) !!}
+		{!! Form::select('sexo', $sexos, @$funcionario->formSexoAttribute(), ['placeholder' => 'Selecione o sexo', 'class' => 'form-control']) !!}
+	</div>
+
 
     <div class="control-group form-group">
         {!! Form::label('email', 'E-Mail', ['class' => 'control-label']) !!}
@@ -80,7 +77,7 @@
         </div>
         <div class="control-group form-group col-lg-6 telefones">
             {!! Form::label('telefone', 'Telefone Alternativo', ['class' => 'control-label']) !!}
-            {!! Form::text('telefone[1]', @$telefones[1], ['class' => 'form-control mascara-telefone', 'required']) !!}
+            {!! Form::text('telefone[1]', @$telefones[1], ['class' => 'form-control mascara-telefone']) !!}
         </div>
     </div>
 

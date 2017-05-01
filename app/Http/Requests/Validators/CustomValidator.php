@@ -13,7 +13,7 @@ class CustomValidator {
     use ReplacesAttributes;
 
     public function sex($field, $value){
-        $genres = ['f', 'm', 'i'];
+        $genres = ['f', 'm'];
         $value = strtolower($value);
 
         return in_array($value, $genres);
