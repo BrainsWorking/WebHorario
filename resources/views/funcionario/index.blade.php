@@ -6,7 +6,7 @@
 <div class="col-lg-12 table-responsive">
 	<table class="table table-condensed table-hover">
 		<thead>
-			@include('layout.barra_superior_index', ["route" => "funcionario.cadastrar"])
+			@include('layout.components.barra_pesquisar_cadastrar', ["route" => "funcionario.cadastrar"])
 			<th class="text-center"></th>
 			<th class="text-center">Nome</th>
 			<th class="text-center">Prontuário</th>
