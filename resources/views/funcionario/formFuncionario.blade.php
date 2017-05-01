@@ -39,7 +39,7 @@
 
 	<div class="control-group form-group col-lg-3 padding-right-0">
 		{!! Form::label('sexo', 'Sexo:', ['class' => 'control-label']) !!}
-		{!! Form::select('sexo', $sexos, @$funcionario->formSexoAttribute(), ['placeholder' => 'Selecione o sexo', 'class' => 'form-control']) !!}
+		{!! Form::select('sexo', $sexos, isset($funcionario) ? $funcionario->formSexoAttribute() : null, ['placeholder' => 'Selecione o sexo', 'class' => 'form-control']) !!}
 	</div>
 
 
