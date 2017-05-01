@@ -21,6 +21,7 @@ class CursoController extends Controller
     public function cadastrar(){
     	$turnos = Turno::pluck('nome', 'id');
     	$disciplinas = Disciplina::orderBy('nome','asc')->pluck('nome', 'id');
+        // TODO: Remover dsiciplinas já cadastradas em outros cursos
         $funcionarios = $this->getFuncionarios();
 
     	return view('curso.formCurso', compact('turnos', 'disciplinas', 'funcionarios'));
@@ -44,8 +45,9 @@ class CursoController extends Controller
 
     public function editar($id){
     	$turnos = Turno::pluck('nome', 'id');
-
         $disciplinas = Disciplina::orderBy('nome','asc')->pluck('nome', 'id');
+        // TODO: Remover dsiciplinas já cadastradas em outros cursos, mas manter as já cadastradas no curso selecionado
+        
         $funcionarios = $this->getFuncionarios($id);
         $curso = Curso::findOrFail($id);
 

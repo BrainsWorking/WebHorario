@@ -21,8 +21,8 @@ class FuncionarioController extends Controller {
 
   public function cadastrar() {
     $cargos = Cargo::pluck('nome', 'id');
-
-    return view('funcionario.formFuncionario', compact('cargos'));
+    $sexos  = [ 'm' => 'Masculino', 'f' => 'Feminino' ];
+    return view('funcionario.formFuncionario', compact('cargos', 'sexos'));
   }
 
   public function salvar(FuncionarioRequest $request) {
@@ -43,11 +43,12 @@ class FuncionarioController extends Controller {
 
   public function editar($id = null) {
     $cargos = Cargo::pluck('nome', 'id');
+    $sexos  = [ 'm' => 'Masculino', 'f' => 'Feminino' ];
     $funcionario = is_null($id) ? Auth::user() : Funcionario::findOrFail($id);
     $cargosFuncionario = $funcionario->cargos()->pluck('id')->toArray();
     $telefones = $funcionario->telefones()->pluck('numero')->toArray();
 
-    return view('funcionario.formFuncionario', compact('cargos', 'funcionario', 'cargosFuncionario', 'telefones'));
+    return view('funcionario.formFuncionario', compact('cargos', 'funcionario', 'cargosFuncionario', 'telefones', 'sexos'));
   }
 
   public function atualizar (FuncionarioRequest $request, $id){
@@ -55,15 +56,19 @@ class FuncionarioController extends Controller {
       $funcionario = Funcionario::findOrFail($id);
       $funcionario->update($request->all());
 
-      # FIXIT: Não é necessário deletar, mesmo que funcione, uma boa é editar o telefone mesmo
-      #        Verificar se existe, criar ou atualizar
       foreach($funcionario->telefones as $telefone) {
         $telefone->delete();
       }
 
-      foreach($request->only('telefone') as $telefone){
-        $funcionario->telefones()->attach(Telefone::create($telefone));
+      foreach($request->input('telefone') as $telefone){
+        if(!is_null($telefone)){
+          $telefone_modelo = new Telefone;
+          $telefone_modelo->numero = $telefone;
+          $telefone_modelo->funcionario()->associate($funcionario);
+          $telefone_modelo->save();
+        }
       }
+
     }, 3);
 
     return redirect()->route('funcionarios')->withSuccess('Funcionário atualizado com sucesso!');
