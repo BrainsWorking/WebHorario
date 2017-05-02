@@ -42,7 +42,8 @@
 
 <div class="col-lg-12 form-group padding-left-0">
     {!! Form::label('', 'SELECIONE OS HORÁRIOS EM QUE DESEJA LECIONAR', ['class' => 'control-label']) !!}
-    <a href="#" data-toggle="tooltip" data-placement='right' title="Para selecionar um horário basta clicar nos retangulos abaixo.">
+    <a href="#" data-toggle="tooltip" data-placement='right' 
+        title="Para selecionar um horário basta clicar nos retangulos abaixo.">
         <span class="glyphicon glyphicon-info-sign"></span>
     </a>
 </div>
@@ -69,8 +70,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    {!! Form::checkbox('', '') !!}
-                    <label></label>
+                    {!! Form::checkbox("disp[$semana][]", "$horario->id", false, ['class' => 'fpa-checkbox']) !!}
                 </td>
             @endforeach
         </tr>
@@ -87,7 +87,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    {!! Form::checkbox('', '') !!}
+                    {!! Form::checkbox("disp[$semana][]", "$horario->id", false, ['class' => 'fpa-checkbox']) !!}
                 </td>
             @endforeach
         </tr>
@@ -105,7 +105,7 @@
 
             @foreach($dias_semana as $semana)
                 <td class='td-disciplina'>
-                    {!! Form::checkbox('', '') !!}
+                    {!! Form::checkbox("disp[$semana][]", "$horario->id", false, ['class' => 'fpa-checkbox']) !!}
                 </td>
             @endforeach
         </tr>
@@ -133,7 +133,7 @@
                 <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
             @endforeach
             <!--optgroup label="ADS">
-            </--optgroup -->
+            </optgroup -->
         </select>
     </div>
 </div>
@@ -147,7 +147,40 @@
 
 @section('css')
     <link rel="stylesheet" href="{{asset('css/chosen/chosen.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <style>
+        .fpa-checkbox{
+            visibility: hidden;
+            cursor: pointer;
+        }
+        .fpa-checkbox:before {
+            content: "";
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            visibility: visible;
+            line-height: 12px;
+            font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+            color: #052;
+            background-color:inherit;
+        }
+        .fpa-checkbox:checked:before {
+            content: "✓";
+            color:#43a047;
+        }
+        .td-disciplina{
+            padding: 0px !important; 
+            text-align: center !important;
+            vertical-align: middle !important;    
+        }
+        .chosen-single{ height: 38px !important; line-height: 19px !important; margin-bottom: -2px}
+        .chosen-single > span{ padding: 8px !important; }
+        .chosen-container-single .chosen-single div { top: 5px; height: 22px; }
+        .chosen-container-single .chosen-single abbr { top: 11px; }
+        .rotate-90 { vertical-align: middle !important; text-align: center }
+        .rotate-90 span{ display:block; transform: rotate(-90deg) }
+    </style>
 @endsection
 @section('scripts')
     <script type="text/javascript" src="{{ asset('/js/fpa-disciplinas.js') }}"></script>
@@ -157,7 +190,12 @@
             no_results_text: "Nenhuma disciplina encontrada!",
             width: '100%',
             allow_single_deselect: true 
-        }); 
+        });
+        $(document).ready(function(){
+            $("td").click(function(){
+                $(this).children().click();
+            });
+        });
     </script>
 @endsection
 @endsection
