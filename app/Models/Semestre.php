@@ -90,7 +90,7 @@ class Semestre extends Model {
             $disciplinas_curso_formatada[$curso]['sigla'] = $disciplina[$curso]['sigla'];
             $disciplinas_curso_formatada[$curso]['disciplinas'][] = $disciplina[$curso]['disciplina'];
         }
-        return $disciplinas_curso_formatada;
+        return isset($disciplinas_curso_formatada) ? $disciplinas_curso_formatada : [];
     }
 
     public static function FpaAtivo(){

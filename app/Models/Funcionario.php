@@ -69,7 +69,7 @@ class Funcionario extends Authenticatable {
         } else if ($sexo == 'm') {
             $sexo = 'Masculino';
         } else {
-            $sexo = 'Indefinido';
+            $sexo = 'Indefinido'; // Mantido indefinido para casos de erro (possivelmente não venha a acontecer)
         }
 
         return $sexo;
@@ -77,7 +77,7 @@ class Funcionario extends Authenticatable {
 
     # Retorna o sexo no formato padrão para uso no formulário do Collective
     public function formSexoAttribute(){
-        return $this->attributes['sexo'];
+        return strtolower($this->attributes['sexo']);
     }
 
     public function setDataNascimentoAttribute($data){

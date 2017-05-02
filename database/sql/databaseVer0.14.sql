@@ -21,7 +21,7 @@ CREATE TABLE cargos(
 CREATE TABLE funcionarios(
 	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
-	sexo ENUM('M', 'F') NOT NULL,
+	sexo ENUM('M', 'F', 'I') NOT NULL,
 	cpf CHAR(11) NOT NULL UNIQUE,
 	rg CHAR(9),
 	data_nascimento DATE NOT NULL,
