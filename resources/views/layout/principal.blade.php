@@ -92,6 +92,11 @@
                             <span class="glyphicon glyphicon-briefcase"></span> <span class='sidebar-label'>Instituição</span>
                         </a>
                     </li>
+                    <li class="{{ setActive('fpa') }}">
+                        <a href="{{ route('fpa') }}">
+                            <span class="glyphicon glyphicon-duplicate"></span> <span class='sidebar-label'>FPA</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
