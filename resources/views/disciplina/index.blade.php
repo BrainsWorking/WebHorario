@@ -9,7 +9,7 @@
     <table class="table table-condensed table-hover">
         <thead>
 
-            @include('layout.barra_superior_index', ["route" => "disciplina.cadastrar"])
+            @include('layout.components.barra_pesquisar_cadastrar', ["route" => "disciplina.cadastrar"])
 
             <th class="text-center"></th>
             <th class="text-center">Nome</th>

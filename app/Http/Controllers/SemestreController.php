@@ -68,12 +68,18 @@ class SemestreController extends Controller {
 
     private function getDisciplinasComCurso(){
         $disciplinas = Disciplina::orderBy('nome', 'asc')->get();
+        $disciplinas_formatada = [];
         # o for retira todas as disciplinas que não estão vinculadas com nenhum curso
         foreach ($disciplinas as $key => $disciplina) {
             if(empty($disciplina->cursos[0])){
                 unset($disciplinas[$key]);
+            } else {
+                foreach($disciplina->cursos as $curso){
+                    $disciplinas_formatada[$curso->nome][$disciplina->id] = $disciplina->nome.' ('.$disciplina->sigla.')';
+                }
             }
         }
-        return $disciplinas = $disciplinas->pluck('nome', 'id');
+
+        return $disciplinas_formatada;
     }
 }

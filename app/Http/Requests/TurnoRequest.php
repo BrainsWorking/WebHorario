@@ -11,7 +11,7 @@ class TurnoRequest extends FormRequest {
     public function rules() { 
         return [
             'nome'             => 'string|required',
-            'horario.*.inicio' => 'timeBefore:horario,fim',   // XXX: Não sei se array funciona aqui [testar]
+            'horario.*.inicio' => 'before:horario.*.fim',
         ];
     }
 }

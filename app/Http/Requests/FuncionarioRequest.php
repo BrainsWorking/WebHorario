@@ -9,17 +9,41 @@ class FuncionarioRequest extends FormRequest {
     public function authorize() { return true; }
 
     public function rules() { 
+        if(in_array('atualizar',$this->segments())) {
+            $email = 'email|required';
+            $password = '';
+        }else{
+            $email = 'email|unique:funcionarios,email|required';
+            $password = 'required';
+        }
+
+        if($this->has('foto')){
+            $foto = "image|dimensions:max_width=250,max_height=250";
+        } else { $foto = ''; } 
+
         return [
             'nome'            => 'string|required',
-            'prontuario'      => 'number|required',
+            'prontuario'      => 'numeric|required',
             'rg'              => 'rg|required',
             'sexo'            => 'sex|required',
             'cpf'             => 'cpf|required',
             'data_nascimento' => 'date|required',
             'endereco'        => 'string|required',
-            'foto'            => 'image|dimensions:max_width=250,max_height=250|required',
-            'email'           => 'email|unique:funcionarios,email|required',
-            'password'        => 'required',
+            'foto'            => $foto,
+            'email'           => $email,
+            'password'        => $password,
         ];
+    }
+
+    public function all(){
+        $data = parent::all();
+
+        $data['sexo'] = strtoupper($data['sexo']);
+
+        if(!$this->has('password')){
+            unset($data['password']);
+        }
+    
+        return $data;
     }
 }

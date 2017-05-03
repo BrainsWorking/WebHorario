@@ -8,7 +8,7 @@
 	<div class="col-lg-12 table-responsive">
 		<table class="table table-condensed table-hover">
 			<thead>
-				@include('layout.barra_superior_index', ["route" => "semestre.cadastrar"])
+				@include('layout.components.barra_pesquisar_cadastrar', ["route" => "semestre.cadastrar"])
 				<th class="text-center"></th>
 				<th class="text-center">Identificação</th>
 				<th class="text-center">Editar</th>
