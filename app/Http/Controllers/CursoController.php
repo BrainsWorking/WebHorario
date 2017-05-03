@@ -20,7 +20,7 @@ class CursoController extends Controller
 
     public function cadastrar(){
     	$turnos = Turno::pluck('nome', 'id');
-    	$disciplinas = Disciplina::orderBy('nome','asc')->pluck('nome', 'id');
+    	$disciplinas = $this->getDisciplinas();
         // TODO: Remover dsiciplinas já cadastradas em outros cursos
         $funcionarios = $this->getFuncionarios();
 
@@ -45,7 +45,7 @@ class CursoController extends Controller
 
     public function editar($id){
     	$turnos = Turno::pluck('nome', 'id');
-        $disciplinas = Disciplina::orderBy('nome','asc')->pluck('nome', 'id');
+        $disciplinas = $this->getDisciplinas($id);
         // TODO: Remover dsiciplinas já cadastradas em outros cursos, mas manter as já cadastradas no curso selecionado
         
         $funcionarios = $this->getFuncionarios($id);
@@ -93,5 +93,20 @@ class CursoController extends Controller
             }
         }
         return $funcionarios = $funcionarios->pluck('nome', 'id');
+    }
+
+    private function getDisciplinas($id = null){
+        $disciplinas = Disciplina::orderBy('nome', 'asc')->get();
+        if (!is_null($id)) {
+            $disciplinas_cadastradas = Curso::findOrFail($id)->disciplinas->pluck('nome', 'id')->toArray();
+        }
+        # O for abaixo remove as disciplinas já cadastradas em outros cursos
+        foreach($disciplinas as $key => $disciplina){
+            if(!empty($disciplina->cursos[0]) && @!array_key_exists($disciplina->id, $disciplinas_cadastradas)){
+                unset($disciplinas[$key]);
+            }
+        }
+        
+        return $disciplinas = $disciplinas->pluck('nome', 'id');
     }
 }
