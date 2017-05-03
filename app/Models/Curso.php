@@ -13,7 +13,7 @@ class Curso extends Model {
 	public $timestamps = false;
 
     public function disciplinas(){
-        return $this->belongsToMany(Disciplina::class, 'cursos_disciplinas')->orderBy('nome', 'asc');;
+        return $this->belongsToMany(Disciplina::class, 'cursos_disciplinas')->orderBy('disciplinas.nome', 'asc');;
     }
     
     public function turno(){
@@ -22,5 +22,9 @@ class Curso extends Model {
 
     public function coordenador(){
     	return $this->belongsTo(Funcionario::class, 'funcionario_id');
+    }
+
+    public function hasCoordenador(){
+        return !is_null(($this->coordenador));
     }
 }

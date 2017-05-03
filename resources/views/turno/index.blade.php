@@ -9,7 +9,7 @@
     <table class="table table-condensed table-hover">
         <thead>
 
-            @include('layout.barra_superior_index', ["route" => "turno.formTurno"])
+            @include('layout.components.barra_pesquisar_cadastrar', ["route" => "turno.formTurno"])
 
             <th class="text-center"></th>
             <th class="text-center">Turno</th>

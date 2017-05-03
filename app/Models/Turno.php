@@ -12,7 +12,7 @@ class Turno extends Model {
     public $timestamps = false;
     
     public function horarios(){
-        return $this->belongsToMany(Horario::class, 'turnos_horarios')->orderBy('inicio', 'asc');
+        return $this->belongsToMany(Horario::class, 'turnos_horarios')->orderBy('horarios.inicio', 'asc');
     }
 
     public function cursos(){

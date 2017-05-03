@@ -11,10 +11,10 @@ class SemestreRequest extends FormRequest {
     public function rules() { 
         return [
             'nome'      => 'string|required',
-            'inicio'    => 'date|timeBefore:fim|required',
-            'fim'       => 'date|required',
-            'fpaInicio' => 'date|timeBefore:fpaFim|required',
-            'fpaFim'    => 'date|required'
+            'inicio'    => 'date|before:fim|required',
+            'fim'       => 'date|after:inicio|required',
+            'fpaInicio' => 'date|before:fpaFim|before:inicio|required',
+            'fpaFim'    => 'date|after:fpaInicio|required'
         ];
     }
 
