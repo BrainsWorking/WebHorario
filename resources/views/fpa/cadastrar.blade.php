@@ -118,23 +118,23 @@
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         Adicionar Disciplina
     </button>
-    {!! Form::label('', 'SELECIONE AS DISCIPLINAS QUE DESEJA LECIONAR', ['class' => 'control-label']) !!}
 </div>
 
-
-<div class="row">
-    <div class="col-lg-1 padding-left-0">
-        <label class="index">Disciplina 1</label>
-    </div>
-    <div class="form-group col-lg-6">
-        <select class="chosen-select" data-placeholder=" ">
-            <option value=''></option>
-            @foreach($disciplinas as $disciplina)
-                <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
-            @endforeach
-            <!--optgroup label="ADS">
-            </optgroup -->
-        </select>
+<div class="escolha-disciplinas col-lg-12">
+    <div class="row">
+        <div class="col-lg-1">
+            <label class="index">Disciplina 1</label>
+        </div>
+        <div class="form-group col-lg-4">
+            <select class="chosen-select" data-placeholder=" ">
+                <option value=''></option>
+                @foreach($disciplinas as $disciplina)
+                    <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
+                @endforeach
+                <!--optgroup label="ADS">
+                </optgroup -->
+            </select>
+        </div>
     </div>
 </div>
 
@@ -145,9 +145,78 @@
 
 {!! Form::close() !!}
 
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('/js/fpa-disciplinas.js') }}"></script>
+    <script type="text/javascript" src="{{asset('js/chosen.jquery.min.js')}}"></script>
+    <script>
+        $(".chosen-select").chosen({
+            no_results_text: "Nenhuma disciplina encontrada!",
+            width: '100%',
+            allow_single_deselect: true 
+        });
+
+        $(document).ready(function(){
+            $("td").click(function(){
+                $(this).children().click();
+            });
+            
+            $(".fpa-checkbox").click(function(){
+                $(this).click();       
+            });
+
+                'use strict'
+            	var wrapper = $(".escolha-disciplinas");
+                var button = $(".add-field");
+                var x = $('.index').length + 1;
+
+                $(button).click(function(e){
+                    e.preventDefault();
+                    $(wrapper).append(`
+                        <div class="row">
+                            <div class="col-lg-1">
+                                <label class="index">Disciplina ` + x + `</label>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <select class="chosen-select" data-placeholder=" ">
+                                    <option value=''></option>
+                                    @foreach($disciplinas as $disciplina)
+                                        <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
+                                    @endforeach
+                                    <!--optgroup label="ADS">
+                                    </optgroup -->
+                                </select>
+                            </div>
+                            <div class="col-lg-1 padding-right-0 remove-field">
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </div>
+                        </div>
+                    `);
+                    x++;
+                });
+
+                $(wrapper).on("click", ".remove-field", function(e){
+                    e.preventDefault();
+                    $(this).parent().remove();
+
+                    var labels = $('.index');
+                    for (var i = 0; i <= x; i++) {
+                        $(labels[i]).html("Disciplina " + (i + 1));
+                    };
+                    x--;
+                });
+        });
+    </script>
+@endsection
 @section('css')
     <link rel="stylesheet" href="{{asset('css/chosen/chosen.css')}}">
     <style>
+        .td-disciplina{
+            padding: 0px !important; 
+            text-align: center !important;
+            vertical-align: middle !important;    
+        }
         .fpa-checkbox{
             visibility: hidden;
             cursor: pointer;
@@ -169,33 +238,13 @@
             content: "✓";
             color:#43a047;
         }
-        .td-disciplina{
-            padding: 0px !important; 
-            text-align: center !important;
-            vertical-align: middle !important;    
-        }
         .chosen-single{ height: 38px !important; line-height: 19px !important; margin-bottom: -2px}
         .chosen-single > span{ padding: 8px !important; }
         .chosen-container-single .chosen-single div { top: 5px; height: 22px; }
         .chosen-container-single .chosen-single abbr { top: 11px; }
         .rotate-90 { vertical-align: middle !important; text-align: center }
         .rotate-90 span{ display:block; transform: rotate(-90deg) }
+        .escolha-disciplinas{ margin-top: 15px !important; }
     </style>
-@endsection
-@section('scripts')
-    <script type="text/javascript" src="{{ asset('/js/fpa-disciplinas.js') }}"></script>
-    <script type="text/javascript" src="{{asset('js/chosen.jquery.min.js')}}"></script>
-    <script>
-        $(".chosen-select").chosen({
-            no_results_text: "Nenhuma disciplina encontrada!",
-            width: '100%',
-            allow_single_deselect: true 
-        });
-        $(document).ready(function(){
-            $("td").click(function(){
-                $(this).children().click();
-            });
-        });
-    </script>
 @endsection
 @endsection
