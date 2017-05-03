@@ -38,6 +38,9 @@
                     <p><b>Nome da Disciplina:</b> {{$disciplina->nome}}</p>
                     <p><b>Sigla:</b> {{$disciplina->sigla}}</p>
                     <p><b>Aulas/Semana:</b> {{$disciplina->aulasSemanais}}</p>
+                    @if(!empty($disciplina->cursos[0]))
+                      <p><b>Curso:</b> {{$disciplina->cursos[0]->nome}}</p>
+                    @endif
                 </div>
             </td>
         </tr>

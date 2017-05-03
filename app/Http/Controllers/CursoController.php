@@ -97,6 +97,7 @@ class CursoController extends Controller
 
     private function getDisciplinas($id = null){
         $disciplinas = Disciplina::orderBy('nome', 'asc')->get();
+        $disciplinas_formatadas = [];
         if (!is_null($id)) {
             $disciplinas_cadastradas = Curso::findOrFail($id)->disciplinas->pluck('nome', 'id')->toArray();
         }
@@ -104,9 +105,11 @@ class CursoController extends Controller
         foreach($disciplinas as $key => $disciplina){
             if(!empty($disciplina->cursos[0]) && @!array_key_exists($disciplina->id, $disciplinas_cadastradas)){
                 unset($disciplinas[$key]);
+            }else{
+                $disciplinas_formatadas[$disciplina->id] = $disciplina->nome . ' (' . $disciplina->sigla . ')';
             }
         }
         
-        return $disciplinas = $disciplinas->pluck('nome', 'id');
+        return $disciplinas_formatadas;
     }
 }
