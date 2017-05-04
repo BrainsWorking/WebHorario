@@ -48,13 +48,13 @@
     </a>
 </div>
 
-<table class='table table-bordered table-hover'>
+<table class='table table-bordered'>
 <thead>
     <tr>
-        <th>Turno</th>
-        <th>Horário</th>
+        <th class="text-center">Turno</th>
+        <th class="text-center">Horário</th>
         @foreach(['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'] as $semana)
-            <th>{{ $semana }}</th>
+            <th class="text-center">{{ $semana }}</th>
         @endforeach
     </tr>
 </thead>
@@ -69,8 +69,10 @@
             <td>{{$horario->inicio}} às {{$horario->fim}}</td>
 
             @foreach($dias_semana as $semana)
-                <td class='td-disciplina'>
-                    {!! Form::checkbox("disp[$semana][]", "$horario->id", false, ['class' => 'fpa-checkbox']) !!}
+                <td class='td-disciplina none-padding'>
+                    {!! Form::checkbox("disp[$semana][]", "$horario->id", false, 
+                    ['class' => 'fpa-checkbox', 'id' => "{$horario->id}-{$semana}"]) !!}
+                    <label class="label-check" for="{{$horario->id}}-{{$semana}}"> </label>
                 </td>
             @endforeach
         </tr>
@@ -86,8 +88,10 @@
             <td>{{$horario->inicio}} às {{$horario->fim}}</td>
 
             @foreach($dias_semana as $semana)
-                <td class='td-disciplina'>
-                    {!! Form::checkbox("disp[$semana][]", "$horario->id", false, ['class' => 'fpa-checkbox']) !!}
+                <td class='td-disciplina none-padding'>
+                    {!! Form::checkbox("disp[$semana][]", "$horario->id", false, 
+                    ['class' => 'fpa-checkbox', 'id' => "{$horario->id}-{$semana}"]) !!}
+                    <label class="label-check" for="{{$horario->id}}-{{$semana}}"> </label>
                 </td>
             @endforeach
         </tr>
@@ -101,11 +105,13 @@
                 <th rowspan="{{count($horarios_noite)}}" class="turno rotate-90"><span>Noite</span></th>
             @endif
 
-            <td>{{$horario->inicio}} às {{$horario->fim}}</td>
+            <td> {{$horario->inicio}} às {{$horario->fim}}</td>
 
             @foreach($dias_semana as $semana)
-                <td class='td-disciplina'>
-                    {!! Form::checkbox("disp[$semana][]", "$horario->id", false, ['class' => 'fpa-checkbox']) !!}
+                <td class='td-disciplina none-padding'>
+                    {!! Form::checkbox("disp[$semana][]", "$horario->id", false, 
+                    ['class' => 'fpa-checkbox', 'id' => "{$horario->id}-{$semana}"]) !!}
+                    <label class="label-check" for="{{$horario->id}}-{{$semana}}"> </label>
                 </td>
             @endforeach
         </tr>
@@ -122,7 +128,7 @@
 
 <div class="escolha-disciplinas col-lg-12">
     <div class="row">
-        <div class="col-lg-1">
+        <div class="col-lg-2">
             <label class="index">Disciplina 1</label>
         </div>
         <div class="form-group col-lg-4">
@@ -156,14 +162,6 @@
         });
 
         $(document).ready(function(){
-            $("td").click(function(){
-                $(this).children().click();
-            });
-            
-            $(".fpa-checkbox").click(function(){
-                $(this).click();       
-            });
-
                 'use strict'
             	var wrapper = $(".escolha-disciplinas");
                 var button = $(".add-field");
@@ -173,10 +171,10 @@
                     e.preventDefault();
                     $(wrapper).append(`
                         <div class="row">
-                            <div class="col-lg-1">
+                            <div class="col-lg-2">
                                 <label class="index">Disciplina ` + x + `</label>
                             </div>
-                            <div class="form-group col-lg-6">
+                            <div class="form-group col-lg-4">
                                 <select class="chosen-select" data-placeholder=" ">
                                     <option value=''></option>
                                     @foreach($disciplinas as $disciplina)
@@ -193,6 +191,12 @@
                             </div>
                         </div>
                     `);
+
+                    $(".chosen-select").chosen({
+                        no_results_text: "Nenhuma disciplina encontrada!",
+                        width: '100%',
+                        allow_single_deselect: true 
+                    });
                     x++;
                 });
 
@@ -212,36 +216,39 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('css/chosen/chosen.css')}}">
     <style>
+        .none-padding{
+            padding: 0 !important;
+        }
         .td-disciplina{
+            cursor: pointer;
             padding: 0px !important; 
             text-align: center !important;
             vertical-align: middle !important;    
         }
-        .fpa-checkbox{
-            visibility: hidden;
+        .label-check{
             cursor: pointer;
+            display: inline;
+            font-size: 25px;
         }
-        .fpa-checkbox:before {
-            content: "";
-            display: inline-block;
-            width: 100%;
-            height: 100%;
-            visibility: visible;
-            line-height: 12px;
-            font-size: 30px;
+        .fpa-checkbox{
+            display: none;
+        }
+        .fpa-checkbox + .label-check{
             text-align: center;
-            font-weight: bold;
-            color: #052;
-            background-color:inherit;
+            width: 100%;
+            min-width: 32px;
+            display: inline-block;
+            margin: 0;
         }
-        .fpa-checkbox:checked:before {
+        .fpa-checkbox + .label-check:after{
+            width: 100%;
+            content: ' ';
+            display: inline-block;
+        }
+        .fpa-checkbox:checked + .label-check:after{
             content: "✓";
             color:#43a047;
         }
-        .chosen-single{ height: 38px !important; line-height: 19px !important; margin-bottom: -2px}
-        .chosen-single > span{ padding: 8px !important; }
-        .chosen-container-single .chosen-single div { top: 5px; height: 22px; }
-        .chosen-container-single .chosen-single abbr { top: 11px; }
         .rotate-90 { vertical-align: middle !important; text-align: center }
         .rotate-90 span{ display:block; transform: rotate(-90deg) }
         .escolha-disciplinas{ margin-top: 15px !important; }
