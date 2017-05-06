@@ -32,18 +32,19 @@
 {!! Form::open(['method' => 'post', 'route' => 'fpa.salvar']) !!}
 
 
-<div class="col-lg-4 form-group padding-left-0">
+<div class="col-lg-4 form-group padding-left-0" id="regimeTrabalho">
     {!! Form::label('', 'Regime de Trabalho', ['class' => 'control-label']) !!} <br />
     {!! Form::label('', '20 Horas', ['class' => 'control-label']) !!}
-    {!! Form::radio('regimeTrabalho', '20 Horas', true) !!}
+    {!! Form::radio('regimeTrabalho', '20', true) !!}
     {!! Form::label('', '40 Horas', ['class' => 'control-label',]) !!}
     {!! Form::radio('regimeTrabalho', '40') !!}
 </div>
 
 <div class="col-lg-12 form-group padding-left-0" id="div-prioridade">
-    {!! Form::checkbox('prioridade', 'true', false, ['class' => '']) !!}
-    {!! Form::label('', 'Sim, desejo me dedicar prioritariamente a atividades de ensino.', 
-    ['class' => 'control-label']) !!}
+    <label class="control-label none-margin">
+		{!! Form::checkbox('prioridade', 'true', false, ['class' => '']) !!}
+		Sim, desejo me dedicar prioritariamente a atividades de ensino.
+    </label>
 </div>
 
 
@@ -195,10 +196,33 @@
 @section('scripts')
     <script type="text/javascript" src="{{asset('js/chosen.jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/fpa.js')}}"></script>
+	<script>
+
+		$(document).ready(function(){
+			if($("input:radio[name='regimeTrabalho']:checked").val() == "40"){
+				$("#div-prioridade").fadeIn('slow');
+			}
+
+			$("#regimeTrabalho input[name='regimeTrabalho']").click(function(){
+				if($("input:radio[name='regimeTrabalho']:checked").val() == "40"){
+					$("#div-prioridade").fadeIn('slow');
+				}else{
+					$("#div-prioridade").fadeOut('slow');
+					$("input:checkbox[name='prioridade']").prop('checked', false);
+				}
+			});
+		});
+
+	</script>
 @endsection
 
 @section('css')
     <link rel="stylesheet" href="{{asset('css/chosen/chosen.css')}}">
     <link rel="stylesheet" href="{{asset('css/fpa.css')}}">
+	<style>
+		#div-prioridade{
+			display: none;
+		}
+	</style>
 @endsection
 @endsection
