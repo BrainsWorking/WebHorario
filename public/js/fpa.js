@@ -1,56 +1,44 @@
-$(".chosen-select").chosen({
-    no_results_text: "Nenhuma disciplina encontrada!",
-    width: '100%',
-    allow_single_deselect: true 
-});
-
 $(document).ready(function(){
-    'use strict'
-    var wrapper = $(".escolha-disciplinas");
-    var button = $(".add-field");
-    var x = $('.index').length + 1;
 
-    $(button).click(function(e){
-        e.preventDefault();
-        $(wrapper).append(`
-            <div class="row">
-                <div class="col-lg-2">
-                    <label class="index">Disciplina ` + x + `</label>
-                </div>
-                <div class="form-group col-lg-4">
-                    <select name="componentes[]" class="chosen-select" data-placeholder=" ">
-                        <option value=''></option>
-                        @foreach($disciplinas as $disciplina)
-                            <option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
-                        @endforeach
-                        <!--optgroup label="ADS">
-                        </optgroup -->
-                    </select>
-                </div>
-                <div class="col-lg-1 padding-right-0 remove-field">
-                    <button type="button" class="btn btn-danger btn-sm">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </div>
-            </div>
-        `);
-
-        $(".chosen-select").chosen({
-            no_results_text: "Nenhuma disciplina encontrada!",
-            width: '100%',
-            allow_single_deselect: true 
-        });
-        x++;
+    $(".chosen-select").chosen({
+        no_results_text: "Nenhuma disciplina encontrada!",
+        width: '100%',
+        allow_single_deselect: true 
     });
 
-    $(wrapper).on("click", ".remove-field", function(e){
-        e.preventDefault();
-        $(this).parent().remove();
+    if($("input:radio[name='regimeTrabalho']:checked").val() == "40"){
+        $("#div-prioridade").fadeIn('slow');
+    }
 
-        var labels = $('.index');
-        for (var i = 0; i <= x; i++) {
-            $(labels[i]).html("Disciplina " + (i + 1));
-        };
-        x--;
+    $("#regimeTrabalho input[name='regimeTrabalho']").click(function(){
+        if($("input:radio[name='regimeTrabalho']:checked").val() == "40"){
+            $("#div-prioridade").fadeIn('slow');
+        }else{
+            $("#div-prioridade").fadeOut('slow');
+            $("input:checkbox[name='prioridade']").prop('checked', false);
+        }
     });
+    
+    $(".form").submit(function(e){
+        var disponibilidade = $(".fpa-checkbox:checked").length;
+
+        if($("input:radio[name='regimeTrabalho']:checked").val() == "40"){
+            if(disponibilidade < 29){
+                e.preventDefault(e);
+                qnt = 29
+                return bootbox.alert(
+                    "Você precisa selecionar ao menos 29 horários <br \> selecionados: " + disponibilidade
+                );
+            }
+        }else{
+            if(disponibilidade < 18){
+                e.preventDefault(e);
+                qnt = 18
+                return bootbox.alert(
+                    "Você precisa selecionar ao menos 18 horários <br \> selecionados: " + disponibilidade
+                );
+            }
+        }
+    });
+    
 });

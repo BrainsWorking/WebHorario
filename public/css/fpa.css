@@ -6,6 +6,10 @@
     margin: 0 !important;
 }
 
+#div-prioridade{
+    display: none;
+}
+
 .td-disciplina{
     cursor: pointer;
     padding: 0px !important; 

@@ -29,15 +29,17 @@
     {!! Form::text('', $semestre->fim, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
-{!! Form::open(['method' => 'post', 'route' => 'fpa.salvar']) !!}
+{!! Form::open(['method' => 'post', 'route' => 'fpa.salvar', 'class' => 'form']) !!}
 
 
 <div class="col-lg-4 form-group padding-left-0" id="regimeTrabalho">
     {!! Form::label('', 'Regime de Trabalho', ['class' => 'control-label']) !!} <br />
-    {!! Form::label('', '20 Horas', ['class' => 'control-label']) !!}
-    {!! Form::radio('regimeTrabalho', '20', true) !!}
-    {!! Form::label('', '40 Horas', ['class' => 'control-label',]) !!}
-    {!! Form::radio('regimeTrabalho', '40') !!}
+    <label class="control-label">
+		{!! Form::radio('regimeTrabalho', '20', true) !!} 20 Horas
+    </label>
+	<label class="control-label">
+    	{!! Form::radio('regimeTrabalho', '40') !!} 40 Horas
+	</label>
 </div>
 
 <div class="col-lg-12 form-group padding-left-0" id="div-prioridade">
@@ -150,6 +152,16 @@
 		</div>
 
 		<div id="menu2" class="tab-pane fade col-lg-12">
+			<div class="col-lg-12 form-group padding-left-0">
+				{!! Form::label('', 'SELECIONE AS DISCIPLINAS QUE TEM INTERESSE EM LECIONAR', 
+				['class' => 'control-label']) !!}
+				
+				<a href="#" data-toggle="tooltip" data-placement='right' 
+					title="Clique no botão abaixo para habilitar novos campos de seleção.">
+					<span class="glyphicon glyphicon-info-sign"></span>
+				</a>
+			</div>
+
 			<div class="control-group">
 				<button type="button" class="btn btn-success add-field none-margin">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -195,34 +207,65 @@
 
 @section('scripts')
     <script type="text/javascript" src="{{asset('js/chosen.jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/fpa.js')}}"></script>
-	<script>
-
+	<script type="text/javascript" src="{{asset('js/fpa.js')}}"></script>
+    <script>
 		$(document).ready(function(){
-			if($("input:radio[name='regimeTrabalho']:checked").val() == "40"){
-				$("#div-prioridade").fadeIn('slow');
-			}
+			'use strict'
+			var wrapper = $(".escolha-disciplinas");
+			var button = $(".add-field");
+			var x = $('.index').length + 1;
 
-			$("#regimeTrabalho input[name='regimeTrabalho']").click(function(){
-				if($("input:radio[name='regimeTrabalho']:checked").val() == "40"){
-					$("#div-prioridade").fadeIn('slow');
-				}else{
-					$("#div-prioridade").fadeOut('slow');
-					$("input:checkbox[name='prioridade']").prop('checked', false);
-				}
+			$(button).click(function(e){
+				e.preventDefault();
+				$(wrapper).append(`
+					<div class="row">
+						<div class="col-lg-2">
+							<label class="index">Disciplina ` + x + `</label>
+						</div>
+						<div class="form-group col-lg-4">
+							<select name="componentes[]" class="chosen-select" data-placeholder=" ">
+								<option value=''></option>
+								@foreach($disciplinas as $disciplina)
+									<option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
+								@endforeach
+								<!--optgroup label="ADS">
+								</optgroup -->
+							</select>
+						</div>
+						<div class="col-lg-1 padding-right-0 remove-field">
+							<button type="button" class="btn btn-danger btn-sm">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button>
+						</div>
+					</div>
+				`);
+
+				$(".chosen-select").chosen({
+					no_results_text: "Nenhuma disciplina encontrada!",
+					width: '100%',
+					allow_single_deselect: true 
+				});
+				x++;
+			});
+
+			$(wrapper).on("click", ".remove-field", function(e){
+				e.preventDefault();
+				$(this).parent().remove();
+
+				var labels = $('.index');
+				for (var i = 0; i <= x; i++) {
+					$(labels[i]).html("Disciplina " + (i + 1));
+				};
+				x--;
 			});
 		});
-
+	
 	</script>
 @endsection
 
 @section('css')
     <link rel="stylesheet" href="{{asset('css/chosen/chosen.css')}}">
     <link rel="stylesheet" href="{{asset('css/fpa.css')}}">
-	<style>
-		#div-prioridade{
-			display: none;
-		}
-	</style>
 @endsection
+
 @endsection
