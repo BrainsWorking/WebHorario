@@ -1,0 +1,65 @@
+.none-padding{
+    padding: 0 !important;
+}
+
+.none-margin{
+    margin: 0 !important;
+}
+
+#div-prioridade{
+    display: none;
+}
+
+.td-disciplina{
+    cursor: pointer;
+    padding: 0px !important; 
+    text-align: center !important;
+    vertical-align: middle !important;    
+}
+
+.label-check{
+    cursor: pointer;
+    display: inline;
+    font-size: 25px;
+}
+
+.fpa-checkbox{
+    display: none;
+}
+
+.fpa-checkbox + .label-check{
+    text-align: center;
+    width: 100%;
+    min-width: 32px;
+    display: inline-block;
+    margin: 0;
+}
+
+.fpa-checkbox + .label-check:after{
+    width: 100%;
+    content: ' ';
+    display: inline-block;
+}
+
+.fpa-checkbox:checked + .label-check:after{
+    content: "✓";
+    color:#43a047;
+}
+
+.margin-bottom{ 
+    margin-bottom: 20px; 
+}
+
+.rotate-90 { 
+    vertical-align: middle !important; 
+    text-align: center
+}
+
+.rotate-90 span{ 
+    display:block; transform: 
+    rotate(-90deg)
+}
+
+.escolha-disciplinas{
+    margin-top: 15px !important; 
+}
