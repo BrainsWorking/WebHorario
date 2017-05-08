@@ -28,8 +28,9 @@
             </div>
         </div>
         <div class="row">
-            @include('layout.components.sidebar')
-            <div class="col-lg-10 collapsed-canvas clearfix" id="content">
+            <!-- ADICIONAR CONTEUDO DA PAGINA AQUI -->
+           @include('layout.components.sidebar')
+           <div class="col-lg-10 collapsed-canvas clearfix" id="content">
                 <!-- Conteúdo -->
                 @include('layout.components.alerts')
                 @yield('content')
