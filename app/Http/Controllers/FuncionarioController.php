@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Funcionario;
 use App\Models\Telefone;
 use App\Models\Cargo;
+use Illuminate\Support\Facades\Auth;
 
 class FuncionarioController extends Controller {
 
@@ -43,7 +44,7 @@ class FuncionarioController extends Controller {
 
   public function editar($id = null) {
     $cargos = Cargo::pluck('nome', 'id');
-    $sexos  = [ 'M' => 'Masculino', 'F' => 'Feminino' ];
+    $sexos  = [ 'm' => 'Masculino', 'f' => 'Feminino' ];
     $funcionario = is_null($id) ? Auth::user() : Funcionario::findOrFail($id);
     $cargosFuncionario = $funcionario->cargos()->pluck('id')->toArray();
     $telefones = $funcionario->telefones()->pluck('numero')->toArray();
@@ -71,7 +72,8 @@ class FuncionarioController extends Controller {
 
     }, 3);
 
-    return redirect()->route('funcionarios')->withSuccess('Funcionário atualizado com sucesso!');
+    //return redirect()->route('funcionarios')->withSuccess('Funcionário atualizado com sucesso!');
+    return back()->withSuccess('Funcionário atualizado com sucesso!');
   }
 
   public function deletar($id){
@@ -84,6 +86,17 @@ class FuncionarioController extends Controller {
     $funcionario->delete();
 
     return redirect()->route('funcionarios')->withSuccess('Funcionário desativado com sucesso!');
+  }
+
+  public function perfil(){
+    $cargos = Cargo::pluck('nome', 'id');
+    $sexos  = [ 'm' => 'Masculino', 'f' => 'Feminino' ];
+    $funcionario = Auth::user();
+    $cargosFuncionario = $funcionario->cargos()->pluck('id')->toArray();
+    $telefones = $funcionario->telefones()->pluck('numero')->toArray();
+
+    return view('perfil.formPerfil', compact('cargos', 'funcionario', 'cargosFuncionario', 'telefones', 'sexos'));
+  
   }
 
 }
