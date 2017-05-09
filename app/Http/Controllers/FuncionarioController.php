@@ -43,7 +43,7 @@ class FuncionarioController extends Controller {
 
   public function editar($id = null) {
     $cargos = Cargo::pluck('nome', 'id');
-    $sexos  = [ 'm' => 'Masculino', 'f' => 'Feminino' ];
+    $sexos  = [ 'M' => 'Masculino', 'F' => 'Feminino' ];
     $funcionario = is_null($id) ? Auth::user() : Funcionario::findOrFail($id);
     $cargosFuncionario = $funcionario->cargos()->pluck('id')->toArray();
     $telefones = $funcionario->telefones()->pluck('numero')->toArray();
