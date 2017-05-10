@@ -30,12 +30,10 @@ $(document).ready(function(){
     });
 
     $(wrapper).on("click", ".remove-field", function(remove_disciplina){
-        e.preventDefault();
         $(this).parent().remove();
     });
 
     $(".modulo").on('click', '#add-semestre', function(adiciona_semestre){
-        e.preventDefault()
         $("#last").before(`
          <li><a data-toggle='pill' href='#semestre`+ i +`'>` + i + `° Semestre</a></li>
          `);
