@@ -28,8 +28,8 @@
                     {!! Form::text('sigla[]', null, ['class' => 'form-control', 'required', 'maxlength' => '5', 'required']) !!}
                 </div>
                 <div class="control-group form-group col-sm-2">
-                    {!! Form::label('aulas_semanais', 'Aulas/semana', ['class' => 'control-label']) !!}
-                    {!! Form::text('aulas_semanais[]', null, ['class' => 'form-control', 'required']) !!}
+                    {!! Form::label('aulasSemanais', 'Aulas/semana', ['class' => 'control-label']) !!}
+                    {!! Form::text('aulasSemanais[]', null, ['class' => 'form-control', 'required']) !!}
                 </div>
             </div>
         </div>
