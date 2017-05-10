@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Disciplina;
 use App\Models\Turno;
+use App\Models\Modulo;
 use App\Models\Funcionario;
 
 class Curso extends Model {
@@ -12,12 +13,18 @@ class Curso extends Model {
     protected $fillable = ['nome', 'sigla', 'turno_id', 'funcionario_id'];
 	public $timestamps = false;
 
-    public function disciplinas(){
-        return $this->belongsToMany(Disciplina::class, 'cursos_disciplinas')->orderBy('disciplinas.nome', 'asc');;
-    }
-    
     public function turno(){
     	return $this->belongsTo(Turno::class);
+    }
+
+    public function modulos(){
+        return $this->hasMany(Modulo::class);
+    }
+
+    public function disciplinas(){
+        return $this->modulos()
+            ->join('disciplinas', 'modulos.id','=','modulos.disciplina_id')
+            ->get();
     }
 
     public function coordenador(){
