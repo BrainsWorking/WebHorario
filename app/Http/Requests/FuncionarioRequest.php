@@ -39,6 +39,7 @@ class FuncionarioRequest extends FormRequest {
         $data = parent::all();
 
         $data['sexo'] = strtoupper($data['sexo']);
+        $data['data_nascimento'] = converterDataIngles($data['data_nascimento']);
 
         if(!$this->has('password')){
             unset($data['password']);
