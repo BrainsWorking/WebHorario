@@ -254,3 +254,14 @@ form{
 .nav-tabs>li>a{
 	padding: 10px 10px;
 }
+
+::-webkit-scrollbar{
+	height: 9px;
+	width: 9px;
+}
+
+::-webkit-scrollbar-thumb{
+	-webkit-border-radius: 1px;
+	border-radius: 1px;
+	background: #D6D5D4;
+}

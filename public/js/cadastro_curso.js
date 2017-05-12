@@ -76,12 +76,21 @@ $(document).ready(function(){
         var referencia = $('#last').prev('li').children().attr('href');
         $('#last').prev('li').remove();
         $(referencia).remove();
-        
-        $('#last').addClass('active');
-        $('#dp').addClass('active in');
+
+        referencia = '#semestre' + (i-2);
+
+        if ($('#last').prev('li').length >= 1) {
+            $('.active').removeClass('in active');
+            $('#last').prev('li').addClass('active');
+            $(referencia).addClass('active in');
+        }else{
+            $('.active').removeClass('in active');
+            $('#last').addClass('active');
+            $('#dp').addClass('active in'); 
+        }
         if (i > 1) {
             i--;
-        };
+        };  
     });
 
 });
