@@ -6,19 +6,19 @@ $(document).ready(function(){
         $(this).closest('.disciplinas').append(`
          <div class="disciplina">
             <div class="control-group form-group col-sm-5">
-                <input name="nome[`+index+`][]" type="text" class="form-control" required>
+                <input name="disciplinas[nome][]" type="text" class="form-control" required>
             </div>
             <div class="control-group form-group col-sm-2">                     
-                <input name="sigla[`+index+`][]" type="text" class="form-control" required maxlength="5">
+                <input name="disciplinas[sigla][]" type="text" class="form-control" required maxlength="5">
             </div>
             <div class="control-group form-group col-sm-2">                     
-                <select class="form-control" name="tipoSala[`+index+`][]">
+                <select class="form-control" name="disciplinas[tipo_sala][]">
                     <option>Sala Comum</option>
                     <option>Laboratório de Informática</option>
                 </select>
             </div>              
             <div class="control-group form-group col-sm-2">
-                <input name="aulasSemanais[`+index+`][]" type="text" class="form-control" required>
+                <input name="disciplinas[aulas_semanais][]" type="text" class="form-control" required>
             </div>
             <div class="col-sm-1 remove-field">
                 <button type="button" class="btn btn-danger btn-sm right">
@@ -33,12 +33,13 @@ $(document).ready(function(){
     });
 
     $(".modulos").on('click', '#add-semestre', function(){
+        $('.active').removeClass('in active');
         $("#last").before(`
-         <li><a data-toggle='pill' href='#semestre`+ i +`'>` + i + `° Semestre</a></li>
+         <li class="active"><a data-toggle='pill' href='#semestre`+ i +`'>` + i + `° Semestre</a></li>
          `);
 
         $('.tab-content').append(`
-            <div id="semestre`+ i +`" class="disciplinas tab-pane fade">
+            <div id="semestre`+ i +`" class="disciplinas tab-pane fade in active">
                 <div class="control-group" style="margin-left: 15px;">
                     <button type="button" class="btn btn-success add-field">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outras disciplinas
@@ -47,22 +48,22 @@ $(document).ready(function(){
                 <div class="disciplina">
                     <div class="control-group form-group col-sm-5">
                         <label for='nome' class='control-label'>Nome</label>
-                        <input name="nome[`+i+`][]" type="text" class="form-control" required>
+                        <input name="disciplinas[nome][]" type="text" class="form-control" required>
                     </div>
                     <div class="control-group form-group col-sm-2">
                         <label for='sigla' class='control-label'>Sigla</label>
-                        <input name="sigla[`+i+`][]" type="text" class="form-control" required maxlength="5">
+                        <input name="disciplinas[sigla][]" type="text" class="form-control" required maxlength="5">
                     </div>
                     <div class="control-group form-group col-sm-2">
                         <label for='tipoSala' class='control-label'>Tipo Sala</label>
-                        <select class="form-control" name="tipoSala[`+i+`][]">
+                        <select class="form-control" name="disciplinas[tipo_sala][]">
                             <option>Sala Comum</option>
                             <option>Laboratório de Informática</option>
                         </select>
                     </div>              
                     <div class="control-group form-group col-sm-2">
                         <label for='aulasSemanais' class='control-label'>Aulas/Semana</label>
-                        <input name="aulasSemanais[`+i+`][]" type="text" class="form-control" required>
+                        <input name="disciplinas[aulas_semanais][]" type="text" class="form-control" required>
                     </div>
                 </div>
             </div>
@@ -78,7 +79,9 @@ $(document).ready(function(){
         
         $('#last').addClass('active');
         $('#dp').addClass('active in');
-        i--;
+        if (i > 1) {
+            i--;
+        };
     });
 
 });

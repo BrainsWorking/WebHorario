@@ -34,13 +34,63 @@
 	<div class="form-group">
 		<h4>Semestres/Disciplinas</h4>
 	</div>
+	@if (isset($curso)) 
+	<div class="col-lg-12 modulos" style="padding: 0px; margin-bottom: 15px;">
+		<ul class='nav nav-tabs'>
+			@foreach($curso->modulos as $modulo)
+				@if($loop->first)
+					<li class="active"><a data-toggle="pill" href="#{{$modulo->nome}}">{{$modulo->nome}}</a></li>	
+				@else
+					<li><a data-toggle="pill" href="#{{$modulo->nome}}">{{$modulo->nome}}</a></li>
+				@endif
+			@endforeach
+					<li id="last"><a data-toggle="pill" href="#dp">DP</a></li>
+					<li><a id="add-semestre" class="btn"><span class="glyphicon glyphicon-plus"></span></a></li>
+					<li><a id="remove-semestre" class="btn"><span class="glyphicon glyphicon-minus"></span></a></li>
+		</ul>
 
+		<div class="tab-content">
+			@foreach($curso->modulos as $modulo)
+				@if($loop->first)
+					<div id="{{$modulo->nome}}" class="disciplinas tab-pane fade in active">
+				@else
+					<div id="{{$modulo->nome}}" class="disciplinas tab-pane fade">
+				@endif					
+						<div class="control-group" style="margin-left: 15px;">
+							<button type="button" class="btn btn-success add-field">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outras disciplinas
+							</button>
+						</div>
+						@foreach($modulo->disciplinas as $disciplina)
+							<div class="disciplina">
+								<div class="control-group form-group col-sm-5">
+									{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
+									{!! Form::text('disciplinas[nome][]', $disciplina->nome, ['class' => 'form-control', 'required']) !!}
+								</div>
+								<div class="control-group form-group col-sm-2">
+									{!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}
+									{!! Form::text('disciplinas[sigla][]', $disciplina->sigla, ['class' => 'form-control','maxlength' => '5', 'required']) !!}
+								</div>
+								<div class="control-group form-group col-sm-2">
+									{!! Form::label('tipoSala', 'Tipo Sala', ['class' => 'control-label']) !!}
+									{!! Form::select('disciplinas[tipo_sala][]', ['1' => 'Sala Comum', '2' => 'Laboratório de Informática'], $disciplina->tipo_sala, ['class' => 'form-control']) !!}
+								</div>              
+								<div class="control-group form-group col-sm-2">
+									{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
+									{!! Form::text('disciplinas[aulas_semanais][]', $disciplina->aulas_semanais, ['class' => 'form-control', 'required']) !!}
+								</div>
+							</div>
+						@endforeach
+					</div>
+			@endforeach
+		</div>
+	@else
 	<div class="col-lg-12 modulos" style="padding: 0px; margin-bottom: 15px;">
 		<ul class='nav nav-tabs'>
 			<li class="active"><a data-toggle="pill" href="#semestre1">1° Semestre</a></li>
 			<li id="last"><a data-toggle="pill" href="#dp">DP</a></li>
 			<li><a id="add-semestre" class="btn"><span class="glyphicon glyphicon-plus"></span></a></li>
-			<li><a id="remove-semestre" class="btn">Remover semestre</a></li>
+			<li><a id="remove-semestre" class="btn"><span class="glyphicon glyphicon-minus"></span></a></li>
 		</ul>
 		<div class="tab-content">
 			<div id="semestre1" class="disciplinas tab-pane fade in active">
@@ -52,26 +102,23 @@
 				<div class="disciplina">
 					<div class="control-group form-group col-sm-5">
 						{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
-						{!! Form::text('nome[1][]', null, ['class' => 'form-control', 'required']) !!}
+						{!! Form::text('disciplinas[nome][]', null, ['class' => 'form-control', 'required']) !!}
 					</div>
 					<div class="control-group form-group col-sm-2">
 						{!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}
-						{!! Form::text('sigla[1][]', null, ['class' => 'form-control','maxlength' => '5', 'required']) !!}
+						{!! Form::text('disciplinas[sigla][]', null, ['class' => 'form-control','maxlength' => '5', 'required']) !!}
 					</div>
 					<div class="control-group form-group col-sm-2">
-						<label for='tipoSala' class='control-label'>Tipo Sala</label>
-						<select class="form-control" name="tipoSala[1][]">
-							<option>Sala Comum</option>
-							<option>Laboratório de Informática</option>
-						</select>
+						{!! Form::label('tipoSala', 'Tipo Sala', ['class' => 'control-label']) !!}
+						{!! Form::select('disciplinas[tipo_sala][]', ['1' => 'Sala Comum', '2' => 'Laboratório de Informática'], null, ['class' => 'form-control']) !!}
 					</div>              
 					<div class="control-group form-group col-sm-2">
 						{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
-						{!! Form::text('aulas_semanais[1][]', null, ['class' => 'form-control', 'required']) !!}
+						{!! Form::text('disciplinas[aulas_semanais][]', null, ['class' => 'form-control', 'required']) !!}
 					</div>
 				</div>
 			</div>
-			
+
 			<div id="dp" class="disciplinas tab-pane fade">
 				<div class="control-group" style="margin-left: 15px;">
 					<button type="button" class="btn btn-success add-field">
@@ -81,32 +128,27 @@
 				<div class="disciplina">
 					<div class="control-group form-group col-sm-5">
 						{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
-						{!! Form::text('nome[1][]', null, ['class' => 'form-control', 'required']) !!}
+						{!! Form::text('disciplinas[nome][]', null, ['class' => 'form-control', 'required']) !!}
 					</div>
 					<div class="control-group form-group col-sm-2">
 						{!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}
-						{!! Form::text('sigla[1][]', null, ['class' => 'form-control','maxlength' => '5', 'required']) !!}
+						{!! Form::text('disciplinas[sigla][]', null, ['class' => 'form-control','maxlength' => '5', 'required']) !!}
 					</div>
 					<div class="control-group form-group col-sm-2">
-						<label for='tipoSala' class='control-label'>Tipo Sala</label>
-						<select class="form-control" name="tipoSala[1][]">
-							<option>Sala Comum</option>
-							<option>Laboratório de Informática</option>
-						</select>
+						{!! Form::label('tipoSala', 'Tipo Sala', ['class' => 'control-label']) !!}
+						{!! Form::select('disciplinas[tipo_sala][]', ['1' => 'Sala Comum', '2' => 'Laboratório de Informática'], null, ['class' => 'form-control']) !!}
 					</div>              
 					<div class="control-group form-group col-sm-2">
 						{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
-						{!! Form::text('aulas_semanais[1][]', null, ['class' => 'form-control', 'required']) !!}
+						{!! Form::text('disciplinas[aulas_semanais][]', null, ['class' => 'form-control', 'required']) !!}
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-	<button type="submit" class="btn btn-success right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
-	<a class="btn btn-danger right cancelar" href="{{ route('cursos') }}"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+	@endif
+		<button type="submit" class="btn btn-success right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
+		<a class="btn btn-danger right cancelar" href="{{ route('cursos') }}"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
 
 	{!! Form::close() !!}
 
