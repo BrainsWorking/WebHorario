@@ -19,7 +19,7 @@ $(document).ready(function(){
 						'<input type="text" name="sigla['+x+']" class="form-control" maxlength="5" required>' +
 					'</div>' +
                     '<div class="form-group col-sm-2">' +
-                        '<input type="text" name="aulas_semanais['+x+']" class="form-control" maxlength="2" required>' +
+                        '<input type="text" name="aulasSemanais['+x+']" class="form-control" maxlength="2" required>' +
                     '</div>' +
             		'<div class="col-sm-1 remove-field">' +
             			'<button type="button" class="btn btn-danger btn-sm right">' +

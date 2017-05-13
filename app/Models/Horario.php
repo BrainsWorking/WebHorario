@@ -10,10 +10,6 @@ class Horario extends Model {
     protected $fillable = ['inicio', 'fim'];
     public $timestamps = false;
     
-    public function fpas(){
-        return $this->belongsToMany(Fpa::class, 'horarios_fpas');
-    }
-
     public function turnos(){
         return $this->belongsToMany(Turno::class, 'turnos_horarios');
     }
