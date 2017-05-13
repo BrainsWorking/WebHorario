@@ -10,9 +10,9 @@ class DisciplinaRequest extends FormRequest {
 
     public function rules() { 
         return [
-            'nome'          => 'string|required',
-            'sigla'         => 'string|max:5|required',
-            'aulasSemanais' => 'integer|required'
+            'nome'           => 'string|required',
+            'sigla'          => 'string|max:5|required',
+            'aulas_semanais' => 'integer|required'
         ];
     }
 }
