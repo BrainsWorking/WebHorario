@@ -18,11 +18,11 @@ class Semestre extends Model {
     }
 
     public function disciplinas(){
-        return $this->belongsToMany(Turma::class, 'turmas');
+        return $this->belongsToMany(Disciplina::class, 'turmas');
     }
 
     public function turmas(){
-        return $this->hasMany(Turma::class);
+        return $this->hasMany(Turma::class, 'semestre_id');
     }
   
     public function fpas(){
@@ -33,8 +33,8 @@ class Semestre extends Model {
         $data_atual = date('Y-m-d');
         
         return Semestre::
-              where('fpaInicio', '<', $data_atual)
-            ->where('fpaFim'   , '>', $data_atual)
+              where('fpa_inicio', '<', $data_atual)
+            ->where('fpa_fim'   , '>', $data_atual)
             ->firstOrFail();
     }
 
@@ -57,19 +57,19 @@ class Semestre extends Model {
     }
 
     public function setFpaInicioAttribute($data) {
-        $this->attributes['fpaInicio'] = converterDataIngles($data);
+        $this->attributes['fpa_inicio'] = converterDataIngles($data);
     }
 
     public function getFpaInicioAttribute() {
-        return converterDataBrasil($this->attributes['fpaInicio']);
+        return converterDataBrasil($this->attributes['fpa_inicio']);
     }
 
     public function setFpaFimAttribute($data) {
-        $this->attributes['fpaFim'] = converterDataIngles($data);
+        $this->attributes['fpa_fim'] = converterDataIngles($data);
     }
 
     public function getFpaFimAttribute() {
-        return converterDataBrasil($this->attributes['fpaFim']);
+        return converterDataBrasil($this->attributes['fpa_fim']);
     }
 
 }

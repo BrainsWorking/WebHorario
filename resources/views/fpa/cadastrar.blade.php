@@ -53,7 +53,7 @@
 <div class="col-lg-12 form-group padding-left-0">
 
 
-	<div class="col-lg-6 margin-bottom">
+	<div class="col-lg-12 margin-bottom">
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle="tab" href="#menu1">Disponibilidade</a></li>
 			<li><a data-toggle="tab" href="#menu2">Componentes</a></li>
@@ -189,13 +189,13 @@
 					
 				</div>
 			</div>
-			
-			<button type="submit" class="btn btn-success right">
-				<span class="glyphicon glyphicon-floppy-disk"></span>
-				Salvar
-			</button>
 
 		</div>
+
+		<button type="submit" class="btn btn-success right">
+			<span class="glyphicon glyphicon-floppy-disk"></span>
+			Salvar
+		</button>
 	
 	
 	</div>
