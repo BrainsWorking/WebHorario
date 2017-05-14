@@ -17,8 +17,27 @@ class Semestre extends Model {
         return $this->belongsToMany(Modulo::class, 'modulos_semestre');
     }
 
-    public function disciplinas(){
-        return $this->belongsToMany(Disciplina::class, 'turmas');
+    public function disciplinasPorCurso(){
+        $disciplinas_por_curso = [];
+        $disciplinas = $this->modulos()
+            ->select(DB::raw('
+                cursos.nome      as curso_nome,
+                disciplinas.id   as disciplina_id,
+                disciplinas.nome as disciplina_nome
+            '))
+            ->join('cursos',      'cursos.id', '=', 'modulos.curso_id')
+            ->join('disciplinas', 'modulo.id', '=', 'disciplina.modulo_id')
+            ->get();
+
+            // $disciplinas[0] => [ 'curso_nome' => 'ADS', 'disciplina_id' => '1', 'disicplina_nome' => 'mat2' ]
+            foreach($disciplinas as $disciplinas){
+                $curso = $disciplina['curso_nome'];
+                unset($disciplina['curso_nome']);
+
+                $disciplinas_por_curso[$curso] = (object) [ 'id' => $disciplina['disciplina_id'], 'nome' => $disciplina['disciplina_nome'] ];
+            }
+
+            return $disciplinas_por_curso;
     }
 
     public function turmas(){
