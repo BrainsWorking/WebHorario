@@ -41,7 +41,7 @@ class SemestreController extends Controller {
 
         $disciplinas = $this->getDisciplinasComCurso();
         $semestre = Semestre::findOrFail($id);
-        $disciplina_id = $semestre->disciplinas()->pluck('id')->toArray();
+        $disciplina_id = $semestre->disciplinas()->pluck('disciplinas.id')->toArray();
 
         return view('semestre.formSemestre', compact('semestre', 'disciplinas', 'disciplina_id'));
     }

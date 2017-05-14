@@ -13,15 +13,15 @@ class Fpa extends Model {
 	public $timestamps = false;
 
     public function horarios(){
-        return $this->hasMany(Horario::class);
+        return $this->belongsTo(Horario::class);
     }
 
-    public function semestre(){
+    public function semestres(){
         return $this->belongsTo(Semestre::class);
     }
 
     public function disciplinas(){
-        return $this->belongsToMany(Disciplina::class, 'disciplinas_fpas');
+        return $this->belongsTo(Disciplina::class);
     }
 
     public function funcionarios(){
