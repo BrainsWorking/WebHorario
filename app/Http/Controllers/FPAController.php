@@ -57,7 +57,7 @@ class FPAController extends Controller{
         $horarios = Horario::orderBy('inicio')->get();
         $horarios_manha = $horarios_tarde = $horarios_noite = [];
         $meio_dia = strtotime('12:00');
-        $por_sol = strtotime('18:00');
+        $por_sol  = strtotime('18:00');
 
         foreach($horarios as $horario) {
             $hora = strtotime($horario->inicio);
