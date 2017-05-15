@@ -12,8 +12,8 @@ class Disciplina extends Model {
     protected $fillable = ['nome', 'sigla', 'aulasSemanais'];
 	public $timestamps = false;
     
-    public function cursos(){
-        return $this->belongsToMany(Curso::class, 'cursos_disciplinas');
+    public function modulo(){
+        return $this->belongsTo(Modulo::class);
     }
 
     public function tipoSalas(){

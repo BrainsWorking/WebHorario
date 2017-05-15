@@ -24,7 +24,7 @@ class CursoController extends Controller
         // TODO: Remover dsiciplinas já cadastradas em outros cursos
         $funcionarios = $this->getFuncionarios();
 
-    	return view('curso.formCurso', compact('turnos', 'disciplinas', 'funcionarios'));
+    	return view('curso.formCurso', compact('turnos', 'modulos', 'funcionarios'));
     }
 
     public function salvar(CursoRequest $request){
