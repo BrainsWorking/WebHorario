@@ -16,37 +16,26 @@ class FPAController extends Controller{
     }
 
     public function salvar(Request $request){
-        // $disciplina         = Disciplina::findOrFail($request->only('disciplina_id'));
-        // $curso              = $disciplina->curso;
-        // $turno              = $curso->turno;
-        // $horarios           = $turno->horarios;
-        // $horario_cadastrado = Horario::findOrFail($request->only('horario_id'));
+        $data = $request->all();
+        $componentes     = $data['componentes'];
+        $disponibilidades = $data['disp'];
+        $carga_horaria = $data['regimeTrabalho'];
 
-        // $nome_turno      = $turno->nome;
-        // $nome_disciplina = $disciplina->nome;
+        $FPA = Fpa::create(['carga_horaria' => $carga_horaria]);
 
-        // if(!in_array($request->only('horario_id'), $horarios)){
-        //     return response("A disciplina $nome_disciplina não pertence ao turno $nome_turno");
-        // }
+        foreach($disponibilidade as $disponibilidades){
+            foreach($disponibilidades as $dia => $horarios_disponiveis){
+                foreach($horarios_disponiveis as $horario_disponivel){
+				    $FPA->horarios()->attach($horario, ['dia_semana' => $dia]);
+                }
+            }
+        }
+        
+        foreach($componentes as $prioridade => $disciplina){
+            $FPA->disciplinas()->attach($disciplina, ['prioridade' => $prioridade]);
+        }
 
-        // $disciplinas_cadastradas = Semestre::FpaAtivo()
-        //     ->where('funcionario_id', '=', Auth::user()->id)
-        //     ->where('disciplina_id' , '=', $disciplina->id)->count();
-
-        // if($disciplinas_cadastradas>=$disciplina->aulasSemanais){
-        //     return response("O limite de aulas semanais para $nome_disciplina é de {$disciplina->aulasSemanais} e já foi preenchido,
-        //     se deseja colocar esta disciplina no horário {$horario_cadastrado->inicio} - {$horario_cadastrado->fim}, verifique outro 
-        //     horário onde esta disciplina deva ser removida");
-        // }
-
-        //$dados = $request->all();
-        //$dados['funcionario_id'] = Auth::user()->id;
-        //$dados['semestre_id'] = Semestre::fpaAtivo()->id;
-        //Fpa::firstOrCreate($dados);
-
-        //return response($dados);
-
-        return $request->all();
+        return redirect()->back();
     }
 
     public function cadastrar(){
