@@ -17,6 +17,10 @@ class Semestre extends Model {
         return $this->belongsToMany(Modulo::class, 'modulos_semestre');
     }
 
+    public function disciplinas(){
+        return $this->belongsToMany(Disciplina::class, 'turmas')->withPivot('quantidade_alunos');
+    }
+
     public function disciplinasPorCurso(){
         $disciplinas_por_curso = [];
         $disciplinas = $this->modulos()
