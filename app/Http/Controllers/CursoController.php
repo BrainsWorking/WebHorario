@@ -27,20 +27,26 @@ class CursoController extends Controller
     	return view('curso.formCurso', compact('turnos', 'modulos', 'funcionarios'));
     }
 
-    public function salvar(CursoRequest $request){
-        $dataForm = $request->all();
+    public function salvar(Request $request){
+        $nome = $request('nome');
+        $sigla = $request('sigla');
+        $turno = $request('id_turno');
+        $coordenador = $request('id_coordenador');
+        $modulos = $request('modulos');
+        $curso = Curso::create('nome', 'sigla', 'id_turno', 'id_coordenador');
+        $curso->save();
 
-        DB::transaction(function () use ($dataForm) {
-            $curso = Curso::create($dataForm);
-
-            if(isset($dataForm['disciplina_id'])){
-                foreach ($dataForm['disciplina_id'] as $disciplina) {
-                    $curso->disciplinas()->attach($disciplina);
-                }
+        foreach($modulos as $modulo){
+            $modulo = new Modulo();
+            $modulo->curso()->associate($curso);
+            $modulo->save();
+            $disciplinas = $request([$modulo]['disciplinas']);
+            foreach($disciplinas as $disciplina){
+                $disciplina = new Disciplina();
+                $disciplina->curso()->associate($modulo);
+                $disciplina->save();
             }
-        }, 3);
-        
-        return redirect()->route('cursos')->with('success', 'Inclusão realizada com sucesso');
+        }
     }
 
     public function editar($id){
