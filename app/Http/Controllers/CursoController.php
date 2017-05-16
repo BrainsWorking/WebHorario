@@ -22,11 +22,8 @@ class CursoController extends Controller
     	$turnos = Turno::pluck('nome', 'id');
         $funcionarios = $this->getFuncionarios();
 
-<<<<<<< HEAD
     	return view('curso.formCurso', compact('turnos', 'modulos', 'funcionarios'));
-=======
-    	return view('curso.formCurso', compact('turnos', 'curso', 'funcionarios'));
->>>>>>> c64fb49b2ade63cf217fc7d3d1f895ec7e1a771b
+
     }
 
     public function salvar(Request $request){
@@ -103,3 +100,87 @@ class CursoController extends Controller
         return $funcionarios = $funcionarios->pluck('nome', 'id');
     }
 }
+
+/*
+<?php
+
+ namespace App\Http\Controllers;
+
+
+class CursoController extends Controller{
+
+    public function index(){
+        Thinking
+    }
+
+    public function cadastrar(){
+
+    }
+
+    public function salvar(Request $request){
+        $nome = $request('nome');
+        $sigla = $request('sigla');
+        $turno = $request('id_turno');
+        $coordenador = $request('id_coordenador');
+        $modulos = $request('modulos');
+        $curso = Curso::create('nome', 'sigla', 'id_turno', 'id_coordenador');
+        $curso->save();
+
+        foreach($modulos as $modulo){
+            $modulo = new Modulo();
+            $modulo->curso()->associate($curso);
+            $modulo->save();
+            $disciplinas = $request([$modulo]['disciplinas']);
+            foreach($disciplinas as $disciplina){
+                $disciplina = new Disciplina();
+                $disciplina->curso()->associate($modulo);
+                $disciplina->save();
+            }
+        }
+    }
+
+    public function atualizar(Request $request){
+        $nome = $request('nome');
+        $sigla = $request('sigla');
+        $turno = $request('id_turno');
+        $coordenador = $request('id_coordenador');
+        $modulos = $request('modulos');
+        $curso = Curso::update('nome', 'sigla', 'id_turno', 'id_coordenador');
+        $curso->save();
+
+        foreach(){
+            $modulo = Modulo::($dadosDoModulo);
+            foreach(){
+                $disciplina = Disciplina::create($dadosDaDisciplina);
+            }
+        }
+    }
+
+    public function deletar($id){
+        $curso = Curso::findOrFail($id);
+
+        foreach(Módulo dentro de curso){
+            $Modulo = Modulos::findOrFail($curso['id']);
+            foreach(Disciplina dentro de Módulo){
+                $disciplina = Disciplinas::findOrFail($modulo['id']);
+                $disciplina->delete();
+            }
+            $modulo->delete();
+        }
+    }
+
+    public function getModulos($id = null){
+        $modulos = Modulos
+    }
+
+    private function getDisciplinas($id = null){
+        $disciplinas = Disciplina::orderBy('nome', 'asc')->get();
+        $disciplinas_formatadas = [];
+        if (!is_null($id)) {
+            $disciplinas_cadastradas = Curso::findOrFail($id)->disciplinas->pluck('nome', 'id')->toArray();
+        }        
+        return $disciplinas_formatadas;
+    }
+
+}
+*/
