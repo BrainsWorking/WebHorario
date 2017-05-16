@@ -62,7 +62,7 @@ $(document).ready(function(){
                         </select>
                     </div>              
                     <div class="control-group form-group col-sm-2">
-                        <label for='aulasSemanais' class='control-label'>Aulas/Semana</label>
+                        <label for='aulas_semanais' class='control-label'>Aulas/Semana</label>
                         <input name="disciplinas[aulas_semanais][]" type="text" class="form-control" required>
                     </div>
                 </div>

@@ -6,12 +6,12 @@
 
 <div class="col-lg-6 form-group padding-left-0">
     {!! Form::label('', 'Abertura da FPA', ['class' => 'control-label']) !!}
-    {!! Form::text('', $semestre->fpaInicio, ['class' => 'form-control', 'required' , 'disabled']) !!}
+    {!! Form::text('', $semestre->fpa_inicio, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
 <div class="col-lg-6 form-group padding-left-0">
     {!! Form::label('', 'Fechamento da FPA', ['class' => 'control-label']) !!}
-    {!! Form::text('', $semestre->fpaFim, ['class' => 'form-control', 'required' , 'disabled']) !!}
+    {!! Form::text('', $semestre->fpa_fim, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
 <div class="col-lg-4 form-group padding-left-0">
@@ -78,7 +78,7 @@
 					<tr>
 						<th class="text-center">Turno</th>
 						<th class="text-center">Horário</th>
-						@foreach(['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'] as $semana)
+						@foreach($dias_semana as $semana)
 							<th class="text-center">{{ $semana }}</th>
 						@endforeach
 					</tr>

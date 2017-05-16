@@ -37,7 +37,7 @@
                 <div class="hidden-info-content">
                     <p><b>Nome da Disciplina:</b> {{$disciplina->nome}}</p>
                     <p><b>Sigla:</b> {{$disciplina->sigla}}</p>
-                    <p><b>Aulas/Semana:</b> {{$disciplina->aulasSemanais}}</p>
+                    <p><b>Aulas/Semana:</b> {{$disciplina->aulas_semanais}}</p>
                     @if(!empty($disciplina->cursos[0]))
                       <p><b>Curso:</b> {{$disciplina->cursos[0]->nome}}</p>
                     @endif
