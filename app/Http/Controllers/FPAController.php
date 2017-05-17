@@ -41,6 +41,10 @@ class FPAController extends Controller{
     public function cadastrar(){
         $semestre = Semestre::FpaAtivo();
 
+        if(is_null($semestre)){
+            return redirect()->back()->withError('Não há nenhum FPA aberto no momento');
+        }
+
         $disciplinas = $semestre->disciplinas;
 
         $horarios = Horario::orderBy('inicio')->get();

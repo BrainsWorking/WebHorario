@@ -54,11 +54,12 @@ class Semestre extends Model {
   
     public static function FpaAtivo(){
         $data_atual = date('Y-m-d');
-        
-        return Semestre::
+        $semestre = Semestre::
               where('fpa_inicio', '<', $data_atual)
             ->where('fpa_fim'   , '>', $data_atual)
-            ->firstOrFail();
+            ->first();
+
+        return $semestre;
     }
 
     # Atributos customizados: Accessors e Mutators
