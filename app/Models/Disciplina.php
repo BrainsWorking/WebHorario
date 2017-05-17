@@ -9,7 +9,7 @@ use App\Models\Modulo;
 
 class Disciplina extends Model {
 
-    protected $fillable = ['nome', 'sigla', 'aulas_semanais', 'modulo_id'];
+    protected $fillable = ['nome', 'sigla', /*'tipo_sala',*/ 'aulas_semanais', 'modulo_id']; // XXX: Por hora, sem tipo de sala
 	public $timestamps = false;
 
     public function modulo(){
