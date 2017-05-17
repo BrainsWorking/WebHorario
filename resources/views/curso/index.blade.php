@@ -44,16 +44,15 @@
                                 <p><b>Coordenador: </b> {{ $curso->coordenador->nome }} </p>
                             @endif
 
-                            @if(!empty($curso->disciplinas[0]))
+                            {{-- @if(!is_null($curso->disciplinas))
                                 <p><b>Disciplinas:</b></p>
 
                                 @foreach($curso->disciplinas as $disciplina)
                                     <span class="btn hidden-info-content-data-curso">{{ $disciplina['sigla'] .' - '. $disciplina['nome'] }}</span>
                                 @endforeach
                             @else
-                                {{-- <p><b>Cadastre as disciplinas do curso utilizando a opção "Editar".</b></p> --}}
                                 <p><b>Nenhuma disciplina cadastrada, utilize a opção "Editar" para realizar esta ação.</b></p>
-                            @endif
+                            @endif --}}
                         </div>
                     </td>
                 </tr>
