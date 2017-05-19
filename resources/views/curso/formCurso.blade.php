@@ -40,13 +40,14 @@
 			@foreach($curso->modulos as $modulo)
 				@if($loop->first)
 					<li class="active"><a data-toggle="pill" href="#sem{{$modulo->id}}">{{$modulo->nome}}</a></li>	
+				@elseif($loop->last)
+					<li id="last"><a data-toggle="pill" href="#sem{{$modulo->id}}">{{$modulo->nome}}</a></li>
 				@else
 					<li><a data-toggle="pill" href="#sem{{$modulo->id}}">{{$modulo->nome}}</a></li>
 				@endif
 			@endforeach
-					<li id="last"><a data-toggle="pill" href="#dp">DP</a></li>
-					<li><a id="add-semestre" class="btn"><span class="glyphicon glyphicon-plus"></span></a></li>
-					<li><a id="remove-semestre" class="btn"><span class="glyphicon glyphicon-minus"></span></a></li>
+			<li><a id="add-semestre" class="btn"><span class="glyphicon glyphicon-plus"></span></a></li>
+			<li><a id="remove-semestre" class="btn"><span class="glyphicon glyphicon-minus"></span></a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -56,8 +57,8 @@
 				@else
 					<div id="sem{{$modulo->id}}" class="disciplinas tab-pane fade" data-modulo="{{$modulo->id}}">
 				@endif					
-						<input type="hidden" name="modulo[id][{{$modulo->id}}]" hidden/>
-						<input type="hidden" name="modulo[nome][{{$modulo->nome}}]" hidden/>
+						<input type="hidden" name="modulo[{{$modulo->id}}][id]" value="{{$modulo->id}}" hidden/>
+						<input type="hidden" name="modulo[{{$modulo->id}}][nome]" value="{{$modulo->nome}}" hidden/>
 						<div class="control-group" style="margin-left: 15px;">
 							<button type="button" class="btn btn-success add-field">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outras disciplinas
@@ -67,25 +68,26 @@
 							<div class="disciplina">
 								<div class="control-group form-group col-sm-5">
 									{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
-									{!! Form::text("modulo[$modulo->id][disciplinas][nome][]", $disciplina->nome, ['class' => 'form-control', 'required']) !!}
+									{!! Form::text("modulo[$modulo->id][disciplinas][nome][$disciplina->id]", $disciplina->nome, ['class' => 'form-control', 'required']) !!}
 								</div>
 								<div class="control-group form-group col-sm-2">
 									{!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}
-									{!! Form::text("modulo[$modulo->id][disciplinas][sigla][]", $disciplina->sigla, ['class' => 'form-control','maxlength' => '5', 'required']) !!}
+									{!! Form::text("modulo[$modulo->id][disciplinas][sigla][$disciplina->id]", $disciplina->sigla, ['class' => 'form-control','maxlength' => '5', 'required']) !!}
 								</div>
 								<div class="control-group form-group col-sm-2">
 									{!! Form::label('tipoSala', 'Tipo Sala', ['class' => 'control-label']) !!}
-									{!! Form::select("modulo[$modulo->id][disciplinas][tipo_sala][]", ['1' => 'Sala Comum', '2' => 'Laboratório de Informática'], $disciplina->tipo_sala, ['class' => 'form-control']) !!}
+									{!! Form::select("modulo[$modulo->id][disciplinas][tipo_sala][$disciplina->id]", ['1' => 'Sala Comum', '2' => 'Laboratório de Informática'], null, ['class' => 'form-control']) !!}
 								</div>              
 								<div class="control-group form-group col-sm-2">
 									{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
-									{!! Form::text("modulo[$modulo->id][disciplinas][aulas_semanais][]", $disciplina->aulas_semanais, ['class' => 'form-control', 'required']) !!}
-								</div>
+									{!! Form::text("modulo[$modulo->id][disciplinas][aulas_semanais][$disciplina->id]", $disciplina->aulas_semanais, ['class' => 'form-control', 'required']) !!}
+								</div>	
 							</div>
 						@endforeach
 					</div>
 			@endforeach
 		</div>
+	</div>
 	@else
 	<div class="col-lg-12 modulos" style="padding: 0px; margin-bottom: 15px;">
 		<ul class='nav nav-tabs'>
@@ -160,6 +162,7 @@
 
 	@section('scripts')
 	<script>
+	var i = {{ isset($curso) ? $curso->modulos->count() : '2' }};
 	$('#disciplina_id').multiSelect();
 	</script>
 	<script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>

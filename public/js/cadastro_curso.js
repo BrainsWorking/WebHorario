@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    var i = 2;
 
     $('.modulos').on("click", ".add-field", function(){
         var close = $(this).closest('.disciplinas');
@@ -36,6 +35,11 @@ $(document).ready(function(){
     });
 
     $(".modulos").on('click', '#add-semestre', function(){
+        // var close = $(this).closest('.disciplinas');
+        // var index = close.attr('id');
+        // var i = close.attr('data-modulo');
+        // console.log(i);
+
         $('.active').removeClass('in active');
         $("#last").before(`
          <li class="active"><a data-toggle='pill' href='#semestre`+ i +`'>` + i + `° Semestre</a></li>
