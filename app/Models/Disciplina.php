@@ -19,4 +19,12 @@ class Disciplina extends Model {
     public function semestres(){
         return belongsToMany(Semestre::class, 'turmas')->withPivot('quantidade_alunos');
     }
+    
+    public function fpas(){		
+        return belongsToMany(Fpa::class, 'disciplinas_fpas')->withPivot('prioridade');		
+    }		
+		
+    public function curso(){		
+        return $this->modulo->curso;		
+    }
 }
