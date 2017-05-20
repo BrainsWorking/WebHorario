@@ -15,7 +15,6 @@ class Disciplina extends Model {
     public function modulo(){
         return $this->belongsTo(Modulo::class);
     }
-    
     public function semestres(){
         return belongsToMany(Semestre::class, 'turmas')->withPivot('quantidade_alunos');
     }
