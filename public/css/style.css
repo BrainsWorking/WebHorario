@@ -270,6 +270,10 @@ form{
 }
 
 /*atribuição disciplinas*/
+.atrb-semestre{
+	margin-top: 15px;
+}
+
 .atrb-disciplina{
 	border: 3px solid #adadad;
 	width: 49%;
