@@ -77,6 +77,10 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::name('fpa.atualizar')->put('fpa/atualizar/{id}', 'FPAController@atualizar');
     //Route::name('fpa.deletar')->get('fpa/deletar/{id}', 'FPAController@deletar');
 
+
+    Route::get('teste', function(){
+        return view('fpa.atribuicao_disciplinas');
+    });
 });
 
 # Entrada

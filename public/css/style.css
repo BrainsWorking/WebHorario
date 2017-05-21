@@ -234,6 +234,9 @@ form{
 	padding-right: 0;
 }
 
+.padding-0{
+	padding: 0;
+}
 
 /* Overrrides multiselect */
 .ms-container .ms-list{
@@ -264,4 +267,24 @@ form{
 	-webkit-border-radius: 1px;
 	border-radius: 1px;
 	background: #D6D5D4;
+}
+
+/*atribuição disciplinas*/
+.atrb-disciplina{
+	border: 3px solid #adadad;
+	width: 49%;
+	padding: 5px;
+	float: left;
+	margin-right: 5px;
+	margin-bottom: 3px;
+	box-sizing: border-box;
+	border-radius: 4px;	
+}
+
+.atrb-conflito{
+	border-color: #f0ad4e;
+}
+
+.atrb-vazio{
+	border-color: #d43f3a;
 }
