@@ -35,10 +35,11 @@ class FuncionarioRequest extends FormRequest {
         ];
     }
 
-    public function all(){
+    public function validationData(){
         $data = parent::all();
 
         $data['sexo'] = strtoupper($data['sexo']);
+        $data['data_nascimento'] = converterDataIngles($data['data_nascimento']);
 
         if(!$this->has('password')){
             unset($data['password']);

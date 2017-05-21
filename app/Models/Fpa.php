@@ -9,22 +9,23 @@ use App\Models\Horario;
 
 class Fpa extends Model {
 
-    protected $fillable = ['horario_id', 'semestre_id', 'disciplina_id', 'funcionario_id', 'diaSemana'];
+    protected $fillable = ['carga_horaria'];
 	public $timestamps = false;
 
     public function horarios(){
-        return $this->belongsTo(Horario::class);
-    }
-
-    public function semestres(){
-        return $this->belongsTo(Semestre::class);
+        return $this->belongsToMany(Horario::class, 'horarios_fpas')->withPivot('dia_semana');
     }
 
     public function disciplinas(){
-        return $this->belongsTo(Disciplina::class);
+        return $this->belongsToMany(Disciplina::class, 'disciplinas_fpas')->withPivot('prioridade');
     }
 
-    public function funcionarios(){
+    public function semestre(){
+        return $this->belongsTo(Semestre::class);
+    }
+
+
+    public function funcionario(){
         return $this->belongsTo(Funcionario::class);
     }
 

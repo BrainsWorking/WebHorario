@@ -29,8 +29,8 @@
 							<p><b>Identificação do Semestre:</b> {{ $semestre->nome }} </p>
 							<p><b>Data de Início:</b> {{ $semestre->inicio }} </p>
 							<p><b>Data Fim:</b> {{ $semestre->fim }} </p>
-							<p><b>Data de abertura do FPA:</b> {{ $semestre->fpaInicio }} </p>
-							<p><b>Data de fechamento do FPA:</b> {{ $semestre->fpaFim }} </p>
+							<p><b>Data de abertura do FPA:</b> {{ $semestre->fpa_inicio }} </p>
+							<p><b>Data de fechamento do FPA:</b> {{ $semestre->fpa_fim }} </p>
 
 							@if(!empty($semestre->disciplinas[0]))
 							<p><b>Disciplinas Ofertadas:</b></p>
