@@ -15,7 +15,7 @@ footer {
 }
 
 body{
-    font-family: 'Roboto Mono', monospace;
+	font-family: 'Roboto Mono', monospace;
 }
 
 .container-fluid {
@@ -250,6 +250,7 @@ form{
 	display: -moz-box;
 }
 
+
 .nav-tabs>li{
 	float: none;
 }
@@ -291,4 +292,16 @@ form{
 
 .atrb-vazio{
 	border-color: #d43f3a;
+}
+
+.atrb-professor{
+	border: 1px solid #adadad;
+	margin-bottom: 3px;
+	border-radius: 4px;
+	padding: 5px;
+}
+
+#atrb-professores{
+	overflow: auto;
+	height: 540px;
 }

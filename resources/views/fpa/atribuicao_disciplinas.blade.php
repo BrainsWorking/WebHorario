@@ -32,7 +32,7 @@
 {!! Form::open(['method' => 'post', 'class' => 'form']) !!}
 
 <div class="col-lg-12">
-	<div class="col-lg-9 padding-left-0">
+	<div class="col-lg-9 padding-left-0" style="margin-bottom: 20px;">
 		<div class="atrb-modulos">
 			<ul class='nav nav-tabs'>
 				<li class="active"><a data-toggle="pill" href="#1semestre">1° Semestre</a></li>
@@ -48,7 +48,7 @@
 							<p><b>Nome:</b> LOPI - Lógica de Programação</p>
 							<p><b>Aulas Semanais:</b> 4</p>
 							<label for="professores">Professor: </label>
-							<select name="professores">
+							<select name="professores" class="chosen-select">
 								<option selected>Escolha um professor</option>
 								<optgroup label="Interessados">
 									<option>Mario Tadashi Shimanuki</option>
@@ -60,7 +60,7 @@
 								</optgroup>
 							</select>
 							<label for="horarios">Horários: </label>
-							<select name="horarios">
+							<select name="horarios"  class="chosen-select">
 								<option selected></option>
 								<optgroup label="Quinta">
 									<option>19:00 - 19:55</option>
@@ -80,16 +80,18 @@
 		</div>
 	</div>
 
-	<div class="col-lg-3">
-		<div class="">
-			<h4>Carga Horária Professores</h4>
-			<div id="professores" >
-				<div class="professor">
-					<div class="img"><span class="glyphicon glyphicon-user"></span></div>
+	<div class="col-lg-3">		
+		<h4 style="margin-bottom: 30px;">Carga Horária Professores</h4>
+		<div id="atrb-professores" >
+			@for($y = 0; $y < 10; $y++)
+			<div class="atrb-professor">
+				<span style="float: left; padding: 10px;" class="glyphicon glyphicon-user"></span>
+				<div style="margin-left: 50px;">
 					<p>Mario Tadashi Shimanuki</p>
 					<p><b>Carga Semanal:</b> 36 aulas</p>
 				</div>
 			</div>
+			@endfor
 		</div>
 	</div>
 
