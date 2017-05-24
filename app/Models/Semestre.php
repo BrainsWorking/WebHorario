@@ -14,7 +14,7 @@ class Semestre extends Model {
     public $timestamps = false;
 
     public function modulos(){
-        return $this->belongsToMany(Modulo::class, 'modulos_semestre');
+        return $this->belongsToMany(Modulo::class, 'modulos_semestres');
     }
 
     public function disciplinas(){
@@ -30,15 +30,15 @@ class Semestre extends Model {
                 disciplinas.nome as disciplina_nome
             '))
             ->join('cursos',      'cursos.id', '=', 'modulos.curso_id')
-            ->join('disciplinas', 'modulo.id', '=', 'disciplina.modulo_id')
+            ->join('disciplinas', 'modulos.id', '=', 'disciplinas.modulo_id')
             ->get();
 
             // $disciplinas[0] => [ 'curso_nome' => 'ADS', 'disciplina_id' => '1', 'disicplina_nome' => 'mat2' ]
-            foreach($disciplinas as $disciplinas){
+            foreach($disciplinas as $disciplina){
                 $curso = $disciplina['curso_nome'];
                 unset($disciplina['curso_nome']);
 
-                $disciplinas_por_curso[$curso] = (object) [ 'id' => $disciplina['disciplina_id'], 'nome' => $disciplina['disciplina_nome'] ];
+                $disciplinas_por_curso[$curso] = [ 'id' => $disciplina['disciplina_id'], 'nome' => $disciplina['disciplina_nome'] ];
             }
 
             return $disciplinas_por_curso;
@@ -47,7 +47,7 @@ class Semestre extends Model {
     public function turmas(){
         return $this->hasMany(Turma::class, 'semestre_id');
     }
-  
+    
     public function fpas(){
         return $this->hasMany(Fpa::class);
     }
