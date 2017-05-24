@@ -47,8 +47,8 @@ class FPAController extends Controller{
              return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'semestre', 'funcionario'));
         }
         else{
-            $disponibilidadeChecada = $fpa->horarios;
-            $disciplinasSelecionadas = $fpa->disciplinas;
+            $disponibilidadeChecada = $fpa->horarios()->pluck('id');
+            $disciplinasSelecionadas = $fpa->disciplinas()->pluck('id');
             return view('fpa.cadastrar', compact('disciplinas', 'disciplinasSelecionadas', 'disponibilidadeChecada', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'semestre', 'funcionario'));
         }
     }
