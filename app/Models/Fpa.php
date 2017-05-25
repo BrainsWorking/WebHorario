@@ -9,7 +9,7 @@ use App\Models\Horario;
 
 class Fpa extends Model {
 
-    protected $fillable = ['carga_horaria'];
+    protected $fillable = ['carga_horaria', 'semestre_id', 'funcionario_id'];
 	public $timestamps = false;
 
     public function horarios(){
@@ -23,7 +23,6 @@ class Fpa extends Model {
     public function semestre(){
         return $this->belongsTo(Semestre::class);
     }
-
 
     public function funcionario(){
         return $this->belongsTo(Funcionario::class);
