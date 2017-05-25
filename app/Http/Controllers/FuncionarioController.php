@@ -54,8 +54,14 @@ class FuncionarioController extends Controller {
 
   public function atualizar (FuncionarioRequest $request, $id){
     DB::transaction(function () use ($request, $id) {
+      $data = $request->all();
       $funcionario = Funcionario::findOrFail($id);
-      $funcionario->update($request->all());
+
+      if(empty($request->input('password'))){
+        unset($data['password']);
+      }
+
+      $funcionario->update($data);
 
       foreach($funcionario->telefones as $telefone) {
         $telefone->delete();
@@ -72,7 +78,6 @@ class FuncionarioController extends Controller {
 
     }, 3);
 
-    //return redirect()->route('funcionarios')->withSuccess('Funcionário atualizado com sucesso!');
     return back()->withSuccess('Funcionário atualizado com sucesso!');
   }
 
