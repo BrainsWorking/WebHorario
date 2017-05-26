@@ -21,7 +21,13 @@ class FPAController extends Controller{
         $fpa = Fpa::where('fpas.semestre_id', '=', Semestre::FpaAtivo()->id)->where('fpas.funcionario_id', '=', Auth::user()->id)->first();
         $funcionario = Auth::user();
         $semestre = Semestre::FpaAtivo();
-        
+
+        if(is_null($semestre)){
+            return redirect()->back()->withError('Não há nenhum FPA aberto no momento');
+        }
+
+        $disciplinas = $semestre->disciplinas;
+
         $horarios = Horario::orderBy('inicio')->get();
         $horarios_manha = $horarios_tarde = $horarios_noite = [];
         $meio_dia = strtotime('12:00');

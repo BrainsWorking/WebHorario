@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Curso;
 use App\Models\Turno;
+use App\Models\Modulo;
 use App\Models\Funcionario;
 use App\Models\Disciplina;
 use App\Http\Requests\CursoRequest;
@@ -22,36 +23,43 @@ class CursoController extends Controller
     	$turnos = Turno::pluck('nome', 'id');
         $funcionarios = $this->getFuncionarios();
 
-    	return view('curso.formCurso', compact('turnos', 'modulos', 'funcionarios'));
-
+    	return view('curso.formCurso', compact('turnos', 'curso', 'funcionarios'));
     }
 
-    public function salvar(Request $request){
-        $nome = $request('nome');
-        $sigla = $request('sigla');
-        $turno = $request('id_turno');
-        $coordenador = $request('id_coordenador');
-        $modulos = $request('modulos');
-        $curso = Curso::create('nome', 'sigla', 'id_turno', 'id_coordenador');
-        $curso->save();
+    public function salvar(CursoRequest $request){
+        $data = $request->all();
 
-        foreach($modulos as $modulo){
-            $modulo = new Modulo();
-            $modulo->curso()->associate($curso);
-            $modulo->save();
-            $disciplinas = $request([$modulo]['disciplinas']);
-            foreach($disciplinas as $disciplina){
-                $disciplina = new Disciplina();
-                $disciplina->curso()->associate($modulo);
-                $disciplina->save();
+        DB::transaction(function () use ($data) {
+            $modulos = $data['modulo_novo'];
+            $curso = Curso::create($data);
+
+            foreach($modulos as $modulo){
+                $modulo['curso_id'] = $curso->id;
+                $modulo_modelo = Modulo::create($modulo);
+
+                $disciplinas = $modulo['disciplinas'];
+                $dados_disciplina = [];
+                foreach($disciplinas as $chave => $disciplina){ // Itera sobre as chaves
+                    foreach($disciplina as $index => $valor){ // Itera sobre os valores de cada chave de cada disciplina
+                        $dados_disciplina[$index][$chave] = $valor;
+                    }
+                }
+
+                foreach($dados_disciplina as $disciplina){
+                    $disciplina['modulo_id'] = $modulo_modelo->id;
+                    unset($disciplina['tipo_sala']); // TODO: Tipo sala ignorado
+                    Disciplina::firstOrCreate($disciplina);
+                }
+                
             }
-        }
+
+        }, 3);
+        
+        return redirect()->route('cursos')->with('success', 'Inclusão realizada com sucesso');
     }
 
     public function editar($id){
     	$turnos = Turno::pluck('nome', 'id');
-        $disciplinas = $this->getDisciplinas($id);
-        // TODO: Remover dsiciplinas já cadastradas em outros cursos, mas manter as já cadastradas no curso selecionado
         
         $funcionarios = $this->getFuncionarios($id);
         $curso = Curso::findOrFail($id);
@@ -62,15 +70,47 @@ class CursoController extends Controller
     }
 
     public function atualizar(CursoRequest $request, $id){
-        $dataForm = $request->all();
+       $data = $request->all();
 
-        DB::transaction(function () use ($dataForm, $id) {
+        DB::transaction(function () use ($data, $id) {
+            if(isset($data['modulo_novo'])){
+                $modulos_novos = $data['modulo_novo'];
+            }
+
+            $modulos = $data['modulo'];
             $curso = Curso::findOrFail($id);
+            $curso->fill($data);
+            $curso->save();
 
-            $curso->update($dataForm);
+            foreach($modulos as $key => $modulo){
+                $disciplinas = $modulo['disciplinas'];
+                unset($modulo['disciplinas']);
 
-            $curso->disciplinas()->sync(isset($dataForm['disciplina_id']) ? $dataForm['disciplina_id'] : []);
+                $modulo_modelo = Modulo::findOrFail($key);
+                $modulo_modelo->fill($modulo);
+                $modulo_modelo->save();
+
+                $dados_disciplina = [];
+                foreach($disciplinas as $chave => $disciplina){ // Itera sobre as chaves
+                    foreach($disciplina as $index => $valor){ // Itera sobre os valores de cada chave de cada disciplina
+                        $dados_disciplina[$index][$chave] = $valor;
+                    }
+                }
+
+                foreach($dados_disciplina as $disciplina){
+                    $disciplina['modulo_id'] = $modulo_modelo->id;
+                    unset($disciplina['tipo_sala']); // TODO: Tipo sala ignorado
+                    
+                    $disciplina_modelo = Disciplina::whereSigla($disciplina['sigla'])->first();
+
+                    $disciplina_modelo->fill($disciplina);
+                    $disciplina_modelo->save();
+                }
+                
+            }
+
         }, 3);
+
 
         return redirect()->route('cursos')->with('success', 'Edição realizada com sucesso');
     }
