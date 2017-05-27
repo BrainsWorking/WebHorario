@@ -126,6 +126,7 @@ CREATE TABLE disciplinas(
 	nome VARCHAR(255) NOT NULL,
 	sigla CHAR(5) NOT NULL UNIQUE,
 	aulas_semanais INT NOT NULL,
+	quantidade_maxima_professores INT NOT NULL,
 	modulo_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id),
 	CONSTRAINT FOREIGN KEY(modulo_id)
