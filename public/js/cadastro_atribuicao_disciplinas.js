@@ -1,15 +1,18 @@
 $(document).ready(function(){
 
-	verifica_aulas_professores();
+	conta_aulas_professores();
 	classifica_professores();
+	verifica_media_aulas();
 
 
 	$('.professor').change(function(){
 		$('.carga-semanal').text('0');
-		verifica_aulas_professores();
+		conta_aulas_professores();
+		classifica_professores();
+		verifica_media_aulas();
 	});
 
-	function verifica_aulas_professores(){
+	function conta_aulas_professores(){
 		$('.professor option:selected').each(function(index, el) {
 			var professor_nome = $(this).text();
 			var aulas_disciplina = $(this).parent().siblings('.aula-semana').children('span').text();
@@ -26,11 +29,29 @@ $(document).ready(function(){
 	}
 
 	function classifica_professores(){
-		//classificar os professores na lista por ordem decrescente de quantidade de aulas
+		var lista_atribuição = $('.atrb-professor');
+		lista_atribuição.sort(function(a, b){
+			return parseInt($(b).find('.carga-semanal').text()) - 
+					parseInt($(a).find('.carga-semanal').text()); 
+
+		});
+		$('#atrb-professores').html(lista_atribuição);
 	}
 
-	//aplicar classe de warning para professores com baixa quantidade de aula de acordo com média.
-
-	//arrumar metodo de loop para gerar abas;
-
+	function verifica_media_aulas(){
+		$('.atrb-professor').removeClass('atrb-warning');
+		$('.atrb-professor').removeClass('atrb-danger');
+		var total_aulas = 0;
+		$('.atrb-professor').each(function(index, el) {
+			total_aulas = total_aulas + parseInt($(this).find('.carga-semanal').text());
+			
+		});
+		var media = total_aulas / $('.atrb-professor').length;
+		$('.atrb-professor').each(function(index, el) {
+			var aulas_professor = parseInt($(this).find('.carga-semanal').text())
+			if (aulas_professor < media) {
+				$(this).addClass('atrb-warning');	
+			};
+		});
+	}
 });

@@ -31,35 +31,37 @@
 
 {!! Form::open(['method' => 'post', 'class' => 'form']) !!}
 
-<div class="col-lg-12">
-	<div class="col-lg-9 padding-left-0" style="margin-bottom: 20px;">
-		<div class="atrb-modulos">
-			<ul class='nav nav-tabs'>
-				<li class="active"><a data-toggle="pill" href="#1semestre">1° Semestre</a></li>
-				<li><a data-toggle="pill" href="#2semestre">2° Semestre</a></li>
-				<li><a data-toggle="pill" href="#3semestre">3° Semestre</a></li>
-			</ul>
-			<div class="tab-content">
-				@for($x = 1; $x <= 3; $x++)
-				<div id="{{$x}}semestre" class="disciplinas tab-pane fade in active">
-					<div class="atrb-semestre col-lg-12">
-						@for($i = 0; $i < 5; $i++)
-						<div class="atrb-disciplina">
-							<p><b>Nome:</b> LOPI - Lógica de Programação</p>
-							<p class="aula-semana"><b>Aulas Semanais:</b> <span>4</span></p>
-							<label for="professores">Professor: </label>
-							{!! Form::select('funcionario_id', $funcionarios, null, ['id' => 'funcionario_id', 'class' => 'professor form-control chosen-select']) !!}
-						</div>
-						@endfor
-					</div>		
-				</div>		
-				@endfor
-			</div>
+<div class="col-lg-12 padding-0">
+	<div id="atrb-modulos" class="padding-left-0 col-lg-9">
+		<div id="explicacoes">
+			<label>CONFLITOS DE DISCIPLINAS</label>
+			<a href="#" data-toggle="tooltip" data-placement='bottom' title="Podem ocorrer dois tipos de conflitos na atribuição das aulas: disciplina com conflito de interesses e disciplinas vazias, representadas pela cor a laranja e vermelho, respectivamente.">
+				<span class="glyphicon glyphicon-info-sign"></span>
+			</a>
 		</div>
+		@for($x = 1; $x <= 5; $x++)
+		<div id="{{$x}}semestre" class="col-lg-3" style="padding: 0px">
+			<h4 class='text-center'>{{$x}}° Semestre</h4>					
+			@for($i = 0; $i < 5; $i++)
+			<div class="atrb-disciplina">
+				<p><b>Nome:</b> LOPI - Lógica de Programação</p>
+				<p class="aula-semana"><b>Aulas Semanais:</b> <span>4</span></p>
+				<label for="professores">Professor: </label>
+				{!! Form::select('funcionario_id', $funcionarios, null, ['placeholder'=>'Escolha um professor','id' => 'funcionario_id', 'class' => 'professor form-control chosen-select']) !!}
+			</div>
+			@endfor					
+		</div>		
+		@endfor
 	</div>
 
-	<div class="col-lg-3">		
-		<h4 style="margin-bottom: 30px;">Carga Horária Professores</h4>
+	<div class="col-lg-3">
+		<div id="explicacoes">
+			<label>QUADRO DE PROFESSORES</label>
+			<a href="#" data-toggle="tooltip" data-placement='bottom' title="O quadro abaixo lista os professores, ordenados por sua quantidade de aulas de acordo com a atribuição ao lado. Neste quadro destacam-se os professores com o numero de aulas abaixo da média.">
+				<span class="glyphicon glyphicon-info-sign"></span>
+			</a>
+		</div>
+		<h4 class="text-center">Carga Horária Professores</h4>
 		<div id="atrb-professores" >
 			@foreach($funcionarios as $professor)
 			<div class="atrb-professor">

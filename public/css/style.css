@@ -271,31 +271,29 @@ form{
 }
 
 /*atribuição disciplinas*/
-.atrb-semestre{
-	margin-top: 15px;
+
+#atrb-modulos{
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+}
+
+#atrb-modulos > .col-lg-3{
+	display: inline-block;
+	float: none;
+	white-space: normal;
 }
 
 .atrb-disciplina{
 	border: 3px solid #adadad;
-	width: 49%;
 	padding: 5px;
-	float: left;
-	margin-right: 5px;
 	margin-bottom: 3px;
 	box-sizing: border-box;
 	border-radius: 4px;	
 }
 
-.atrb-conflito{
-	border-color: #f0ad4e;
-}
-
-.atrb-vazio{
-	border-color: #d43f3a;
-}
-
 .atrb-professor{
-	border: 1px solid #adadad;
+	border: 2px solid #adadad;
 	margin-bottom: 3px;
 	border-radius: 4px;
 	padding: 5px;
@@ -303,5 +301,15 @@ form{
 
 #atrb-professores{
 	overflow: auto;
-	height: 540px;
+	height: 750px;
+	border-left: 4px solid #adadad;
+	padding: 3px;
+}
+
+.atrb-warning{
+	border-color: #f0ad4e;
+}
+
+.atrb-danger{
+	border-color: #d43f3a;
 }
