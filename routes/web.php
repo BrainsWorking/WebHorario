@@ -1,4 +1,5 @@
 <?php
+use App\Models\Funcionario;
 
 Route::group(['middleware' => 'auth'], function () {
     # TURNOS
@@ -79,7 +80,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('teste', function(){
-        return view('fpa.atribuicao_disciplinas');
+        $funcionarios = Funcionario::pluck('nome', 'id');
+        return view('fpa.atribuicao_disciplinas', compact('funcionarios'));
     });
 });
 

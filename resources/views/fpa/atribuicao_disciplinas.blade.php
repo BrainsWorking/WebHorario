@@ -46,31 +46,9 @@
 						@for($i = 0; $i < 5; $i++)
 						<div class="atrb-disciplina">
 							<p><b>Nome:</b> LOPI - Lógica de Programação</p>
-							<p><b>Aulas Semanais:</b> 4</p>
+							<p class="aula-semana"><b>Aulas Semanais:</b> <span>4</span></p>
 							<label for="professores">Professor: </label>
-							<select name="professores" class="chosen-select">
-								<option selected>Escolha um professor</option>
-								<optgroup label="Interessados">
-									<option>Mario Tadashi Shimanuki</option>
-									<option>Mario Tadashi Shimanuki</option>
-								</optgroup>
-								<optgroup label="Outros">
-									<option>Mario Tadashi Shimanuki</option>
-									<option>Mario Tadashi Shimanuki</option>
-								</optgroup>
-							</select>
-							<label for="horarios">Horários: </label>
-							<select name="horarios"  class="chosen-select">
-								<option selected></option>
-								<optgroup label="Quinta">
-									<option>19:00 - 19:55</option>
-									<option>19:00 - 19:55</option>
-								</optgroup>
-								<optgroup label="Sexta">
-									<option>19:00 - 19:55</option>
-									<option>19:00 - 19:55</option>
-								</optgroup>
-							</select>
+							{!! Form::select('funcionario_id', $funcionarios, null, ['id' => 'funcionario_id', 'class' => 'professor form-control chosen-select']) !!}
 						</div>
 						@endfor
 					</div>		
@@ -83,15 +61,15 @@
 	<div class="col-lg-3">		
 		<h4 style="margin-bottom: 30px;">Carga Horária Professores</h4>
 		<div id="atrb-professores" >
-			@for($y = 0; $y < 10; $y++)
+			@foreach($funcionarios as $professor)
 			<div class="atrb-professor">
 				<span style="float: left; padding: 10px;" class="glyphicon glyphicon-user"></span>
 				<div style="margin-left: 50px;">
-					<p>Mario Tadashi Shimanuki</p>
-					<p><b>Carga Semanal:</b> 36 aulas</p>
+					<p class="professor-nome">{{ $professor }}</p>
+					<p><b>Carga Semanal:</b> <span class="carga-semanal">0</span> aulas</p>
 				</div>
 			</div>
-			@endfor
+			@endforeach
 		</div>
 	</div>
 
@@ -113,7 +91,7 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{asset('js/chosen.jquery.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/fpa.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/cadastro_atribuicao_disciplinas.js')}}"></script>
 <script>
 $(document).ready(function(){
 	$(".chosen-select").chosen({
