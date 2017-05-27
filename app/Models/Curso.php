@@ -18,7 +18,7 @@ class Curso extends Model {
     }
 
     public function modulos(){
-        return $this->hasMany(Modulo::class);
+        return $this->hasMany(Modulo::class)->orderBy('modulos.nome','asc');
     }
 
     public function disciplinas(){

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Curso;
 use App\Models\Turno;
+use App\Models\Modulo;
 use App\Models\Funcionario;
 use App\Models\Disciplina;
 use App\Http\Requests\CursoRequest;
@@ -26,16 +27,32 @@ class CursoController extends Controller
     }
 
     public function salvar(CursoRequest $request){
-        $dataForm = $request->all();
+        $data = $request->all();
 
-        DB::transaction(function () use ($dataForm) {
-            $curso = Curso::create($dataForm);
+        DB::transaction(function () use ($data) {
+            $modulos = $data['modulo_novo'];
+            $curso = Curso::create($data);
 
-            if(isset($dataForm['disciplina_id'])){
-                foreach ($dataForm['disciplina_id'] as $disciplina) {
-                    $curso->disciplinas()->attach($disciplina);
+            foreach($modulos as $modulo){
+                $modulo['curso_id'] = $curso->id;
+                $modulo_modelo = Modulo::create($modulo);
+
+                $disciplinas = $modulo['disciplinas'];
+                $dados_disciplina = [];
+                foreach($disciplinas as $chave => $disciplina){ // Itera sobre as chaves
+                    foreach($disciplina as $index => $valor){ // Itera sobre os valores de cada chave de cada disciplina
+                        $dados_disciplina[$index][$chave] = $valor;
+                    }
                 }
+
+                foreach($dados_disciplina as $disciplina){
+                    $disciplina['modulo_id'] = $modulo_modelo->id;
+                    unset($disciplina['tipo_sala']); // TODO: Tipo sala ignorado
+                    Disciplina::firstOrCreate($disciplina);
+                }
+                
             }
+
         }, 3);
         
         return redirect()->route('cursos')->with('success', 'Inclusão realizada com sucesso');
@@ -43,8 +60,6 @@ class CursoController extends Controller
 
     public function editar($id){
     	$turnos = Turno::pluck('nome', 'id');
-        $disciplinas = $this->getDisciplinas($id);
-        // TODO: Remover dsiciplinas já cadastradas em outros cursos, mas manter as já cadastradas no curso selecionado
         
         $funcionarios = $this->getFuncionarios($id);
         $curso = Curso::findOrFail($id);
@@ -55,15 +70,47 @@ class CursoController extends Controller
     }
 
     public function atualizar(CursoRequest $request, $id){
-        $dataForm = $request->all();
+       $data = $request->all();
 
-        DB::transaction(function () use ($dataForm, $id) {
+        DB::transaction(function () use ($data, $id) {
+            if(isset($data['modulo_novo'])){
+                $modulos_novos = $data['modulo_novo'];
+            }
+
+            $modulos = $data['modulo'];
             $curso = Curso::findOrFail($id);
+            $curso->fill($data);
+            $curso->save();
 
-            $curso->update($dataForm);
+            foreach($modulos as $key => $modulo){
+                $disciplinas = $modulo['disciplinas'];
+                unset($modulo['disciplinas']);
 
-            $curso->disciplinas()->sync(isset($dataForm['disciplina_id']) ? $dataForm['disciplina_id'] : []);
+                $modulo_modelo = Modulo::findOrFail($key);
+                $modulo_modelo->fill($modulo);
+                $modulo_modelo->save();
+
+                $dados_disciplina = [];
+                foreach($disciplinas as $chave => $disciplina){ // Itera sobre as chaves
+                    foreach($disciplina as $index => $valor){ // Itera sobre os valores de cada chave de cada disciplina
+                        $dados_disciplina[$index][$chave] = $valor;
+                    }
+                }
+
+                foreach($dados_disciplina as $disciplina){
+                    $disciplina['modulo_id'] = $modulo_modelo->id;
+                    unset($disciplina['tipo_sala']); // TODO: Tipo sala ignorado
+                    
+                    $disciplina_modelo = Disciplina::whereSigla($disciplina['sigla'])->first();
+
+                    $disciplina_modelo->fill($disciplina);
+                    $disciplina_modelo->save();
+                }
+                
+            }
+
         }, 3);
+
 
         return redirect()->route('cursos')->with('success', 'Edição realizada com sucesso');
     }

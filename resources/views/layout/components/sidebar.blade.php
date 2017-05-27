@@ -10,11 +10,11 @@
                 <span class="glyphicon glyphicon-time"></span> <span class='sidebar-label'>Turnos</span>
             </a>
         </li>
-        <li class="{{ setActive('disciplina') }}">
+        {{-- <li class="{{ setActive('disciplina') }}">
             <a href="{{ route('disciplinas') }}">
                 <span class="glyphicon glyphicon-book"></span> <span class='sidebar-label'>Disciplinas</span>
             </a>
-        </li>
+        </li> --}}
         <li class="{{ setActive('curso') }}">
             <a href="{{ route('cursos') }}">
                 <span class="glyphicon glyphicon-education"></span> <span class='sidebar-label'>Cursos</span>
@@ -35,10 +35,12 @@
                 <span class="glyphicon glyphicon-briefcase"></span> <span class='sidebar-label'>Instituição</span>
             </a>
         </li>
+        @if(!is_null(\App\Models\Semestre::fpaAtivo()))
         <li class="{{ setActive('fpa') }}">
             <a href="{{ route('fpa') }}">
                 <span class="glyphicon glyphicon-duplicate"></span> <span class='sidebar-label'>FPA</span>
             </a>
         </li>
+        @endif
     </ul>
 </div>

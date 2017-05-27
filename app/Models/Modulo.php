@@ -10,8 +10,8 @@ use App\Models\Disciplina;
 class Modulo extends Model {
     
     protected $table = 'modulos';
-    protected $fillable = ['sigla', 'curso_id'];
-    public    $timestamp = false;
+    protected $fillable = ['nome', 'curso_id'];
+    public    $timestamps = false;
 
     public function curso(){
         return $this->belongsTo(Curso::class);
