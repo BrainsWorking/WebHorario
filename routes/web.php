@@ -1,4 +1,5 @@
 <?php
+use App\Models\Funcionario;
 
 Route::group(['middleware' => 'auth'], function () {
     # TURNOS
@@ -77,6 +78,11 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::name('fpa.atualizar')->put('fpa/atualizar/{id}', 'FPAController@atualizar');
     //Route::name('fpa.deletar')->get('fpa/deletar/{id}', 'FPAController@deletar');
 
+
+    Route::get('teste', function(){
+        $funcionarios = Funcionario::pluck('nome', 'id');
+        return view('fpa.atribuicao_disciplinas', compact('funcionarios'));
+    });
 });
 
 # Entrada

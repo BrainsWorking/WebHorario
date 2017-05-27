@@ -15,7 +15,7 @@ footer {
 }
 
 body{
-    font-family: 'Roboto Mono', monospace;
+	font-family: 'Roboto Mono', monospace;
 }
 
 .container-fluid {
@@ -234,6 +234,9 @@ form{
 	padding-right: 0;
 }
 
+.padding-0{
+	padding: 0;
+}
 
 /* Overrrides multiselect */
 .ms-container .ms-list{
@@ -246,6 +249,7 @@ form{
 	display: -webkit-box;
 	display: -moz-box;
 }
+
 
 .nav-tabs>li{
 	float: none;
@@ -264,4 +268,48 @@ form{
 	-webkit-border-radius: 1px;
 	border-radius: 1px;
 	background: #D6D5D4;
+}
+
+/*atribuição disciplinas*/
+
+#atrb-modulos{
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+}
+
+#atrb-modulos > .col-lg-3{
+	display: inline-block;
+	float: none;
+	white-space: normal;
+}
+
+.atrb-disciplina{
+	border: 3px solid #adadad;
+	padding: 5px;
+	margin-bottom: 3px;
+	box-sizing: border-box;
+	border-radius: 4px;	
+}
+
+.atrb-professor{
+	border: 2px solid #adadad;
+	margin-bottom: 3px;
+	border-radius: 4px;
+	padding: 5px;
+}
+
+#atrb-professores{
+	overflow: auto;
+	height: 750px;
+	border-left: 4px solid #adadad;
+	padding: 3px;
+}
+
+.atrb-warning{
+	border-color: #f0ad4e;
+}
+
+.atrb-danger{
+	border-color: #d43f3a;
 }
