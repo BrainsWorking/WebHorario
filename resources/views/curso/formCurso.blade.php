@@ -138,11 +138,11 @@
 					<div class="disciplina">
 						<div class="control-group form-group col-sm-5">
 							{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
-							{!! Form::text("modulo_novo[0][disciplinas][nome][]", null, ['class' => 'form-control', 'required']) !!}
+							{!! Form::text("modulo_novo[0][disciplinas][nome][]", null, ['class' => 'form-control']) !!}
 						</div>
 						<div class="control-group form-group col-sm-2">
 							{!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}
-							{!! Form::text("modulo_novo[0][disciplinas][sigla][]", null, ['class' => 'form-control','maxlength' => '5', 'required']) !!}
+							{!! Form::text("modulo_novo[0][disciplinas][sigla][]", null, ['class' => 'form-control','maxlength' => '5']) !!}
 						</div>
 						<div class="control-group form-group col-sm-2">
 							{!! Form::label('tipoSala', 'Tipo Sala', ['class' => 'control-label']) !!}
@@ -150,7 +150,7 @@
 						</div>              
 						<div class="control-group form-group col-sm-2">
 							{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
-							{!! Form::text("modulo_novo[0][disciplinas][aulas_semanais][]", null, ['class' => 'form-control', 'required']) !!}
+							{!! Form::text("modulo_novo[0][disciplinas][aulas_semanais][]", null, ['class' => 'form-control']) !!}
 						</div>
 					</div>
 				</div>
