@@ -126,6 +126,7 @@ CREATE TABLE disciplinas(
 	nome VARCHAR(255) NOT NULL,
 	sigla CHAR(5) NOT NULL UNIQUE,
 	aulas_semanais INT NOT NULL,
+	quantidade_professores INT NOT NULL,
 	modulo_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id),
 	CONSTRAINT FOREIGN KEY(modulo_id)
@@ -239,10 +240,10 @@ CREATE TABLE disciplinas_fpas(
 
 /* TABELA REFERENTE A ATRIBUIÇÃO POR PARTE DO COORDENADOR DOS PROFESSORES QUE VÃO LECIONAR A DISCIPLINA X NO SEMESTRE X*/
 CREATE TABLE atribuicoes(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	disciplina_id INT NOT NULL,
 	semestre_id INT NOT NULL,
 	funcionario_id INT NOT NULL,
-	CONSTRAINT PRIMARY KEY(disciplina_id, semestre_id, funcionario_id),
 	CONSTRAINT FOREIGN KEY(disciplina_id)
 	REFERENCES disciplinas(id),
 	CONSTRAINT FOREIGN KEY(semestre_id)
