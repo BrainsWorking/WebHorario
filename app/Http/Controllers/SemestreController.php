@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Semestre;
 use App\Models\Disciplina;
 use App\Http\Requests\SemestreRequest;
+use App\Models\Modulo;
 
 class SemestreController extends Controller {
 
@@ -16,9 +17,13 @@ class SemestreController extends Controller {
     }
 
     public function cadastrar(){
-        $disciplinas = $this->getDisciplinasComCurso();
-        $disciplina_id = array();
-        return view('semestre.formSemestre', compact('disciplinas', 'disciplina_id'));
+        //$disciplinas = $this->getDisciplinasComCurso();
+        //$disciplina_id = array();
+
+        $modulos = $this->getModulosDosCursos();
+        $modulo_id = array();
+
+        return view('semestre.formSemestre', compact('modulos', 'modulo_id'));
     }
 
     public function salvar(SemestreRequest $request){
@@ -27,9 +32,9 @@ class SemestreController extends Controller {
         DB::transaction(function() use ($dataForm){
             $semestre = Semestre::create($dataForm);
 
-            if (isset($dataForm['disciplina_id'])) {
-                foreach ($dataForm['disciplina_id'] as $disciplina) {
-                    $semestre->disciplinas()->attach($disciplina);
+            if (isset($dataForm['modulo_id'])) {
+                foreach ($dataForm['modulo_id'] as $modulo) {
+                    $semestre->modulos()->attach($modulo);
                 }
             }
         }, 3);
@@ -39,11 +44,11 @@ class SemestreController extends Controller {
 
     public function editar($id){
 
-        $disciplinas = $this->getDisciplinasComCurso();
+        $modulos = $this->getModulosDosCursos();
         $semestre = Semestre::findOrFail($id);
-        $disciplina_id = $semestre->disciplinas()->pluck('disciplinas.id')->toArray();
+        $modulo_id = $semestre->modulos()->pluck('modulos.id')->toArray();
 
-        return view('semestre.formSemestre', compact('semestre', 'disciplinas', 'disciplina_id'));
+        return view('semestre.formSemestre', compact('semestre', 'modulos', 'modulo_id'));
     }
 
     public function atualizar(SemestreRequest $request, $id){
@@ -52,8 +57,8 @@ class SemestreController extends Controller {
         DB::transaction(function() use ($dataForm, $id){
             $semestre = Semestre::findOrFail($id);
             $semestre->update($dataForm);
-            $semestre->disciplinas()->sync(
-                isset($dataForm['disciplina_id']) ? $dataForm['disciplina_id'] : []);
+            $semestre->modulos()->sync(
+                isset($dataForm['modulo_id']) ? $dataForm['modulo_id'] : []);
         }, 3);
         return redirect()->route('semestres')->with('success', 'Edição realizada com sucesso');
     }
@@ -81,5 +86,13 @@ class SemestreController extends Controller {
         }
 
         return $disciplinas_formatada;
+    }
+
+    private function getModulosDosCursos(){
+        foreach (Modulo::orderBy('nome', 'asc')->get() as $mod) {
+            $modulos[$mod->curso->nome][$mod->id] = $mod->nome;
+        }
+
+        return $modulos;
     }
 }
