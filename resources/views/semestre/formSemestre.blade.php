@@ -37,17 +37,17 @@
         {!! Form::text('fpa_fim', null, ['class' => 'form-control mascara-data', 'required']) !!}
     </div>
 
-    {{--<div class="form-group">
-        <label class="control-label">SELECIONE AS DISCIPLINAS QUE SERÃO OFERECIDAS NO SEMESTRE</label> 
-        <a href="#" data-toggle="tooltip" data-placement='right' title="Caso a disciplina desejada não esteja listada, verifique se a mesma está cadastrada no menu 'Disciplinas' e se está vinculada a um curso, no menu 'Cursos'. "><span class="glyphicon glyphicon-info-sign"></span></a>
+    <div class="form-group">
+        <label class="control-label">SELECIONE OS MÓDULOS QUE SERÃO OFERECIDOS NO SEMESTRE</label> 
+        <a href="#" data-toggle="tooltip" data-placement='right' title="Caso o módulo desejado não esteja listado, verifique se o mesmo está cadastrado no menu 'Disciplinas'. "><span class="glyphicon glyphicon-info-sign"></span></a>
     </div>
 
     <div class="form-group">
-        {!! Form::label('disciplinas', 'Disciplinas cadastradas', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-left-0']) !!}
-        {!! Form::label('disciplinas', 'Disciplinas selecionadas', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-right-0', 'style' => 'padding-left: 5%;']) !!}
-        {!! Form::select('disciplina_id[]', $disciplinas, $disciplina_id, 
-        ['id' => 'disciplina_id', 'class' => 'form-control', 'multiple']) !!}
-    </div>--}}
+        {!! Form::label('modulos', 'Módulos cadastrados', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-left-0']) !!}
+        {!! Form::label('modulos', 'Módulos selecionados', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-right-0', 'style' => 'padding-left: 5%;']) !!}
+        {!! Form::select('modulo_id[]', $modulos, $modulo_id, 
+        ['id' => 'modulo_id', 'class' => 'form-control', 'multiple']) !!}
+    </div>
 
     <button type="submit" class="btn btn-success right"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
     <a class="btn btn-danger right cancelar" href="{{ route('semestres') }}"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
@@ -58,7 +58,7 @@
 
 @section('scripts')
     <script>
-        $('#disciplina_id').multiSelect();
+        $('#modulo_id').multiSelect({ selectableOptgroup: true });
     </script>
     <script type="text/javascript" src="{{ asset('/js/confirmar-delete.js') }}"></script>
 @endsection
