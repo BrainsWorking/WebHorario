@@ -79,9 +79,14 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::name('fpa.deletar')->get('fpa/deletar/{id}', 'FPAController@deletar');
 
 
-    Route::get('teste', function(){
+    Route::get('atribuicao-disciplinas', function(){
         $funcionarios = Funcionario::pluck('nome', 'id');
         return view('fpa.atribuicao_disciplinas', compact('funcionarios'));
+    });
+
+    Route::get('visualizador-horarios', function(){
+        $funcionarios = Funcionario::pluck('nome', 'id');
+        return view('visualizador_horarios.index', compact('funcionarios'));
     });
 });
 
