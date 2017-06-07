@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row hidden-print">
     <header class="col-xs-12 col-sm-12">
         <div class="col-xs-6 col-sm-3">
             <a href="{{ route('home') }}">
