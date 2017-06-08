@@ -182,6 +182,18 @@ header a:hover{
 	margin: 5px 0px 0px 0px;
 }
 
+/*fpa*/
+.rotate-90 { 
+    vertical-align: middle !important; 
+    text-align: center
+}
+
+.rotate-90 span{ 
+    display:block; transform: 
+    rotate(-90deg)
+}
+/*fim fps*/
+
 /* Bootstrap Override */
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{ /* Opção do Menu */
 	background-color: #43a047;
@@ -198,6 +210,22 @@ header a:hover{
 .close:hover{
 	opacity: .7;
 }
+
+.nav-tabs{
+	overflow-x: auto;
+	overflow-y: hidden;
+	display: -webkit-box;
+	display: -moz-box;
+}
+
+.nav-tabs>li{
+	float: none;
+}
+
+.nav-tabs>li>a{
+	padding: 10px 10px;
+}
+/*End Bootstrap Override */
 
 /*Forms*/
 .add-field{
@@ -237,28 +265,15 @@ form{
 .padding-0{
 	padding: 0;
 }
+/*Fim Reparos em componente Bootstrap */
 
 /* Overrrides multiselect */
 .ms-container .ms-list{
 	height: 150px;
 }
+/*fim Overrrides multiselect */
 
-.nav-tabs{
-	overflow-x: auto;
-	overflow-y: hidden;
-	display: -webkit-box;
-	display: -moz-box;
-}
-
-
-.nav-tabs>li{
-	float: none;
-}
-
-.nav-tabs>li>a{
-	padding: 10px 10px;
-}
-
+/*mudança de visual da scrollbar*/
 ::-webkit-scrollbar{
 	height: 9px;
 	width: 9px;
@@ -269,9 +284,9 @@ form{
 	border-radius: 1px;
 	background: #D6D5D4;
 }
+/*fim mudança de visual da scrollbar*/
 
 /*atribuição disciplinas*/
-
 #atrb-modulos{
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -313,3 +328,59 @@ form{
 .atrb-danger{
 	border-color: #d43f3a;
 }
+/*fim atribuição de disciplinas*/
+
+/*visualizador de horarios*/
+.quadro-horarios{
+	min-height: 40px;
+	border: 3px solid black;
+}
+
+.dia-semana{
+	background-color: black;
+	width: 16%;
+	margin: 3px;
+	float: left;
+	box-sizing: border-box;
+	padding: 3px;
+}
+.vsl-disciplina{
+	border: 3px solid #5F5D5D;
+	padding: 5px;
+	margin-bottom: 5px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	background-color: white;
+}
+.vsl-horario{
+	width: 30%; 
+	float:left; 
+	border-right: 2px solid #adadad;
+	margin-right: 6px;
+}
+.vsl-modulo{
+	background-color: black;
+	width: 24.52%;
+	margin: 3px;
+	float: left;
+	box-sizing: border-box;
+	padding: 3px;
+}
+.vsl-dia-semana{
+	border: 3px solid #5F5D5D;
+	padding: 5px;
+	margin-bottom: 5px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	background-color: white;
+}
+.vsl-dia{
+	width: 30%; 
+	float:left; 
+	border-right: 2px solid #adadad;
+	margin-right: 6px;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+}
+/*fim visualizador de horarios*/
