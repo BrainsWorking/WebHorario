@@ -2,7 +2,7 @@
 @section('title', 'Quadro de Horários')
 @section('content')
 
-<div class="col-lg-12 horario-professor" style="display:none">
+<div class="col-lg-12 horario-professor">
 	<div class="text-center" style="text-transform: uppercase">
 		<h4 class="text-center">HORÁRIO DE AULAS - 2017-1</h4>
 		<h3>Horário Semanal Professor</h3>
@@ -40,7 +40,7 @@
 		<h3>Tecnologia Em Análise e Desenvolvimento de Sistemas</h3>
 	</div>
 
-	<div class="col-lg-12 quadro-horarios">
+	<div class="col-lg-12 quadro-horarios hidden-print">
 		<h5 class="text-center" style="text-transform: uppercase; font-weight:bold">PERÍODO NOTURNO</h5> {{-- nome turno --}}
 		@php
 		$horarios = ["19:40 às 19:40", "19:40 às 19:40", "19:40 às 19:40", "19:40 às 19:40"];

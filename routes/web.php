@@ -81,12 +81,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('atribuicao-disciplinas', function(){
         $funcionarios = Funcionario::pluck('nome', 'id');
-        return view('fpa.atribuicao_disciplinas', compact('funcionarios'));
+        return view('atribuicao.atribuicao_disciplinas', compact('funcionarios'));
     });
 
     Route::get('visualizador-horarios', function(){
-        $funcionarios = Funcionario::pluck('nome', 'id');
-        return view('visualizador_horarios.index', compact('funcionarios'));
+        return view('visualizador_horarios.index');
     });
 });
 
