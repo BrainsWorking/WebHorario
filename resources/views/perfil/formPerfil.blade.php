@@ -7,9 +7,10 @@
 
 <div class="">
     @if(isset($funcionario))
-    {!! Form::model($funcionario, ['route'=>['funcionario.atualizar', $funcionario->id], 'method'=>'PUT']) !!}
+        {!! Form::model($funcionario, ['route'=>['funcionario.atualizar', $funcionario->id], 'method'=>'PUT']) !!}
+        @php ($editando = true)
     @else
-    {!! Form::open(['method' => 'post', 'files' => true, 'route'=>'funcionario.salvar']) !!}
+        {!! Form::open(['method' => 'post', 'files' => true, 'route'=>'funcionario.salvar']) !!}
     @endif
 
     <div class="control-group form-group col-lg-8 padding-left-0">
@@ -53,16 +54,18 @@
         {!! Form::text('endereco', null, ['class' => 'form-control', 'required']) !!}
     </div>
     
-	<div class="form-group">
-		{!! Form::label('cargos', 'Cargos disponíveis', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-left-0']) !!}
-		{!! Form::label('cargos', 'Cargos selecionados', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-right-0', 'style' => 'padding-left: 5%;']) !!}
-		{!! Form::select('cargos[]', $cargos, @$cargosFuncionario, 
-		['id' => 'cargos-multiselect', 'class' => 'form-control', 'multiple', 'disabled']) !!}
-	</div>
+    @if(!isset($funcionario))
+        <div class="form-group">
+            {!! Form::label('cargos', 'Cargos disponíveis', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-left-0']) !!}
+            {!! Form::label('cargos', 'Cargos selecionados', ['class' => 'control-label col-xs-6 col-sm- 6 col-md-6 col-lg-6 padding-right-0', 'style' => 'padding-left: 5%;']) !!}
+            {!! Form::select('cargos[]', $cargos, @$cargosFuncionario, 
+            ['id' => 'cargos-multiselect', 'class' => 'form-control', 'multiple', 'disabled']) !!}
+        </div>
+    @endif
     
     <div class="control-group form-group col-lg-6 padding-left-0">
         {!! Form::label('prontuario', 'Prontuário', ['class' => 'control-label']) !!}
-        {!! Form::text('prontuario', null, ['class' => 'form-control prontuario', 'required']) !!}
+        {!! Form::text('prontuario', null, ['class' => 'form-control prontuario', 'readonly' => $editando, 'required']) !!}
     </div>
 
     <div class="control-group form-group col-lg-6 padding-right-0">
