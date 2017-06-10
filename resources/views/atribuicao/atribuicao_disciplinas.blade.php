@@ -39,10 +39,10 @@
 				<span class="glyphicon glyphicon-info-sign"></span>
 			</a>
 		</div>
-		@for($x = 1; $x <= 5; $x++)
+		@for($x = 1; $x <= 5; $x++) {{-- modulos/semestres --}}
 		<div id="{{$x}}semestre" class="col-lg-3" style="padding: 0px">
 			<h4 class='text-center'>{{$x}}° Semestre</h4>					
-			@for($i = 0; $i < 5; $i++)
+			@for($i = 0; $i < 5; $i++) {{-- disciplinas --}}
 			<div class="atrb-disciplina">
 				<p><b>Nome:</b> LOPI - Lógica de Programação</p>
 				<p class="aula-semana"><b>Aulas Semanais:</b> <span>4</span></p>

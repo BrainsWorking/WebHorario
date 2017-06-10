@@ -1,5 +1,6 @@
 <?php
 use App\Models\Funcionario;
+use App\Models\Disciplina;
 
 Route::group(['middleware' => 'auth'], function () {
     # TURNOS
@@ -86,6 +87,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('visualizador-horarios', function(){
         return view('visualizador_horarios.index');
+    });
+    
+    Route::get('atribuicao-horarios', function(){
+        $disciplinas = Disciplina::pluck('nome', 'id');
+        return view('atribuicao.atribuicao_horarios', compact('disciplinas'));
     });
 });
 

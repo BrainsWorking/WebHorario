@@ -328,6 +328,10 @@ form{
 .atrb-danger{
 	border-color: #d43f3a;
 }
+
+.atrb-success{
+	border-color: #5cb85c;
+}
 /*fim atribuição de disciplinas*/
 
 /*visualizador de horarios*/
