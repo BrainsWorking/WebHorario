@@ -1,4 +1,4 @@
-<div class="col-lg-2 sidebar collapsed-canvas" id='sidebar'>
+<div class="col-lg-2 sidebar collapsed-canvas hidden-print" id='sidebar'>
     <ul class="nav nav-pills nav-stacked">
         <li class="{{ setActive('home') }}">
             <a href="{{ route('home') }}">
