@@ -68,7 +68,7 @@
 					</div>
 					@foreach($modulo->disciplinas as $disciplina)
 					<div class="disciplina">
-						<div class="control-group form-group col-sm-5">
+						<div class="control-group form-group col-sm-3">
 							{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
 							{!! Form::text("modulo[$modulo->id][disciplinas][nome][$disciplina->id]", $disciplina->nome, ['class' => 'form-control', 'required']) !!}
 						</div>
@@ -83,7 +83,11 @@
 						<div class="control-group form-group col-sm-2">
 							{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
 							{!! Form::text("modulo[$modulo->id][disciplinas][aulas_semanais][$disciplina->id]", $disciplina->aulas_semanais, ['class' => 'form-control', 'required']) !!}
-						</div>	
+						</div>
+                        <div class="control-group form-group col-sm-2">
+							{!! Form::label('quantidade_professores', 'Quantidade profs', ['class' => 'control-label']) !!}
+							{!! Form::text("modulo[$modulo->id][disciplinas][quantidade_professores][$disciplina->id]", $disciplina->quantidade_professores, ['class' => 'form-control', 'required']) !!}
+						</div>
 					</div>
 					@endforeach
 				</div>
@@ -109,7 +113,7 @@
 						</button>
 					</div>
 					<div class="disciplina">
-						<div class="control-group form-group col-sm-5">
+						<div class="control-group form-group col-sm-3">
 							{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
 							{!! Form::text("modulo_novo[1][disciplinas][nome][]", null, ['class' => 'form-control', 'required']) !!}
 						</div>
@@ -125,6 +129,10 @@
 							{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
 							{!! Form::text("modulo_novo[1][disciplinas][aulas_semanais][]", null, ['class' => 'form-control', 'required']) !!}
 						</div>
+                        <div class="control-group form-group col-sm-2">
+							{!! Form::label('quantidade_professores', 'Quantidade profs', ['class' => 'control-label']) !!}
+							{!! Form::text("modulo_novo[1][disciplinas][quantidade_professores][]", null, ['class' => 'form-control', 'required']) !!}
+						</div>
 					</div>
 				</div>
 
@@ -136,7 +144,7 @@
 						</button>
 					</div>
 					<div class="disciplina">
-						<div class="control-group form-group col-sm-5">
+						<div class="control-group form-group col-sm-3">
 							{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
 							{!! Form::text("modulo_novo[0][disciplinas][nome][]", null, ['class' => 'form-control']) !!}
 						</div>
@@ -151,6 +159,10 @@
 						<div class="control-group form-group col-sm-2">
 							{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
 							{!! Form::text("modulo_novo[0][disciplinas][aulas_semanais][]", null, ['class' => 'form-control']) !!}
+						</div>
+                        <div class="control-group form-group col-sm-2">
+							{!! Form::label('quantidade_professores', 'Quantidade profs', ['class' => 'control-label']) !!}
+							{!! Form::text("modulo_novo[0][disciplinas][quantidade_professores][]", null, ['class' => 'form-control']) !!}
 						</div>
 					</div>
 				</div>
