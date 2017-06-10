@@ -1,5 +1,5 @@
 /*
-	DATABASE VERSÃO ALGUMA COISA.
+	DATABASE VERSÃO FINAL
 	FEITO COMENTÁRIOS NO CÓDIGO SQL PARA MELHOR ENTENDIMENTO.
 */
 
@@ -127,10 +127,14 @@ CREATE TABLE disciplinas(
 	sigla CHAR(5) NOT NULL UNIQUE,
 	aulas_semanais INT NOT NULL,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	quantidade_maxima_professores INT NOT NULL,
 =======
 	quantidade_professores INT NOT NULL,
 >>>>>>> 1528a5f2a4b94fa2d4032644804726a88c54acdb
+=======
+	quantidade_professores INT,
+>>>>>>> 06cb81a7ee719049de1ab57e95c153d1f8c653ef
 	modulo_id INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id),
 	CONSTRAINT FOREIGN KEY(modulo_id)
@@ -243,7 +247,7 @@ CREATE TABLE disciplinas_fpas(
 );
 
 /* TABELA REFERENTE A ATRIBUIÇÃO POR PARTE DO COORDENADOR DOS PROFESSORES QUE VÃO LECIONAR A DISCIPLINA X NO SEMESTRE X*/
-CREATE TABLE atribuicoes(
+CREATE TABLE atribuicoes_disciplinas(
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	disciplina_id INT NOT NULL,
 	semestre_id INT NOT NULL,
@@ -255,6 +259,23 @@ CREATE TABLE atribuicoes(
 	CONSTRAINT FOREIGN KEY(funcionario_id)
 	REFERENCES funcionarios(id)
 );
+
+/* TABELA REFERENTE A ATRIBUIÇÃO POR PARTE DO COORDENADOR DAS DISCIPLINAS COM OS HORÁRIOS REFERENTE AO SEMESTRE X*/
+CREATE TABLE atribuicoes_horarios(
+	id INT NOT NULL AUTO_INCREMENT,
+    horario_id INT NOT NULL,
+    semestre_id INT NOT NULL,
+    disciplina_id INT NOT NULL,
+    dia_semana ENUM('SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB') NOT NULL,
+    CONSTRAINT PRIMARY KEY(id),
+    CONSTRAINT FOREIGN KEY(horario_id)
+	REFERENCES horarios(id),
+    CONSTRAINT FOREIGN KEY(semestre_id)
+	REFERENCES semestres(id),
+    CONSTRAINT FOREIGN KEY(disciplina_id)
+	REFERENCES disciplinas(id)
+);
+
 
 INSERT INTO `funcionarios` 
 (`id`, `nome`, `sexo`, `cpf`, `rg`, `data_nascimento`, `endereco`, `foto`, `prontuario`, `email`, `password`, `remember_token`, `deleted_at`) 
