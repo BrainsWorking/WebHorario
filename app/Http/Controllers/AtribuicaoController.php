@@ -39,7 +39,7 @@ class AtribuicaoController {
 
         public function updateProfessorDisciplina(Request $request){
             DB::transaction(function(){
-                
+
 
                 $atribuicaoProfessor = $request->input('atribuicaoProfessor');
                 foreach($atribuicaoHorario as $dia_semana => $horarios){          
