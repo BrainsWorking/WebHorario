@@ -61,7 +61,7 @@ $(document).ready(function(){
                     </button>
                 </div>
                 <div class="disciplina">
-                    <div class="control-group form-group col-sm-5">
+                    <div class="control-group form-group col-sm-3">
                         <label for='nome' class='control-label'>Nome</label>
                         <input name="modulo_novo[`+ i +`][disciplinas][nome][]" type="text" class="form-control" required>
                     </div>
@@ -79,6 +79,10 @@ $(document).ready(function(){
                     <div class="control-group form-group col-sm-2">
                         <label for='aulas_semanais' class='control-label'>Aulas/Semana</label>
                         <input name="modulo_novo[`+ i +`][disciplinas][aulas_semanais][]" type="text" class="form-control" required>
+                    </div>
+                    <div class="control-group form-group col-sm-2">
+                        <label for="quantidade_professores" class="control-label">Quantidade profs</label>
+                        <input class="form-control" required="required" name="modulo[`+i+`][disciplinas][quantidade_professores][`+i+`]" type="text">
                     </div>
                 </div>
             </div>

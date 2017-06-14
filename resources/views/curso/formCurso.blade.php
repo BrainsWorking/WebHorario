@@ -98,7 +98,8 @@
 		<div class="col-lg-12 modulos" style="padding: 0px; margin-bottom: 15px;">
 			<ul class='nav nav-tabs'>
 				<li class="active"><a data-toggle="pill" href="#semestre1">1° Semestre</a></li>
-				<li id="last"><a data-toggle="pill" href="#dp">DP</a></li>
+				{{-- <li id="last"><a data-toggle="pill" href="#dp">DP</a></li> --}}
+				<li hidden id="last"></li>
 				<li><a id="add-semestre" class="btn"><span class="glyphicon glyphicon-plus"></span></a></li>
 			</ul>
 			<div class="tab-content">
@@ -136,7 +137,7 @@
 					</div>
 				</div>
 
-				<div id="dp" class="disciplinas tab-pane fade" data-modulo="0">
+				{{-- <div id="dp" class="disciplinas tab-pane fade" data-modulo="0">
 					<input type="hidden" name="modulo_novo[0][nome]" value="DP" hidden/>
 					<div class="control-group" style="margin-left: 15px;">
 						<button type="button" class="btn btn-success add-field">
@@ -165,7 +166,7 @@
 							{!! Form::text("modulo_novo[0][disciplinas][quantidade_professores][]", null, ['class' => 'form-control']) !!}
 						</div>
 					</div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 		@endif

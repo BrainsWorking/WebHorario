@@ -10,9 +10,13 @@ use App\Models\Modulo;
 use App\Models\Funcionario;
 use App\Models\Disciplina;
 use App\Http\Requests\CursoRequest;
+use App\Http\Middleware\TurnoMissing;
 
 class CursoController extends Controller
 {
+
+    public function __construct(){ $this->middleware(TurnoMissing::class); }
+
     public function index() {
         $cursos = Curso::orderBy('nome', 'asc')->paginate();
         
@@ -48,6 +52,7 @@ class CursoController extends Controller
                 foreach($dados_disciplina as $disciplina){
                     $disciplina['modulo_id'] = $modulo_modelo->id;
                     unset($disciplina['tipo_sala']); // TODO: Tipo sala ignorado
+                    print_r($disciplina);
                     Disciplina::firstOrCreate($disciplina);
                 }
                 
