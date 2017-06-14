@@ -10,7 +10,7 @@ $(document).ready(function(){
         
         close.append(`
          <div class="disciplina">
-            <div class="control-group form-group col-sm-5">
+            <div class="control-group form-group col-sm-3">
                 <input name="modulo_novo[`+ i +`][disciplinas][nome][]" type="text" class="form-control" required>
             </div>
             <div class="control-group form-group col-sm-2">                     
@@ -24,6 +24,9 @@ $(document).ready(function(){
             </div>              
             <div class="control-group form-group col-sm-2">
                 <input name="modulo_novo[`+ i +`][disciplinas][aulas_semanais][]" type="text" class="form-control" required>
+            </div>
+            <div class="control-group form-group col-sm-2">
+                <input name="modulo_novo[`+ i +`][disciplinas][quantidade_professores][]" type="text" class="form-control" required>
             </div>
             <div class="col-sm-1 remove-field">
                 <button type="button" class="btn btn-danger btn-sm right">
@@ -61,7 +64,7 @@ $(document).ready(function(){
                     </button>
                 </div>
                 <div class="disciplina">
-                    <div class="control-group form-group col-sm-5">
+                    <div class="control-group form-group col-sm-3">
                         <label for='nome' class='control-label'>Nome</label>
                         <input name="modulo_novo[`+ i +`][disciplinas][nome][]" type="text" class="form-control" required>
                     </div>
@@ -79,6 +82,10 @@ $(document).ready(function(){
                     <div class="control-group form-group col-sm-2">
                         <label for='aulas_semanais' class='control-label'>Aulas/Semana</label>
                         <input name="modulo_novo[`+ i +`][disciplinas][aulas_semanais][]" type="text" class="form-control" required>
+                    </div>
+                    <div class="control-group form-group col-sm-2">
+                        <label for='aulas_semanais' class='control-label'>Aulas/Semana</label>
+                        <input name="modulo_novo[`+ i +`][disciplinas][quantidade_professores][]" type="text" class="form-control" required>
                     </div>
                 </div>
             </div>
