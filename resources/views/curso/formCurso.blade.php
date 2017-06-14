@@ -62,32 +62,49 @@
 						<button type="button" class="btn btn-success add-field">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outras disciplinas
 						</button>
-						<button type="button" data-target="sem{{$modulo->id}}" class="btn btn-default remove-semestre" style="float: right">
+						<button type="button" data-target="sem{{$modulo->id}}" class="btn btn-default remove-semestre" style="float: right;margin-top: 10px;">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Remover este semestre
 						</button>
 					</div>
 					@foreach($modulo->disciplinas as $disciplina)
 					<div class="disciplina">
 						<div class="control-group form-group col-sm-3">
+							@if($loop->first)
 							{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
+							@endif
 							{!! Form::text("modulo[$modulo->id][disciplinas][nome][$disciplina->id]", $disciplina->nome, ['class' => 'form-control', 'required']) !!}
 						</div>
 						<div class="control-group form-group col-sm-2">
+							@if($loop->first)
 							{!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}
+							@endif
 							{!! Form::text("modulo[$modulo->id][disciplinas][sigla][$disciplina->id]", $disciplina->sigla, ['class' => 'form-control','maxlength' => '5', 'required']) !!}
 						</div>
 						<div class="control-group form-group col-sm-2">
+							@if($loop->first)
 							{!! Form::label('tipoSala', 'Tipo Sala', ['class' => 'control-label']) !!}
+							@endif
 							{!! Form::select("modulo[$modulo->id][disciplinas][tipo_sala][$disciplina->id]", ['1' => 'Sala Comum', '2' => 'Laboratório de Informática'], null, ['class' => 'form-control']) !!}
 						</div>              
 						<div class="control-group form-group col-sm-2">
+							@if($loop->first)
 							{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
+							@endif
 							{!! Form::text("modulo[$modulo->id][disciplinas][aulas_semanais][$disciplina->id]", $disciplina->aulas_semanais, ['class' => 'form-control', 'required']) !!}
 						</div>
-                        <div class="control-group form-group col-sm-2">
-							{!! Form::label('quantidade_professores', 'Quantidade profs', ['class' => 'control-label']) !!}
+						<div class="control-group form-group col-sm-2">
+							@if($loop->first)
+							{!! Form::label('quantidade_professores', 'Qtd Professores', ['class' => 'control-label']) !!}
+							@endif
 							{!! Form::text("modulo[$modulo->id][disciplinas][quantidade_professores][$disciplina->id]", $disciplina->quantidade_professores, ['class' => 'form-control', 'required']) !!}
 						</div>
+						@if(!$loop->first)
+						<div class="col-sm-1 remove-field">
+							<button type="button" class="btn btn-danger btn-sm right">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button>
+						</div>
+						@endif
 					</div>
 					@endforeach
 				</div>
@@ -129,8 +146,8 @@
 							{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
 							{!! Form::text("modulo_novo[1][disciplinas][aulas_semanais][]", null, ['class' => 'form-control', 'required']) !!}
 						</div>
-                        <div class="control-group form-group col-sm-2">
-							{!! Form::label('quantidade_professores', 'Quantidade profs', ['class' => 'control-label']) !!}
+						<div class="control-group form-group col-sm-2">
+							{!! Form::label('quantidade_professores', 'Qtd Professores', ['class' => 'control-label']) !!}
 							{!! Form::text("modulo_novo[1][disciplinas][quantidade_professores][]", null, ['class' => 'form-control', 'required']) !!}
 						</div>
 					</div>
@@ -160,8 +177,8 @@
 							{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
 							{!! Form::text("modulo_novo[0][disciplinas][aulas_semanais][]", null, ['class' => 'form-control']) !!}
 						</div>
-                        <div class="control-group form-group col-sm-2">
-							{!! Form::label('quantidade_professores', 'Quantidade profs', ['class' => 'control-label']) !!}
+						<div class="control-group form-group col-sm-2">
+							{!! Form::label('quantidade_professores', 'Qtd Professores', ['class' => 'control-label']) !!}
 							{!! Form::text("modulo_novo[0][disciplinas][quantidade_professores][]", null, ['class' => 'form-control']) !!}
 						</div>
 					</div>

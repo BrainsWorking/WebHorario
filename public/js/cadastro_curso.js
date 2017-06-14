@@ -78,13 +78,13 @@ $(document).ready(function(){
                             <option>Sala Comum</option>
                             <option>Laboratório de Informática</option>
                         </select>
-                    </div>              
+                    </div>
                     <div class="control-group form-group col-sm-2">
                         <label for='aulas_semanais' class='control-label'>Aulas/Semana</label>
                         <input name="modulo_novo[`+ i +`][disciplinas][aulas_semanais][]" type="text" class="form-control" required>
                     </div>
                     <div class="control-group form-group col-sm-2">
-                        <label for='aulas_semanais' class='control-label'>Aulas/Semana</label>
+                        <label for='quantidade_professores' class='control-label'>Qtd Professores</label>
                         <input name="modulo_novo[`+ i +`][disciplinas][quantidade_professores][]" type="text" class="form-control" required>
                     </div>
                 </div>
