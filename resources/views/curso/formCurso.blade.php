@@ -39,22 +39,20 @@
 		<ul class='nav nav-tabs'>
 			@foreach($curso->modulos as $modulo)
 			@if($loop->first)
-			<li class="active"><a data-toggle="pill" href="#sem{{$modulo->id}}">{{$modulo->nome}}</a></li>	
-			@elseif($loop->last)
-			<li id="last"><a data-toggle="pill" href="#sem{{$modulo->id}}">{{$modulo->nome}}</a></li>
+			<li class="active"><a data-toggle="pill" href="#semestre{{$loop->iteration}}">{{$modulo->nome}}</a></li>	
 			@else
-			<li><a data-toggle="pill" href="#sem{{$modulo->id}}">{{$modulo->nome}}</a></li>
-			@endif
+			<li><a data-toggle="pill" href="#semestre{{$loop->iteration}}">{{$modulo->nome}}</a></li>
+			@endif			
 			@endforeach
-			<li><a id="add-semestre" class="btn"><span class="glyphicon glyphicon-plus"></span></a></li>
+			<li id="last"><a id="add-semestre" class="btn"><span class="glyphicon glyphicon-plus"></span></a></li>
 		</ul>
 
 		<div class="tab-content">
 			@foreach($curso->modulos as $modulo)
-			@if($loop->first)
-			<div id="sem{{$modulo->id}}" class="disciplinas tab-pane fade in active" data-modulo="{{$modulo->id}}">
+				@if($loop->first)
+					<div id="semestre{{$loop->iteration}}" class="disciplinas tab-pane fade in active" data-modulo="{{$loop->iteration}}">
 				@else
-				<div id="sem{{$modulo->id}}" class="disciplinas tab-pane fade" data-modulo="{{$modulo->id}}">
+				<div id="semestre{{$loop->iteration}}" class="disciplinas tab-pane fade" data-modulo="{{$loop->iteration}}">
 					@endif					
 					<input type="hidden" name="modulo[{{$modulo->id}}][id]" value="{{$modulo->id}}" hidden/>
 					<input type="hidden" name="modulo[{{$modulo->id}}][nome]" value="{{$modulo->nome}}" hidden/>
@@ -62,61 +60,64 @@
 						<button type="button" class="btn btn-success add-field">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outras disciplinas
 						</button>
-						<button type="button" data-target="sem{{$modulo->id}}" class="btn btn-default remove-semestre" style="float: right;margin-top: 10px;">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Remover este semestre
+						<button type="button" data-target="semestre{{$loop->iteration}}" class="btn btn-default remove-semestre" style="float: right;margin-top: 10px;">
+							<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remover este semestre
 						</button>
 					</div>
 					@foreach($modulo->disciplinas as $disciplina)
+					@if($loop->first)
+					<div class="control-group form-group col-sm-3">
+						{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}						
+					</div>
+					<div class="control-group form-group col-sm-2">
+						{!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}						
+					</div>
+					<div class="control-group form-group col-sm-2">
+						{!! Form::label('nome', 'Tipo Sala', ['class' => 'control-label']) !!}						
+					</div>
+					<div class="control-group form-group col-sm-2">
+						{!! Form::label('nome', 'Aulas Semanais', ['class' => 'control-label']) !!}	
+					</div>
+					<div class="control-group form-group col-sm-2">
+						{!! Form::label('nome', 'Qtd Professores', ['class' => 'control-label']) !!}		
+					</div>
+					@endif
 					<div class="disciplina">
 						<div class="control-group form-group col-sm-3">
-							@if($loop->first)
-							{!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
-							@endif
 							{!! Form::text("modulo[$modulo->id][disciplinas][nome][$disciplina->id]", $disciplina->nome, ['class' => 'form-control', 'required']) !!}
 						</div>
 						<div class="control-group form-group col-sm-2">
-							@if($loop->first)
-							{!! Form::label('sigla', 'Sigla', ['class' => 'control-label']) !!}
-							@endif
 							{!! Form::text("modulo[$modulo->id][disciplinas][sigla][$disciplina->id]", $disciplina->sigla, ['class' => 'form-control','maxlength' => '5', 'required']) !!}
 						</div>
-						<div class="control-group form-group col-sm-2">
-							@if($loop->first)
-							{!! Form::label('tipoSala', 'Tipo Sala', ['class' => 'control-label']) !!}
-							@endif
+						<div class="control-group form-group col-sm-2">							
 							{!! Form::select("modulo[$modulo->id][disciplinas][tipo_sala][$disciplina->id]", ['1' => 'Sala Comum', '2' => 'Laboratório de Informática'], null, ['class' => 'form-control']) !!}
 						</div>              
-						<div class="control-group form-group col-sm-2">
-							@if($loop->first)
-							{!! Form::label('aulas_semanais', 'Aulas/Semana', ['class' => 'control-label']) !!}
-							@endif
+						<div class="control-group form-group col-sm-2">							
 							{!! Form::text("modulo[$modulo->id][disciplinas][aulas_semanais][$disciplina->id]", $disciplina->aulas_semanais, ['class' => 'form-control', 'required']) !!}
 						</div>
 						<div class="control-group form-group col-sm-2">
-							@if($loop->first)
-							{!! Form::label('quantidade_professores', 'Qtd Professores', ['class' => 'control-label']) !!}
-							@endif
+							
 							{!! Form::text("modulo[$modulo->id][disciplinas][quantidade_professores][$disciplina->id]", $disciplina->quantidade_professores, ['class' => 'form-control', 'required']) !!}
 						</div>
-						@if(!$loop->first)
-						<div class="col-sm-1 remove-field">
+						<div class="col-sm-1 remove-field">							
 							<button type="button" class="btn btn-danger btn-sm right">
 								<span class="glyphicon glyphicon-remove"></span>
-							</button>
+							</button>							
 						</div>
-						@endif
 					</div>
 					@endforeach
 				</div>
 				@endforeach
 			</div>
 		</div>
+
 		@else
+
 		<div class="col-lg-12 modulos" style="padding: 0px; margin-bottom: 15px;">
 			<ul class='nav nav-tabs'>
 				<li class="active"><a data-toggle="pill" href="#semestre1">1° Semestre</a></li>
-				<li id="last"><a data-toggle="pill" href="#dp">DP</a></li>
-				<li><a id="add-semestre" class="btn"><span class="glyphicon glyphicon-plus"></span></a></li>
+				{{-- <li id="last"><a data-toggle="pill" href="#dp">DP</a></li> --}}
+				<li id="last"><a id="add-semestre" class="btn"><span class="glyphicon glyphicon-plus"></span></a></li>
 			</ul>
 			<div class="tab-content">
 				<div id="semestre1" class="disciplinas tab-pane fade in active" data-modulo="1">
@@ -152,8 +153,7 @@
 						</div>
 					</div>
 				</div>
-
-				<div id="dp" class="disciplinas tab-pane fade" data-modulo="0">
+				{{-- <div id="dp" class="disciplinas tab-pane fade" data-modulo="0">
 					<input type="hidden" name="modulo_novo[0][nome]" value="DP" hidden/>
 					<div class="control-group" style="margin-left: 15px;">
 						<button type="button" class="btn btn-success add-field">
@@ -182,7 +182,7 @@
 							{!! Form::text("modulo_novo[0][disciplinas][quantidade_professores][]", null, ['class' => 'form-control']) !!}
 						</div>
 					</div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 		@endif

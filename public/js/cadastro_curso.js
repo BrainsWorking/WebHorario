@@ -1,13 +1,11 @@
 $(document).ready(function(){
 
+    var i = $('.disciplinas').last().attr('data-modulo');
+
     $('.modulos').on("click", ".add-field", function(){
         var close = $(this).closest('.disciplinas');
         var index = close.attr('id');
-        var i = close.attr('data-modulo');
 
-        console.log(index);
-        console.log(i);
-        
         close.append(`
          <div class="disciplina">
             <div class="control-group form-group col-sm-3">
@@ -41,12 +39,10 @@ $(document).ready(function(){
     });
 
     $(".modulos").on('click', '#add-semestre', function(){
-        // var close = $(this).closest('.disciplinas');
-        // var index = close.attr('id');
-        // var i = close.attr('data-modulo');
-        // console.log(i);
-
-        $('.active').removeClass('in active');
+        console.log();
+        i++;
+        $('.nav-tabs>li.active').removeClass('in active');
+        $('.tab-content>.active').removeClass('in active');        
         $("#last").before(`
          <li class="active"><a data-toggle='pill' href='#semestre`+ i +`'>` + i + `° Semestre</a></li>
          `);
@@ -90,8 +86,6 @@ $(document).ready(function(){
                 </div>
             </div>
         `);
-        
-        i++;
     });
 
     $('.modulos').on("click", ".remove-semestre", function(){
@@ -114,17 +108,16 @@ $(document).ready(function(){
             $(el).attr('href', '#semestre' + (index+1));
             $(el).html((index+1) + '° Semestre');
         });
-        referencia = '#semestre' + (i-2);
+        referencia = '#semestre' + (i-1);
         if ($('#last').prev('li').length >= 1) {
-            $('.active').removeClass('in active');
+            $('.tab-content>.active').removeClass('in active');
             $('#last').prev('li').addClass('active');
             $(referencia).addClass('active in');
+            console.log(referencia);
         }else{
-            $('.active').removeClass('in active');
-            $('#last').addClass('active');
-            $('#dp').addClass('active in'); 
+            $('.tab-content>.active').removeClass('in active');
         }
-        if (i > 1) {
+        if (i >= 1) {
             i--;
         };
     });
