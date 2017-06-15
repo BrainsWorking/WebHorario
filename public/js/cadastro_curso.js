@@ -1,13 +1,11 @@
 $(document).ready(function(){
 
+    var i = $('.disciplinas').last().attr('data-modulo');
+
     $('.modulos').on("click", ".add-field", function(){
         var close = $(this).closest('.disciplinas');
         var index = close.attr('id');
-        var i = close.attr('data-modulo');
 
-        console.log(index);
-        console.log(i);
-        
         close.append(`
          <div class="disciplina">
             <div class="control-group form-group col-sm-3">
@@ -41,6 +39,7 @@ $(document).ready(function(){
     });
 
     $(".modulos").on('click', '#add-semestre', function(){
+        console.log();
         i++;
         $('.nav-tabs>li.active').removeClass('in active');
         $('.tab-content>.active').removeClass('in active');        

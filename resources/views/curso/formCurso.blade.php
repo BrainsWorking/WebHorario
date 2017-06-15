@@ -110,7 +110,9 @@
 				@endforeach
 			</div>
 		</div>
+
 		@else
+
 		<div class="col-lg-12 modulos" style="padding: 0px; margin-bottom: 15px;">
 			<ul class='nav nav-tabs'>
 				<li class="active"><a data-toggle="pill" href="#semestre1">1° Semestre</a></li>
