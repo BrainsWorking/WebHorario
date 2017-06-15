@@ -39,9 +39,9 @@
 		<ul class='nav nav-tabs'>
 			@foreach($curso->modulos as $modulo)
 			@if($loop->first)
-			<li class="active"><a data-toggle="pill" href="#sem{{$modulo->id}}">{{$modulo->nome}}</a></li>	
+			<li class="active"><a data-toggle="pill" href="#semestre{{$loop->iteration}}">{{$modulo->nome}}</a></li>	
 			@else
-			<li><a data-toggle="pill" href="#sem{{$modulo->id}}">{{$modulo->nome}}</a></li>
+			<li><a data-toggle="pill" href="#semestre{{$loop->iteration}}">{{$modulo->nome}}</a></li>
 			@endif			
 			@endforeach
 			<li id="last"><a id="add-semestre" class="btn"><span class="glyphicon glyphicon-plus"></span></a></li>
@@ -49,10 +49,10 @@
 
 		<div class="tab-content">
 			@foreach($curso->modulos as $modulo)
-			@if($loop->first)
-			<div id="sem{{$modulo->id}}" class="disciplinas tab-pane fade in active" data-modulo="{{$modulo->id}}">
+				@if($loop->first)
+					<div id="semestre{{$loop->iteration}}" class="disciplinas tab-pane fade in active" data-modulo="{{$loop->iteration}}">
 				@else
-				<div id="sem{{$modulo->id}}" class="disciplinas tab-pane fade" data-modulo="{{$modulo->id}}">
+				<div id="semestre{{$loop->iteration}}" class="disciplinas tab-pane fade" data-modulo="{{$loop->iteration}}">
 					@endif					
 					<input type="hidden" name="modulo[{{$modulo->id}}][id]" value="{{$modulo->id}}" hidden/>
 					<input type="hidden" name="modulo[{{$modulo->id}}][nome]" value="{{$modulo->nome}}" hidden/>
@@ -60,7 +60,7 @@
 						<button type="button" class="btn btn-success add-field">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar outras disciplinas
 						</button>
-						<button type="button" data-target="sem{{$modulo->id}}" class="btn btn-default remove-semestre" style="float: right;margin-top: 10px;">
+						<button type="button" data-target="semestre{{$loop->iteration}}" class="btn btn-default remove-semestre" style="float: right;margin-top: 10px;">
 							<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remover este semestre
 						</button>
 					</div>

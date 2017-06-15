@@ -41,11 +41,7 @@ $(document).ready(function(){
     });
 
     $(".modulos").on('click', '#add-semestre', function(){
-        // var close = $(this).closest('.disciplinas');
-        // var index = close.attr('id');
-        // var i = close.attr('data-modulo');
-        // console.log(i);
-
+        i++;
         $('.nav-tabs>li.active').removeClass('in active');
         $('.tab-content>.active').removeClass('in active');        
         $("#last").before(`
@@ -91,12 +87,11 @@ $(document).ready(function(){
                 </div>
             </div>
         `);
-        
-        i++;
     });
 
     $('.modulos').on("click", ".remove-semestre", function(){
         var referencia = '#' + $(this).attr('data-target');
+        console.log(referencia);
         var link_referencia = 'a[href="'+referencia+'"]';
         $(link_referencia).parent().remove();
         $(referencia).remove();
@@ -117,13 +112,13 @@ $(document).ready(function(){
         });
         referencia = '#semestre' + (i-2);
         if ($('#last').prev('li').length >= 1) {
-            $('.active').removeClass('in active');
+            $('.tab-content>.active').removeClass('in active');
             $('#last').prev('li').addClass('active');
             $(referencia).addClass('active in');
         }else{
-            $('.active').removeClass('in active');
-            $('#last').addClass('active');
-            $('#dp').addClass('active in'); 
+            $('.tab-content>.active').removeClass('in active');
+            // $('#last').addClass('active');
+            // $('#dp').addClass('active in'); 
         }
         if (i > 1) {
             i--;
