@@ -91,7 +91,6 @@ $(document).ready(function(){
 
     $('.modulos').on("click", ".remove-semestre", function(){
         var referencia = '#' + $(this).attr('data-target');
-        console.log(referencia);
         var link_referencia = 'a[href="'+referencia+'"]';
         $(link_referencia).parent().remove();
         $(referencia).remove();
@@ -110,17 +109,16 @@ $(document).ready(function(){
             $(el).attr('href', '#semestre' + (index+1));
             $(el).html((index+1) + '° Semestre');
         });
-        referencia = '#semestre' + (i-2);
+        referencia = '#semestre' + (i-1);
         if ($('#last').prev('li').length >= 1) {
             $('.tab-content>.active').removeClass('in active');
             $('#last').prev('li').addClass('active');
             $(referencia).addClass('active in');
+            console.log(referencia);
         }else{
             $('.tab-content>.active').removeClass('in active');
-            // $('#last').addClass('active');
-            // $('#dp').addClass('active in'); 
         }
-        if (i > 1) {
+        if (i >= 1) {
             i--;
         };
     });
