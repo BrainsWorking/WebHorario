@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Semestre;
 use App\Models\Disciplina;
-use App\Http\Requests\SemestreRequest;
 use App\Models\Modulo;
+use App\Http\Requests\SemestreRequest;
+use App\Http\Middleware\CursoMissing;
 
 class SemestreController extends Controller {
+
+    public function __construct(){ $this->middleware(CursoMissing::class); }
 
     public function index(){
     	$semestres = Semestre::orderBy('nome', 'desc')->paginate();
@@ -60,6 +63,7 @@ class SemestreController extends Controller {
             $semestre->modulos()->sync(
                 isset($dataForm['modulo_id']) ? $dataForm['modulo_id'] : []);
         }, 3);
+
         return redirect()->route('semestres')->with('success', 'Edição realizada com sucesso');
     }
 
@@ -68,6 +72,7 @@ class SemestreController extends Controller {
             $semestre = Semestre::findOrFail($id);
             $semestre->delete();
         }, 3);
+
         return redirect()->route('semestres')->with('success', 'Exclusão realizada com sucesso!');
     }
 
@@ -89,6 +94,8 @@ class SemestreController extends Controller {
     }
 
     private function getModulosDosCursos(){
+        $modulos = [];
+
         foreach (Modulo::orderBy('nome', 'asc')->get() as $mod) {
             $modulos[$mod->curso->nome][$mod->id] = $mod->nome;
         }

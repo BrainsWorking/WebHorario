@@ -10,9 +10,13 @@ use App\Models\Modulo;
 use App\Models\Funcionario;
 use App\Models\Disciplina;
 use App\Http\Requests\CursoRequest;
+use App\Http\Middleware\TurnoMissing;
 
 class CursoController extends Controller
 {
+
+    public function __construct(){ $this->middleware(TurnoMissing::class); }
+
     public function index() {
         $cursos = Curso::orderBy('nome', 'asc')->paginate();
         
@@ -35,11 +39,16 @@ class CursoController extends Controller
 
             foreach($modulos as $modulo){
                 $modulo['curso_id'] = $curso->id;
+                
+                if(is_array($modulo['nome'])){
+                    $modulo['nome'] = array_values($modulo['nome'])[0];
+                }
+
                 $modulo_modelo = Modulo::create($modulo);
 
                 $disciplinas = $modulo['disciplinas'];
                 $dados_disciplina = [];
-                foreach($disciplinas as $chave => $disciplina){ // Itera sobre as chaves
+                foreach($disciplinas as $chave => $disciplina){ // Itera sobre as chaves                
                     foreach($disciplina as $index => $valor){ // Itera sobre os valores de cada chave de cada disciplina
                         $dados_disciplina[$index][$chave] = $valor;
                     }
@@ -97,11 +106,11 @@ class CursoController extends Controller
                     }
                 }
 
-                foreach($dados_disciplina as $disciplina){
+                foreach($dados_disciplina as $key => $disciplina){
                     $disciplina['modulo_id'] = $modulo_modelo->id;
                     unset($disciplina['tipo_sala']); // TODO: Tipo sala ignorado
                     
-                    $disciplina_modelo = Disciplina::whereSigla($disciplina['sigla'])->first();
+                    $disciplina_modelo = Disciplina::findOrFail($key);
 
                     $disciplina_modelo->fill($disciplina);
                     $disciplina_modelo->save();

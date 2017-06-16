@@ -153,6 +153,7 @@
 						</div>
 					</div>
 				</div>
+
 				{{-- <div id="dp" class="disciplinas tab-pane fade" data-modulo="0">
 					<input type="hidden" name="modulo_novo[0][nome]" value="DP" hidden/>
 					<div class="control-group" style="margin-left: 15px;">
