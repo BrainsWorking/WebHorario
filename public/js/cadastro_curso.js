@@ -1,16 +1,14 @@
 $(document).ready(function(){
 
+    var i = $('.disciplinas').last().attr('data-modulo');
+
     $('.modulos').on("click", ".add-field", function(){
         var close = $(this).closest('.disciplinas');
         var index = close.attr('id');
-        var i = close.attr('data-modulo');
 
-        console.log(index);
-        console.log(i);
-        
         close.append(`
          <div class="disciplina">
-            <div class="control-group form-group col-sm-5">
+            <div class="control-group form-group col-sm-3">
                 <input name="modulo_novo[`+ i +`][disciplinas][nome][]" type="text" class="form-control" required>
             </div>
             <div class="control-group form-group col-sm-2">                     
@@ -25,6 +23,9 @@ $(document).ready(function(){
             <div class="control-group form-group col-sm-2">
                 <input name="modulo_novo[`+ i +`][disciplinas][aulas_semanais][]" type="text" class="form-control" required>
             </div>
+            <div class="control-group form-group col-sm-2">
+                <input name="modulo_novo[`+ i +`][disciplinas][quantidade_professores][]" type="text" class="form-control" required>
+            </div>
             <div class="col-sm-1 remove-field">
                 <button type="button" class="btn btn-danger btn-sm right">
                 <span class="glyphicon glyphicon-remove"></span>
@@ -38,12 +39,10 @@ $(document).ready(function(){
     });
 
     $(".modulos").on('click', '#add-semestre', function(){
-        // var close = $(this).closest('.disciplinas');
-        // var index = close.attr('id');
-        // var i = close.attr('data-modulo');
-        // console.log(i);
-
-        $('.active').removeClass('in active');
+        console.log();
+        i++;
+        $('.nav-tabs>li.active').removeClass('in active');
+        $('.tab-content>.active').removeClass('in active');        
         $("#last").before(`
          <li class="active"><a data-toggle='pill' href='#semestre`+ i +`'>` + i + `° Semestre</a></li>
          `);
@@ -75,20 +74,18 @@ $(document).ready(function(){
                             <option>Sala Comum</option>
                             <option>Laboratório de Informática</option>
                         </select>
-                    </div>              
+                    </div>
                     <div class="control-group form-group col-sm-2">
                         <label for='aulas_semanais' class='control-label'>Aulas/Semana</label>
                         <input name="modulo_novo[`+ i +`][disciplinas][aulas_semanais][]" type="text" class="form-control" required>
                     </div>
                     <div class="control-group form-group col-sm-2">
-                        <label for="quantidade_professores" class="control-label">Quantidade profs</label>
-                        <input class="form-control" required="required" name="modulo[`+i+`][disciplinas][quantidade_professores][`+i+`]" type="text">
+                        <label for='quantidade_professores' class='control-label'>Qtd Professores</label>
+                        <input name="modulo_novo[`+ i +`][disciplinas][quantidade_professores][]" type="text" class="form-control" required>
                     </div>
                 </div>
             </div>
         `);
-        
-        i++;
     });
 
     $('.modulos').on("click", ".remove-semestre", function(){
@@ -111,17 +108,16 @@ $(document).ready(function(){
             $(el).attr('href', '#semestre' + (index+1));
             $(el).html((index+1) + '° Semestre');
         });
-        referencia = '#semestre' + (i-2);
+        referencia = '#semestre' + (i-1);
         if ($('#last').prev('li').length >= 1) {
-            $('.active').removeClass('in active');
+            $('.tab-content>.active').removeClass('in active');
             $('#last').prev('li').addClass('active');
             $(referencia).addClass('active in');
+            console.log(referencia);
         }else{
-            $('.active').removeClass('in active');
-            $('#last').addClass('active');
-            $('#dp').addClass('active in'); 
+            $('.tab-content>.active').removeClass('in active');
         }
-        if (i > 1) {
+        if (i >= 1) {
             i--;
         };
     });
