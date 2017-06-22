@@ -7,7 +7,6 @@ $(document).ready(function(){
 
 	$('.professor').change(function(){
 		$('.carga-semanal').text('0');
-		console.log("commited");
 		conta_aulas_professores();
 		classifica_professores();
 		verifica_media_aulas();
@@ -43,10 +42,13 @@ $(document).ready(function(){
 		$('.atrb-professor').removeClass('atrb-warning');
 		$('.atrb-professor').removeClass('atrb-danger');
 		var total_aulas = 0;
+		console.log($(this));
+		
 		$('.atrb-professor').each(function(index, el) {
 			total_aulas = total_aulas + parseInt($(this).find('.carga-semanal').text());
 			
 		});
+		console.log(total_aulas);
 		var media = total_aulas / $('.atrb-professor').length;
 		$('.atrb-professor').each(function(index, el) {
 			var aulas_professor = parseInt($(this).find('.carga-semanal').text())
