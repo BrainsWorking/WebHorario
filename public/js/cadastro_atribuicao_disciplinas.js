@@ -6,10 +6,11 @@ $(document).ready(function(){
 
 
 	$('.professor').change(function(){
+		console();
 		$('.carga-semanal').text('0');
 		conta_aulas_professores();
 		classifica_professores();
-		verifica_media_aulas();
+		verifica_media_aulas($(this).val());
 	});
 
 	function conta_aulas_professores(){
@@ -38,7 +39,7 @@ $(document).ready(function(){
 		$('#atrb-professores').html(lista_atribuição);
 	}
 
-	function verifica_media_aulas(){
+	function verifica_media_aulas(nome){
 		$('.atrb-professor').removeClass('atrb-warning');
 		$('.atrb-professor').removeClass('atrb-danger');
 		var total_aulas = 0;
@@ -54,6 +55,7 @@ $(document).ready(function(){
 			var aulas_professor = parseInt($(this).find('.carga-semanal').text())
 			if (aulas_professor < media) {
 				console.log($(this));
+				$("$atrb-professores").prepend(nome);
 				$(this).addClass('atrb-warning');	
 			};
 		});
