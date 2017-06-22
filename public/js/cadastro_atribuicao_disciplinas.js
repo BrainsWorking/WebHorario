@@ -7,6 +7,7 @@ $(document).ready(function(){
 
 	$('.professor').change(function(){
 		$('.carga-semanal').text('0');
+		console.log("commited");
 		conta_aulas_professores();
 		classifica_professores();
 		verifica_media_aulas();
