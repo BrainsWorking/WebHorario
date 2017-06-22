@@ -55,7 +55,7 @@ $(document).ready(function(){
 			var aulas_professor = parseInt($(this).find('.carga-semanal').text())
 			if (aulas_professor < media) {
 				console.log($(this));
-				$("$atrb-professores").prepend(nome);
+				$(".atrb-professores").prepend(nome);
 				$(this).addClass('atrb-warning');	
 			};
 		});
