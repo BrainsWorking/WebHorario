@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 
 	$('.professor').change(function(){
-		console();
+		console.log($(this).val());
 		$('.carga-semanal').text('0');
 		conta_aulas_professores();
 		classifica_professores();
