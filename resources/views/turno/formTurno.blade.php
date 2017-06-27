@@ -33,7 +33,7 @@
 		?>
 
 		<div class="row">
-			<div class="col-lg-1 padding-left-0"><label class="index">Aula {{$key+1}}</label></div>
+			<div class="col-lg-1 padding-left-0"><label class="index" id="{{$horario->id}}">Aula {{$key+1}}</label></div>
 			<div class="col-lg-5">
 				<div class="form-group col-lg-6">
 					{!! Form::text($inicio, $horario->inicio, ['class'=>'form-control hora', 'placeholder'=>'Início' ,'minlength' => '5', 'required']) !!}
