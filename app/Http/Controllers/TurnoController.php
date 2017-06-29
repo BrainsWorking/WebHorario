@@ -11,7 +11,8 @@ use App\Http\Requests\TurnoRequest;
 class TurnoController extends Controller
 {
     public function index() {
-        $turnos = Turno::join('horarios', 'turnos.id', '=', 'horarios.id')->get();
+        //$turnos = Turno::join('horarios', 'turnos.id', '=', 'horarios.id')->get();
+        $turnos = Turno::all();
 
         return view('turno.index', compact('turnos'));
     }
@@ -31,6 +32,7 @@ class TurnoController extends Controller
 
             $horarios = $request->input('horario');
 
+            if(isset($horarios))
             foreach ($horarios as $horario) {
                 $horario = Horario::firstOrCreate($horario);
             
