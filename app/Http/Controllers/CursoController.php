@@ -83,6 +83,7 @@ class CursoController extends Controller
 
         DB::transaction(function () use ($data, $id) {
             if(isset($data['modulo_novo'])){
+                echo("OK");die;
                 $modulos_novos = $data['modulo_novo'];
             }
 
