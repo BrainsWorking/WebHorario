@@ -42,5 +42,12 @@
             </a>
         </li>
         @endif
+        @if(!is_null(\App\Models\Semestre::fpaAtivo()))
+        <li class="{{ setActive('atribuicao') }}">
+            <a href="{{ route('atribuicao-disciplinas') }}">
+                <span class="glyphicon glyphicon-duplicate"></span> <span class='sidebar-label'>Atribuições</span>
+            </a>
+        </li>
+        @endif
     </ul>
 </div>

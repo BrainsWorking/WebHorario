@@ -76,7 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::name('fpa.cadastrar')->get('fpa/cadastrar', 'FPAController@cadastrar');
     //Route::name('fpa.editar')->get('fpa/editar/{id}', 'FPAController@editar');
     Route::name('fpa.salvar')->post('fpa/salvar', 'FPAController@salvar');
-    //Route::name('fpa.atualizar')->put('fpa/atualizar/{id}', 'FPAController@atualizar');
+    Route::name('fpa.atualizar')->post('fpa/atualizar', 'FPAController@atualizar');
     //Route::name('fpa.deletar')->get('fpa/deletar/{id}', 'FPAController@deletar');
 
 
@@ -84,6 +84,12 @@ Route::group(['middleware' => 'auth'], function () {
         $funcionarios = Funcionario::pluck('nome', 'id');
         return view('atribuicao.atribuicao_disciplinas', compact('funcionarios'));
     });
+
+    #ATRIBUIÇÃO DISCIPLINAS
+    Route::name('atribuicao-disciplinas')->get('atribuicao-disciplinas', 'AtribuicaoDisciplinaController@cadastrar');
+    Route::name('atribuicao-disciplinas.salvar')->post('atribuicao-disciplina/salvar', 'AtribuicaoDisciplinaController@salvar');
+
+    
 
     Route::get('visualizador-horarios', function(){
         return view('visualizador_horarios.index');
