@@ -2,34 +2,38 @@
 @section('title', 'Atribuição de Horários')
 @section('content')
 
-<h3>Atribuição de Horários - Análise e Desenvolvimento de Sistemas</h3> {{-- nome do curso --}}
+<h3>Atribuição de Horários - {{$curso->nome}}</h3> {{-- nome do curso --}}
 
 <div class="col-lg-6 form-group padding-left-0">
-	{!! Form::label('', 'Abertura da FPA', ['class' => 'control-label']) !!}
-	{!! Form::text('', '04/05/1995', ['class' => 'form-control', 'required' , 'disabled']) !!}
+    {!! Form::label('', 'Abertura da FPA', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->fpa_inicio, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
 <div class="col-lg-6 form-group padding-left-0">
-	{!! Form::label('', 'Fechamento da FPA', ['class' => 'control-label']) !!}
-	{!! Form::text('', '04/05/1995', ['class' => 'form-control', 'required' , 'disabled']) !!}
+    {!! Form::label('', 'Fechamento da FPA', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->fpa_fim, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
 <div class="col-lg-4 form-group padding-left-0">
-	{!! Form::label('', 'Semestre de Referência', ['class' => 'control-label']) !!}
-	{!! Form::text('', '04/05/1995', ['class' => 'form-control', 'required' , 'disabled']) !!}
+    {!! Form::label('', 'Semestre de Referência', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->nome, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
 <div class="col-lg-4 form-group padding-left-0">
-	{!! Form::label('', 'Data de Inicio', ['class' => 'control-label']) !!}
-	{!! Form::text('', '04/05/1995', ['class' => 'form-control', 'required' , 'disabled']) !!}
+    {!! Form::label('', 'Data de Inicio', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->inicio, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
 <div class="col-lg-4 form-group padding-left-0">
-	{!! Form::label('', 'Data de Fim', ['class' => 'control-label']) !!}
-	{!! Form::text('', '04/05/1995', ['class' => 'form-control', 'required' , 'disabled']) !!}
+    {!! Form::label('', 'Data de Fim', ['class' => 'control-label']) !!}
+    {!! Form::text('', $semestre->fim, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
 
-{!! Form::open(['method' => 'post', 'class' => 'form']) !!}
+@if(isset($atribuicao_horarios))
+
+@else
+{!! Form::open(['method' => 'post','route' => 'atribuicao-horarios.salvar', 'class' => 'form']) !!}
+@endif
 
 <div class="col-lg-12 padding-0">
 	<div id="atrb-modulos" class="padding-left-0 col-lg-9">
@@ -39,17 +43,11 @@
 				<span class="glyphicon glyphicon-info-sign"></span>
 			</a>
 		</div>
-		@php
-		$modulos = ["1° Semestre", "2° Semestre", "3° Semestre", "4° Semestre"]
-		@endphp
 		@foreach($modulos as $modulo) {{-- modulos/semestres --}}
 		<table class="table table-bordered table-condensed">
 			<thead>
 				<tr>
 					<th></th>
-					@php
-					$dias_semana = ["Seg", "Ter", "Qua", "Qui", "Sex"];
-					@endphp
 					@foreach($dias_semana as $dia)
 					<th class="text-center">{{$dia}}</th>
 					@endforeach						
@@ -57,23 +55,16 @@
 			</thead>
 
 			<tbody>
-				@php
-				$horarios = ["19:00 - 19:40", "20:00 - 19:40", "21:00 - 21:40", "22:00 - 22:40"]
-				@endphp
 				@foreach($horarios as $horario)
 				<tr>					
 					@if($loop->first)
-					<th style="vertical-align: middle; text-align: center"rowspan="{{count($horarios)}}">{{$modulo}}</th> {{-- count(qtd_horarios) --}}
+					<th style="vertical-align: middle; text-align: center"rowspan="{{count($horarios)}}">{{$modulo->nome}}</th> {{-- count(qtd_horarios) --}}
 					@endif
 					@foreach($dias_semana as $dia)
-					@php
-					$disciplinas = [["nome"=>"Análise de Sistemas"],["nome"=>"Lógica de Programação"]]
-					@endphp
 					<td>
-						{!! Form::select('disciplina_id', $disciplinas, null, ['placeholder'=>'','id' => 'disciplina_id', 'class' => 'disciplina form-control chosen-select']) !!}
+						{!! Form::select("atrb_horarios[$horario->id][$dia]", $modulo['disciplinas']->pluck('nome','id'), null, ['placeholder'=>'','id' => 'disciplina_id', 'class' => 'disciplina form-control chosen-select']) !!}
 					</td>
 					@endforeach
-
 				</tr>
 				@endforeach
 			</tbody>
@@ -102,8 +93,9 @@
 			<div class="atrb-disciplina">
 				<div style="margin-left: 20px;">
 					<p class="disciplina-nome">{{ $disciplina['nome'] }}</p>
+					@if(!is_null($disciplina->professor))
 					<p>
-						<b>Professor:</b>Mario Tadashi
+						<b>Professor:</b>{{$disciplina->professor->nome}}
 						<a href="#" data-toggle="tooltip" data-html="true" data-placement='top' 
 							title="Preferencia de Horários:
 									<p>Segunda - 19:00/19:55; 19:55/20:40</p>
@@ -114,13 +106,13 @@
 							<span class="glyphicon glyphicon-info-sign"></span>
 						</a>
 					</p>
-					<p><b>Carga Semanal:</b> <span class="carga-semanal">0</span>/<span class="carga-disciplina">4</span> aulas</p>
+					@endif
+					<p><b>Carga Semanal:</b> <span class="carga-semanal">0</span>/<span class="carga-disciplina">{{$disciplina['aulas_semanais']}}</span> aulas</p>
 				</div>
 			</div>
 			@endforeach
 		</div>
 	</div>
-
 
 	<div class="col-lg-12">
 		<button id="form-salvar" type="submit" class="btn btn-success right">
