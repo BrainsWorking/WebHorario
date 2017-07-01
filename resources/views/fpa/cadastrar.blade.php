@@ -239,34 +239,43 @@
 				</button>
 			</div>
 
-			<div class="escolha-disciplinas col-lg-12">
-				<div class="row">
-				
-					<div class="col-lg-2">
-						<label class="index">Disciplina 1</label>
-					</div>
-					
-					<div class="form-group col-lg-4">
+			<div class="escolha-disciplinas col-lg-12">									
 						@if(isset($disciplinasSelecionadas))
 							@foreach($disciplinasSelecionadas as $disciplina)
-								<select name="componentes[]" class="chosen-select" data-placeholder=" ">
-									<option value="{{$disciplina->id}}" selected>{{$disciplina->nome}}</option>	
-								</select>	
+							<div class="row">
+								<div class="col-lg-2">
+									<label class="index">Disciplina {{$loop->iteration}}</label>
+								</div>					
+								<div class="form-group col-lg-9">
+									<select name="componentes[]" class="chosen-select" data-placeholder=" ">
+										<option value="{{$disciplina->id}}" selected>{{$disciplina->nome}}</option>	
+									</select>	
+								</div>
+								<div class="col-lg-1 padding-right-0 remove-field">
+									<button type="button" class="btn btn-danger btn-sm">
+										<span class="glyphicon glyphicon-remove"></span>
+									</button>
+								</div>
+							</div>
 							@endforeach
 						@else
+						<div class="row">
+						<div class="col-lg-2">
+							<label class="index">Disciplina 1</label>
+						</div>					
+						<div class="form-group col-lg-9">
 							<select name="componentes[]" class="chosen-select" data-placeholder=" ">
 								<option value=''></option>
-								@foreach($disciplinas as $disciplina)								
-								<option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
-								@endforeach
+								@foreach($disciplinas_curso as $curso)
+									@foreach($curso as $disciplina)
+										<option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
+									@endforeach
+								@endforeach						
 							</select>
-						@endif
-						
+						</div>
 					</div>
-					
-				</div>
-			</div>
-
+						@endif						
+					</div>
 		</div>
 
 		<button type="submit" class="btn btn-success right">
@@ -299,11 +308,13 @@
 						<div class="col-lg-2">
 							<label class="index">Disciplina ` + x + `</label>
 						</div>
-						<div class="form-group col-lg-4">
+						<div class="form-group col-lg-9">
 							<select name="componentes[]" class="chosen-select" data-placeholder=" ">
 								<option value=''></option>
-								@foreach($disciplinas as $disciplina)
-									<option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
+								@foreach($disciplinas_curso as $curso)
+									@foreach($curso as $disciplina)
+										<option value="{{$disciplina['id']}}">{{$disciplina['nome']}}</option>
+									@endforeach
 								@endforeach
 								<!--optgroup label="ADS">
 								</optgroup -->
