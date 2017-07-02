@@ -50,7 +50,8 @@ class FPAController extends Controller{
         $disciplinas = $semestre->disciplinasPorCurso();
 
         if($fpa == null){
-             return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'semestre', 'funcionario'));
+            echo "oi";
+            //return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'semestre', 'funcionario'));
         }
         else{
             $disponibilidadeChecada = $fpa->horarios()->pluck('id');

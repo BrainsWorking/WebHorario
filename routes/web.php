@@ -79,11 +79,12 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::name('fpa.atualizar')->put('fpa/atualizar/{id}', 'FPAController@atualizar');
     //Route::name('fpa.deletar')->get('fpa/deletar/{id}', 'FPAController@deletar');
 
-
-    Route::get('atribuicao-disciplinas', function(){
-        $funcionarios = Funcionario::pluck('nome', 'id');
-        return view('atribuicao.atribuicao_disciplinas', compact('funcionarios'));
-    });
+    Route::name('atribuicao.disciplinas')
+        ->get('atribuicao/atribuicao-disciplinas', 'AtribuicaoController@indexDisciplinas');
+    //Route::get('atribuicao-disciplinas', function(){
+    //    $funcionarios = Funcionario::pluck('nome', 'id');
+    //    return view('atribuicao.atribuicao_disciplinas', compact('funcionarios'));
+    //});
 
     Route::get('visualizador-horarios', function(){
         return view('visualizador_horarios.index');

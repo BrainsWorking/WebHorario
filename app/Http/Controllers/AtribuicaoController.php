@@ -1,8 +1,21 @@
 <?php
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Cargo;
+use Illuminate\Support\Facades\DB;
+use App\Models\Funcionario;
+use App\Models\Disciplina;
 
 class AtribuicaoController {
 
+        public function indexDisciplinas(){
+            $funcionarios = Funcionario::pluck('nome', 'id');
+            return view('atribuicao.atribuicao_disciplinas', compact('funcionarios'));
+        }
+
         public function salvarProfessorDisciplina(Request $request){
+
             DB::transaction(function(){
                  $atribuicaoProfessor = $request->input('atribuicaoProfessor');
                 foreach($atribuicaoHorario as $dia_semana => $horarios){          
