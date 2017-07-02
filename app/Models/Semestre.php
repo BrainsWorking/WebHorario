@@ -38,7 +38,7 @@ class Semestre extends Model {
                 $curso = $disciplina['curso_nome'];
                 unset($disciplina['curso_nome']);
 
-                $disciplinas_por_curso[$curso] = [ 'id' => $disciplina['disciplina_id'], 'nome' => $disciplina['disciplina_nome'] ];
+                $disciplinas_por_curso[$curso][] = [ 'id' => $disciplina['disciplina_id'], 'nome' => $disciplina['disciplina_nome'] ];
             }
 
             return $disciplinas_por_curso;

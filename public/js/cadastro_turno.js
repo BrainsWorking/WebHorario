@@ -1,16 +1,17 @@
-'use strict'
-$(document).ready(function(){
+'use strict';
+
+$(document).ready(function (){
 
 	var wrapper = $(".horarios-turno");
 	var button = $(".add-field");
 	//var x = $('.index').length + 1;
 
     function minMaxId() {
-        var min=null, max=null;
+        var min = null, max = null;
         $('.index').each(function() {
             var id = parseInt(this.id, 10);
-            if ((min===null) || (id < min)) { min = id; }
-            if ((max===null) || (id > max)) { max = id; }
+            if ((min === null) || (id < min)) { min = id; }
+            if ((max === null) || (id > max)) { max = id; }
         });
         return {min:min, max:max};
     }
@@ -19,7 +20,7 @@ $(document).ready(function(){
 
     var linha = $('.index').length + 1;
 
-	$(button).click(function(e){
+	$(button).click(function (e){
 		e.preventDefault();
 		$(wrapper).append(`
             <div class="row">
@@ -42,6 +43,7 @@ $(document).ready(function(){
             </div>
         `);
 		x++;
+        linha++;
 	});
 
 	$(wrapper).on("click", ".remove-field", function(e){
@@ -53,6 +55,7 @@ $(document).ready(function(){
 			$(labels[i]).html("Aula " + (i + 1));
 		};
 		x--;
+        linha--;
 	});
 
 	$(wrapper).on("change paste keyup keypress keydown", ".form-control", function(){
