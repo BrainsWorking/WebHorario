@@ -47,15 +47,25 @@ class FPAController extends Controller{
         }
 
         $dias_semana = ['seg', 'ter', 'qua', 'qui', 'sex', 'sab'];
-        $disciplinas = $semestre->disciplinasPorCurso();
+        $disciplinas_curso = $semestre->disciplinasPorCurso();
 
         if($fpa == null){
-             return view('fpa.cadastrar', compact('disciplinas', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'semestre', 'funcionario'));
+             return view('fpa.cadastrar', compact('disciplinas_curso', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'semestre', 'funcionario'));
         }
         else{
-            $disponibilidadeChecada = $fpa->horarios()->pluck('id');
-            $disciplinasSelecionadas = $fpa->disciplinas()->pluck('id');
-            return view('fpa.cadastrar', compact('disciplinas', 'disciplinasSelecionadas', 'disponibilidadeChecada', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'semestre', 'funcionario'));
+            $disponibilidadeChecada = $fpa->horarios()->get();
+            $disciplinasSelecionadas = $fpa->disciplinas()->get();
+            //limpando a variavel de disciplinas por curso;
+            foreach ($disciplinas_curso as $key_curso => $curso) {
+                foreach ($curso as $key_disciplina => $disciplina) {
+                    foreach ($disciplinasSelecionadas as $disciplina_selecionada) {
+                        if ($disciplina_selecionada->id == $disciplina['id']) {
+                            unset($disciplinas_curso[$key_curso][$key_disciplina]);
+                        }
+                    }
+                }
+            }
+            return view('fpa.cadastrar', compact('disciplinas_curso', 'disciplinasSelecionadas', 'disponibilidadeChecada', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'semestre', 'funcionario'));
         }
     }
 
