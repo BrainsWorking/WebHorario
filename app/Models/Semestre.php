@@ -25,9 +25,11 @@ class Semestre extends Model {
         $disciplinas_por_curso = [];
         $disciplinas = $this->modulos()
             ->select(DB::raw('
-                cursos.nome      as curso_nome,
-                disciplinas.id   as disciplina_id,
-                disciplinas.nome as disciplina_nome
+                cursos.nome                 as curso_nome,
+                disciplinas.aulas_semanais  as disciplina_aulas_semanais,
+                disciplinas.modulo_id       as disciplina_modulo_id,
+                disciplinas.id              as disciplina_id,
+                disciplinas.nome            as disciplina_nome
             '))
             ->join('cursos',      'cursos.id', '=', 'modulos.curso_id')
             ->join('disciplinas', 'modulos.id', '=', 'disciplinas.modulo_id')
@@ -38,7 +40,7 @@ class Semestre extends Model {
                 $curso = $disciplina['curso_nome'];
                 unset($disciplina['curso_nome']);
 
-                $disciplinas_por_curso[$curso][] = [ 'id' => $disciplina['disciplina_id'], 'nome' => $disciplina['disciplina_nome'] ];
+                $disciplinas_por_curso[$curso][] = [ 'id' => $disciplina['disciplina_id'], 'nome' => $disciplina['disciplina_nome'], 'aulas_semanais' => $disciplina['disciplina_aulas_semanais'], 'modulo_id' => $disciplina['disciplina_modulo_id'] ];
             }
 
             return $disciplinas_por_curso;

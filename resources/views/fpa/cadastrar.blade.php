@@ -38,10 +38,10 @@
 <div class="col-lg-4 form-group padding-left-0" id="regimeTrabalho">
     {!! Form::label('', 'Regime de Trabalho', ['class' => 'control-label']) !!} <br />
     <label class="control-label">
-		{!! Form::radio('regimeTrabalho', '20', true) !!} 20 Horas
+		{!! Form::radio('regimeTrabalho', '20', $fpa->carga_horaria == 20 ? true : false) !!} 20 Horas
     </label>
 	<label class="control-label">
-    	{!! Form::radio('regimeTrabalho', '40') !!} 40 Horas
+    	{!! Form::radio('regimeTrabalho', '40', $fpa->carga_horaria == 40 ? true : false) !!} 40 Horas
 	</label>
 </div>
 

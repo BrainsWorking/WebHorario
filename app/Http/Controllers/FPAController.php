@@ -65,7 +65,7 @@ class FPAController extends Controller{
                     }
                 }
             }
-            return view('fpa.cadastrar', compact('disciplinas_curso', 'disciplinasSelecionadas', 'disponibilidadeChecada', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'semestre', 'funcionario'));
+            return view('fpa.cadastrar', compact('fpa', 'disciplinas_curso', 'disciplinasSelecionadas', 'disponibilidadeChecada', 'horarios_manha', 'horarios_tarde', 'horarios_noite', 'dias_semana', 'semestre', 'funcionario'));
         }
     }
 

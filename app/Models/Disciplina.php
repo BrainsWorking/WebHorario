@@ -26,4 +26,8 @@ class Disciplina extends Model {
     public function curso(){		
         return $this->modulo->curso;		
     }
+
+    public function professor(){
+        return $this->belongsTo(Funcionario::class, 'atribuicoes_disciplinas');
+    }
 }
