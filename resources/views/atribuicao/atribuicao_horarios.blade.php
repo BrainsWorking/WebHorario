@@ -30,7 +30,7 @@
 </div>
 
 @if(isset($atribuicao_horarios))
-
+{!! Form::open(['method' => 'post','route' => 'atribuicao-horarios.atualizar', 'class' => 'form']) !!}
 @else
 {!! Form::open(['method' => 'post','route' => 'atribuicao-horarios.salvar', 'class' => 'form']) !!}
 @endif
@@ -61,9 +61,31 @@
 					<th style="vertical-align: middle; text-align: center"rowspan="{{count($horarios)}}">{{$modulo->nome}}</th> {{-- count(qtd_horarios) --}}
 					@endif
 					@foreach($dias_semana as $dia)
+					@if(isset($atribuicao_horarios))
+						@php
+							$flag = false;
+						@endphp
+						@foreach($atribuicao_horarios as $atribuicao)
+							@if($atribuicao->horario_id == $horario->id && $atribuicao->dia_semana == strtoupper($dia))
+							<td>
+							{!! Form::select("atrb_horarios[$horario->id][$dia]", $modulo['disciplinas']->pluck('nome','id'), $atribuicao->disciplina_id, ['placeholder'=>'','id' => 'disciplina_id', 'class' => 'disciplina form-control chosen-select']) !!}
+							</td>
+							@php
+								$flag = true;
+							@endphp
+							@break
+							@endif
+						@endforeach
+						@if(!$flag)
+							<td>
+								{!! Form::select("atrb_horarios[$horario->id][$dia]", $modulo['disciplinas']->pluck('nome','id'), null, ['placeholder'=>'','id' => 'disciplina_id', 'class' => 'disciplina form-control chosen-select']) !!}
+							</td>
+						@endif
+					@else
 					<td>
 						{!! Form::select("atrb_horarios[$horario->id][$dia]", $modulo['disciplinas']->pluck('nome','id'), null, ['placeholder'=>'','id' => 'disciplina_id', 'class' => 'disciplina form-control chosen-select']) !!}
 					</td>
+					@endif
 					@endforeach
 				</tr>
 				@endforeach
@@ -119,8 +141,8 @@
 			<span class="glyphicon glyphicon-floppy-disk"></span>
 			Salvar
 		</button>
-
-		<a id="form-continuar" class="btn btn-primary right cancelar"><span class="glyphicon glyphicon-check"></span> Continuar Depois</a>
+		
+		<a href="{{isset($atribuicao_horarios) ? route('atribuicao-horarios.atualizar') : route('atribuicao-horarios.salvar')}}" id="form-continuar" class="btn btn-primary right cancelar"><span class="glyphicon glyphicon-check"></span> Continuar Depois</a>
 	</div>
 </div>
 
@@ -128,12 +150,11 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{asset('js/chosen.jquery.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/cadastro_atribuicao_horarios.js')}}"></script>
+{{-- <script type="text/javascript" src="{{asset('js/cadastro_atribuicao_horarios.js')}}"></script> --}}
 <script>
 $(document).ready(function(){
 	$(".chosen-select").chosen({
 		no_results_text: "Nenhuma disciplina encontrada!",
-		allow_single_deselect: true 
 	});
 });
 </script>
@@ -142,6 +163,11 @@ $(document).ready(function(){
 @section('css')
 <link rel="stylesheet" href="{{asset('css/chosen/chosen.css')}}">
 <link rel="stylesheet" href="{{asset('css/fpa.css')}}">
+<style type="text/css">
+.chosen-container .chosen-drop{
+	width: 250%;
+}
+</style>
 @endsection
 
 @endsection
