@@ -87,7 +87,7 @@ class AtribuicaoHorarioController extends Controller{
         // verifica se os dados do request já estão no banco e atualiza, limpando os dados do request.
         foreach ($atribuicao_horarios as $key => $atrb_horario) {
             if (isset($data[$atrb_horario->horario_id][$atrb_horario->dia_semana])) {
-                $atrb_horario->disciplina_id = $data[$atrb_horario->horario_id][$atrb_horario->dia_semana];;
+                $atrb_horario->disciplina_id = $data[$atrb_horario->horario_id][$atrb_horario->dia_semana];
                 $atrb_horario->update();
                 unset($data[$atrb_horario->horario_id][$atrb_horario->dia_semana]);
             }                    

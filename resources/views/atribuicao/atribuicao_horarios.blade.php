@@ -142,7 +142,10 @@
 			Salvar
 		</button>
 		
-		<a href="{{isset($atribuicao_horarios) ? route('atribuicao-horarios.atualizar') : route('atribuicao-horarios.salvar')}}" id="form-continuar" class="btn btn-primary right cancelar"><span class="glyphicon glyphicon-check"></span> Continuar Depois</a>
+		<button id="form-continuar" class="btn btn-primary right cancelar">
+			<span class="glyphicon glyphicon-check"></span> 
+			Continuar Depois
+		</button>
 	</div>
 </div>
 
@@ -150,7 +153,7 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{asset('js/chosen.jquery.min.js')}}"></script>
-{{-- <script type="text/javascript" src="{{asset('js/cadastro_atribuicao_horarios.js')}}"></script> --}}
+<script type="text/javascript" src="{{asset('js/cadastro_atribuicao_horarios.js')}}"></script>
 <script>
 $(document).ready(function(){
 	$(".chosen-select").chosen({
