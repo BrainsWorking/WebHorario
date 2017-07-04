@@ -47,7 +47,12 @@ class AtribuicaoHorarioController extends Controller{
 
         $dias_semana = ['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
 
-        $disciplinas_semestre = $semestre->disciplinasPorCurso()[$curso->nome]; //fazer filtro somente para o curso atual
+        if (isset($semestre->disciplinasPorCurso()[$curso->nome])) {
+            $disciplinas_semestre =  $semestre->disciplinasPorCurso()[$curso->nome];//fazer filtro somente para o curso atual
+        }else{
+            return redirect()->back()->withError('A atribuição deste curso não está disponivel, devido a não oferecer nenhum disciplina no semestre vigente. Verifique o cadastro do semestre');
+        }
+        
         $disciplinas = [];
         foreach ($disciplinas_semestre as $key => $disciplina) {
             $disciplinas[] = Disciplina::find($disciplina['id']);
@@ -62,16 +67,18 @@ class AtribuicaoHorarioController extends Controller{
     }
 
     public function salvar(Request $request){
-        $data = $request->all();
+        $data = $request->all()['atrb_horarios'];
         $semestre_id = Semestre::FpaAtivo()->id;
         $curso_id = Auth::user()->curso->id;
         DB::transaction(function () use ($data, $semestre_id, $curso_id) {
-            foreach ($data['atrb_horarios'] as $horario => $disciplinas) {
-                foreach ($disciplinas as $dia_semana => $disciplina) {
-                    if (!is_null($disciplina)) {
-                        AtribuicaoHorario::create(array("horario_id" => $horario, "semestre_id" => $semestre_id, "disciplina_id" => $disciplina, "dia_semana" => $dia_semana, "curso_id" => $curso_id));
-                    }   
-                }                
+            foreach ($data as $key => $modulo) {
+                foreach ($modulo as $horario => $disciplinas) {
+                    foreach ($disciplinas as $dia_semana => $disciplina) {
+                        if (!is_null($disciplina)) {
+                            AtribuicaoHorario::create(array("horario_id" => $horario, "semestre_id" => $semestre_id, "disciplina_id" => $disciplina, "dia_semana" => $dia_semana, "curso_id" => $curso_id));
+                        }   
+                    }                
+                }
             }
         });        
         return redirect()->back()->with('success', 'Horários salvos com sucesso!');
@@ -86,23 +93,53 @@ class AtribuicaoHorarioController extends Controller{
 
         // verifica se os dados do request já estão no banco e atualiza, limpando os dados do request.
         foreach ($atribuicao_horarios as $key => $atrb_horario) {
-            if (isset($data[$atrb_horario->horario_id][$atrb_horario->dia_semana])) {
-                $atrb_horario->disciplina_id = $data[$atrb_horario->horario_id][$atrb_horario->dia_semana];
+            if (isset($data[$atrb_horario->disciplina->modulo->id][$atrb_horario->horario_id][$atrb_horario->dia_semana])) {
+
+                $atrb_horario->disciplina_id = $data[$atrb_horario->disciplina->modulo->id][$atrb_horario->horario_id][$atrb_horario->dia_semana];
                 $atrb_horario->update();
-                unset($data[$atrb_horario->horario_id][$atrb_horario->dia_semana]);
-            }                    
+                unset($data[$atrb_horario->disciplina->modulo->id][$atrb_horario->horario_id][$atrb_horario->dia_semana]);
+            }
         }
+        
         // cria novos horarios no banco que não estavam preenchidos anteriormente;
         DB::transaction(function () use ($data, $semestre_id, $curso_id) {
-            foreach ($data as $horario => $disciplinas) {
-                foreach ($disciplinas as $dia_semana => $disciplina) {
-                    if (!is_null($disciplina)) {
-                        AtribuicaoHorario::create(array("horario_id" => $horario, "semestre_id" => $semestre_id, "disciplina_id" => $disciplina, "dia_semana" => $dia_semana, "curso_id" => $curso_id));
-                    }   
-                }                
+            foreach ($data as $key => $modulo) {
+                foreach ($modulo as $horario => $disciplinas) {
+                    foreach ($disciplinas as $dia_semana => $disciplina) {
+                        if (!is_null($disciplina)) {
+                            AtribuicaoHorario::create(array("horario_id" => $horario, "semestre_id" => $semestre_id, "disciplina_id" => $disciplina, "dia_semana" => $dia_semana, "curso_id" => $curso_id));
+                            unset($data[$disciplina->modulo->id][$horario][$dia_semana]);
+                        }   
+                    }                
+                }
             }
         });
-        return redirect()->back()->with('success', 'Horários salvos com sucesso!');;
+
+        //deleta as atribuições que foram deselecionadas;
+        DB::transaction(function () use ($data) {
+            foreach ($data as $key => $modulo) {
+                foreach ($modulo as $horario => $disciplinas) {                    
+                    foreach ($disciplinas as $dia_semana => $disciplina) {
+                     $atribuicao_horarios = AtribuicaoHorario::
+                     where('atribuicoes_horarios.horario_id', '=', Semestre::FpaAtivo()->id)
+                     ->where('atribuicoes_horarios.curso_id', '=', Auth::user()->curso->id)
+                     ->where('atribuicoes_horarios.horario_id', '=', $horario)
+                     ->where('atribuicoes_horarios.dia_semana', '=', $dia_semana)
+                     ->get(); 
+                     print_r($atribuicao_horarios);
+                     foreach ($atribuicao_horarios as $atribuicao) {
+                        // print_r($atribuicao->disciplina->modulo->id);
+                        if ($atribuicao->disciplina->modulo->id == $key) {
+                            $atribuicao->delete();
+
+                        }                                
+                    }
+                    }
+                }
+            }
+        });
+
+        // return redirect()->back()->with('success', 'Horários salvos com sucesso!');
     }
 
 }
