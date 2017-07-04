@@ -108,7 +108,7 @@ class AtribuicaoHorarioController extends Controller{
                     foreach ($disciplinas as $dia_semana => $disciplina) {
                         if (!is_null($disciplina)) {
                             AtribuicaoHorario::create(array("horario_id" => $horario, "semestre_id" => $semestre_id, "disciplina_id" => $disciplina, "dia_semana" => $dia_semana, "curso_id" => $curso_id));
-                            unset($data[$disciplina->modulo->id][$horario][$dia_semana]);
+                            unset($data[$key][$horario][$dia_semana]);
                         }   
                     }                
                 }
@@ -116,31 +116,20 @@ class AtribuicaoHorarioController extends Controller{
         });
 
         //deleta as atribuições que foram deselecionadas;
-        DB::transaction(function () use ($data) {
+        DB::transaction(function () use ($data, $atribuicao_horarios) {
             foreach ($data as $key => $modulo) {
                 foreach ($modulo as $horario => $disciplinas) {                    
                     foreach ($disciplinas as $dia_semana => $disciplina) {
-                     $atribuicao_horarios = AtribuicaoHorario::
-                     where('atribuicoes_horarios.horario_id', '=', Semestre::FpaAtivo()->id)
-                     ->where('atribuicoes_horarios.curso_id', '=', Auth::user()->curso->id)
-                     ->where('atribuicoes_horarios.horario_id', '=', $horario)
-                     ->where('atribuicoes_horarios.dia_semana', '=', $dia_semana)
-                     ->get(); 
-                     print_r($atribuicao_horarios);
                      foreach ($atribuicao_horarios as $atribuicao) {
-                        // print_r($atribuicao->disciplina->modulo->id);
-                        if ($atribuicao->disciplina->modulo->id == $key) {
+                        if ($atribuicao->disciplina->modulo->id == $key && $atribuicao->horario_id == $horario && $atribuicao->dia_semana == $dia_semana) {
                             $atribuicao->delete();
-
-                        }                                
-                    }
+                            }
+                        }
                     }
                 }
             }
         });
 
-        // return redirect()->back()->with('success', 'Horários salvos com sucesso!');
+        return redirect()->back()->with('success', 'Horários salvos com sucesso!');
     }
-
 }
-;

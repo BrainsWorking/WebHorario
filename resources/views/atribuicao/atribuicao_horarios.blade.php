@@ -154,7 +154,7 @@
 
 @section('scripts')
 <script type="text/javascript" src="{{asset('js/chosen.jquery.min.js')}}"></script>
-{{-- <script type="text/javascript" src="{{asset('js/cadastro_atribuicao_horarios.js')}}"></script> --}}
+<script type="text/javascript" src="{{asset('js/cadastro_atribuicao_horarios.js')}}"></script>
 <script>
 $(document).ready(function(){
 	$(".chosen-select").chosen({
