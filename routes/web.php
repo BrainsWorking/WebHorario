@@ -79,16 +79,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('fpa.atualizar')->post('fpa/atualizar', 'FPAController@atualizar');
     //Route::name('fpa.deletar')->get('fpa/deletar/{id}', 'FPAController@deletar');
 
-    Route::name('atribuicao.disciplinas')
+    #ATRIBUIÇÃO DISCIPLINAS
+    Route::name('atribuicao-disciplinas')
         ->get('atribuicao/atribuicao-disciplinas', 'AtribuicaoController@indexDisciplinas');
     //Route::get('atribuicao-disciplinas', function(){
     //    $funcionarios = Funcionario::pluck('nome', 'id');
     //    return view('atribuicao.atribuicao_disciplinas', compact('funcionarios'));
     //});
 
-    #ATRIBUIÇÃO DISCIPLINAS
-    Route::name('atribuicao-disciplinas')->get('atribuicao-disciplinas', 'AtribuicaoDisciplinaController@cadastrar');
-    Route::name('atribuicao-disciplinas.salvar')->post('atribuicao-disciplina/salvar', 'AtribuicaoDisciplinaController@salvar');
+    
+    //Route::name('atribuicao-disciplinas')->get('atribuicao-disciplinas', 'AtribuicaoController@cadastrar');
+    Route::name('atribuicao-disciplinas.salvar')->post('atribuicao-disciplina/salvar', 'AtribuicaoController@salvar');
 
     
 
