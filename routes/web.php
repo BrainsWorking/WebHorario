@@ -79,6 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('fpa.atualizar')->post('fpa/atualizar', 'FPAController@atualizar');
     //Route::name('fpa.deletar')->get('fpa/deletar/{id}', 'FPAController@deletar');
 
+
     #ATRIBUIÇÃO DISCIPLINAS
     Route::name('atribuicao-disciplinas')
         ->get('atribuicao/atribuicao-disciplinas', 'AtribuicaoController@indexDisciplinas');
@@ -93,13 +94,18 @@ Route::group(['middleware' => 'auth'], function () {
 
     
 
+    #ATRIBUIÇÃO HORARIOS
+    Route::name('atribuicao-horarios')->get('atribuicao-horarios', 'AtribuicaoHorarioController@cadastrar');
+    Route::name('atribuicao-horarios.salvar')->post('atribuicao-horarios/salvar', 'AtribuicaoHorarioController@salvar');
+    Route::name('atribuicao-horarios.atualizar')->post('atribuicao-horarios/atualizar', 'AtribuicaoHorarioController@atualizar');
+
+    #ATRIBUIÇÃO DISCIPLINAS
+    // Route::name('atribuicao-disciplinas')->get('atribuicao-disciplinas', 'AtribuicaoDisciplinaController@cadastrar');
+    // Route::name('atribuicao-disciplinas.salvar')->post('atribuicao-disciplina/salvar', 'AtribuicaoDisciplinaController@salvar');    
+
+
     Route::get('visualizador-horarios', function(){
         return view('visualizador_horarios.index');
-    });
-    
-    Route::get('atribuicao-horarios', function(){
-        $disciplinas = Disciplina::pluck('nome', 'id');
-        return view('atribuicao.atribuicao_horarios', compact('disciplinas'));
     });
 });
 

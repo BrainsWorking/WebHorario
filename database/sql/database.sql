@@ -262,6 +262,7 @@ CREATE TABLE atribuicoes_horarios(
     semestre_id INT NOT NULL,
     disciplina_id INT NOT NULL,
     dia_semana ENUM('SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB') NOT NULL,
+    curso_id INT NOT NULL,
     CONSTRAINT PRIMARY KEY(id),
     CONSTRAINT FOREIGN KEY(horario_id)
 	REFERENCES horarios(id),

@@ -7,10 +7,10 @@ use App\Models\Horario;
 use App\Models\Semestre;
 use App\Models\Disciplina;
 
-class AtribuicaoDisciplina extends Model {
+class AtribuicaoHorario extends Model {
     
     protected $table = 'atribuicoes_horarios';
-    protected $fillable = ['horario_id', 'semestre_id', 'disciplina_id', 'dia_semana'];
+    protected $fillable = ['horario_id', 'semestre_id', 'disciplina_id', 'dia_semana', 'curso_id'];
     public    $timestamps = false;
 
     public function horario(){

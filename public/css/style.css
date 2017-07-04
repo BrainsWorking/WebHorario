@@ -289,8 +289,9 @@ form{
 /*atribuição disciplinas*/
 #atrb-modulos{
 	overflow-x: auto;
-	overflow-y: hidden;
+	overflow-y: auto;
 	white-space: nowrap;
+	min-height: 500px;
 }
 
 #atrb-modulos > .col-lg-3{
