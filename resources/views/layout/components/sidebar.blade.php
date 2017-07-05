@@ -42,10 +42,10 @@
             </a>
         </li>
         @endif
-        @if(!is_null(\App\Models\Semestre::fpaAtivo()))
+        @if(!is_null(\App\Models\Semestre::fpaAtivo()) && Illuminate\Support\Facades\Auth::user()->isCoordenador())
         <li class="{{ setActive('atribuicao') }}">
             <a href="{{ route('atribuicao-horarios') }}">
-                <span class="glyphicon glyphicon-duplicate"></span> <span class='sidebar-label'>Atribuições</span>
+                <span class="glyphicon glyphicon-edit"></span> <span class='sidebar-label'>Atribuições</span>
             </a>
         </li>
         @endif
