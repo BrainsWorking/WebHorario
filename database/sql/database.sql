@@ -245,12 +245,12 @@ CREATE TABLE disciplinas_fpas(
 CREATE TABLE atribuicoes_disciplinas(
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	disciplina_id INT NOT NULL,
-	semestre_id INT NOT NULL,
+	modulo_id INT NOT NULL,
 	funcionario_id INT NOT NULL,
 	CONSTRAINT FOREIGN KEY(disciplina_id)
 	REFERENCES disciplinas(id),
-	CONSTRAINT FOREIGN KEY(semestre_id)
-	REFERENCES semestres(id),
+	CONSTRAINT FOREIGN KEY(modulo_id)
+	REFERENCES modulos(id),
 	CONSTRAINT FOREIGN KEY(funcionario_id)
 	REFERENCES funcionarios(id)
 );

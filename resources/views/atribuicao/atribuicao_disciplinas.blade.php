@@ -47,7 +47,7 @@
 				<p><b>Nome:</b> {{$disciplina->sigla}} - {{$disciplina->nome}}</p>
 				<p class="aula-semana"><b>Aulas Semanais:</b> <span>{{$disciplina->aulas_semanais}}</span></p>
 				<label for="professores">Professor: </label>
-				{!! Form::select('funcionario_id[]', $funcionarios, null, ['placeholder'=>'Escolha um professor','id' => 'funcionario_id', 'class' => 'professor form-control chosen-select']) !!}
+				{!! Form::select("funcionario_id[$modulo->id][$disciplina->id][]", $funcionarios, null, ['placeholder'=>'Escolha um professor','id' => 'funcionario_id', 'class' => 'professor form-control chosen-select']) !!}
 			</div>
 			@endforeach					
 		</div>		

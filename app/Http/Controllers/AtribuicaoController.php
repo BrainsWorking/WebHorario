@@ -8,6 +8,7 @@ use App\Models\Funcionario;
 use App\Models\Disciplina;
 use App\Models\Semestre;
 use App\Models\Cargo;
+use App\Models\AtribuicaoProfessor;
 
 class AtribuicaoController {
 
@@ -44,17 +45,33 @@ class AtribuicaoController {
                 $disciplinas[] = Disciplina::find($disciplina['id']);
             
 
+            $atribuicao = AtribuicaoProfessor::where('atribuicao_disciplinas.');
+
             return view('atribuicao.atribuicao_disciplinas', compact('funcionarios', 'funcionario', 'semestre', 'curso', 'modulos'));
         }
 
         public function salvar(Request $request){
-            dd($request->all());
+            $dataForm = $request->all();
+            DB::transaction(function () use ($dataForm){
+                foreach ($dataForm['funcionario_id'] as $key_modulo => $modulo) {
+                    foreach ($modulo as $key_disciplina => $disciplina) {
+                        foreach ($disciplina as $key_funcionario => $funcionario) {
+                            AtribuicaoProfessor::create(array(
+                                                            "disciplina_id"     => $key_disciplina,
+                                                            "modulo_id"         => $key_modulo,
+                                                            "funcionario_id"    => $funcionario
+                                                        ));
+                        }
+                    }
+                }
+            });
+            return redirect()->back()->with('success', 'Atribuições salvas com sucesso!');
         }
 
         public function salvarProfessorDisciplina(Request $request){
 
             DB::transaction(function(){
-                 $atribuicaoProfessor = $request->input('atribuicaoProfessor');
+                $atribuicaoProfessor = $request->input('atribuicaoProfessor');
                 foreach($atribuicaoHorario as $dia_semana => $horarios){          
                     foreach($horarios as $horario_id){
                         $horario = Horario::find($horario_id);
