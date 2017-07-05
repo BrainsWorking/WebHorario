@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Curso;
-use App\Models\Modulo;
+use App\Models\Semestre;
 use App\Models\Disciplina;
 
 class Modulo extends Model {
@@ -18,7 +18,7 @@ class Modulo extends Model {
     }
 
     public function semestres(){
-        return $this->belongsToMany(Modulo::class, 'modulos_semestres');
+        return $this->belongsToMany(Semestre::class, 'modulos_semestres');
     }
 
     public function disciplinas(){
