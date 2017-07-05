@@ -48,9 +48,17 @@ class AtribuicaoController {
 
             $atribuicao = AtribuicaoProfessor::where('atribuicoes_disciplinas.semestre_id', '=', Semestre::FpaAtivo()->id)->where('atribuicoes_disciplinas.curso_id', '=', Auth::user()->curso->id)->get();
 
-            dd($atribuicao);
+            $funcionario_id = [];
 
-            return view('atribuicao.atribuicao_disciplinas', compact('funcionarios', 'funcionario', 'semestre', 'curso', 'modulos'));
+            # funcionario_id[$disciplina->id][]
+            if(!empty($atribuicao))
+                foreach ($atribuicao as $attr) {
+                    $funcionario_id[] = ["disciplina->id" => $attr->disciplina_id, $attr->funcionario_id];
+                }
+
+            //dd($funcionario_id);
+
+            return view('atribuicao.atribuicao_disciplinas', compact('funcionario_id', 'funcionarios', 'funcionario', 'semestre', 'curso', 'modulos'));
         }
 
         public function salvar(Request $request){
@@ -69,6 +77,10 @@ class AtribuicaoController {
                 }
             });
             return redirect()->back()->with('success', 'Atribuições salvas com sucesso!');
+        }
+
+        public function atualizar(Request $request){
+            
         }
 
         public function salvarProfessorDisciplina(Request $request){

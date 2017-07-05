@@ -28,9 +28,11 @@
     {!! Form::label('', 'Data de Fim', ['class' => 'control-label']) !!}
     {!! Form::text('', $semestre->fim, ['class' => 'form-control', 'required' , 'disabled']) !!}
 </div>
-
-{!! Form::open(['method' => 'post', 'class' => 'form', 'route' => 'atribuicao-disciplinas.salvar']) !!}
-
+@if(empty($funcionario_id))
+	{!! Form::open(['method' => 'post', 'class' => 'form', 'route' => 'atribuicao-disciplinas.salvar']) !!}
+@else
+	{!! Form::model($funcionario_id, ['method' => 'update', 'class' => 'form', 'route' => 'atribuicao-disciplinas.atualizar']) !!}
+@endif
 <div class="col-lg-12 padding-0">
 	<div id="atrb-modulos" class="padding-left-0 col-lg-9">
 		<div id="explicacoes">
