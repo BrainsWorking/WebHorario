@@ -55,7 +55,7 @@
 						$flag = false;
 						@endphp
 						@if($disciplina->id == $funcionario['disciplina->id'])
-							{!! Form::select("funcionario_id[$disciplina->id][]", $funcionarios, $funcionario['funcionario_id'], ['placeholder'=>'Escolha um professor','id' => 'funcionario_id', 'class' => 'professor form-control chosen-select']) !!}
+							{!! Form::select("funcionario_id[$disciplina->id][]", $funcionarios, $funcionario['funcionario_id'], ['id' => 'funcionario_id', 'class' => 'professor form-control chosen-select']) !!}
 							@php
 							unset($funcionario[$key]);
 							$flag = true;
