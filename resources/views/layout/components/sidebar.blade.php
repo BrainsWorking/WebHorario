@@ -45,7 +45,14 @@
         @if(!is_null(\App\Models\Semestre::fpaAtivo()) && Illuminate\Support\Facades\Auth::user()->isCoordenador())
         <li class="{{ setActive('atribuicao') }}">
             <a href="{{ route('atribuicao-horarios') }}">
-                <span class="glyphicon glyphicon-edit"></span> <span class='sidebar-label'>Atribuições</span>
+                <span class="glyphicon glyphicon-edit"></span> <span style="font-size: 12px;"  class='sidebar-label'>Atribuições Horários</span>
+            </a>
+        </li>
+        @endif
+        @if(!is_null(\App\Models\Semestre::fpaAtivo()) && Illuminate\Support\Facades\Auth::user()->isCoordenador())
+        <li class="{{ setActive('atribuicao') }}">
+            <a href="{{ route('atribuicao-disciplinas') }}">
+                <span class="glyphicon glyphicon-edit"></span> <span  style="font-size: 12px;" class='sidebar-label'>Atribuição Professor</span>
             </a>
         </li>
         @endif

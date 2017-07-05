@@ -41,19 +41,50 @@
 				<span class="glyphicon glyphicon-info-sign"></span>
 			</a>
 		</div>
-		@foreach($modulos as $modulo){{-- modulos/semestres --}}
-		<div id="{{$modulo->id}}semestre" class="col-lg-3" style="padding: 0px">
-			<h4 class='text-center'>{{$modulo->nome}}</h4>					
-			@foreach($modulo['disciplinas'] as $disciplina){{-- disciplinas --}}
-			<div class="atrb-disciplina">
-				<p><b>Nome:</b> {{$disciplina->sigla}} - {{$disciplina->nome}}</p>
-				<p class="aula-semana"><b>Aulas Semanais:</b> <span>{{$disciplina->aulas_semanais}}</span></p>
-				<label for="professores">Professor: </label>
-				{!! Form::select("funcionario_id[$disciplina->id][]", $funcionarios, null, ['placeholder'=>'Escolha um professor','id' => 'funcionario_id', 'class' => 'professor form-control chosen-select']) !!}
-			</div>
-			@endforeach					
-		</div>		
-		@endforeach
+		@if(isset($funcionario_id) && !empty($funcionario_id))
+			@foreach($modulos as $modulo){{-- modulos/semestres --}}
+			<div id="{{$modulo->id}}semestre" class="col-lg-3" style="padding: 0px">
+				<h4 class='text-center'>{{$modulo->nome}}</h4>					
+				@foreach($modulo['disciplinas'] as $disciplina){{-- disciplinas --}}
+				<div class="atrb-disciplina">
+					<p><b>Nome:</b> {{$disciplina->sigla}} - {{$disciplina->nome}}</p>
+					<p class="aula-semana"><b>Aulas Semanais:</b> <span>{{$disciplina->aulas_semanais}}</span></p>
+					<label for="professores">Professor: </label>
+					@foreach($funcionario_id as $key => $funcionario)
+						@php
+						$flag = false;
+						@endphp
+						@if($disciplina->id == $funcionario['disciplina->id'])
+							{!! Form::select("funcionario_id[$disciplina->id][]", $funcionarios, $funcionario['funcionario_id'], ['placeholder'=>'Escolha um professor','id' => 'funcionario_id', 'class' => 'professor form-control chosen-select']) !!}
+							@php
+							unset($funcionario[$key]);
+							$flag = true;
+							@endphp
+							@break
+						@endif
+					@endforeach
+					@if(!$flag)
+					{!! Form::select("funcionario_id[$disciplina->id][]", $funcionarios, null, ['placeholder'=>'Escolha um professor','id' => 'funcionario_id', 'class' => 'professor form-control chosen-select']) !!}
+					@endif
+				</div>
+				@endforeach
+			</div>		
+			@endforeach
+		@else
+			@foreach($modulos as $modulo){{-- modulos/semestres --}}
+			<div id="{{$modulo->id}}semestre" class="col-lg-3" style="padding: 0px">
+				<h4 class='text-center'>{{$modulo->nome}}</h4>					
+				@foreach($modulo['disciplinas'] as $disciplina){{-- disciplinas --}}
+				<div class="atrb-disciplina">
+					<p><b>Nome:</b> {{$disciplina->sigla}} - {{$disciplina->nome}}</p>
+					<p class="aula-semana"><b>Aulas Semanais:</b> <span>{{$disciplina->aulas_semanais}}</span></p>
+					<label for="professores">Professor: </label>
+					{!! Form::select("funcionario_id[$disciplina->id][]", $funcionarios, null, ['placeholder'=>'Escolha um professor','id' => 'funcionario_id', 'class' => 'professor form-control chosen-select']) !!}
+				</div>
+				@endforeach					
+			</div>		
+			@endforeach
+		@endif
 	</div>
 
 	<div class="col-lg-3">
@@ -79,7 +110,7 @@
 
 
 	<div class="col-lg-12">
-		<button type="submit" class="btn btn-success right">
+		<button class="btn btn-success right">
 			<span class="glyphicon glyphicon-floppy-disk"></span>
 			Salvar
 		</button>

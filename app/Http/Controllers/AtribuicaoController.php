@@ -53,10 +53,8 @@ class AtribuicaoController {
             # funcionario_id[$disciplina->id][]
             if(!empty($atribuicao))
                 foreach ($atribuicao as $attr) {
-                    $funcionario_id[] = ["disciplina->id" => $attr->disciplina_id, $attr->funcionario_id];
+                    $funcionario_id[] = ["disciplina->id" => $attr->disciplina_id, "funcionario_id" => $attr->funcionario_id];
                 }
-
-            //dd($funcionario_id);
 
             return view('atribuicao.atribuicao_disciplinas', compact('funcionario_id', 'funcionarios', 'funcionario', 'semestre', 'curso', 'modulos'));
         }
@@ -67,12 +65,14 @@ class AtribuicaoController {
             DB::transaction(function () use ($dataForm, $semestre){
                 foreach ($dataForm['funcionario_id'] as $key_disciplina => $disciplina) {
                     foreach ($disciplina as $key_funcionario => $funcionario) {
-                        AtribuicaoProfessor::create(array(
-                                                        "disciplina_id"     => $key_disciplina,
-                                                        "semestre_id"       => $semestre,
-                                                        "funcionario_id"    => $funcionario,
-                                                        "curso_id"          => Auth::user()->curso->id
-                                                    ));
+                        if (!is_null($funcionario)) {
+                            AtribuicaoProfessor::create(array(
+                                "disciplina_id"     => $key_disciplina,
+                                "semestre_id"       => $semestre,
+                                "funcionario_id"    => $funcionario,
+                                "curso_id"          => Auth::user()->curso->id
+                                ));
+                        }                        
                     }
                 }
             });
@@ -80,7 +80,7 @@ class AtribuicaoController {
         }
 
         public function atualizar(Request $request){
-            
+            return redirect()->back();
         }
 
         public function salvarProfessorDisciplina(Request $request){

@@ -81,31 +81,26 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     #ATRIBUIÇÃO DISCIPLINAS
-    Route::name('atribuicao-disciplinas')
-        ->get('atribuicao/atribuicao-disciplinas', 'AtribuicaoController@index');
-    Route::name('atribuicao-disciplinas.salvar')
-        ->get('atribuicao/atribuicao-disciplinas/salvar', 'AtribuicaoController@salvar');
-    Route::name('atribuicao-disciplinas.atualizar')
-        ->get('atribuicao/atribuicao-disciplinas/atualizar', 'AtribuicaoController@atualizar');
+    
+    // Route::name('atribuicao-disciplinas.salvar')
+    //     ->get('atribuicao/atribuicao-disciplinas/salvar', 'AtribuicaoController@salvar');
+    // Route::name('atribuicao-disciplinas.atualizar')
+    //     ->get('atribuicao/atribuicao-disciplinas/atualizar', 'AtribuicaoController@atualizar');
     //Route::get('atribuicao-disciplinas', function(){
     //    $funcionarios = Funcionario::pluck('nome', 'id');
     //    return view('atribuicao.atribuicao_disciplinas', compact('funcionarios'));
     //});
 
-    
     //Route::name('atribuicao-disciplinas')->get('atribuicao-disciplinas', 'AtribuicaoController@cadastrar');
+    Route::name('atribuicao-disciplinas')->get('atribuicao-disciplinas', 'AtribuicaoController@index');
     Route::name('atribuicao-disciplinas.salvar')->post('atribuicao-disciplina/salvar', 'AtribuicaoController@salvar');
-
+    Route::name('atribuicao-disciplinas.atualizar')->post('atribuicao-disciplina/atualizar', 'AtribuicaoController@atualizar');
     
 
     #ATRIBUIÇÃO HORARIOS
     Route::name('atribuicao-horarios')->get('atribuicao-horarios', 'AtribuicaoHorarioController@cadastrar');
     Route::name('atribuicao-horarios.salvar')->post('atribuicao-horarios/salvar', 'AtribuicaoHorarioController@salvar');
     Route::name('atribuicao-horarios.atualizar')->post('atribuicao-horarios/atualizar', 'AtribuicaoHorarioController@atualizar');
-
-    #ATRIBUIÇÃO DISCIPLINAS
-    // Route::name('atribuicao-disciplinas')->get('atribuicao-disciplinas', 'AtribuicaoDisciplinaController@cadastrar');
-    // Route::name('atribuicao-disciplinas.salvar')->post('atribuicao-disciplina/salvar', 'AtribuicaoDisciplinaController@salvar');    
 
 
     Route::get('visualizador-horarios', function(){
