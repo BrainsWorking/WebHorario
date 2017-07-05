@@ -82,7 +82,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     #ATRIBUIÇÃO DISCIPLINAS
     Route::name('atribuicao-disciplinas')
-        ->get('atribuicao/atribuicao-disciplinas', 'AtribuicaoController@indexDisciplinas');
+        ->get('atribuicao/atribuicao-disciplinas', 'AtribuicaoController@index');
+    Route::name('atribuicao-disciplinas.salvar')
+        ->get('atribuicao/atribuicao-disciplinas/salvar', 'AtribuicaoController@salvar');
     //Route::get('atribuicao-disciplinas', function(){
     //    $funcionarios = Funcionario::pluck('nome', 'id');
     //    return view('atribuicao.atribuicao_disciplinas', compact('funcionarios'));

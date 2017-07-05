@@ -2,16 +2,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Cargo;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Funcionario;
 use App\Models\Disciplina;
+use App\Models\Semestre;
+use App\Models\Cargo;
 
 class AtribuicaoController {
 
-        public function indexDisciplinas(){
+        public function index(){
+
+            # Verificando se tem alguma FPA ativa
+            if(is_null(Semestre::FpaAtivo()))
+                return redirect()->back()->withError('Não há nenhum FPA aberto no momento');
+            else
+                $semestre = Semestre::FpaAtivo();
+
+            # Verificando se o usuário logado é o coordenador do curso
+            if (!Auth::user()->isCoordenador()) 
+                return redirect()->back()->withError('Somente coordenadores do curso podem editar');
+            else
+                $funcionario = Auth::user();
+
+            # Recuperando todos os professores do curso
             $funcionarios = Funcionario::pluck('nome', 'id');
-            return view('atribuicao.atribuicao_disciplinas', compact('funcionarios'));
+
+            # Recuperando o curso do coordenador
+            $curso = $funcionario->curso;
+
+            # Recuperando os módulos do semestre
+            $modulos = $semestre->modulos;
+            foreach ($modulos as $key => $modulo)
+                if ($modulo['curso_id'] != $curso->id)
+                    unset($modulos[$key]);
+
+            # Recuperando as disciplinas
+            $disciplinas_semestre = $semestre->disciplinasPorCurso()[$curso->nome]; //fazer filtro somente para o curso atual
+            $disciplinas = [];
+            foreach ($disciplinas_semestre as $key => $disciplina)
+                $disciplinas[] = Disciplina::find($disciplina['id']);
+            
+
+            return view('atribuicao.atribuicao_disciplinas', compact('funcionarios', 'funcionario', 'semestre', 'curso', 'modulos'));
+        }
+
+        public function salvar(Request $request){
+            dd($request->all());
         }
 
         public function salvarProfessorDisciplina(Request $request){
@@ -71,10 +108,6 @@ class AtribuicaoController {
 
         public function updateAtribuicaoHorario(Request $request){
             
-        }
-
-        public function index(){
-            return view('fpa.atribuicao_disciplinas');
         }
     
 }
