@@ -39,13 +39,16 @@ class AtribuicaoController {
                     unset($modulos[$key]);
 
             # Recuperando as disciplinas
-            $disciplinas_semestre = $semestre->disciplinasPorCurso()[$curso->nome]; //fazer filtro somente para o curso atual
+            $disciplinas_semestre = $semestre->disciplinasPorCurso()[$curso->nome];
+
             $disciplinas = [];
             foreach ($disciplinas_semestre as $key => $disciplina)
                 $disciplinas[] = Disciplina::find($disciplina['id']);
             
 
-            $atribuicao = AtribuicaoProfessor::where('atribuicao_disciplinas.');
+            $atribuicao = AtribuicaoProfessor::where('atribuicoes_disciplinas.semestre_id', '=', Semestre::FpaAtivo()->id)->where('atribuicoes_disciplinas.curso_id', '=', Auth::user()->curso->id)->get();
+
+            dd($atribuicao);
 
             return view('atribuicao.atribuicao_disciplinas', compact('funcionarios', 'funcionario', 'semestre', 'curso', 'modulos'));
         }
@@ -59,7 +62,8 @@ class AtribuicaoController {
                         AtribuicaoProfessor::create(array(
                                                         "disciplina_id"     => $key_disciplina,
                                                         "semestre_id"       => $semestre,
-                                                        "funcionario_id"    => $funcionario
+                                                        "funcionario_id"    => $funcionario,
+                                                        "curso_id"          => Auth::user()->curso->id
                                                     ));
                     }
                 }
