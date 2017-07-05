@@ -52,16 +52,15 @@ class AtribuicaoController {
 
         public function salvar(Request $request){
             $dataForm = $request->all();
-            DB::transaction(function () use ($dataForm){
-                foreach ($dataForm['funcionario_id'] as $key_modulo => $modulo) {
-                    foreach ($modulo as $key_disciplina => $disciplina) {
-                        foreach ($disciplina as $key_funcionario => $funcionario) {
-                            AtribuicaoProfessor::create(array(
-                                                            "disciplina_id"     => $key_disciplina,
-                                                            "modulo_id"         => $key_modulo,
-                                                            "funcionario_id"    => $funcionario
-                                                        ));
-                        }
+            $semestre = Semestre::FpaAtivo()->id;
+            DB::transaction(function () use ($dataForm, $semestre){
+                foreach ($dataForm['funcionario_id'] as $key_disciplina => $disciplina) {
+                    foreach ($disciplina as $key_funcionario => $funcionario) {
+                        AtribuicaoProfessor::create(array(
+                                                        "disciplina_id"     => $key_disciplina,
+                                                        "semestre_id"       => $semestre,
+                                                        "funcionario_id"    => $funcionario
+                                                    ));
                     }
                 }
             });
