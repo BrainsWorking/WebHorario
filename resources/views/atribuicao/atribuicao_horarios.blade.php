@@ -65,12 +65,13 @@
 						@php
 							$flag = false;
 						@endphp
-						@foreach($atribuicao_horarios as $atribuicao)
-							@if($atribuicao->horario_id == $horario->id && $atribuicao->dia_semana == strtoupper($dia))
+						@foreach($atribuicao_horarios as $key => $atribuicao)
+							@if($atribuicao->horario_id == $horario->id && $atribuicao->dia_semana == strtoupper($dia) && $atribuicao->disciplina->modulo->id == $modulo->id)
 							<td>
-							{!! Form::select("atrb_horarios[$horario->id][$dia]", $modulo['disciplinas']->pluck('nome','id'), $atribuicao->disciplina_id, ['placeholder'=>'','id' => 'disciplina_id', 'class' => 'disciplina form-control chosen-select']) !!}
+							{!! Form::select("atrb_horarios[$modulo->id][$horario->id][$dia]", $modulo['disciplinas']->pluck('nome','id'), $atribuicao->disciplina_id, ['placeholder'=>'','id' => 'disciplina_id', 'class' => 'disciplina form-control chosen-select']) !!}
 							</td>
 							@php
+								unset($atribuicao_horarios[$key]);
 								$flag = true;
 							@endphp
 							@break
@@ -78,12 +79,12 @@
 						@endforeach
 						@if(!$flag)
 							<td>
-								{!! Form::select("atrb_horarios[$horario->id][$dia]", $modulo['disciplinas']->pluck('nome','id'), null, ['placeholder'=>'','id' => 'disciplina_id', 'class' => 'disciplina form-control chosen-select']) !!}
+								{!! Form::select("atrb_horarios[$modulo->id][$horario->id][$dia]", $modulo['disciplinas']->pluck('nome','id'), null, ['placeholder'=>'','id' => 'disciplina_id', 'class' => 'disciplina form-control chosen-select']) !!}
 							</td>
 						@endif
 					@else
 					<td>
-						{!! Form::select("atrb_horarios[$horario->id][$dia]", $modulo['disciplinas']->pluck('nome','id'), null, ['placeholder'=>'','id' => 'disciplina_id', 'class' => 'disciplina form-control chosen-select']) !!}
+						{!! Form::select("atrb_horarios[$modulo->id][$horario->id][$dia]", $modulo['disciplinas']->pluck('nome','id'), null, ['placeholder'=>'','id' => 'disciplina_id', 'class' => 'disciplina form-control chosen-select']) !!}
 					</td>
 					@endif
 					@endforeach
@@ -158,6 +159,7 @@
 $(document).ready(function(){
 	$(".chosen-select").chosen({
 		no_results_text: "Nenhuma disciplina encontrada!",
+		allow_single_deselect: true
 	});
 });
 </script>
