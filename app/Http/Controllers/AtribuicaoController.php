@@ -80,7 +80,53 @@ class AtribuicaoController {
         }
 
         public function atualizar(Request $request){
-            return redirect()->back();
+            $data = $request['funcionario_id'];
+
+            $semestre_id = Semestre::FpaAtivo()->id;
+            $curso_id = Auth::user()->curso->id;
+
+            $atribuicao_professor = AtribuicaoProfessor::where('atribuicoes_disciplinas.semestre_id', '=', Semestre::FpaAtivo()->id)->where('atribuicoes_disciplinas.curso_id', '=', Auth::user()->curso->id)->get();
+            
+        // verifica se os dados do request já estão no banco e atualiza, limpando os dados do request.
+        foreach ($atribuicao_professor as $atribuicao) {
+            if (isset($data[$atribuicao->disciplina->id])) {
+                $atribuicao->funcionario_id = $data[$atribuicao->disciplina->id][0];
+                $atribuicao->update();
+                unset($data[$atribuicao->disciplina->id]);
+            }
+        }
+        
+        // cria novos horarios no banco que não estavam preenchidos anteriormente;
+        DB::transaction(function () use ($data, $semestre_id, $curso_id) {
+            foreach ($data as $key_disciplina => $disciplina) {
+                foreach ($disciplina as $key_funcionario => $funcionario) {
+                    if (!is_null($funcionario)) {
+                        AtribuicaoProfessor::create(array(
+                            "disciplina_id"     => $key_disciplina,
+                            "semestre_id"       => $semestre_id,
+                            "funcionario_id"    => $funcionario,
+                            "curso_id"          => Auth::user()->curso->id
+                            ));
+                        unset($data[$key_disciplina]);
+                    }                        
+                }
+            }
+        });
+
+        //deleta as atribuições que foram deselecionadas;
+        DB::transaction(function () use ($data, $atribuicao_professor) {
+            foreach ($data as $key_disciplina => $disciplina) {
+                foreach ($disciplina as $key_funcionario => $funcionario) {                    
+                     foreach ($atribuicao_professor as $atribuicao) {
+                        if ($atribuicao->disciplina->id == $key_disciplina) {
+                            $atribuicao->delete();
+                            }
+                        }
+                }
+            }
+        });
+
+        return redirect()->back()->with('success', 'Horários salvos com sucesso!');
         }
 
         public function salvarProfessorDisciplina(Request $request){
