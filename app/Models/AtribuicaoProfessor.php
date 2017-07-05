@@ -10,7 +10,7 @@ use App\Models\Funcionario;
 class AtribuicaoProfessor extends Model {
     
     protected $table = 'atribuicoes_disciplinas';
-    protected $fillable = ['disciplina_id', 'semestre_id', 'funcionario_id'];
+    protected $fillable = ['disciplina_id', 'semestre_id', 'funcionario_id', 'curso_id'];
     public    $timestamps = false;
 
     public function disciplina(){
